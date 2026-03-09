@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parametrizar, customizar ou personalizar: o que ninguém te explica antes de contratar um ERP | SYSLED Blog</title>
+  <meta name="description" content="Entenda a diferença entre parametrização, customização e personalização de ERP — e como essa confusão de vocabulário pode custar caro à sua fábrica.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --green: #22C55E;
+      --green-dim: rgba(34,197,94,0.15);
+      --yellow: #EAB308;
+      --yellow-dim: rgba(234,179,8,0.15);
+      --info-blue: #3B82F6;
+      --info-blue-dim: rgba(59,130,246,0.15);
+      --red: #EF4444;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Pyramid */
+    .pyramid-stack {
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+      position: relative;
+    }
+    .pyramid-tier {
+      display: grid; grid-template-columns: auto 1fr; gap: 1.25rem;
+      align-items: center; padding: 1.5rem 2rem;
+      border-radius: 14px; position: relative;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark-2);
+    }
+    .pyramid-tier-1 {
+      width: 100%; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;
+      border-top: 3px solid var(--green);
+    }
+    .pyramid-tier-2 {
+      width: 88%; border-top: 3px solid var(--yellow);
+    }
+    .pyramid-tier-3 {
+      width: 74%; border-top: 3px solid var(--info-blue);
+    }
+    .pyramid-tier + .pyramid-tier { margin-top: -1px; }
+    .pyramid-connector {
+      width: 2px; height: 16px;
+      background: linear-gradient(180deg, rgba(91,184,245,0.3), rgba(91,184,245,0.1));
+      margin: 0 auto;
+    }
+    .pyramid-level-badge {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pyramid-tier-1 .pyramid-level-badge { background: var(--green-dim); }
+    .pyramid-tier-2 .pyramid-level-badge { background: var(--yellow-dim); }
+    .pyramid-tier-3 .pyramid-level-badge { background: var(--info-blue-dim); }
+    .pyramid-level-num {
+      font-family: var(--font-heading); font-weight: 900; font-size: 1.1rem; line-height: 1;
+    }
+    .pyramid-tier-1 .pyramid-level-num { color: var(--green); }
+    .pyramid-tier-2 .pyramid-level-num { color: var(--yellow); }
+    .pyramid-tier-3 .pyramid-level-num { color: var(--info-blue); }
+    .pyramid-level-label {
+      font-size: 0.45rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; margin-top: 2px;
+    }
+    .pyramid-tier-1 .pyramid-level-label { color: var(--green); }
+    .pyramid-tier-2 .pyramid-level-label { color: var(--yellow); }
+    .pyramid-tier-3 .pyramid-level-label { color: var(--info-blue); }
+    .pyramid-content { display: flex; flex-direction: column; gap: 0.35rem; }
+    .pyramid-name {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.9rem; color: var(--white);
+    }
+    .pyramid-details {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;
+    }
+    .pyramid-detail {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45); line-height: 1.5;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pyramid-detail strong {
+      color: rgba(255,255,255,0.7); font-weight: 600;
+    }
+    .pyramid-detail-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .pyramid-tier-1 .pyramid-detail-dot { background: var(--green); }
+    .pyramid-tier-2 .pyramid-detail-dot { background: var(--yellow); }
+    .pyramid-tier-3 .pyramid-detail-dot { background: var(--info-blue); }
+    .pyramid-example {
+      font-size: 0.7rem; color: rgba(255,255,255,0.3);
+      font-style: italic; margin-top: 0.25rem;
+    }
+
+    /* INFOGRAPHIC 2 — Questions columns */
+    .questions-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      position: relative;
+    }
+    .questions-card {
+      background: var(--dark-2); border-radius: 14px;
+      padding: 0; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .questions-card:hover {
+      border-color: rgba(255,255,255,0.12); transform: translateY(-3px);
+    }
+    .questions-card-header {
+      padding: 1.25rem 1.25rem 0.75rem;
+      border-top: 3px solid;
+    }
+    .questions-card-1 .questions-card-header { border-top-color: var(--green); }
+    .questions-card-2 .questions-card-header { border-top-color: var(--yellow); }
+    .questions-card-3 .questions-card-header { border-top-color: var(--info-blue); }
+    .questions-card-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    .questions-card-1 .questions-card-icon { background: var(--green-dim); }
+    .questions-card-2 .questions-card-icon { background: var(--yellow-dim); }
+    .questions-card-3 .questions-card-icon { background: var(--info-blue-dim); }
+    .questions-card-icon svg { width: 18px; height: 18px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .questions-card-1 .questions-card-icon svg { stroke: var(--green); }
+    .questions-card-2 .questions-card-icon svg { stroke: var(--yellow); }
+    .questions-card-3 .questions-card-icon svg { stroke: var(--info-blue); }
+    .questions-card-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white);
+    }
+    .questions-card-body {
+      padding: 0.75rem 1.25rem 1.5rem;
+    }
+    .questions-card-body ul {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-direction: column; gap: 0.65rem;
+    }
+    .questions-card-body li {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45); line-height: 1.55;
+      padding-left: 1rem; position: relative;
+    }
+    .questions-card-body li::before {
+      content: ''; position: absolute; left: 0; top: 7px;
+      width: 5px; height: 5px; border-radius: 50%;
+    }
+    .questions-card-1 .questions-card-body li::before { background: var(--green); }
+    .questions-card-2 .questions-card-body li::before { background: var(--yellow); }
+    .questions-card-3 .questions-card-body li::before { background: var(--info-blue); }
+
+    /* INFOGRAPHIC 3 — Revenue model */
+    .revenue-model {
+      display: flex; flex-direction: column; align-items: center; gap: 2rem;
+      position: relative;
+    }
+    .revenue-bars {
+      display: flex; align-items: flex-end; gap: 2.5rem;
+      justify-content: center; width: 100%;
+    }
+    .revenue-bar-group {
+      display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+      flex: 0 0 auto;
+    }
+    .revenue-bar-wrapper {
+      width: 100px; height: 200px;
+      background: var(--dark-2); border-radius: 10px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      overflow: hidden; position: relative;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .revenue-bar-fill {
+      width: 100%; border-radius: 0 0 8px 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.2rem; color: var(--white);
+      transition: height 0.8s ease;
+      position: relative;
+    }
+    .revenue-bar-fill-software {
+      background: linear-gradient(180deg, var(--blue-light), var(--blue-deep));
+      height: 70%;
+    }
+    .revenue-bar-fill-services {
+      background: linear-gradient(180deg, var(--yellow), #D97706);
+      height: 55%;
+    }
+    .revenue-bar-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.72rem; color: rgba(255,255,255,0.6);
+      text-align: center; max-width: 120px;
+    }
+    .revenue-bar-sublabel {
+      font-size: 0.62rem; color: rgba(255,255,255,0.3);
+      text-align: center; margin-top: 0.25rem;
+    }
+    .revenue-vs {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 0.8rem; color: rgba(255,255,255,0.25);
+      align-self: center; margin-bottom: 2.5rem;
+    }
+    .revenue-warning {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px; padding: 1rem 1.5rem;
+      max-width: 520px; width: 100%;
+    }
+    .revenue-warning-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(239,68,68,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .revenue-warning-icon svg { width: 20px; height: 20px; stroke: var(--red); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .revenue-warning-text {
+      font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.55;
+    }
+    .revenue-warning-text strong {
+      color: var(--red); font-weight: 700;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .pyramid-tier { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.25rem; }
+      .pyramid-tier-1, .pyramid-tier-2, .pyramid-tier-3 { width: 100%; }
+      .pyramid-level-badge { margin: 0 auto; }
+      .pyramid-content { text-align: center; }
+      .pyramid-details { justify-content: center; }
+      .questions-grid { grid-template-columns: 1fr; }
+      .revenue-bars { flex-direction: column; align-items: center; gap: 1.5rem; }
+      .revenue-bar-wrapper { width: 80%; height: 60px; flex-direction: row; }
+      .revenue-bar-fill { height: 100% !important; width: auto; border-radius: 8px 0 0 8px; }
+      .revenue-bar-fill-software { width: 70%; height: 100% !important; }
+      .revenue-bar-fill-services { width: 55%; height: 100% !important; }
+      .revenue-vs { display: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">ERP Industrial</span>
+  <h1>Parametrizar, customizar ou personalizar: o que ninguém te explica antes de você contratar um ERP</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      6 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Existe um momento numa conversa de venda de ERP em que o vendedor diz algo como: "nosso sistema é totalmente flexível, adaptamos para a sua realidade".</p>
+
+  <p>É nesse momento que o comprador precisa parar e fazer três perguntas muito específicas. Porque "flexível" pode significar coisas completamente diferentes — e cada uma delas tem um custo, um prazo e um risco radicalmente distintos.</p>
+
+  <p>A maioria das frustrações pós-implantação de ERP começa aqui: numa conversa onde os dois lados usavam a mesma palavra para descrever coisas diferentes.</p>
+
+  <p>Vamos clarear esse vocabulário de uma vez.</p>
+
+  <hr class="article-divider">
+
+  <h2>Parametrizar: o que o sistema já prevê</h2>
+
+  <p>Parametrização é quando você configura o sistema dentro das possibilidades que já foram programadas pelo fornecedor.</p>
+
+  <p>Exemplos concretos: definir as contas do seu plano de contas, configurar os campos do cadastro de produto, escolher quais alertas são ativados, ativar ou desativar módulos, ajustar os níveis de permissão por perfil de usuário.</p>
+
+  <p>Isso é legítimo e esperado em qualquer ERP. Toda empresa tem suas particularidades de processo, e um bom sistema precisa de espaço para acomodá-las sem precisar de código novo.</p>
+
+  <p><strong>O que você precisa saber:</strong> parametrização tem limite. O sistema só pode ser configurado dentro do que foi previsto em seu design original. Quando sua operação tem uma necessidade que está fora desse espaço, a parametrização não resolve — e é aqui que muitos vendedores mudam de conversa sem avisar.</p>
+
+  <h2>Customizar: código novo para necessidades suas</h2>
+
+  <p>Customização é quando o fornecedor escreve código específico para atender uma necessidade da sua empresa que não existe no produto padrão.</p>
+
+  <p>Exemplos: um relatório no formato exato que o seu cliente exige, uma integração com uma máquina específica do seu parque fabril, um fluxo de aprovação que segue a hierarquia peculiar da sua organização, um campo de rastreabilidade que só faz sentido no seu setor.</p>
+
+  <p>Aqui está o que ninguém diz claramente na hora de vender:</p>
+
+  <p><strong>Customização tem custo imediato e custo futuro.</strong></p>
+
+  <p>O custo imediato é o da hora do desenvolvedor para construir a funcionalidade. Geralmente está fora do contrato de mensalidade e aparece como "ordem de serviço adicional".</p>
+
+  <p>O custo futuro é mais silencioso e mais perigoso: toda vez que o sistema é atualizado, as customizações precisam ser verificadas e potencialmente reescritas para continuar funcionando. Quem paga por isso? Com que frequência acontece? Essas são as perguntas que precisam estar no contrato — e raramente estão.</p>
+
+  <p>Há empresas que após cinco anos de uso têm sistemas tão cheios de customizações acumuladas que qualquer atualização se torna um projeto de risco. O fornecedor original às vezes nem consegue mais manter o código. A empresa fica refém de uma versão antiga do sistema porque atualizar significaria perder tudo que foi construído ao longo dos anos.</p>
+
+  <p><strong>Customização não é necessariamente ruim.</strong> Sua operação tem necessidades reais que um produto genérico não vai cobrir. O problema é quando ela acontece de forma não documentada, sem política clara de manutenção, e se acumula até virar uma dívida técnica impagável.</p>
+
+  <h2>Personalizar: o sistema que aprende com você</h2>
+
+  <p>Personalização é diferente das duas anteriores — e é onde a maior parte do mercado ainda não chegou.</p>
+
+  <p>Personalização é quando o sistema adapta sua interface, seus fluxos e suas sugestões automaticamente com base no comportamento real de uso, sem que o usuário precise configurar nada ou que o fornecedor precise escrever código novo.</p>
+
+  <p>Exemplos do que isso significa na prática: o dashboard do supervisor que reorganiza automaticamente os KPIs que ele consulta com mais frequência. O fluxo de apontamento que simplifica os campos que não são preenchidos por aquela fábrica específica. A sugestão de sequenciamento de ordens que aprende com as decisões históricas do PCP.</p>
+
+  <p>Isso é o que diferencia um sistema que você adapta pontualmente de um sistema que evolui continuamente junto com a sua operação.</p>
+
+  <p>A maioria dos ERPs do mercado — inclusive os caros — opera no nível 1 (parametrização) com alguma capacidade de nível 2 (customização mediante pagamento). O nível 3 (personalização real, contínua e automática) é onde a próxima geração de sistemas industriais vai se diferenciar.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Pyramid -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Pirâmide dos 3 níveis
+    </div>
+    <div class="pyramid-stack">
+
+      <!-- Tier 3 — Top (Personalização) -->
+      <div class="pyramid-tier pyramid-tier-3">
+        <div class="pyramid-level-badge">
+          <div class="pyramid-level-num">3</div>
+          <div class="pyramid-level-label">Nível</div>
+        </div>
+        <div class="pyramid-content">
+          <div class="pyramid-name">Personalização</div>
+          <div class="pyramid-details">
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Quem faz:</strong> O próprio sistema (IA/algoritmos)
+            </div>
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Custo:</strong> Incluso no produto
+            </div>
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Risco:</strong> Alto valor agregado
+            </div>
+          </div>
+          <div class="pyramid-example">Ex: Dashboard que reorganiza KPIs com base no uso real</div>
+        </div>
+      </div>
+
+      <div class="pyramid-connector"></div>
+
+      <!-- Tier 2 — Middle (Customização) -->
+      <div class="pyramid-tier pyramid-tier-2">
+        <div class="pyramid-level-badge">
+          <div class="pyramid-level-num">2</div>
+          <div class="pyramid-level-label">Nível</div>
+        </div>
+        <div class="pyramid-content">
+          <div class="pyramid-name">Customização</div>
+          <div class="pyramid-details">
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Quem faz:</strong> Desenvolvedor / Fornecedor
+            </div>
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Custo:</strong> Ordem de serviço + manutenção
+            </div>
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Risco:</strong> Médio — dívida técnica
+            </div>
+          </div>
+          <div class="pyramid-example">Ex: Integração com máquina específica do parque fabril</div>
+        </div>
+      </div>
+
+      <div class="pyramid-connector"></div>
+
+      <!-- Tier 1 — Base (Parametrização) -->
+      <div class="pyramid-tier pyramid-tier-1">
+        <div class="pyramid-level-badge">
+          <div class="pyramid-level-num">1</div>
+          <div class="pyramid-level-label">Nível</div>
+        </div>
+        <div class="pyramid-content">
+          <div class="pyramid-name">Parametrização</div>
+          <div class="pyramid-details">
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Quem faz:</strong> Usuário admin / Implantador
+            </div>
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Custo:</strong> Incluso na implantação
+            </div>
+            <div class="pyramid-detail">
+              <div class="pyramid-detail-dot"></div>
+              <strong>Risco:</strong> Baixo — previsto no design
+            </div>
+          </div>
+          <div class="pyramid-example">Ex: Configurar plano de contas, ativar/desativar módulos</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Por que essa distinção muda tudo na hora de contratar</h2>
+
+  <p>Quando você está avaliando um ERP, fazer as perguntas certas sobre cada um desses três conceitos revela muito mais do que qualquer demonstração de funcionalidades.</p>
+
+  <p><strong>Perguntas sobre parametrização:</strong></p>
+  <ul>
+    <li>Quais aspectos do sistema podem ser configurados sem ajuda técnica?</li>
+    <li>Existe documentação que eu posso acessar sozinho para fazer essas configurações?</li>
+    <li>O que não pode ser parametrizado?</li>
+  </ul>
+
+  <p><strong>Perguntas sobre customização:</strong></p>
+  <ul>
+    <li>Qual é o processo e o custo para solicitar uma customização?</li>
+    <li>Quem é o responsável por manter as customizações quando o sistema é atualizado?</li>
+    <li>Posso ver um contrato de exemplo para entender como customizações são precificadas?</li>
+    <li>Quantas customizações têm em média os seus clientes após dois anos de uso?</li>
+  </ul>
+
+  <p><strong>Perguntas sobre personalização:</strong></p>
+  <ul>
+    <li>O sistema aprende com o uso? De que forma?</li>
+    <li>Existe alguma funcionalidade que adapta a interface com base no perfil de cada usuário?</li>
+    <li>Como o produto vai evoluir nos próximos dois anos sem que eu precise pagar por novas versões?</li>
+  </ul>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Questions by level -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Perguntas por nível
+    </div>
+    <div class="questions-grid">
+
+      <div class="questions-card questions-card-1">
+        <div class="questions-card-header">
+          <div class="questions-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 15V9m0 0l-3 3m3-3l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <div class="questions-card-label">Parametrização</div>
+        </div>
+        <div class="questions-card-body">
+          <ul>
+            <li>Quais aspectos podem ser configurados sem ajuda técnica?</li>
+            <li>Existe documentação acessível para fazer as configurações?</li>
+            <li>O que não pode ser parametrizado?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="questions-card questions-card-2">
+        <div class="questions-card-header">
+          <div class="questions-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="questions-card-label">Customização</div>
+        </div>
+        <div class="questions-card-body">
+          <ul>
+            <li>Qual é o processo e o custo para solicitar uma customização?</li>
+            <li>Quem mantém as customizações quando o sistema é atualizado?</li>
+            <li>Posso ver um contrato de exemplo de precificação?</li>
+            <li>Quantas customizações têm em média os clientes após 2 anos?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="questions-card questions-card-3">
+        <div class="questions-card-header">
+          <div class="questions-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" fill="none"/><path d="M12 6v6l4 2" fill="none"/></svg>
+          </div>
+          <div class="questions-card-label">Personalização</div>
+        </div>
+        <div class="questions-card-body">
+          <ul>
+            <li>O sistema aprende com o uso? De que forma?</li>
+            <li>Existe funcionalidade que adapta a interface por perfil de usuário?</li>
+            <li>Como o produto evolui sem custo de novas versões?</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O modelo de negócio escondido atrás do vocabulário impreciso</h2>
+
+  <p>Existe um padrão de negócio que vale a pena nomear diretamente.</p>
+
+  <p>Alguns fornecedores de ERP têm no serviço de customização uma fonte de receita tão relevante quanto a mensalidade do software. Em alguns casos, mais relevante. Isso cria um incentivo perverso: quanto mais incompleto o produto padrão, mais customização o cliente precisa, mais receita o fornecedor gera.</p>
+
+  <p>O cliente que entra pensando que está comprando um software descobre que está entrando numa relação de dependência com um time de consultores que cobram por hora para fazer o sistema funcionar da forma que ele precisava desde o início.</p>
+
+  <p>Isso não é uma acusação a todos os fornecedores. É uma estrutura de mercado real que você precisa entender antes de assinar qualquer contrato.</p>
+
+  <p>A pergunta que protege você: <strong>"Qual percentual da receita total da empresa vem de serviços de implantação e customização versus mensalidade de software?"</strong></p>
+
+  <p>Se a resposta for que serviços representam 50% ou mais da receita, você entendeu qual é o negócio real dessa empresa — e pode avaliar se é o tipo de relação que quer ter por cinco ou dez anos.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Revenue model -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Modelo de negócio revelado
+    </div>
+    <div class="revenue-model">
+      <div class="revenue-bars">
+        <div class="revenue-bar-group">
+          <div class="revenue-bar-wrapper">
+            <div class="revenue-bar-fill revenue-bar-fill-software">70%</div>
+          </div>
+          <div class="revenue-bar-label">Receita de Software</div>
+          <div class="revenue-bar-sublabel">Mensalidade recorrente</div>
+        </div>
+        <div class="revenue-vs">VS</div>
+        <div class="revenue-bar-group">
+          <div class="revenue-bar-wrapper">
+            <div class="revenue-bar-fill revenue-bar-fill-services">55%</div>
+          </div>
+          <div class="revenue-bar-label">Receita de Serviços</div>
+          <div class="revenue-bar-sublabel">Consultoria + customização</div>
+        </div>
+      </div>
+      <div class="revenue-warning">
+        <div class="revenue-warning-icon">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="revenue-warning-text">
+          <strong>Sinal de alerta:</strong> quando serviços representam mais de 50% da receita do fornecedor, o incentivo é manter o produto incompleto para gerar mais demanda por customização. Pergunte antes de assinar.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que um sistema genuinamente bem desenhado faz</h2>
+
+  <p>Um ERP industrial bem construído resolve as necessidades da sua operação com o mínimo possível de código adicional. Não porque seja minimalista por filosofia, mas porque ele foi projetado a partir de um entendimento profundo de como fábricas do seu porte realmente funcionam.</p>
+
+  <p>Ele cobre os casos de uso mais comuns de forma nativa. As configurações que você precisa fazer cabem dentro do espaço de parametrização. E quando existe algo genuinamente específico do seu negócio que o produto padrão não resolve, a customização acontece de forma documentada, com custo claro e responsabilidade de manutenção definida.</p>
+
+  <p>A diferença entre um sistema assim e um que vive de customizações acumuladas aparece claramente no terceiro ano. No primeiro, você tem um sistema que evoluiu junto com o produto. No segundo, você tem um sistema que virou seu próprio projeto de desenvolvimento — caro, frágil e impossível de atualizar.</p>
+
+  <h2>Uma última observação</h2>
+
+  <p>A próxima vez que um vendedor de ERP usar as palavras "flexível" ou "adaptável" em uma apresentação, pergunte especificamente qual das três coisas ele está descrevendo.</p>
+
+  <p>A resposta vai dizer muito mais sobre o produto do que qualquer slide de funcionalidades.</p>
+
+  <hr class="article-divider">
+
+  <p><em>No SYSLED, separamos esses três conceitos desde o início porque vivemos na pele o que acontece quando eles se confundem. Se quiser entender como aplicamos isso na prática, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Entenda o que você está contratando antes de assinar</h2>
+  <p>No SYSLED, parametrização, customização e personalização são conceitos separados desde o dia um. Descubra como isso funciona na prática.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

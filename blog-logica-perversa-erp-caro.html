@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A lógica perversa do ERP caro: por que sistemas feitos para grandes empresas deixam PMIs reféns de consultores | SYSLED Blog</title>
+  <meta name="description" content="Entenda por que ERPs projetados para grandes empresas criam dependência de consultores e custam muito mais do que o prometido para PMIs industriais.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Cost comparison */
+    .cost-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative; margin-bottom: 2rem;
+    }
+    .cost-compare::after {
+      content: 'VS'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading); font-weight: 900; font-size: 0.75rem;
+      color: var(--blue-light); background: var(--dark-2);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(91,184,245,0.2); z-index: 2;
+    }
+    .cost-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); position: relative;
+    }
+    .cost-card-header {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .cost-card-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cost-card.traditional .cost-card-icon {
+      background: linear-gradient(135deg, rgba(148,163,184,0.15), rgba(100,116,139,0.15));
+    }
+    .cost-card.traditional .cost-card-icon svg { stroke: var(--gray-400); }
+    .cost-card.productled .cost-card-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .cost-card.productled .cost-card-icon svg { stroke: var(--blue-light); }
+    .cost-line {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.8rem;
+    }
+    .cost-line:last-child { border-bottom: none; }
+    .cost-line-label { color: rgba(255,255,255,0.5); }
+    .cost-line-value { font-family: var(--font-heading); font-weight: 700; color: rgba(255,255,255,0.8); }
+    .cost-line-value.free { color: #22C55E; }
+    .cost-total {
+      margin-top: 1rem; padding-top: 1rem;
+      border-top: 2px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cost-total-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.75rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .cost-total-value {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.25rem;
+    }
+    .cost-card.traditional .cost-total-value { color: #EF4444; }
+    .cost-card.productled .cost-total-value { color: #22C55E; }
+
+    /* Bar chart comparison */
+    .cost-bar-compare {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 3rem; padding: 1.5rem 2rem; position: relative;
+    }
+    .cost-bar-group {
+      display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+    }
+    .cost-bar-wrapper {
+      width: 80px; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      height: 160px;
+    }
+    .cost-bar {
+      width: 100%; border-radius: 8px 8px 0 0;
+      transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .cost-bar.traditional-bar {
+      background: linear-gradient(180deg, var(--gray-400), #64748B);
+      height: 150px;
+    }
+    .cost-bar.productled-bar {
+      background: linear-gradient(180deg, var(--blue-light), var(--blue-deep));
+      height: 54px;
+    }
+    .cost-bar-amount {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.75rem; color: var(--white);
+      position: absolute; top: -24px; left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    .cost-bar-label {
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 0.68rem; color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+    .cost-savings {
+      text-align: center; margin-top: 1.5rem;
+    }
+    .cost-savings-badge {
+      display: inline-block;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.75rem; color: #22C55E;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      padding: 6px 18px; border-radius: 20px;
+    }
+
+    /* INFOGRAPHIC 2 — Warning cards */
+    .warning-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .warning-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem 1.25rem;
+      text-align: center;
+      border: 1px solid rgba(245,158,11,0.15);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .warning-card:hover {
+      border-color: rgba(245,158,11,0.35); transform: translateY(-3px);
+    }
+    .warning-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(220,100,20,0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .warning-icon svg { width: 24px; height: 24px; stroke: #F59E0B; fill: none; stroke-width: 1.8; }
+    .warning-number {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.5rem; color: rgba(245,158,11,0.25);
+      margin-bottom: 0.25rem;
+    }
+    .warning-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .warning-desc {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .warning-question {
+      font-size: 0.65rem; color: #F59E0B; font-style: italic;
+      line-height: 1.5; font-weight: 500;
+      background: rgba(245,158,11,0.06);
+      padding: 6px 10px; border-radius: 8px;
+    }
+
+    /* INFOGRAPHIC 3 — Data portability */
+    .portability-flow {
+      display: flex; align-items: center; justify-content: center; gap: 0;
+      flex-wrap: nowrap; position: relative; margin-bottom: 2.5rem;
+    }
+    .port-step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; flex: 0 0 auto; padding: 0 1rem;
+    }
+    .port-step-circle {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--dark-2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.75rem; position: relative;
+    }
+    .port-step-circle.locked {
+      border: 2px solid rgba(239,68,68,0.3);
+    }
+    .port-step-circle.locked svg { stroke: #EF4444; }
+    .port-step-circle.transit {
+      border: 2px solid rgba(245,158,11,0.3);
+    }
+    .port-step-circle.transit svg { stroke: #F59E0B; }
+    .port-step-circle.free {
+      border: 2px solid rgba(34,197,94,0.3);
+    }
+    .port-step-circle.free svg { stroke: #22C55E; }
+    .port-step-circle svg { width: 28px; height: 28px; fill: none; stroke-width: 1.8; }
+    .port-step-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.75rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .port-step-sub {
+      font-size: 0.62rem; color: rgba(255,255,255,0.35); max-width: 120px;
+    }
+    .port-arrow {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; flex: 0 0 auto; padding: 0 0.5rem;
+    }
+    .port-arrow-line {
+      width: 50px; height: 2px;
+      position: relative;
+    }
+    .port-arrow-line.red-to-yellow {
+      background: linear-gradient(90deg, rgba(239,68,68,0.4), rgba(245,158,11,0.4));
+    }
+    .port-arrow-line.red-to-yellow::after {
+      content: ''; position: absolute; right: -4px; top: -3px;
+      width: 0; height: 0; border-left: 6px solid rgba(245,158,11,0.4);
+      border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+    }
+    .port-arrow-line.yellow-to-green {
+      background: linear-gradient(90deg, rgba(245,158,11,0.4), rgba(34,197,94,0.4));
+    }
+    .port-arrow-line.yellow-to-green::after {
+      content: ''; position: absolute; right: -4px; top: -3px;
+      width: 0; height: 0; border-left: 6px solid rgba(34,197,94,0.4);
+      border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+    }
+
+    .portability-checklist {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .checklist-col {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .checklist-col-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .checklist-col.demand .checklist-col-title { color: #22C55E; }
+    .checklist-col.redflags .checklist-col-title { color: #EF4444; }
+    .checklist-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+    .checklist-item svg {
+      width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;
+      fill: none; stroke-width: 2;
+    }
+    .checklist-col.demand .checklist-item svg { stroke: #22C55E; }
+    .checklist-col.redflags .checklist-item svg { stroke: #EF4444; }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .cost-compare { grid-template-columns: 1fr; }
+      .cost-compare::after { display: none; }
+      .cost-bar-compare { flex-direction: row; gap: 2rem; }
+      .warning-grid { grid-template-columns: 1fr 1fr; }
+      .portability-flow { flex-direction: column; gap: 0.5rem; }
+      .port-arrow { transform: rotate(90deg); }
+      .portability-checklist { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .warning-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Mercado ERP</span>
+  <h1>A lógica perversa do ERP caro: por que sistemas feitos para grandes empresas deixam PMIs reféns de consultores</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      7 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Existe um roteiro que se repete com variações mínimas em fábricas por todo o Brasil.</p>
+
+  <p>A empresa cresce. O Excel começa a não dar conta. Alguém indica um ERP que "é o que as grandes empresas usam". O vendedor demonstra funcionalidades impressionantes. O contrato é assinado.</p>
+
+  <p>Aí começa a implantação.</p>
+
+  <p>O projeto que foi vendido como "seis meses" chega ao fim do primeiro ano ainda incompleto. O consultor que conhecia o sistema original foi substituído por outro que precisou de duas semanas para entender o que o anterior havia feito. O go-live acontece com metade das funcionalidades prometidas. O restante "ficou para a fase 2" — que nunca tem data definida.</p>
+
+  <p>E a fase 2 vai esperar, porque a mensalidade que estava "dentro do orçamento" foi acompanhada de um fluxo interminável de ordens de serviço para ajustes que, na apresentação, pareciam estar incluídos.</p>
+
+  <p>Três anos depois, o dono da fábrica tem um sistema que funciona parcialmente, uma relação de dependência total com a empresa implementadora, e a sensação vaga de que foi vendido algo que nunca foi feito para ele.</p>
+
+  <p>Essa não é uma história de exceção. É o modelo.</p>
+
+  <hr class="article-divider">
+
+  <h2>Por que sistemas de grande empresa não funcionam para PMIs — a explicação estrutural</h2>
+
+  <p>Quando um ERP é projetado para uma multinacional com 5.000 funcionários operando em 12 países, as decisões de design refletem esse contexto.</p>
+
+  <p>Múltiplas filiais, múltiplas moedas, múltiplas jurisdições fiscais, hierarquias de aprovação com seis níveis, integrações com sistemas legados de outras empresas do grupo, auditoria contínua por quatro consultorias externas. Esse é o problema que o sistema foi construído para resolver.</p>
+
+  <p>Quando você compra uma versão "para PMEs" desse mesmo sistema, o que você geralmente recebe é um produto com a arquitetura complexa do sistema original, as integrações que você não precisa, as telas que foram simplificadas às pressas, e o modelo de venda que pressupõe que você tem equipe técnica interna para sustentar a operação.</p>
+
+  <p>A complexidade não é um bug. É uma consequência inevitável de um produto que foi genuinamente desenhado para uma realidade diferente da sua.</p>
+
+  <h2>O consultor como modelo de negócio</h2>
+
+  <p>Para entender por que isso acontece sistematicamente, é preciso entender o modelo econômico por trás dos grandes ERPs.</p>
+
+  <p>Esses sistemas são vendidos predominantemente por revendedores e implementadores — empresas parceiras certificadas que fazem o trabalho de implantação, customização e suporte. O fabricante do software recebe a licença ou mensalidade. O implementador recebe pelas horas de projeto.</p>
+
+  <p>Isso cria uma estrutura de incentivos que merece atenção.</p>
+
+  <p>O implementador é remunerado por horas de projeto, não por velocidade de entrega. Um projeto que dura 18 meses é mais rentável para ele do que um que dura 6. A complexidade que gera mais horas de trabalho é economicamente melhor do que a simplicidade que resolve o problema mais rápido.</p>
+
+  <p>Isso não é uma acusação de má-fé. É uma consequência previsível de um modelo de remuneração por hora em um contexto onde a complexidade é a norma.</p>
+
+  <p>O cliente de PMI entra nesse sistema sem entender as regras do jogo. Ele assina um contrato com o implementador, não com o fabricante do software. Quando algo não funciona, a responsabilidade é difusa — "isso é limitação do sistema", "isso vai na fase 2", "isso requer uma customização adicional".</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Custo real em 36 meses -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Custo real em 36 meses
+    </div>
+    <div class="cost-compare">
+      <div class="cost-card traditional">
+        <div class="cost-card-header">
+          <div class="cost-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          ERP Tradicional
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Mensalidade (36x)</span>
+          <span class="cost-line-value">R$ 3.500/mês</span>
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Implantação</span>
+          <span class="cost-line-value">R$ 80.000</span>
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Suporte (36x)</span>
+          <span class="cost-line-value">R$ 1.200/mês</span>
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Customizações</span>
+          <span class="cost-line-value">R$ 45.000</span>
+        </div>
+        <div class="cost-total">
+          <span class="cost-total-label">Total 36 meses</span>
+          <span class="cost-total-value">~R$ 294.200</span>
+        </div>
+      </div>
+      <div class="cost-card productled">
+        <div class="cost-card-header">
+          <div class="cost-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          Modelo Product-Led
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Mensalidade (36x)</span>
+          <span class="cost-line-value">R$ 2.800/mês</span>
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Implantação</span>
+          <span class="cost-line-value free">R$ 0 (inclusa)</span>
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Suporte (36x)</span>
+          <span class="cost-line-value free">R$ 0 (incluso)</span>
+        </div>
+        <div class="cost-line">
+          <span class="cost-line-label">Customizações</span>
+          <span class="cost-line-value">R$ 5.000</span>
+        </div>
+        <div class="cost-total">
+          <span class="cost-total-label">Total 36 meses</span>
+          <span class="cost-total-value">~R$ 105.800</span>
+        </div>
+      </div>
+    </div>
+    <div class="cost-bar-compare">
+      <div class="cost-bar-group">
+        <div class="cost-bar-wrapper">
+          <div class="cost-bar traditional-bar">
+            <span class="cost-bar-amount">R$ 294.200</span>
+          </div>
+        </div>
+        <span class="cost-bar-label">ERP Tradicional</span>
+      </div>
+      <div class="cost-bar-group">
+        <div class="cost-bar-wrapper">
+          <div class="cost-bar productled-bar">
+            <span class="cost-bar-amount">R$ 105.800</span>
+          </div>
+        </div>
+        <span class="cost-bar-label">Product-Led</span>
+      </div>
+    </div>
+    <div class="cost-savings">
+      <span class="cost-savings-badge">Economia de ~R$ 188.400 em 36 meses (64% menos)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Os quatro sinais de que você está no modelo errado</h2>
+
+  <p>Se você já tem um ERP ou está avaliando um, estes são os sinais de que você pode estar entrando numa relação que vai custar mais do que o prometido:</p>
+
+  <p><strong>1. O suporte é cobrado por hora.</strong> Um sistema que cobra separadamente para diagnosticar e resolver problemas de uso pressupõe que o suporte é um serviço de exceção. Para uma PMI sem equipe técnica interna, suporte é uma necessidade contínua. Pagar por hora significa que você evita ligar com dúvidas para controlar o custo — e os problemas se acumulam.</p>
+
+  <p><strong>2. Existe um "implementador certificado" obrigatório no meio.</strong> Quando você não pode contratar o sistema diretamente do fabricante e precisa passar por um parceiro de implantação, você adicionou um intermediário cujos incentivos podem não estar alinhados com os seus. Pergunte: quem responde pelos compromissos se o implementador não cumprir?</p>
+
+  <p><strong>3. A versão que você usa já não é a mais atual.</strong> Grandes ERPs têm ciclos de versão longos e migrações complexas. Empresas que implantaram versões antigas muitas vezes não conseguem atualizar sem um projeto novo, porque as customizações que fizeram são incompatíveis com a versão atual. Você fica preso numa versão antiga enquanto o mundo fiscal e tecnológico avança.</p>
+
+  <p><strong>4. O contrato não tem data de go-live com penalidade.</strong> Se o cronograma de implantação pode ser estendido indefinidamente sem consequência contratual para o implementador, não existe incentivo real para entregar no prazo. A data de go-live que não tem penalidade de descumprimento é uma estimativa com função decorativa.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — 4 sinais de alerta -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      4 sinais de alerta
+    </div>
+    <div class="warning-grid">
+      <div class="warning-card">
+        <div class="warning-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><line x1="1" y1="1" x2="3" y2="3"/><path d="M20 12a8 8 0 0 0-8-8"/></svg>
+        </div>
+        <div class="warning-number">01</div>
+        <div class="warning-title">Suporte cobrado por hora</div>
+        <div class="warning-desc">Você evita ligar para controlar custos. Problemas se acumulam.</div>
+        <div class="warning-question">"Quanto pago por mês de suporte, incluindo chamados?"</div>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <div class="warning-number">02</div>
+        <div class="warning-title">Implementador obrigatório</div>
+        <div class="warning-desc">Um intermediário cujos incentivos podem não estar alinhados com os seus.</div>
+        <div class="warning-question">"Quem responde se o implementador não cumprir o prazo?"</div>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </div>
+        <div class="warning-number">03</div>
+        <div class="warning-title">Versão desatualizada</div>
+        <div class="warning-desc">Customizações incompatíveis travam a atualização. Você fica preso no passado.</div>
+        <div class="warning-question">"Estou na versão mais recente? Quanto custa migrar?"</div>
+      </div>
+      <div class="warning-card">
+        <div class="warning-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </div>
+        <div class="warning-number">04</div>
+        <div class="warning-title">Sem penalidade de prazo</div>
+        <div class="warning-desc">Data de go-live sem consequência contratual é uma estimativa decorativa.</div>
+        <div class="warning-question">"Há penalidade contratual se o go-live atrasar?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que "preço democrático" realmente precisa significar</h2>
+
+  <p>Existe uma tentação de resolver o problema pelo preço: se o ERP caro deixa a PMI refém, a solução é um ERP barato.</p>
+
+  <p>Isso é verdade só até certo ponto.</p>
+
+  <p>Um ERP barato que não tem compliance fiscal completo, que não funciona offline, que não suporta o Bloco K, ou que não tem suporte adequado resolve o problema do preço e cria um problema de operação.</p>
+
+  <p>O preço justo para uma PMI industrial não é o menor preço absoluto. É o preço que, somado ao custo real de implantação, suporte e manutenção ao longo de cinco anos, resulta num custo total menor do que a alternativa cara — com uma operação que realmente funciona.</p>
+
+  <p>Isso exige clareza sobre três números que poucos vendedores apresentam juntos:</p>
+
+  <ul>
+    <li>Mensalidade do software</li>
+    <li>Custo de implantação (total, não apenas a estimativa inicial)</li>
+    <li>Custo médio de suporte e adaptações por ano</li>
+  </ul>
+
+  <p>A diferença entre um ERP que parece caro e um que parece barato às vezes se inverte completamente quando esses três números são somados de forma honesta ao longo de 36 meses.</p>
+
+  <h2>A dependência que ninguém nomeia: o dado preso no sistema</h2>
+
+  <p>Existe uma forma de dependência que vai além dos contratos e das horas de consultoria: o dado.</p>
+
+  <p>Quando sua operação está registrada num sistema por cinco anos — ordens de produção, histórico de custos, rastreabilidade de materiais, indicadores de qualidade — esse dado tem um valor enorme. É a memória operacional da sua fábrica.</p>
+
+  <p>Se o contrato não especifica claramente que você pode exportar esse dado a qualquer momento, em formato aberto e usável, você tem uma dependência que não aparece na mensalidade mas aparece no momento em que você decide trocar de sistema.</p>
+
+  <p>Migrar de um ERP para outro sem acesso limpo aos dados históricos é um projeto que pode facilmente custar mais do que dois anos de mensalidade. E alguns contratos tornam esse processo suficientemente doloroso para que o cliente simplesmente não troque — mesmo insatisfeito.</p>
+
+  <p>A portabilidade de dados não é um detalhe técnico. É uma condição de liberdade. Antes de assinar qualquer contrato, leia o que diz sobre exportação de dados, formato, e custo do processo.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Portabilidade de dados -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Portabilidade de dados
+    </div>
+    <div class="portability-flow">
+      <div class="port-step">
+        <div class="port-step-circle locked">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="port-step-label">Dados presos</div>
+        <div class="port-step-sub">Seus dados dentro de um ERP fechado</div>
+      </div>
+
+      <div class="port-arrow">
+        <div class="port-arrow-line red-to-yellow"></div>
+      </div>
+
+      <div class="port-step">
+        <div class="port-step-circle transit">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="port-step-label">Exportação</div>
+        <div class="port-step-sub">Formato aberto, sem custo, a qualquer momento</div>
+      </div>
+
+      <div class="port-arrow">
+        <div class="port-arrow-line yellow-to-green"></div>
+      </div>
+
+      <div class="port-step">
+        <div class="port-step-circle free">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+        </div>
+        <div class="port-step-label">Liberdade</div>
+        <div class="port-step-sub">Seus dados são seus. Sempre.</div>
+      </div>
+    </div>
+
+    <div class="portability-checklist">
+      <div class="checklist-col demand">
+        <div class="checklist-col-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Exija no contrato
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Exportação completa em formato aberto (CSV, JSON, XML)
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Disponível a qualquer momento, sem aviso prévio
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Sem custo adicional pela exportação
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Histórico completo, não apenas dados ativos
+        </div>
+      </div>
+      <div class="checklist-col redflags">
+        <div class="checklist-col-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          Sinais vermelhos
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Contrato não menciona exportação de dados
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Exportação cobra taxa ou exige "projeto de migração"
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Formato proprietário sem documentação
+        </div>
+        <div class="checklist-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Aviso prévio de 90+ dias para solicitar dados
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que existe além do modelo tradicional</h2>
+
+  <p>O mercado de ERP industrial está, ainda que lentamente, se transformando.</p>
+
+  <p>Existe uma geração de sistemas construídos com uma premissa diferente: product-led, onde a adoção acontece pela qualidade do produto e não pela força do consultor. Onboarding que acontece em semanas, não semestres. Suporte incluído na mensalidade porque o sistema foi projetado para ser usado sem equipe técnica interna. Atualizações automáticas porque a arquitetura foi feita em nuvem desde o início, não migrada para ela depois.</p>
+
+  <p>Esses sistemas existem principalmente fora do Brasil. O que existe aqui, no segmento de manufatura, ainda replica em grande parte o modelo tradicional — sistema complexo, implementador no meio, customização paga.</p>
+
+  <p>Mas a lacuna está sendo percebida. E quem entrar no mercado nacional com o modelo certo, para o tamanho certo de empresa, vai encontrar um mercado acumulado de décadas de frustração com o modelo antigo.</p>
+
+  <h2>Uma palavra sobre o modelo que funciona para PMIs</h2>
+
+  <p>Um sistema que realmente serve uma fábrica de 40 a 200 funcionários tem algumas características que você pode usar como filtro:</p>
+
+  <p><strong>Go-live documentado em semanas, não meses.</strong> Se o cronograma de implantação padrão for medido em meses e não tiver penalidade contratual por atraso, o modelo de negócio do fornecedor não é produto — é serviço.</p>
+
+  <p><strong>Suporte sem surpresas.</strong> O custo de suporte precisa estar na mensalidade e a cobertura precisa ser clara. "Entre em contato para mais informações" no suporte é sinal vermelho.</p>
+
+  <p><strong>Dados seus, sem condição.</strong> Exportação completa de todos os dados a qualquer momento, em formato aberto, sem custo adicional. Se isso não estiver no contrato, negocie antes de assinar.</p>
+
+  <p><strong>Referências do mesmo porte.</strong> Peça contatos de clientes com operação parecida com a sua — mesmo setor, mesmo número de funcionários, mesma complexidade. Referências de grandes empresas não dizem nada sobre como o sistema funciona para você.</p>
+
+  <h2>O fundo da questão</h2>
+
+  <p>A indústria de ERP passou décadas construindo sistemas para quem paga mais — as grandes empresas — e vendendo versões adaptadas para quem paga menos.</p>
+
+  <p>A PMI industrial brasileira ficou no meio desse mercado: grande demais para as soluções simples de gestão, pequena demais para absorver a complexidade e o custo dos grandes sistemas.</p>
+
+  <p>Isso criou uma lacuna real. E uma oportunidade real para quem construir o produto certo para esse cliente — sem a intermediação do consultor, sem a promessa vaga da "fase 2", sem o contrato que amarra mais do que conecta.</p>
+
+  <p>A lógica perversa que descrevemos não é lei da natureza. É uma escolha de modelo de negócio que pode — e está começando a — ser desafiada.</p>
+
+  <hr class="article-divider">
+
+  <p><em>O SYSLED foi construído para esse mercado específico — e com exatamente esse modelo em mente. Se quiser entender a diferença na prática, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Saia da lógica do ERP caro</h2>
+  <p>Descubra como o SYSLED entrega um ERP industrial completo, com implantação inclusa e suporte sem surpresas — pelo preço certo para PMIs.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

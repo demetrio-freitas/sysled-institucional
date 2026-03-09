@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O operador que nunca usou o ERP: o dado mais importante da sua fábrica está desaparecendo | SYSLED Blog</title>
+  <meta name="description" content="O operador de produção não usa o ERP da sua fábrica. Entenda por que isso acontece, quanto custa e o que muda quando o dado do chão de fábrica começa a existir.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS — break out of article width */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Central node diagram (Dependência do encarregado) */
+    .dependency-diagram {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 2rem; position: relative;
+    }
+    .dependency-center {
+      width: 130px; height: 130px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.2));
+      border: 2px solid rgba(91,184,245,0.3);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; z-index: 2;
+    }
+    .dependency-center svg {
+      width: 36px; height: 36px; stroke: var(--blue-light); fill: none; stroke-width: 1.8;
+      margin-bottom: 6px;
+    }
+    .dependency-center-label {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.85rem; color: var(--white);
+    }
+    .dependency-center-sub {
+      font-size: 0.6rem; color: rgba(255,255,255,0.4); margin-top: 2px;
+    }
+    .dependency-knowledge {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+      max-width: 500px; margin-bottom: 0.5rem;
+    }
+    .dependency-knowledge-item {
+      font-size: 0.65rem; color: var(--blue-light);
+      background: rgba(91,184,245,0.08); border: 1px solid rgba(91,184,245,0.15);
+      padding: 4px 12px; border-radius: 20px;
+      font-family: var(--font-heading); font-weight: 600;
+    }
+    .dependency-connector {
+      width: 2px; height: 30px;
+      background: linear-gradient(180deg, rgba(91,184,245,0.3), rgba(239,68,68,0.3));
+    }
+    .dependency-failures {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      width: 100%; position: relative;
+    }
+    .dependency-failure-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.25rem 1rem;
+      text-align: center; border: 1px solid rgba(239,68,68,0.15);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .dependency-failure-card:hover {
+      border-color: rgba(239,68,68,0.3); transform: translateY(-3px);
+    }
+    .dependency-failure-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(239,68,68,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 0.75rem;
+    }
+    .dependency-failure-icon svg {
+      width: 22px; height: 22px; stroke: #EF4444; fill: none; stroke-width: 1.8;
+    }
+    .dependency-failure-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.75rem; color: var(--white); margin-bottom: 0.4rem;
+    }
+    .dependency-failure-badge {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 800;
+      color: #EF4444; background: rgba(239,68,68,0.1);
+      padding: 3px 10px; border-radius: 10px; display: inline-block;
+      border: 1px solid rgba(239,68,68,0.15);
+    }
+
+    /* INFOGRAPHIC 2 — Why operator doesn't use (warning cards) */
+    .reason-cards {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .reason-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem;
+      border: 1px solid rgba(245,158,11,0.12);
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .reason-card:hover {
+      border-color: rgba(245,158,11,0.3); transform: translateY(-3px);
+    }
+    .reason-number {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(245,158,11,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.75rem; color: #F59E0B;
+    }
+    .reason-content { flex: 1; }
+    .reason-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(245,158,11,0.08);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .reason-icon svg {
+      width: 22px; height: 22px; stroke: #F59E0B; fill: none; stroke-width: 1.8;
+    }
+    .reason-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white); margin-bottom: 0.35rem;
+    }
+    .reason-desc {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+    }
+
+    /* INFOGRAPHIC 3 — Before vs After split */
+    .split-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative;
+    }
+    .split-compare::after {
+      content: 'VS'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading); font-weight: 900; font-size: 0.75rem;
+      color: var(--blue-light); background: var(--dark-2);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(91,184,245,0.2); z-index: 2;
+    }
+    .split-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); position: relative;
+    }
+    .split-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .split-card-title .split-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .split-card.card-red .split-icon {
+      background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(185,28,28,0.15));
+    }
+    .split-card.card-green .split-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .split-card.card-red .split-icon svg { stroke: #EF4444; }
+    .split-card.card-green .split-icon svg { stroke: var(--blue-light); }
+    .split-card.card-red { border-color: rgba(239,68,68,0.1); }
+    .split-card.card-green { border-color: rgba(91,184,245,0.1); }
+    .split-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .split-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .split-item-icon {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .split-card.card-red .split-item-icon {
+      background: rgba(239,68,68,0.1);
+    }
+    .split-card.card-red .split-item-icon svg { stroke: #EF4444; }
+    .split-card.card-green .split-item-icon {
+      background: rgba(91,184,245,0.1);
+    }
+    .split-card.card-green .split-item-icon svg { stroke: var(--blue-light); }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .split-compare { grid-template-columns: 1fr; }
+      .split-compare::after { display: none; }
+      .dependency-failures { grid-template-columns: 1fr 1fr; }
+      .reason-cards { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .dependency-failures { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Chão de Fábrica</span>
+  <h1>O operador que nunca usou o ERP: o dado mais importante da sua fábrica está desaparecendo todos os dias</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      6 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Você tem um ERP. O financeiro usa. O comercial usa. O estoque, razoavelmente.</p>
+
+  <p>Agora responda com honestidade: o seu operador de produção usa?</p>
+
+  <p>Não o supervisor. Não o encarregado. O operador — a pessoa que está na linha, que opera a máquina, que montou aquela peça, que identificou aquele desvio de qualidade no turno da tarde.</p>
+
+  <p>Se a resposta for não, ou "às vezes", ou "tentamos mas não colou", você tem um problema silencioso que custa dinheiro todos os dias. E o mais provável é que você nem saiba exatamente quanto.</p>
+
+  <hr class="article-divider">
+
+  <h2>O dado que nasce e morre no turno</h2>
+
+  <p>Toda vez que um operador inicia uma ordem de produção, existe um conjunto de informações que só ele tem: quanto tempo levou aquela etapa, qual foi a dificuldade, quantas peças rejeitou e por qual motivo, se a máquina apresentou alguma instabilidade, o que ele fez diferente em relação ao procedimento padrão.</p>
+
+  <p>Esse conhecimento existe por um turno. Se não for capturado naquele momento, ele some.</p>
+
+  <p>O operador vai embora ao final do turno. O próximo encarregado começa do zero. O supervisor consolida o que conseguiu apurar em conversas rápidas de passagem de turno. O gestor recebe um resumo que já passou por duas ou três camadas de interpretação humana.</p>
+
+  <p>O que chega ao sistema — se chegar — é uma versão distante do que realmente aconteceu. E frequentemente não chega nada.</p>
+
+  <h2>O encarregado como único ponto de falha</h2>
+
+  <p>Em muitas PMIs brasileiras, o encarregado de turno é o sistema de informação da produção.</p>
+
+  <p>Ele sabe o que aconteceu. Tem experiência para interpretar os sinais. Conhece as peculiaridades de cada máquina e de cada operador. Quando você precisa saber por que a eficiência caiu na semana passada, você liga para ele.</p>
+
+  <p>Isso funciona enquanto ele está presente, disposto a responder e com boa memória.</p>
+
+  <p>Não funciona quando ele entra de férias. Não funciona quando está ocupado resolvendo uma parada emergencial. Não funciona quando você precisa da informação às 22h. Não funciona quando ele sai da empresa e leva consigo dez anos de conhecimento operacional que nunca foi registrado em lugar nenhum.</p>
+
+  <p>Essa dependência de uma única pessoa como repositório de informações críticas não é uma questão de confiança ou de capacidade. É uma falha de arquitetura operacional.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Dependência do encarregado -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Dependência do encarregado
+    </div>
+    <div class="dependency-diagram">
+      <div class="dependency-knowledge">
+        <span class="dependency-knowledge-item">Tempo das etapas</span>
+        <span class="dependency-knowledge-item">Rejeições e motivos</span>
+        <span class="dependency-knowledge-item">Estado das máquinas</span>
+        <span class="dependency-knowledge-item">Desvios de processo</span>
+        <span class="dependency-knowledge-item">Histórico de paradas</span>
+        <span class="dependency-knowledge-item">Peculiaridades do turno</span>
+      </div>
+      <div class="dependency-center">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="dependency-center-label">Encarregado</div>
+        <div class="dependency-center-sub">Único repositório</div>
+      </div>
+      <div class="dependency-connector"></div>
+      <div class="dependency-failures">
+        <div class="dependency-failure-card">
+          <div class="dependency-failure-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>
+          </div>
+          <div class="dependency-failure-title">Férias</div>
+          <div class="dependency-failure-badge">Dado = 0</div>
+        </div>
+        <div class="dependency-failure-card">
+          <div class="dependency-failure-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="dependency-failure-title">Emergência</div>
+          <div class="dependency-failure-badge">Dado = 0</div>
+        </div>
+        <div class="dependency-failure-card">
+          <div class="dependency-failure-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </div>
+          <div class="dependency-failure-title">Noite / Fim de semana</div>
+          <div class="dependency-failure-badge">Dado = 0</div>
+        </div>
+        <div class="dependency-failure-card">
+          <div class="dependency-failure-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/><line x1="12" y1="2" x2="12" y2="2"/></svg>
+          </div>
+          <div class="dependency-failure-title">Saída da empresa</div>
+          <div class="dependency-failure-badge">Dado = 0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Por que o operador não usa o ERP — a resposta honesta</h2>
+
+  <p>Quando um operador não usa o ERP, a explicação mais comum é "resistência à tecnologia" ou "falta de treinamento". Essa explicação é conveniente porque culpa o usuário em vez de questionar o produto.</p>
+
+  <p>A resposta honesta é diferente.</p>
+
+  <p><strong>O sistema não foi feito para ele.</strong> A interface foi projetada para alguém sentado em um escritório, com tempo e concentração. O operador está de pé, em movimento, com atenção dividida entre a máquina, o processo e o ambiente ao redor. Qualquer interação que leve mais de 30 segundos é uma interação que não vai acontecer consistentemente.</p>
+
+  <p><strong>O celular que ele tem não roda bem o sistema.</strong> O ERP da empresa foi homologado no notebook do gerente de TI. No aparelho de R$ 800 do operador, carrega devagar, trava na segunda tela e às vezes não funciona sem sinal. Após duas tentativas frustradas, ele desiste.</p>
+
+  <p><strong>O formulário pede informações que ele não tem.</strong> Campos obrigatórios que fazem sentido para a área fiscal não fazem sentido para quem está fazendo um apontamento de produção. O operador trava num campo que não sabe preencher e abandona o registro.</p>
+
+  <p><strong>Ninguém notou que ele parou de usar.</strong> Quando o operador abandonou o sistema, o dado simplesmente deixou de existir. Não apareceu um alerta, não abriu um chamado, não ficou visível para o gestor. O sistema seguiu sendo usado pelos outros departamentos como se nada tivesse acontecido.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Por que o operador não usa -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Por que o operador não usa
+    </div>
+    <div class="reason-cards">
+      <div class="reason-card">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="reason-content">
+          <div class="reason-title">Sistema não foi feito para ele</div>
+          <div class="reason-desc">Interface projetada para escritório, não para quem está de pé ao lado da máquina com 30 segundos disponíveis.</div>
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><circle cx="12" cy="10" r="3" stroke-dasharray="2 2"/></svg>
+        </div>
+        <div class="reason-content">
+          <div class="reason-title">Celular não roda</div>
+          <div class="reason-desc">Homologado no notebook do TI. No aparelho de R$ 800 do operador, trava na segunda tela.</div>
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13" stroke="#EF4444" stroke-width="2.5"/></svg>
+        </div>
+        <div class="reason-content">
+          <div class="reason-title">Formulário incompatível</div>
+          <div class="reason-desc">Campos obrigatórios que fazem sentido para o fiscal, não para quem faz apontamento de produção.</div>
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </div>
+        <div class="reason-content">
+          <div class="reason-title">Ninguém notou</div>
+          <div class="reason-desc">O operador parou de usar e o dado simplesmente deixou de existir. Sem alerta, sem chamado, sem visibilidade.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que acontece com a sua operação sem esse dado</h2>
+
+  <p>Vamos ser concretos sobre as consequências.</p>
+
+  <p><strong>Você não sabe o custo real das suas ordens de produção.</strong> Sabe o custo de material porque o estoque registra. Sabe o custo de mão de obra porque o RH processa. Mas não sabe quantas horas reais aquela ordem levou, nem quanto do tempo foi produtivo versus parado. Seu custo calculado é uma estimativa.</p>
+
+  <p><strong>Você não consegue identificar onde está o retrabalho.</strong> As peças rejeitadas aparecem no estoque como descarte, mas você não sabe em qual etapa do processo foram geradas, por qual operador, em qual máquina, em qual condição. Não tem como atacar a causa raiz porque a causa raiz nunca foi registrada.</p>
+
+  <p><strong>As suas manutenções são reativas.</strong> A máquina para. Você chama a manutenção. A manutenção corrige. A máquina volta. Mas o sinal que apareceu três dias antes — aquela instabilidade que o operador notou mas não registrou em lugar nenhum — se perdeu. A próxima parada vai acontecer do mesmo jeito.</p>
+
+  <p><strong>O seu PCP opera com dados defasados.</strong> O planejamento de produção é feito com base em tempos padrão que podem não refletir a realidade atual das máquinas, dos operadores e dos processos. As ordens chegam com prazos que o chão de fábrica sabe que são impossíveis — mas ninguém tem dados para provar isso formalmente.</p>
+
+  <h2>O que muda quando o dado começa a existir</h2>
+
+  <p>A transformação que acontece quando o chão de fábrica começa a alimentar o sistema não é gradual. É uma mudança de patamar.</p>
+
+  <p>De repente, o gestor tem visibilidade em tempo real do que está acontecendo na linha. Não uma versão interpretada pelo encarregado horas depois. O dado bruto, no momento em que foi gerado.</p>
+
+  <p>O custo real de cada ordem começa a aparecer — e frequentemente revela que alguns produtos são menos rentáveis do que o cálculo estimado sugeria. Outros são mais rentáveis. Essa informação muda as decisões de precificação, de mix de produtos e de capacidade.</p>
+
+  <p>Os padrões de rejeição ficam visíveis. Você descobre que 70% do retrabalho vem de uma máquina específica num turno específico. Com esse dado, você tem onde agir. Sem ele, você só sabe que "o retrabalho é alto".</p>
+
+  <p>As manutenções começam a ser antecipatórias porque os sinais de instabilidade ficam registrados antes da parada. O operador reporta, o sistema acumula, o padrão aparece antes do problema virar emergência.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Antes vs Depois -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Antes vs Depois: quando o dado começa a existir
+    </div>
+    <div class="split-compare">
+      <div class="split-card card-red">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          Sem dado
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Custo estimado — baseado em premissas desatualizadas
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Retrabalho invisível — sem registro de causa raiz
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Manutenção reativa — corrige depois que para
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            PCP defasado — prazos impossíveis sem dados para provar
+          </div>
+        </div>
+      </div>
+      <div class="split-card card-green">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          Com dado
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Custo real — por ordem, por etapa, por operador
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Padrões visíveis — 70% do retrabalho numa máquina específica
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Manutenção antecipatória — sinais registrados antes da parada
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            PCP baseado em dados — tempos reais, capacidade real
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que você precisa exigir de um sistema que quer resolver isso</h2>
+
+  <p>Se você está avaliando um ERP ou revisando o uso do que já tem, existem três perguntas práticas para testar se o sistema realmente resolve o problema do operador:</p>
+
+  <p><strong>1. Em qual dispositivo o operador vai usar e como funciona offline?</strong> Se a resposta for "pelo navegador" e não houver clareza sobre funcionamento sem conexão, o sistema não foi projetado para o chão de fábrica real.</p>
+
+  <p><strong>2. Quanto tempo leva um apontamento de produção do início ao fim?</strong> Peça para mostrar. Se levar mais de 90 segundos num fluxo padrão, vai ser abandonado na operação real.</p>
+
+  <p><strong>3. O que aparece quando o operador não registra?</strong> Um sistema projetado para o chão de fábrica precisa ter visibilidade de ausência de dado — não só de dado existente. Se ninguém percebe quando o operador para de registrar, o sistema tem um ponto cego estrutural.</p>
+
+  <h2>O dado que você nunca teve</h2>
+
+  <p>Existe uma ironia nessa história toda.</p>
+
+  <p>O operador que nunca usou o ERP não é o problema. Ele é o sintoma. O problema é que a indústria inteira passou décadas comprando sistemas desenhados para um único tipo de usuário — e depois se surpreendeu que a adoção não chegou ao chão de fábrica.</p>
+
+  <p>O dado mais valioso da sua operação — o que acontece no momento exato em que o produto é fabricado — ficou aprisionado na memória de pessoas que eventualmente vão embora, e nas planilhas de quem tentou capturar isso de forma manual.</p>
+
+  <p>Esse dado sempre existiu. Faltava um sistema com humildade suficiente para ser útil para quem realmente trabalha na fábrica.</p>
+
+  <hr class="article-divider">
+
+  <p><em>O SYSLED foi construído a partir dessa constatação. Se quiser ver como o apontamento de chão de fábrica funciona na prática — sem PowerPoint, sem promessa vaga — <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>O dado do chão de fábrica precisa existir</h2>
+  <p>Descubra como o SYSLED captura dados de produção em tempo real, direto do celular do operador — sem treinamento, sem complicação.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

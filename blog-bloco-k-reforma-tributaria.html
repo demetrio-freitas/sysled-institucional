@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloco K, NF-e e Reforma Tributária: o que será exigido das fábricas a partir de 2026 | SYSLED Blog</title>
+  <meta name="description" content="Entenda o que o Bloco K, NF-e e a Reforma Tributária vão exigir de fábricas com 40 a 200 funcionários — e como preparar seu ERP para as mudanças fiscais.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem); letter-spacing: -0.01em;
+      line-height: 1.3; margin-top: 2rem; margin-bottom: 0.8rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+    .article-notice {
+      background: linear-gradient(135deg, rgba(91,184,245,0.06), rgba(43,108,176,0.06));
+      border: 1px solid rgba(91,184,245,0.15);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.92rem !important; line-height: 1.7;
+      color: var(--gray-600);
+    }
+    .article-notice strong { color: var(--blue-deep); }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Checklist fiscal */
+    .checklist-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      position: relative;
+    }
+    .checklist-group {
+      background: var(--dark-2); border-radius: 14px; padding: 1.75rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .checklist-group-header {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.8rem; color: var(--white); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 10px;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(91,184,245,0.1);
+    }
+    .checklist-group-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .checklist-group:nth-child(1) .checklist-group-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .checklist-group:nth-child(2) .checklist-group-icon {
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(220,100,20,0.15));
+    }
+    .checklist-group:nth-child(3) .checklist-group-icon {
+      background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(5,150,105,0.15));
+    }
+    .checklist-group:nth-child(1) .checklist-group-icon svg { stroke: var(--blue-light); }
+    .checklist-group:nth-child(2) .checklist-group-icon svg { stroke: #F59E0B; }
+    .checklist-group:nth-child(3) .checklist-group-icon svg { stroke: #10B981; }
+    .checklist-items { display: flex; flex-direction: column; gap: 0.75rem; }
+    .checklist-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .checklist-check {
+      width: 20px; height: 20px; border-radius: 5px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .checklist-group:nth-child(1) .checklist-check {
+      background: rgba(91,184,245,0.1); border: 1px solid rgba(91,184,245,0.2);
+    }
+    .checklist-group:nth-child(1) .checklist-check svg { stroke: var(--blue-light); }
+    .checklist-group:nth-child(2) .checklist-check {
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);
+    }
+    .checklist-group:nth-child(2) .checklist-check svg { stroke: #F59E0B; }
+    .checklist-group:nth-child(3) .checklist-check {
+      background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2);
+    }
+    .checklist-group:nth-child(3) .checklist-check svg { stroke: #10B981; }
+
+    /* INFOGRAPHIC 2 — Timeline da Reforma */
+    .timeline-wrapper {
+      position: relative; padding: 2rem 0;
+    }
+    .timeline-line {
+      position: absolute; top: 50%; left: 5%; right: 5%;
+      height: 3px; background: linear-gradient(90deg, var(--blue-light), var(--blue-deep), rgba(91,184,245,0.3));
+      transform: translateY(-50%); border-radius: 2px;
+    }
+    .timeline-steps {
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .timeline-step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; flex: 1; max-width: 260px;
+    }
+    .timeline-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--blue-light); border: 3px solid var(--dark);
+      box-shadow: 0 0 0 2px var(--blue-light), 0 0 15px rgba(91,184,245,0.3);
+      margin-bottom: 1.25rem; flex-shrink: 0;
+    }
+    .timeline-step:nth-child(2) .timeline-dot {
+      background: #F59E0B;
+      box-shadow: 0 0 0 2px #F59E0B, 0 0 15px rgba(245,158,11,0.3);
+    }
+    .timeline-step:nth-child(3) .timeline-dot {
+      background: #10B981;
+      box-shadow: 0 0 0 2px #10B981, 0 0 15px rgba(16,185,129,0.3);
+    }
+    .timeline-card {
+      background: var(--dark-2); border-radius: 12px; padding: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.06); width: 100%;
+      max-width: 220px;
+    }
+    .timeline-card-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 0.5rem; display: inline-block;
+      padding: 3px 10px; border-radius: 10px;
+    }
+    .timeline-step:nth-child(1) .timeline-card-label {
+      color: var(--blue-light); background: rgba(91,184,245,0.1);
+    }
+    .timeline-step:nth-child(2) .timeline-card-label {
+      color: #F59E0B; background: rgba(245,158,11,0.1);
+    }
+    .timeline-step:nth-child(3) .timeline-card-label {
+      color: #10B981; background: rgba(16,185,129,0.1);
+    }
+    .timeline-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .timeline-card-desc {
+      font-size: 0.7rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+    }
+
+    /* INFOGRAPHIC 3 — Risk cards */
+    .infographic-inner.risk-bg::before {
+      background: radial-gradient(circle, rgba(239,68,68,0.06) 0%, transparent 70%);
+    }
+    .risk-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      position: relative;
+    }
+    .risk-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.75rem 1.5rem;
+      border: 1px solid rgba(239,68,68,0.12);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .risk-card:hover {
+      border-color: rgba(239,68,68,0.3); transform: translateY(-3px);
+    }
+    .risk-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(220,38,38,0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .risk-icon svg { width: 24px; height: 24px; stroke: #EF4444; fill: none; stroke-width: 1.8; }
+    .risk-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .risk-desc {
+      font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .risk-consequence {
+      font-size: 0.68rem; color: #EF4444; font-weight: 600;
+      background: rgba(239,68,68,0.08); padding: 6px 12px;
+      border-radius: 8px; border: 1px solid rgba(239,68,68,0.12);
+      display: inline-block; line-height: 1.5;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .checklist-grid { grid-template-columns: 1fr; }
+      .timeline-wrapper { padding: 1rem 0; }
+      .timeline-line { display: none; }
+      .timeline-steps { flex-direction: column; gap: 1.5rem; }
+      .timeline-step { max-width: 100%; }
+      .timeline-dot { margin-bottom: 0.75rem; }
+      .timeline-card { max-width: 100%; }
+      .risk-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .risk-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Compliance Fiscal</span>
+  <h1>Bloco K, NF-e e Reforma Tributária: o que será exigido das fábricas com 40 a 200 funcionários a partir de 2026</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      8 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-notice"><strong>Aviso importante:</strong> Este artigo tem caráter informativo e educacional. Para decisões específicas sobre obrigações fiscais da sua empresa, consulte sempre um contador ou advogado tributarista.</p>
+
+  <p class="article-lead">Existe uma categoria de problema que PMIs brasileiras costumam descobrir da pior forma possível: a obrigação fiscal que virou multa porque o sistema de gestão não acompanhou a mudança.</p>
+
+  <p>A Reforma Tributária em andamento — com a transição para o IVA dual (IBS e CBS) prevista para os próximos anos — vai exigir que fábricas de médio porte revisem profundamente sua infraestrutura de gestão. Não como uma questão de eficiência operacional. Como uma questão de sobrevivência fiscal.</p>
+
+  <p>Este artigo não pretende substituir o seu contador. Pretende ajudá-lo a entender o que precisa estar em ordem — e fazer as perguntas certas para o seu fornecedor de ERP antes que a fiscalização chegue primeiro.</p>
+
+  <hr class="article-divider">
+
+  <h2>O que já é obrigatório e frequentemente está mal implementado</h2>
+
+  <p>Antes de falar sobre o que vem, vale revisar o que já existe e onde as PMIs industriais mais frequentemente falham.</p>
+
+  <h3>NF-e e NFS-e</h3>
+
+  <p>A Nota Fiscal Eletrônica de produtos (NF-e) já é realidade consolidada. Mas "ter NF-e" e "ter NF-e integrada ao seu processo de produção e estoque" são coisas diferentes.</p>
+
+  <p>Empresas que emitem NF-e numa tela separada do ERP, sem integração automática com a baixa de estoque e o custo da ordem de produção, estão criando divergências contábeis que só aparecem na auditoria — ou quando o saldo físico não bate com o fiscal.</p>
+
+  <h3>Bloco K — o espelho da produção</h3>
+
+  <p>O Bloco K é a obrigação fiscal mais reveladora para indústrias: ele exige que você informe ao SPED o que entrou como matéria-prima, o que saiu como produto acabado, o que foi consumido no processo e o que sobrou em estoque — com o detalhamento de cada ordem de produção.</p>
+
+  <p>É, na prática, um espelho digital da sua operação industrial. Se o que está no seu sistema de gestão não reflete o que realmente aconteceu no chão de fábrica, o Bloco K vai revelar essa divergência para o fisco.</p>
+
+  <p>O Bloco K expandiu sua obrigatoriedade nos últimos anos e, dependendo do CNAE e do faturamento da sua empresa, pode já ser obrigatório para o seu porte. Verifique com seu contador qual é a sua situação hoje.</p>
+
+  <p><strong>O dado que importa aqui:</strong> uma fábrica que não registra digitalmente o consumo real de materiais por ordem de produção não tem como gerar o Bloco K de forma consistente. Ela ou não entrega, ou entrega com dados estimados — e as duas situações têm consequências fiscais.</p>
+
+  <h2>O que a Reforma Tributária muda — e por que sua PMI precisa se preparar agora</h2>
+
+  <p>A Reforma Tributária em andamento no Brasil tem como objetivo central a simplificação do sistema tributário. Na prática, para o médio prazo, ela vai criar uma fase de transição que é tudo menos simples.</p>
+
+  <p>Os pontos que mais impactam fábricas de médio porte:</p>
+
+  <h3>Unificação de tributos</h3>
+
+  <p>A proposta de unificação de ICMS, IPI, PIS, COFINS e ISS em um IVA dual (IBS federal e CBS estadual/municipal) vai alterar como o imposto é calculado, lançado e recuperado em cada etapa da cadeia produtiva.</p>
+
+  <p>Para sua fábrica, isso significa que as regras de crédito fiscal — aquelas que definem o que você pode descontar do imposto sobre insumos que comprou — vão mudar. O seu ERP precisa acompanhar essas mudanças de forma automática. Se você depende de atualização manual de alíquotas e regras, o risco de erro aumenta substancialmente.</p>
+
+  <h3>Rastreabilidade da cadeia de fornecedores</h3>
+
+  <p>Uma tendência que acompanha a Reforma é a exigência crescente de rastreabilidade ao longo da cadeia de suprimentos. Isso significa que não basta saber que você está em conformidade — você precisará demonstrar que seus fornecedores também estão.</p>
+
+  <p>Para PMIs que forneciam para grandes empresas ou para exportação, essa exigência já existe informalmente há algum tempo. Com a Reforma, ela tende a se formalizar e ampliar.</p>
+
+  <h3>Transição e dupla apuração</h3>
+
+  <p>Durante o período de transição, sua empresa vai operar simultaneamente no regime atual e no novo. Dois sistemas de alíquotas, dois sistemas de crédito, dois sistemas de declaração. O risco de erro nesse período é alto, especialmente para empresas cujo ERP não foi atualizado para suportar as duas lógicas em paralelo.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Timeline da Reforma -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Timeline da Reforma Tributária
+    </div>
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+      <div class="timeline-steps">
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-label">Regime Atual</div>
+            <div class="timeline-card-title">ICMS, IPI, PIS, COFINS, ISS</div>
+            <div class="timeline-card-desc">Cinco tributos distintos com regras próprias de cálculo, crédito e declaração. Complexidade alta, mas conhecida pelas empresas.</div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-label">Período de Transição</div>
+            <div class="timeline-card-title">Dupla apuração simultânea</div>
+            <div class="timeline-card-desc">Dois regimes coexistindo: alíquotas antigas + novas. O ERP precisa calcular ambos em paralelo. Maior risco de erro fiscal.</div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-card-label">IVA Dual</div>
+            <div class="timeline-card-title">IBS + CBS unificados</div>
+            <div class="timeline-card-desc">Regime simplificado com dois tributos (federal e estadual/municipal). Novas regras de crédito fiscal e rastreabilidade obrigatória.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que seu ERP precisa ter — um checklist prático</h2>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Checklist fiscal interativo -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Checklist fiscal interativo
+    </div>
+    <div class="checklist-grid">
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <div class="checklist-group-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          Obrigações atuais
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            NF-e integrada ao estoque e produção
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Bloco K com dados reais de consumo por OP
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            SPED Fiscal gerado automaticamente
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Substituição tributária atualizada por estado
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Conciliação fiscal-contábil automatizada
+          </div>
+        </div>
+      </div>
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <div class="checklist-group-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          Preparação para a Reforma
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Suporte a dupla apuração (regime atual + IVA)
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Atualização automática de alíquotas e regras
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Cálculo automático de créditos IBS/CBS
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Roadmap documentado do fornecedor para a Reforma
+          </div>
+        </div>
+      </div>
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <div class="checklist-group-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          </div>
+          Integração operacional
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Rastreabilidade de fornecedores na cadeia fiscal
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Dados de chão de fábrica alimentando o fiscal
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Atualizações fiscais incluídas na mensalidade
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Use estas perguntas para avaliar se o sistema que você usa hoje — ou está considerando contratar — está preparado para os próximos anos.</p>
+
+  <h2>O risco que ninguém menciona: o ERP que não consegue se atualizar</h2>
+
+  <p>Existe uma categoria de risco que afeta especificamente empresas com sistemas antigos ou altamente customizados: o ERP que tecnicamente não consegue acompanhar as mudanças fiscais sem um projeto de reescrita.</p>
+
+  <p>Isso acontece por algumas razões:</p>
+
+  <p><strong>Versões descontinuadas.</strong> Algumas PMIs ainda operam em versões de ERP que o próprio fornecedor não atualiza mais. As mudanças fiscais são implementadas nas versões novas. Migrar para a versão atual requer um projeto de implantação que, na prática, é uma reimplantação — com custo, prazo e risco equivalentes.</p>
+
+  <p><strong>Customizações incompatíveis.</strong> Empresas que acumularam muitas customizações ao longo dos anos enfrentam um problema específico: cada atualização fiscal pode conflitar com o código customizado. A atualização que deveria ser automática vira um projeto de compatibilização que pode levar semanas.</p>
+
+  <p><strong>Fornecedor sem capacidade.</strong> Alguns fornecedores menores de nicho simplesmente não têm equipe fiscal dedicada para acompanhar o ritmo de mudanças tributárias brasileiras. A Reforma vai separar os que têm estrutura dos que não têm.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Risco do ERP desatualizado -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner risk-bg">
+    <div class="infographic-title">
+      <span style="color: #EF4444;">Alerta</span>
+      Risco do ERP desatualizado
+    </div>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <div class="risk-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="7" y1="7" x2="7.01" y2="7"/><line x1="12" y1="7" x2="12.01" y2="7"/></svg>
+        </div>
+        <div class="risk-title">Versão descontinuada</div>
+        <div class="risk-desc">O fornecedor não atualiza mais a versão que você usa. Migrar para a versão atual equivale a uma reimplantação completa — com custo e prazo de meses.</div>
+        <div class="risk-consequence">Risco: ficar sem suporte fiscal no meio da transição tributária</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="risk-title">Customizações incompatíveis</div>
+        <div class="risk-desc">Cada atualização fiscal pode conflitar com o código customizado acumulado ao longo dos anos. O que deveria ser automático vira um projeto de semanas.</div>
+        <div class="risk-consequence">Risco: atrasos em atualizações fiscais obrigatórias</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg>
+        </div>
+        <div class="risk-title">Fornecedor sem capacidade</div>
+        <div class="risk-desc">Fornecedores menores de nicho não têm equipe fiscal dedicada para acompanhar o ritmo de mudanças tributárias. A Reforma vai separar os que têm estrutura dos que não têm.</div>
+        <div class="risk-consequence">Risco: dependência de um fornecedor que não consegue entregar</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>A pergunta mais importante que você pode fazer ao seu fornecedor hoje</h2>
+
+  <blockquote>"Como vocês se atualizam para mudanças fiscais — e quem paga por isso?"</blockquote>
+
+  <p>A resposta ideal: atualização automática, incluída na mensalidade, com histórico documentado de que isso aconteceu nas últimas mudanças (substituição tributária, SPED, obrigatoriedades do Bloco K).</p>
+
+  <p>Uma resposta que deve preocupar: "vamos avaliar quando a Reforma for implementada" ou "isso é via ordem de serviço adicional".</p>
+
+  <p>A Reforma Tributária não é uma ameaça distante. A fase de transição já começou. As obrigações do Bloco K já existem. E o custo de descobrir que o seu sistema não está em conformidade depois de uma auditoria é ordens de grandeza maior do que o custo de resolver isso com antecedência.</p>
+
+  <h2>O que fazer agora</h2>
+
+  <p>Três ações concretas que qualquer fábrica de médio porte pode iniciar hoje:</p>
+
+  <p><strong>1. Audite sua situação atual.</strong> Pergunte ao seu contador: quais são as obrigações fiscais que a minha empresa tem hoje — e quais delas o sistema está gerando de forma completamente automatizada? Onde ainda existe processo manual ou estimativa?</p>
+
+  <p><strong>2. Questione seu fornecedor sobre a Reforma.</strong> Peça por escrito: qual é o roadmap de adequação à Reforma Tributária e qual é o compromisso de prazo e custo para implementação?</p>
+
+  <p><strong>3. Avalie a integração entre fiscal e operacional.</strong> Se o seu ERP gera o SPED mas não integra com o que realmente acontece no chão de fábrica, você tem um risco de divergência que vai crescer com a Reforma. A rastreabilidade que o fisco vai exigir começa na ordem de produção, não na nota fiscal.</p>
+
+  <h2>Uma reflexão final</h2>
+
+  <p>A complexidade tributária brasileira sempre foi uma barreira de entrada para sistemas de gestão. É caro manter equipe fiscal, caro acompanhar mudanças, caro garantir que uma PMI em Fortaleza opera em conformidade com as regras do estado de São Paulo onde o cliente está.</p>
+
+  <p>Essa barreira existiu por décadas e protegeu fornecedores estabelecidos de competidores internacionais que nunca investiram em compliance brasileiro.</p>
+
+  <p>Com a Reforma, essa barreira vai mudar de forma — mas não vai desaparecer. Ela vai exigir mais dos fornecedores que já existem e vai eliminar os que não conseguirem acompanhar.</p>
+
+  <p>Para a sua fábrica, isso é, paradoxalmente, uma oportunidade: o momento de trocar um sistema desatualizado por algo construído para o que vem — não para o que existia dez anos atrás.</p>
+
+  <hr class="article-divider">
+
+  <p><em>No SYSLED, compliance fiscal brasileiro não é módulo adicional — é fundação. Se quiser entender como tratamos NF-e, Bloco K e a preparação para a Reforma no produto, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Prepare sua fábrica para a Reforma Tributária</h2>
+  <p>Descubra como o SYSLED integra compliance fiscal à operação industrial — Bloco K, NF-e e preparação para o IVA dual, tudo na mesma plataforma.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

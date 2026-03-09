@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selo Smart Factory SENAI — SYSLED</title>
+  <meta name="description" content="O SYSLED é projeto aprovado e financiado pelo SENAI Ceará. Conheça a aderência aos critérios Smart Factory da indústria 4.0.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --success: #10B981;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta { padding: 9px 22px; background: linear-gradient(135deg, var(--blue-light), var(--blue-deep)); color: var(--white) !important; border-radius: 10px; font-weight: 600; font-size: 0.8rem; transition: all 0.2s; box-shadow: 0 2px 12px rgba(43,108,176,0.25); }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    .label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-deep); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(43,108,176,0.08);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1rem;
+    }
+    .big-title {
+      font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; line-height: 1.15; color: var(--dark); margin-bottom: 1rem;
+    }
+    .sub-text { font-size: 1.05rem; color: var(--gray-600); max-width: 620px; line-height: 1.7; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 140px 3rem 80px;
+      background: var(--dark);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 50% 80%, rgba(43,108,176,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero .label { background: rgba(91,184,245,0.12); color: var(--blue-light); }
+    .hero .big-title { color: var(--white); font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 1.5rem; }
+    .hero .sub-text { color: var(--gray-400); text-align: center; margin: 0 auto 2.5rem; max-width: 700px; }
+
+    /* Selo badge animado */
+    .selo-badge {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: rgba(91,184,245,0.08); border: 1px solid rgba(91,184,245,0.2);
+      border-radius: 16px; padding: 16px 32px; margin-bottom: 2rem;
+      position: relative;
+    }
+    .selo-badge::before {
+      content: '';
+      position: absolute; inset: -1px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.3), transparent, rgba(43,108,176,0.3));
+      z-index: -1; opacity: 0.5;
+    }
+    .selo-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; flex-shrink: 0;
+    }
+    .selo-badge-text { text-align: left; }
+    .selo-badge-text .selo-line1 {
+      font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+    }
+    .selo-badge-text .selo-line2 {
+      font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--white);
+    }
+
+    /* ===== ABISMO DIGITAL ===== */
+    .abismo {
+      padding: 100px 3rem;
+      background: var(--dark);
+    }
+    .abismo-wrap {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .abismo-left { text-align: center; }
+    .abismo .big-title { color: var(--white); }
+
+    /* Donut chart */
+    .donut-container { position: relative; width: 260px; height: 260px; margin: 0 auto; }
+    .donut-ring {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--blue-light) 0deg 324deg,
+        rgba(91,184,245,0.12) 324deg 360deg
+      );
+      display: flex; align-items: center; justify-content: center;
+    }
+    .donut-hole {
+      width: 75%; height: 75%; border-radius: 50%;
+      background: var(--dark);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .donut-value {
+      font-family: var(--font-heading); font-size: 3.5rem; font-weight: 900;
+      color: var(--blue-light); line-height: 1;
+    }
+    .donut-label {
+      font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600;
+      color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.15em; margin-top: 4px;
+    }
+
+    .abismo-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .abismo-card {
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 14px; padding: 20px 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .abismo-card-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(91,184,245,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0; color: var(--blue-light);
+    }
+    .abismo-card h4 {
+      font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700;
+      color: var(--white); margin-bottom: 4px;
+    }
+    .abismo-card p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.5; }
+
+    /* ===== CRITERIOS SENAI ===== */
+    .criterios {
+      padding: 100px 3rem;
+      background: var(--gray-50);
+    }
+    .criterios-wrap { max-width: 1100px; margin: 0 auto; }
+    .criterios-header { text-align: center; margin-bottom: 4rem; }
+    .criterios-header .sub-text { margin: 0 auto; text-align: center; }
+
+    .criterios-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    }
+    .criterio-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px; padding: 2rem;
+      display: flex; gap: 20px; align-items: flex-start;
+      transition: all 0.3s ease;
+    }
+    .criterio-card:hover {
+      border-color: var(--blue-light);
+      box-shadow: 0 8px 30px rgba(43,108,176,0.08);
+      transform: translateY(-2px);
+    }
+    .criterio-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.1), rgba(43,108,176,0.06));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .criterio-icon svg { width: 28px; height: 28px; stroke: var(--blue-deep); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .criterio-content h3 {
+      font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 6px;
+    }
+    .criterio-content p { font-size: 0.88rem; color: var(--gray-600); line-height: 1.6; }
+    .criterio-check {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 600; color: var(--success);
+      margin-top: 10px; font-family: var(--font-heading); text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== PIPELINE IoT ===== */
+    .pipeline {
+      padding: 100px 3rem;
+      background: var(--dark);
+    }
+    .pipeline-wrap { max-width: 1100px; margin: 0 auto; }
+    .pipeline-header { text-align: center; margin-bottom: 4rem; }
+    .pipeline .big-title { color: var(--white); }
+    .pipeline .sub-text { color: var(--gray-400); margin: 0 auto; text-align: center; }
+
+    .pipeline-flow {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0; align-items: center;
+    }
+    .pipeline-step {
+      text-align: center; padding: 2rem 1.5rem;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.12);
+      border-radius: 16px;
+    }
+    .pipeline-step-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      border: 2px solid rgba(91,184,245,0.25);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; font-size: 1.8rem;
+      background: rgba(91,184,245,0.06);
+    }
+    .pipeline-step-num {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.2em; color: var(--blue-light);
+      margin-bottom: 6px;
+    }
+    .pipeline-step h3 {
+      font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .pipeline-step p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.5; }
+    .pipeline-tag {
+      display: inline-block; margin-top: 12px;
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--blue-light);
+      border: 1px solid rgba(91,184,245,0.25); border-radius: 6px;
+      padding: 4px 12px; font-family: var(--font-heading);
+    }
+    .pipeline-arrow {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 0.5rem;
+    }
+    .pipeline-arrow svg { width: 32px; height: 32px; stroke: var(--blue-light); fill: none; stroke-width: 1.5; }
+
+    /* ===== RESULTADOS ===== */
+    .resultados {
+      padding: 100px 3rem;
+      background: var(--white);
+    }
+    .resultados-wrap { max-width: 1100px; margin: 0 auto; }
+    .resultados-header { text-align: center; margin-bottom: 4rem; }
+    .resultados-header .sub-text { margin: 0 auto; text-align: center; }
+
+    .resultados-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .resultado-card {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: 16px; padding: 2.5rem 2rem; text-align: center;
+      transition: all 0.3s ease;
+    }
+    .resultado-card:hover {
+      border-color: var(--blue-light);
+      box-shadow: 0 8px 30px rgba(43,108,176,0.08);
+    }
+    .resultado-value {
+      font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 900; color: var(--blue-mid); line-height: 1; margin-bottom: 8px;
+    }
+    .resultado-label {
+      font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .resultado-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.5; }
+
+    /* ===== PARCERIA ===== */
+    .parceria {
+      padding: 80px 3rem;
+      background: var(--gray-50);
+    }
+    .parceria-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
+    .parceria-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 20px; padding: 3rem;
+      display: flex; align-items: center; gap: 2.5rem;
+      text-align: left;
+    }
+    .parceria-seal {
+      width: 120px; height: 120px; border-radius: 20px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--white); text-align: center;
+    }
+    .parceria-seal-icon { font-size: 2rem; margin-bottom: 4px; }
+    .parceria-seal-text {
+      font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; line-height: 1.3;
+    }
+    .parceria-info h3 {
+      font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .parceria-info p { font-size: 0.92rem; color: var(--gray-600); line-height: 1.7; }
+    .parceria-info .parceria-highlight {
+      display: inline-block; margin-top: 12px;
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+      color: var(--blue-deep); text-transform: uppercase; letter-spacing: 0.12em;
+      background: rgba(43,108,176,0.06); padding: 6px 16px; border-radius: 8px;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      padding: 80px 3rem;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 800; color: var(--white); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .cta-section p { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 2rem; max-width: 550px; margin-left: auto; margin-right: auto; }
+    .btn-white {
+      display: inline-block; padding: 14px 36px;
+      background: var(--white); color: var(--blue-deep);
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem;
+      border-radius: 12px; text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0,0,0,0.2); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark); color: var(--gray-400); padding: 60px 3rem 30px;
+      font-size: 0.85rem;
+    }
+    .footer-cols {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand p { margin-top: 1rem; line-height: 1.6; font-size: 0.82rem; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; letter-spacing: 2px; color: var(--white); }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-title { font-family: var(--font-heading); font-weight: 700; font-size: 0.78rem; color: var(--white); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; }
+    .footer-col a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--gray-400);
+    }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 1.5rem 60px; }
+      .selo-badge { padding: 12px 20px; gap: 12px; }
+      .abismo { padding: 60px 1.5rem; }
+      .abismo-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .donut-container { width: 200px; height: 200px; }
+      .donut-value { font-size: 2.5rem; }
+      .criterios { padding: 60px 1.5rem; }
+      .criterios-grid { grid-template-columns: 1fr; }
+      .pipeline { padding: 60px 1.5rem; }
+      .pipeline-flow { grid-template-columns: 1fr; gap: 1rem; }
+      .pipeline-arrow { transform: rotate(90deg); padding: 0.5rem 0; }
+      .resultados { padding: 60px 1.5rem; }
+      .resultados-grid { grid-template-columns: 1fr; }
+      .parceria { padding: 60px 1.5rem; }
+      .parceria-card { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem; }
+      .parceria-info { text-align: center; }
+      .cta-section { padding: 60px 1.5rem; }
+      footer { padding: 40px 1.5rem 20px; }
+      .footer-cols { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Modulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Que</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="selo-badge reveal">
+    <div class="selo-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+      </svg>
+    </div>
+    <div class="selo-badge-text">
+      <div class="selo-line1">Projeto aprovado</div>
+      <div class="selo-line2">SENAI Ceara</div>
+    </div>
+  </div>
+  <h1 class="big-title reveal">Tecnologia validada<br>pela industria</h1>
+  <p class="sub-text reveal">O SYSLED foi selecionado e financiado pelo SENAI Ceara como projeto aderente aos criterios Smart Factory da Industria 4.0.</p>
+</section>
+
+<!-- ABISMO DIGITAL -->
+<section class="abismo">
+  <div class="abismo-wrap">
+    <div class="abismo-left reveal">
+      <div class="donut-container">
+        <div class="donut-ring">
+          <div class="donut-hole">
+            <div class="donut-value">90%</div>
+            <div class="donut-label">Sem integracao</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="abismo-right">
+      <span class="label" style="background: rgba(91,184,245,0.12); color: var(--blue-light);">O problema</span>
+      <h2 class="big-title" style="color: var(--white);">O abismo digital<br>nas MPMEs industriais</h2>
+      <div class="abismo-cards">
+        <div class="abismo-card reveal">
+          <div class="abismo-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Dados em silos</h4>
+            <p>Informacoes presas em planilhas e sistemas legados que nao se comunicam.</p>
+          </div>
+        </div>
+        <div class="abismo-card reveal">
+          <div class="abismo-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="2" y1="2" x2="22" y2="22"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Cegueira operacional</h4>
+            <p>Ausencia de visibilidade em tempo real sobre a eficiencia do chao de fabrica.</p>
+          </div>
+        </div>
+        <div class="abismo-card reveal">
+          <div class="abismo-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Custo da ineficiencia</h4>
+            <p>Desperdicio massivo de recursos por falta de inteligencia aplicada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRITERIOS SMART FACTORY -->
+<section class="criterios">
+  <div class="criterios-wrap">
+    <div class="criterios-header">
+      <span class="label">Smart Factory SENAI</span>
+      <h2 class="big-title">Aderencia aos criterios<br>da Industria 4.0</h2>
+      <p class="sub-text">O SYSLED atende integralmente os requisitos tecnologicos exigidos pelo programa Smart Factory do SENAI.</p>
+    </div>
+    <div class="criterios-grid">
+
+      <div class="criterio-card reveal">
+        <div class="criterio-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="criterio-content">
+          <h3>Digital Twins</h3>
+          <p>Espelhamento digital da producao para simulacao e otimizacao de fluxos em tempo real.</p>
+          <div class="criterio-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Aderente
+          </div>
+        </div>
+      </div>
+
+      <div class="criterio-card reveal">
+        <div class="criterio-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <div class="criterio-content">
+          <h3>Big Data & Analytics</h3>
+          <p>Analise preditiva de gargalos e processamento de grandes volumes de dados industriais.</p>
+          <div class="criterio-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Aderente
+          </div>
+        </div>
+      </div>
+
+      <div class="criterio-card reveal">
+        <div class="criterio-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="criterio-content">
+          <h3>Escalabilidade</h3>
+          <p>Arquitetura pronta para o programa Brasil Mais Produtivo e expansao modular agil.</p>
+          <div class="criterio-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Aderente
+          </div>
+        </div>
+      </div>
+
+      <div class="criterio-card reveal">
+        <div class="criterio-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 1 8 8c0 3.4-2.1 6.3-5 7.5V20a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2.5C6.1 16.3 4 13.4 4 10a8 8 0 0 1 8-8z"/><line x1="9" y1="22" x2="15" y2="22"/></svg>
+        </div>
+        <div class="criterio-content">
+          <h3>IA Aplicada</h3>
+          <p>Inteligencia artificial para otimizacao de recursos e reducao de desperdicios operacionais.</p>
+          <div class="criterio-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Aderente
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE IoT -->
+<section class="pipeline">
+  <div class="pipeline-wrap">
+    <div class="pipeline-header">
+      <span class="label" style="background: rgba(91,184,245,0.12); color: var(--blue-light);">Arquitetura</span>
+      <h2 class="big-title">Inteligencia operacional<br>de ponta a ponta</h2>
+      <p class="sub-text">Do sensor ao dashboard: dados fluem sem interrupcao pelo Industrial OS.</p>
+    </div>
+    <div class="pipeline-flow">
+
+      <div class="pipeline-step reveal">
+        <div class="pipeline-step-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+          </svg>
+        </div>
+        <div class="pipeline-step-num">1. Coleta IoT</div>
+        <h3>Sensores & CLPs</h3>
+        <p>Conexao nativa com sensores e CLPs via protocolos industriais.</p>
+        <span class="pipeline-tag">MQTT / OPC-UA</span>
+      </div>
+
+      <div class="pipeline-arrow reveal">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+
+      <div class="pipeline-step reveal">
+        <div class="pipeline-step-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+          </svg>
+        </div>
+        <div class="pipeline-step-num">2. Cloud IA</div>
+        <h3>Industrial OS</h3>
+        <p>Processamento de Big Data com algoritmos de otimizacao preditiva.</p>
+        <span class="pipeline-tag">Industrial OS</span>
+      </div>
+
+      <div class="pipeline-arrow reveal">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+
+      <div class="pipeline-step reveal">
+        <div class="pipeline-step-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <div class="pipeline-step-num">3. Decisao Agil</div>
+        <h3>Dashboards</h3>
+        <p>Insights estrategicos entregues em dashboards mobile-first.</p>
+        <span class="pipeline-tag">BI em Tempo Real</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="resultados">
+  <div class="resultados-wrap">
+    <div class="resultados-header">
+      <span class="label">Impacto comprovado</span>
+      <h2 class="big-title">Resultados mensuraveis<br>na industria</h2>
+      <p class="sub-text">Metricas reais de fabricas que utilizam o SYSLED como sistema operacional.</p>
+    </div>
+    <div class="resultados-grid">
+      <div class="resultado-card reveal">
+        <div class="resultado-value">12x</div>
+        <div class="resultado-label">Mais rapido</div>
+        <div class="resultado-desc">Velocidade de implementacao superior aos ERPs tradicionais do mercado.</div>
+      </div>
+      <div class="resultado-card reveal">
+        <div class="resultado-value">40%</div>
+        <div class="resultado-label">Menos erros</div>
+        <div class="resultado-desc">Reducao drastica em falhas operacionais e retrabalho no chao de fabrica.</div>
+      </div>
+      <div class="resultado-card reveal">
+        <div class="resultado-value">100%</div>
+        <div class="resultado-label">Integrado</div>
+        <div class="resultado-desc">Dados auditaveis e sincronizados em tempo real com sistemas legados.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCERIA SENAI -->
+<section class="parceria">
+  <div class="parceria-wrap">
+    <div class="parceria-card reveal">
+      <div class="parceria-seal">
+        <div class="parceria-seal-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+        </div>
+        <div class="parceria-seal-text">Projeto<br>aprovado</div>
+      </div>
+      <div class="parceria-info">
+        <h3>Parceria SENAI Ceara</h3>
+        <p>O SYSLED foi selecionado entre diversos projetos e financiado pelo SENAI Ceara como solucao aderente aos criterios de Industria 4.0. Essa validacao atesta a maturidade tecnologica e o potencial de impacto na transformacao digital das MPMEs industriais brasileiras.</p>
+        <div class="parceria-highlight">Projeto financiado e validado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Quer levar sua fabrica<br>para a Industria 4.0?</h2>
+  <p>Converse com nosso time e descubra como o SYSLED transforma sua operacao.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demonstracao</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cols">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automacao, logistica e inteligencia operacional. Do chao de fabrica a nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Modulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integracoes</a>
+      <a href="./#seguranca">Seguranca</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automacoes Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdicio</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa Historia</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Sobre Nos</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Politica de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Por que o ERP do chão de fábrica é diferente do ERP da diretoria | SYSLED Blog</title>
+  <meta name="description" content="Entenda por que ERPs tradicionais falham no chão de fábrica e como essa confusão custa caro às PMEs industriais brasileiras.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS — break out of article width */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Split comparison */
+    .split-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative;
+    }
+    .split-compare::after {
+      content: 'VS'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading); font-weight: 900; font-size: 0.75rem;
+      color: var(--blue-light); background: var(--dark-2);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(91,184,245,0.2); z-index: 2;
+    }
+    .split-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); position: relative;
+    }
+    .split-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .split-card-title .split-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .split-card:first-child .split-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .split-card:last-child .split-icon {
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(220,100,20,0.15));
+    }
+    .split-card:first-child .split-icon svg { stroke: var(--blue-light); }
+    .split-card:last-child .split-icon svg { stroke: #F59E0B; }
+    .split-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .split-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .split-item-icon {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .split-card:first-child .split-item-icon {
+      background: rgba(91,184,245,0.1);
+    }
+    .split-card:first-child .split-item-icon svg { stroke: var(--blue-light); }
+    .split-card:last-child .split-item-icon {
+      background: rgba(245,158,11,0.1);
+    }
+    .split-card:last-child .split-item-icon svg { stroke: #F59E0B; }
+
+    /* INFOGRAPHIC 2 — Data loss flow */
+    .flow-diagram {
+      display: flex; align-items: center; justify-content: center; gap: 0;
+      flex-wrap: nowrap; position: relative;
+    }
+    .flow-step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; flex: 0 0 auto; padding: 0 0.5rem;
+    }
+    .flow-step-circle {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--dark-2); border: 2px solid rgba(91,184,245,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.75rem; position: relative;
+    }
+    .flow-step-circle svg { width: 24px; height: 24px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .flow-step-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.72rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .flow-step-sub {
+      font-size: 0.62rem; color: rgba(255,255,255,0.35); max-width: 100px;
+    }
+    .flow-arrow {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; flex: 0 0 auto; padding: 0 0.25rem;
+    }
+    .flow-arrow-line {
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, rgba(91,184,245,0.4), rgba(91,184,245,0.1));
+      position: relative;
+    }
+    .flow-arrow-line::after {
+      content: ''; position: absolute; right: -4px; top: -3px;
+      width: 0; height: 0; border-left: 6px solid rgba(91,184,245,0.4);
+      border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+    }
+    .flow-arrow-label {
+      font-size: 0.55rem; color: rgba(255,255,255,0.25);
+      font-style: italic; white-space: nowrap;
+    }
+    .flow-loss-badge {
+      font-family: var(--font-heading); font-size: 0.52rem; font-weight: 700;
+      color: #EF4444; background: rgba(239,68,68,0.1);
+      padding: 2px 8px; border-radius: 10px; margin-top: 0.35rem;
+      border: 1px solid rgba(239,68,68,0.15);
+    }
+
+    /* INFOGRAPHIC 3 — 4 constraint cards */
+    .constraints-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .constraint-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem 1.25rem;
+      text-align: center; border: 1px solid rgba(91,184,245,0.1);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .constraint-card:hover {
+      border-color: rgba(91,184,245,0.25); transform: translateY(-3px);
+    }
+    .constraint-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.1), rgba(43,108,176,0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .constraint-icon svg { width: 24px; height: 24px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .constraint-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .constraint-desc {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .split-compare { grid-template-columns: 1fr; }
+      .split-compare::after { display: none; }
+      .flow-diagram { flex-direction: column; gap: 0.5rem; }
+      .flow-arrow { transform: rotate(90deg); }
+      .constraints-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .constraints-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Gestão Industrial</span>
+  <h1>Por que o ERP do chão de fábrica é diferente do ERP da diretoria — e por que essa confusão custa caro às PMEs</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      7 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Existe uma cena que se repete em fábricas por todo o Brasil.</p>
+
+  <p>O dono contrata um ERP. Investe alguns meses de implantação, uma equipe de consultores e um contrato que ele assinou sem entender completamente. O sistema entra em produção. O financeiro usa. O comercial usa. O estoque, talvez.</p>
+
+  <p>E o chão de fábrica? O chão de fábrica continua funcionando no caderno do encarregado.</p>
+
+  <p>Não porque os operadores são resistentes à tecnologia. Não porque o dono não quis. Mas porque o ERP que ele comprou nunca foi desenhado para aquele ambiente. Ele foi desenhado para a sala de reunião onde a decisão de compra aconteceu.</p>
+
+  <p>Essa é a diferença que quase nenhum fornecedor de ERP tem interesse em explicar — e que custa milhares de reais por mês em decisões tomadas no escuro.</p>
+
+  <hr class="article-divider">
+
+  <h2>Dois mundos dentro da mesma fábrica</h2>
+
+  <p>Quando um gerente financeiro abre o ERP, ele está sentado numa cadeira confortável, com internet estável, numa tela de 24 polegadas. Ele tem 10 minutos para analisar um relatório. Pode errar e corrigir. O sistema pode ser complexo porque ele tem contexto para navegá-lo.</p>
+
+  <p>Quando um operador de produção precisaria usar o mesmo ERP, ele está de pé, com luvas, próximo a uma máquina barulhenta, com um celular de entrada no bolso. Tem 30 segundos entre uma etapa e outra do processo. Não tem contexto de navegação de software. Não teve treinamento suficiente. E se o sistema travar ou demorar, ele simplesmente abandona e grita para o encarregado.</p>
+
+  <p>Esses dois usuários têm necessidades completamente diferentes. Mas durante décadas, o mercado de ERP construiu sistemas para o primeiro e tentou empurrar para o segundo.</p>
+
+  <p>O resultado é previsível: adoção zero no chão de fábrica. E dados zero para quem precisa tomar decisão.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Split comparison -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Dois mundos, uma fábrica
+    </div>
+    <div class="split-compare">
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          Gerente Financeiro
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Sentado, cadeira confortável
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Internet estável e dedicada
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Tela de 24 polegadas
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            10 minutos para analisar
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Pode errar e corrigir
+          </div>
+        </div>
+      </div>
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          Operador de Produção
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            De pé, com luvas, ambiente ruidoso
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Rede instável ou inexistente
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Celular de entrada no bolso
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            30 segundos entre etapas
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Sem treinamento formal
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que o gestor não vê — porque os dados não chegam</h2>
+
+  <p>Aqui está o problema real que essa divisão cria:</p>
+
+  <p>O gestor industrial precisa de informações para tomar decisões. Qual linha está com gargalo? Onde está o retrabalho? Qual turno tem mais desvio de qualidade? Quando aquela máquina vai parar de novo?</p>
+
+  <p>Essas informações existem. Elas estão na cabeça do encarregado, nos apontamentos à mão, nas conversas informais do final de turno. Mas elas nunca chegam ao sistema de forma estruturada.</p>
+
+  <p>Então o gestor opera com dados de ontem — ou de semana passada — consolidados manualmente em planilhas por alguém que interpretou o que o encarregado disse. Cada camada de intermediação é uma camada de distorção.</p>
+
+  <p>Isso não é problema de gestão. É problema de arquitetura de sistema.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Data loss flow -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      O dado que desaparece no caminho
+    </div>
+    <div class="flow-diagram">
+      <div class="flow-step">
+        <div class="flow-step-circle">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="flow-step-label">Operador</div>
+        <div class="flow-step-sub">Vive o dado em tempo real</div>
+      </div>
+
+      <div class="flow-arrow">
+        <div class="flow-arrow-label">interpretação</div>
+        <div class="flow-arrow-line"></div>
+        <div class="flow-loss-badge">-30% precisão</div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-circle">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <div class="flow-step-label">Encarregado</div>
+        <div class="flow-step-sub">Anota no caderno ou memoriza</div>
+      </div>
+
+      <div class="flow-arrow">
+        <div class="flow-arrow-label">consolidação manual</div>
+        <div class="flow-arrow-line"></div>
+        <div class="flow-loss-badge">-50% precisão</div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-circle">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="flow-step-label">Supervisor</div>
+        <div class="flow-step-sub">Consolida em planilha</div>
+      </div>
+
+      <div class="flow-arrow">
+        <div class="flow-arrow-label">resumo</div>
+        <div class="flow-arrow-line"></div>
+        <div class="flow-loss-badge">-70% precisão</div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-circle" style="border-color: rgba(239,68,68,0.3);">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="stroke: #EF4444;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="flow-step-label">Gestor</div>
+        <div class="flow-step-sub">Decide com dados defasados e distorcidos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Por que os ERPs tradicionais não resolvem isso</h2>
+
+  <p>Os grandes ERPs do mercado foram construídos em uma época em que "chão de fábrica" significava terminais físicos instalados nos postos de trabalho, operados por um funcionário treinado especificamente para aquela função.</p>
+
+  <p>Hoje, a realidade é outra. O operador tem um smartphone no bolso mais potente do que qualquer terminal da época. Mas o ERP ainda foi projetado para a lógica antiga — formulários densos, navegação em árvore, campos obrigatórios que fazem sentido para o contador mas não para quem está na linha de produção.</p>
+
+  <p>Quando o fornecedor tenta adaptar esse sistema para mobile, o resultado é uma versão encolhida da interface de desktop: os mesmos campos, a mesma lógica, numa tela menor. Fica pior, não melhor.</p>
+
+  <p>Não é falta de vontade. É que o produto foi construído de cima para baixo — do gestor para o operador — e inverter essa lógica exigiria reconstruir o sistema do zero.</p>
+
+  <h2>O dado que existe apenas na cabeça do encarregado</h2>
+
+  <p>Existe uma expressão que resume bem a situação da maioria das PMIs brasileiras: <strong>os dados de produção não estão sujos — eles simplesmente não existem de forma estruturada.</strong></p>
+
+  <p>O encarregado de turno sabe exatamente o que aconteceu durante o dia. Sabe quantas peças foram rejeitadas, qual máquina deu problema, quanto tempo ficou parada, o que o operador fez diferente. Esse conhecimento é real e valioso.</p>
+
+  <p>Mas está armazenado num lugar inacessível para o sistema: a memória humana.</p>
+
+  <p>Quando ele sai da empresa — ou quando está de férias, ou simplesmente quando o gestor precisa da informação às 11h da noite de domingo — esse dado some.</p>
+
+  <p>Um ERP projetado para o chão de fábrica não cria novos processos. Ele estrutura o que já acontece. Captura o dado no momento em que ele existe, pelo operador que o gerou, de forma simples o suficiente para que isso aconteça naturalmente.</p>
+
+  <h2>O que "mobile-first para o chão de fábrica" realmente significa</h2>
+
+  <p>Existe uma diferença importante entre "o sistema funciona no celular" e "o sistema foi desenhado para o celular do operador".</p>
+
+  <p>Um sistema que funciona no celular é uma página web responsiva. Os campos encolhem, o texto fica menor, a navegação fica apertada. Funciona, tecnicamente. Na prática, o operador desiste na segunda tela.</p>
+
+  <p>Um sistema desenhado para o celular do operador parte de constraints completamente diferentes:</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — 4 constraint cards -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Mobile-first real: 4 constraints inegociáveis
+    </div>
+    <div class="constraints-grid">
+      <div class="constraint-card">
+        <div class="constraint-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+        </div>
+        <div class="constraint-title">Funciona Offline</div>
+        <div class="constraint-desc">Rede instável não pode impedir o apontamento. Sincroniza quando houver sinal.</div>
+      </div>
+      <div class="constraint-card">
+        <div class="constraint-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="constraint-title">Celular de Entrada</div>
+        <div class="constraint-desc">Carrega no aparelho de R$ 800 do operador, não no iPhone do gerente.</div>
+      </div>
+      <div class="constraint-card">
+        <div class="constraint-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="constraint-title">30 Segundos</div>
+        <div class="constraint-desc">Qualquer ação completa em até 30 segundos ou não será feita na produção.</div>
+      </div>
+      <div class="constraint-card">
+        <div class="constraint-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="constraint-title">Zero Treinamento</div>
+        <div class="constraint-desc">O onboarding acontece no próprio uso. Sem dia de capacitação que será esquecido.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Esses não são detalhes de UX. São decisões de arquitetura que mudam completamente como o sistema é construído.</p>
+
+  <h2>Por que isso importa para o dono da fábrica</h2>
+
+  <p>Vamos ser diretos sobre o custo financeiro da divisão que descrevemos.</p>
+
+  <p>Quando o chão de fábrica não alimenta o sistema, o gestor toma decisões sem dados de produção reais. Ele não sabe exatamente onde está perdendo dinheiro. Não consegue calcular o custo real de cada ordem de produção. Não identifica qual turno ou qual máquina concentra os problemas.</p>
+
+  <p>O resultado aparece como: retrabalho que não é contabilizado, paradas que se repetem porque ninguém registrou a causa, custo de produção calculado sobre premissas desatualizadas, e decisões de precificação tomadas sobre margens que não refletem a realidade.</p>
+
+  <p>Esses não são problemas que aparecem claramente no balanço. Aparecem como "a margem foi menor do que esperávamos" ou "não sei por que essa linha não performa". Mas têm origem rastreável: a ausência de dados estruturados no lugar onde o valor é criado.</p>
+
+  <h2>A pergunta que vale fazer antes de contratar qualquer ERP</h2>
+
+  <p>Antes de assinar qualquer contrato, existe uma pergunta simples que revela muito sobre um fornecedor de ERP industrial:</p>
+
+  <blockquote>"Como o seu sistema é usado pelo operador no chão de fábrica?"</blockquote>
+
+  <p>Se a resposta for vaga — "temos uma versão mobile", "pode acessar pelo navegador", "treinamos a equipe" — você está olhando para um ERP desenhado para a diretoria que foi adaptado às pressas para o chão de fábrica.</p>
+
+  <p>Se a resposta for específica — "funciona offline, carrega neste tipo de aparelho, o apontamento leva X segundos" — você está diante de um produto que foi pensado para o problema certo.</p>
+
+  <p>A diferença entre os dois é a diferença entre um ERP que viraliza no seu departamento financeiro e some no chão de fábrica, e um sistema que finalmente conecta os dois mundos que sempre existiram dentro da sua fábrica.</p>
+
+  <hr class="article-divider">
+
+  <p><em>O SYSLED foi construído a partir dessa pergunta. Se quiser entender como isso funciona na prática para uma indústria do seu porte, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Conecte o chão de fábrica ao seu sistema de gestão</h2>
+  <p>Descubra como o SYSLED captura dados de produção em tempo real, direto do celular do operador — sem treinamento, sem complicação.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

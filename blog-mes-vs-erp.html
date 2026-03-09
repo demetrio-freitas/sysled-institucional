@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MES vs ERP: quando você precisa dos dois, quando um sufoca o outro | SYSLED Blog</title>
+  <meta name="description" content="Entenda a diferença real entre MES e ERP, quando a PMI precisa dos dois sistemas e quando um ERP industrial bem feito resolve sozinho.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — ERP vs MES Split comparison */
+    .split-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative;
+    }
+    .split-compare::after {
+      content: 'VS'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading); font-weight: 900; font-size: 0.75rem;
+      color: var(--blue-light); background: var(--dark-2);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(91,184,245,0.2); z-index: 2;
+    }
+    .split-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); position: relative;
+    }
+    .split-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .split-card-title .split-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .split-card:first-child .split-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .split-card:last-child .split-icon {
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(220,100,20,0.15));
+    }
+    .split-card:first-child .split-icon svg { stroke: var(--blue-light); }
+    .split-card:last-child .split-icon svg { stroke: #F59E0B; }
+    .split-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .split-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .split-item-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.62rem; color: rgba(255,255,255,0.3);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      min-width: 60px; flex-shrink: 0; padding-top: 2px;
+    }
+    .split-item-icon {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .split-card:first-child .split-item-icon {
+      background: rgba(91,184,245,0.1);
+    }
+    .split-card:first-child .split-item-icon svg { stroke: var(--blue-light); }
+    .split-card:last-child .split-item-icon {
+      background: rgba(245,158,11,0.1);
+    }
+    .split-card:last-child .split-item-icon svg { stroke: #F59E0B; }
+
+    /* INFOGRAPHIC 2 — Decision matrix */
+    .decision-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative;
+    }
+    .decision-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); position: relative;
+    }
+    .decision-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .decision-card-title .decision-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .decision-card:first-child .decision-icon {
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(220,100,20,0.15));
+    }
+    .decision-card:last-child .decision-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .decision-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .decision-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .decision-item-check {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; background: rgba(34,197,94,0.1);
+    }
+    .decision-item-check svg { stroke: #22C55E; }
+
+    /* INFOGRAPHIC 3 — Flowchart */
+    .flowchart {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; position: relative;
+    }
+    .flowchart-node {
+      background: var(--dark-2); border-radius: 14px; padding: 1.25rem 2rem;
+      text-align: center; border: 2px solid rgba(91,184,245,0.2);
+      position: relative; max-width: 420px; width: 100%;
+    }
+    .flowchart-node-question {
+      border-color: rgba(91,184,245,0.4);
+      background: linear-gradient(135deg, rgba(91,184,245,0.08), rgba(43,108,176,0.08));
+    }
+    .flowchart-node-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .flowchart-node-sub {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.5;
+    }
+    .flowchart-arrow {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; padding: 0.5rem 0;
+    }
+    .flowchart-arrow-line {
+      width: 2px; height: 28px;
+      background: linear-gradient(180deg, rgba(91,184,245,0.4), rgba(91,184,245,0.15));
+    }
+    .flowchart-arrow-tip {
+      width: 0; height: 0;
+      border-left: 5px solid transparent; border-right: 5px solid transparent;
+      border-top: 6px solid rgba(91,184,245,0.4);
+    }
+    .flowchart-branch {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      width: 100%; max-width: 600px; margin-top: 0;
+    }
+    .flowchart-branch-col {
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+    }
+    .flowchart-branch-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.65rem; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 4px 12px; border-radius: 10px;
+      background: rgba(91,184,245,0.08);
+      border: 1px solid rgba(91,184,245,0.15);
+    }
+    .flowchart-result {
+      background: var(--dark-2); border-radius: 14px; padding: 1.25rem 1.5rem;
+      text-align: center; border: 1px solid rgba(255,255,255,0.06);
+      width: 100%;
+    }
+    .flowchart-result-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); margin-bottom: 0.35rem;
+    }
+    .flowchart-result-desc {
+      font-size: 0.68rem; color: rgba(255,255,255,0.35); line-height: 1.5;
+    }
+    .flowchart-connector {
+      display: flex; align-items: flex-start; justify-content: center;
+      width: 100%; max-width: 600px; position: relative; height: 40px;
+    }
+    .flowchart-connector::before {
+      content: ''; position: absolute; top: 0; left: 25%; right: 25%;
+      height: 2px; background: rgba(91,184,245,0.2);
+    }
+    .flowchart-connector::after {
+      content: ''; position: absolute; top: 0; left: 25%;
+      width: 2px; height: 40px; background: rgba(91,184,245,0.2);
+    }
+    .flowchart-connector-right {
+      position: absolute; top: 0; right: 25%;
+      width: 2px; height: 40px; background: rgba(91,184,245,0.2);
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .split-compare { grid-template-columns: 1fr; }
+      .split-compare::after { display: none; }
+      .decision-grid { grid-template-columns: 1fr; }
+      .flowchart-branch { grid-template-columns: 1fr; }
+      .flowchart-connector { display: none; }
+      .flowchart-branch-col { margin-top: 0.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Gestão Industrial</span>
+  <h1>MES vs ERP: quando você precisa dos dois, quando um sufoca o outro</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      8 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">A sigla MES aparece cada vez mais nas conversas sobre indústria 4.0. E junto com ela, uma dúvida que quase toda PMI enfrenta: preciso de um MES além do ERP, ou estou complicando algo que poderia ser simples?</p>
+
+  <p>A resposta curta: depende. Mas "depende" sem contexto não ajuda ninguém. Então vamos destrinchar o que cada sistema faz, onde eles se sobrepõem, onde um sufoca o outro, e como uma PMI com orçamento limitado deveria pensar essa decisão.</p>
+
+  <hr class="article-divider">
+
+  <h2>O que cada sistema foi feito para fazer</h2>
+
+  <p>ERP e MES nasceram para resolver problemas diferentes, em camadas diferentes da operação.</p>
+
+  <p>O <strong>ERP</strong> (Enterprise Resource Planning) é um sistema de planejamento. Ele responde perguntas como: o que preciso produzir? Quanto tenho em estoque? Qual o custo previsto? Quando devo comprar matéria-prima? Ele opera no nível do plano -- dias, semanas, meses. Seus usuários naturais são o gestor, o planejador, o controller.</p>
+
+  <p>O <strong>MES</strong> (Manufacturing Execution System) é um sistema de execução. Ele responde perguntas como: o que está sendo produzido agora? A que velocidade? Com qual índice de qualidade? Quanto tempo a máquina ficou parada? Ele opera no nível do tempo real -- segundos, minutos, horas. Seus usuários naturais são o supervisor, o encarregado, o operador.</p>
+
+  <p>Quando os dois funcionam bem juntos, o ERP diz "o que fazer" e o MES diz "como está sendo feito". O ERP planeja; o MES executa e reporta. Essa separação faz sentido teórico perfeito.</p>
+
+  <p>Na prática, é onde as coisas complicam.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — ERP vs MES comparison -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      ERP vs MES
+    </div>
+    <div class="split-compare">
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          ERP
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-label">Pergunta</div>
+            <div>"O que produzir?"</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Nível</div>
+            <div>Planejamento</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Tempo</div>
+            <div>Dias / semanas / meses</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Usuário</div>
+            <div>Gestor / planejador / controller</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Foco</div>
+            <div>Pedidos, finanças, custos, estoque</div>
+          </div>
+        </div>
+      </div>
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          MES
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-label">Pergunta</div>
+            <div>"Como está sendo executado agora?"</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Nível</div>
+            <div>Execução</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Tempo</div>
+            <div>Segundos / minutos / horas</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Usuário</div>
+            <div>Supervisor / encarregado / operador</div>
+          </div>
+          <div class="split-item">
+            <div class="split-item-label">Foco</div>
+            <div>OEE, qualidade, rastreabilidade, tempo real</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Onde a separação quebra na PMI</h2>
+
+  <p>O modelo ERP + MES foi desenhado para grandes indústrias. Empresas com centenas de máquinas, dezenas de linhas de produção, equipes dedicadas de TI, e orçamento para manter dois sistemas complexos integrados.</p>
+
+  <p>Quando uma PMI tenta replicar esse modelo, três coisas acontecem:</p>
+
+  <p><strong>1. O custo dobra sem o benefício dobrar.</strong> São duas licenças, duas implantações, duas manutenções, dois fornecedores. O MES não é barato. Um projeto de MES para uma fábrica média pode facilmente custar o equivalente a outro ERP inteiro -- sem contar a integração entre os dois.</p>
+
+  <p><strong>2. A integração vira o gargalo.</strong> ERP e MES precisam conversar. O ERP envia ordens de produção; o MES retorna dados de execução. Essa integração é onde a maioria dos projetos emperra. Formatos diferentes, tempos diferentes, lógicas diferentes. Em empresas grandes, existe uma equipe de TI só para manter essa ponte. Na PMI, não existe.</p>
+
+  <p><strong>3. O operador vira refém de dois sistemas.</strong> Em vez de simplificar, a experiência do chão de fábrica fica mais complexa. O operador precisa interagir com o MES para apontar produção e com o ERP para consultar a ordem. Dois logins, duas interfaces, duas lógicas. O resultado previsível: ele não usa nenhum dos dois direito.</p>
+
+  <h2>Quando a PMI realmente precisa dos dois</h2>
+
+  <p>Existem cenários onde um MES dedicado faz sentido mesmo para uma empresa menor:</p>
+
+  <p><strong>Quando há PLCs e sensores integráveis.</strong> Se sua fábrica tem máquinas com controladores programáveis que emitem dados automaticamente, um MES pode capturar esses dados sem depender de apontamento humano. Isso muda o jogo. O dado é automático, contínuo e confiável.</p>
+
+  <p><strong>Quando a rastreabilidade é regulatória.</strong> Indústrias farmacêutica, alimentícia, química -- setores onde a rastreabilidade de lote e exigência legal. Nesses casos, o nível de detalhe que o MES oferece não é luxo, é compliance.</p>
+
+  <p><strong>Quando o volume de máquinas justifica.</strong> Acima de um certo número de equipamentos (tipicamente mais de 10 máquinas críticas), a complexidade de monitoramento excede o que um ERP com módulo de produção consegue gerenciar. O MES começa a pagar pelo que custa.</p>
+
+  <p><strong>Quando o custo da parada é altíssimo.</strong> Se uma hora de máquina parada custa dezenas de milhares de reais, a visibilidade em tempo real que o MES oferece se paga rapido. Cada minuto de antecipação na detecção de um problema é dinheiro recuperado.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Decision matrix -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Quando precisa de MES vs quando ERP basta
+    </div>
+    <div class="decision-grid">
+      <div class="decision-card">
+        <div class="decision-card-title">
+          <div class="decision-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          Precisa de MES dedicado
+        </div>
+        <div class="decision-items">
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            PLCs e sensores integráveis nas máquinas
+          </div>
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Rastreabilidade regulatória obrigatória
+          </div>
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Mais de 10 máquinas críticas
+          </div>
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Parada de máquina = alto impacto financeiro
+          </div>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-title">
+          <div class="decision-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          ERP industrial basta
+        </div>
+        <div class="decision-items">
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Apontamento feito por operador (não por sensor)
+          </div>
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Menos de 8 máquinas no parque fabril
+          </div>
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Sem regulação de rastreabilidade por lote
+          </div>
+          <div class="decision-item">
+            <div class="decision-item-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Orçamento limitado para dois sistemas
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que acontece quando o ERP tenta ser MES (e vice-versa)</h2>
+
+  <p>A tentação é natural: se preciso dos dois, por que não uso um sistema que faz tudo?</p>
+
+  <p>Os grandes ERPs perceberam essa demanda e começaram a oferecer "modulos de chão de fábrica". Os grandes MES responderam adicionando funcionalidades de planejamento. Nenhum dos dois faz o trabalho do outro direito.</p>
+
+  <p><strong>Quando o ERP tenta ser MES:</strong> ele adiciona telas de apontamento de produção, mas com a mesma lógica de formulário pesado que usa em finanças. O resultado é um módulo que o supervisor entende, mas que o operador não consegue usar no ritmo da produção. O dado chega, mas atrasado, incompleto, ou preenchido em lote no final do turno.</p>
+
+  <p><strong>Quando o MES tenta ser ERP:</strong> ele adiciona funcionalidades de gestão financeira e comercial, mas com profundidade rasa. O resultado é um sistema que sabe tudo sobre a máquina, mas não consegue calcular corretamente o custo de uma ordem de produção considerando impostos, frete e variação cambial de matéria-prima importada.</p>
+
+  <p>Cada sistema carrega o DNA do problema que nasceu para resolver. Forçar um a fazer o trabalho do outro e como usar um bisturi como martelo: tecnicamente possivel, praticamente desastroso.</p>
+
+  <h2>A pergunta certa antes de qualquer decisão</h2>
+
+  <p>Antes de decidir entre ERP, MES, ou os dois, existe uma pergunta diagnóstica que clarifica a situação:</p>
+
+  <blockquote>"Quanto tempo o dado de produção leva para chegar ao gestor?"</blockquote>
+
+  <p>Se a resposta e <strong>"no final do turno"</strong> ou <strong>"quando alguém lembra de preencher"</strong>, o problema não é de análise -- é de coleta. Você não precisa de um MES com analytics sofisticado. Precisa de um sistema que capture o dado básico no momento em que ele acontece. Um ERP com capacidade real de chão de fábrica resolve isso.</p>
+
+  <p>Se a resposta e <strong>"os dados chegam em tempo real via sensores, mas não consigo analisar e agir"</strong>, o problema é de análise e orquestração. Você já tem a coleta. Precisa de um MES que transforme esse fluxo contínuo de dados em decisões acionáveis.</p>
+
+  <p>A maioria das PMIs brasileiras está no primeiro caso. Os dados de produção não chegam -- ou chegam tarde e distorcidos. Comprar um MES para resolver isso e como comprar um carro de corrida para aprender a dirigir.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Flowchart -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      A pergunta certa
+    </div>
+    <div class="flowchart">
+      <!-- Start question -->
+      <div class="flowchart-node flowchart-node-question">
+        <div class="flowchart-node-label">Quanto tempo o dado leva para chegar ao gestor?</div>
+      </div>
+
+      <!-- Connector splitting into two branches -->
+      <div class="flowchart-connector">
+        <div class="flowchart-connector-right"></div>
+      </div>
+
+      <!-- Two branches -->
+      <div class="flowchart-branch">
+        <div class="flowchart-branch-col">
+          <div class="flowchart-branch-label">Final do turno / quando liga</div>
+          <div class="flowchart-arrow">
+            <div class="flowchart-arrow-line"></div>
+            <div class="flowchart-arrow-tip"></div>
+          </div>
+          <div class="flowchart-result">
+            <div class="flowchart-result-title">Problema de COLETA</div>
+            <div class="flowchart-result-desc">ERP com chão de fábrica resolve. Capture o dado básico antes de sofisticar a análise.</div>
+          </div>
+        </div>
+        <div class="flowchart-branch-col">
+          <div class="flowchart-branch-label">Tempo real via sensores</div>
+          <div class="flowchart-arrow">
+            <div class="flowchart-arrow-line"></div>
+            <div class="flowchart-arrow-tip"></div>
+          </div>
+          <div class="flowchart-result">
+            <div class="flowchart-result-title">Problema de ANALISE</div>
+            <div class="flowchart-result-desc">MES com analytics dedicado. Transforme o fluxo de dados em decisões acionáveis.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O caminho pragmático para a PMI</h2>
+
+  <p>Se você está no estágio em que os dados de produção ainda não são estruturados -- e a maioria está --, o caminho mais racional é:</p>
+
+  <p><strong>1. Resolva a coleta primeiro.</strong> Implante um ERP que tenha capacidade real de chão de fábrica. Não um módulo acessório, mas uma interface que o operador realmente use. Que funcione offline, que rode no celular dele, que capture o dado em 30 segundos.</p>
+
+  <p><strong>2. Estruture os dados básicos.</strong> Antes de querer OEE em tempo real, tenha apontamento de produção confiável. Antes de querer rastreabilidade automática, tenha registro de lote básico. Antes de querer analytics preditivo, tenha histórico de paradas registrado.</p>
+
+  <p><strong>3. Avalie o MES quando a coleta estiver madura.</strong> Quando você já tiver dados básicos fluindo, vai conseguir enxergar exatamente onde o ERP não alcança. Talvez seja na integração com sensores. Talvez no nível de granularidade da rastreabilidade. Talvez na velocidade de reação a desvios. Nesse ponto, o investimento em MES tem ROI claro porque você sabe exatamente o que está comprando.</p>
+
+  <p><strong>4. Exija integração nativa.</strong> Se chegar ao ponto de precisar dos dois, escolha sistemas que foram desenhados para conversar. Integração customizada entre ERP e MES é um dos maiores sorvedouros de orçamento e paciência da indústria. APIs abertas, formatos padrão, documentação clara -- esses devem ser critérios de compra, não bônus.</p>
+
+  <hr class="article-divider">
+
+  <p><em>No SYSLED, construímos as capacidades de chão de fábrica dentro do ERP para que PMIs não precisem integrar dois sistemas antes de ter os dados básicos em ordem. Se quiser entender como isso funciona na prática para uma operação do seu porte, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Chão de fábrica e gestão no mesmo sistema</h2>
+  <p>Descubra como o SYSLED une planejamento e execução numa única plataforma -- sem precisar integrar ERP e MES separados.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

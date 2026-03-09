@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Como calcular o custo real de não ter um ERP industrial | SYSLED Blog</title>
+  <meta name="description" content="O método que usamos com nossos clientes para calcular quanto custa operar sem um ERP industrial. 5 categorias de custo oculto que somam mais de R$ 50 mil/mês.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem); letter-spacing: -0.01em;
+      line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — 5 category cards */
+    .cost-categories {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .cost-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem 1rem;
+      text-align: center; border: 1px solid rgba(91,184,245,0.1);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .cost-card:hover {
+      border-color: rgba(91,184,245,0.25); transform: translateY(-3px);
+    }
+    .cost-card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.1), rgba(43,108,176,0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .cost-card-icon svg { width: 24px; height: 24px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .cost-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.75rem; color: var(--white); margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .cost-card-range {
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+      color: var(--blue-light); background: rgba(91,184,245,0.1);
+      padding: 4px 10px; border-radius: 8px; display: inline-block;
+      border: 1px solid rgba(91,184,245,0.15);
+    }
+
+    /* INFOGRAPHIC 2 — Cost table */
+    .cost-table-wrap {
+      position: relative;
+    }
+    .cost-table {
+      width: 100%; border-collapse: collapse; margin-bottom: 2rem;
+      border-radius: 12px; overflow: hidden;
+    }
+    .cost-table thead th {
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+      color: var(--white); font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; padding: 14px 20px; text-align: left;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .cost-table tbody td {
+      padding: 12px 20px; font-size: 0.85rem; color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark-2);
+    }
+    .cost-table tbody td:last-child {
+      font-family: var(--font-heading); font-weight: 700;
+      color: var(--white); text-align: right;
+    }
+    .cost-table thead th:last-child { text-align: right; }
+    .cost-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .cost-table-total td {
+      background: rgba(91,184,245,0.08) !important;
+      font-weight: 700 !important; color: var(--white) !important;
+      font-size: 0.95rem !important;
+      border-top: 2px solid rgba(91,184,245,0.3) !important;
+    }
+    .cost-table-total td:last-child {
+      color: var(--blue-light) !important;
+      font-size: 1rem !important;
+    }
+
+    /* Cost comparison bar */
+    .cost-comparison {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); margin-top: 1.5rem;
+    }
+    .cost-comparison-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white); margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .cost-bar-group { margin-bottom: 1.2rem; }
+    .cost-bar-label {
+      font-size: 0.72rem; color: rgba(255,255,255,0.5);
+      margin-bottom: 6px; display: flex; justify-content: space-between;
+      font-family: var(--font-heading); font-weight: 600;
+    }
+    .cost-bar-label .cost-bar-value {
+      color: var(--white); font-weight: 700;
+    }
+    .cost-bar-track {
+      height: 32px; background: rgba(255,255,255,0.04);
+      border-radius: 8px; overflow: hidden; position: relative;
+    }
+    .cost-bar-fill {
+      height: 100%; border-radius: 8px; transition: width 1.5s ease-out;
+    }
+    .cost-bar-fill.loss {
+      background: linear-gradient(90deg, #EF4444, #DC2626);
+      width: 100%;
+    }
+    .cost-bar-fill.erp {
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      width: 7.5%;
+    }
+    .payback-highlight {
+      margin-top: 1.5rem; text-align: center;
+      background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 12px; padding: 1rem 1.5rem;
+    }
+    .payback-highlight .payback-label {
+      font-size: 0.65rem; font-weight: 700; color: #22C55E;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      font-family: var(--font-heading); margin-bottom: 0.25rem;
+    }
+    .payback-highlight .payback-value {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.3rem; color: #22C55E;
+    }
+
+    /* INFOGRAPHIC 3 — 4 steps flow */
+    .steps-flow {
+      display: flex; align-items: flex-start; justify-content: center;
+      gap: 0; position: relative;
+    }
+    .steps-flow::before {
+      content: ''; position: absolute; top: 32px;
+      left: calc(12.5% + 24px); right: calc(12.5% + 24px);
+      height: 2px;
+      background: linear-gradient(90deg,
+        rgba(91,184,245,0.4),
+        rgba(91,184,245,0.2),
+        rgba(91,184,245,0.4),
+        rgba(91,184,245,0.2)
+      );
+    }
+    .step-item {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      text-align: center; position: relative; padding: 0 0.5rem;
+    }
+    .step-number {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--dark-2); border: 2px solid rgba(91,184,245,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem; position: relative; z-index: 2;
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.3rem; color: var(--blue-light);
+    }
+    .step-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+    .step-sub {
+      font-size: 0.65rem; color: rgba(255,255,255,0.35);
+      line-height: 1.5; max-width: 140px;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .cost-categories { grid-template-columns: 1fr 1fr; }
+      .steps-flow { flex-direction: column; gap: 1.5rem; align-items: center; }
+      .steps-flow::before { display: none; }
+      .step-item { flex: none; width: 100%; max-width: 280px; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+      .cost-table thead th { padding: 10px 12px; font-size: 0.7rem; }
+      .cost-table tbody td { padding: 10px 12px; font-size: 0.78rem; }
+    }
+    @media (max-width: 480px) {
+      .cost-categories { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">ROI Industrial</span>
+  <h1>Como calcular o custo real de não ter um ERP industrial — o método que usamos com nossos clientes</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      7 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">A maioria dos donos de fábrica sabe que opera com ineficiências. O que quase nenhum sabe é quanto isso custa por mês.</p>
+
+  <p>Não porque sejam negligentes. Mas porque os custos de não ter um sistema de gestão industrial são invisíveis — distribuídos em pequenas perdas diárias que ninguém contabiliza, ninguém registra e ninguém soma no final do mês.</p>
+
+  <p>Nos últimos anos, desenvolvemos um método simples para ajudar nossos clientes a fazer essa conta antes de qualquer decisão sobre ERP. Não é um modelo teórico. É um exercício prático que qualquer gestor consegue fazer em duas horas com seu supervisor de produção.</p>
+
+  <p>Este artigo descreve esse método, categoria por categoria, com os números reais que encontramos em fábricas de 30 a 200 funcionários no Brasil.</p>
+
+  <hr class="article-divider">
+
+  <h2>Por que esse cálculo importa</h2>
+
+  <p>Antes de entrar nas categorias, vale explicar por que fazemos esse exercício.</p>
+
+  <p>A decisão de contratar um ERP industrial geralmente é avaliada pelo custo do sistema: "quanto vou pagar por mês?". Mas essa é a pergunta errada. A pergunta certa é: "quanto estou pagando por mês por não ter um?"</p>
+
+  <p>A diferença entre essas duas perguntas é a diferença entre ver o ERP como custo e ver como investimento com retorno calculável.</p>
+
+  <p>Quando você coloca os dois números lado a lado, a decisão muda de natureza. Deixa de ser "será que vale a pena gastar R$ 3.000/mês com sistema?" e passa a ser "faz sentido continuar perdendo R$ 50.000/mês para economizar R$ 3.000?"</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — 5 category cards -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      5 categorias de custo oculto
+    </div>
+    <div class="cost-categories">
+      <div class="cost-card">
+        <div class="cost-card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5"/></svg>
+        </div>
+        <div class="cost-card-title">Refugo sem causa raiz</div>
+        <div class="cost-card-range">R$ 10-20k/mês</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>
+        </div>
+        <div class="cost-card-title">Paradas não planejadas</div>
+        <div class="cost-card-range">R$ 8-15k/mês</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="cost-card-title">Compras emergência + estoque</div>
+        <div class="cost-card-range">R$ 10-18k/mês</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="cost-card-title">Horas gestão em relatórios</div>
+        <div class="cost-card-range">R$ 8-15k/mês</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div class="cost-card-title">Precificação imprecisa</div>
+        <div class="cost-card-range">Variável</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Categoria 1: Refugo e retrabalho sem causa raiz</h2>
+
+  <p>Em toda fábrica existe refugo. Peças rejeitadas, material desperdiçado, produto que volta para refazer. O problema não é que isso aconteça — é que, sem sistema, ninguém sabe exatamente quanto acontece, onde acontece e por quê.</p>
+
+  <p><strong>Como calcular:</strong></p>
+
+  <p>Pergunte ao supervisor: "Na média, quantas peças por dia são rejeitadas ou refeitas?" Multiplique pelo custo médio de material + hora-máquina daquela peça. Multiplique por 22 dias úteis.</p>
+
+  <p><strong>O que encontramos:</strong> Em fábricas de médio porte (50-150 funcionários), o refugo sem rastreamento tipicamente fica entre 2% e 5% do faturamento. Para uma fábrica que fatura R$ 800 mil/mês, isso é R$ 16.000 a R$ 40.000.</p>
+
+  <p>Mas o custo real não é o refugo em si. É o refugo que se repete porque ninguém identificou a causa. Quando você rastreia causa raiz — máquina, operador, matéria-prima, setup — o refugo tipicamente cai 30-50% nos primeiros 3 meses. Isso porque a maioria dos problemas é recorrente e conhecida pelo chão de fábrica, mas nunca foi registrada de forma estruturada.</p>
+
+  <p><strong>Estimativa conservadora para o exercício: R$ 10.000 a R$ 20.000/mês.</strong></p>
+
+  <h2>Categoria 2: Paradas não planejadas e tempo ocioso</h2>
+
+  <p>Máquina parou. Quanto tempo ficou parada? Por quê? Quem resolveu? Quanto tempo levou?</p>
+
+  <p>Sem sistema, essas perguntas são respondidas com "acho que foi umas duas horas" e "foi aquele problema de sempre". Não há registro. Não há padrão. Não há como prever a próxima parada.</p>
+
+  <p><strong>Como calcular:</strong></p>
+
+  <p>Estime quantas horas por semana suas máquinas principais ficam paradas sem planejamento. Multiplique pelo custo/hora da máquina (depreciação + energia + operador ocioso). Multiplique por 4 semanas.</p>
+
+  <p><strong>O que encontramos:</strong> O número que mais surpreende gestores é o custo do operador parado. Uma linha com 5 operadores parada por 2 horas são 10 horas-homem perdidas. Se isso acontece 3 vezes por semana, são 120 horas-homem por mês — o equivalente a quase um funcionário inteiro.</p>
+
+  <p>Fábricas que implementam registro de paradas em tempo real tipicamente reduzem o tempo de parada em 25-40% nos primeiros 6 meses, porque a visibilidade permite ação preventiva.</p>
+
+  <p><strong>Estimativa conservadora: R$ 8.000 a R$ 15.000/mês.</strong></p>
+
+  <h2>Categoria 3: Compras de emergência e excesso de estoque</h2>
+
+  <p>Esses dois problemas parecem opostos, mas têm a mesma causa: falta de visibilidade sobre o que está sendo consumido na produção.</p>
+
+  <p>Sem dados de consumo real por ordem de produção, o comprador trabalha com estimativas. Às vezes compra demais (capital parado em estoque). Às vezes compra de menos (compra emergencial com frete expresso e preço mais alto).</p>
+
+  <p><strong>Como calcular:</strong></p>
+
+  <p>Levante quantas compras emergenciais foram feitas no último mês e qual foi o sobrepreço médio (frete expresso, fornecedor alternativo mais caro, lote mínimo). Some o custo de capital do estoque excessivo (valor do estoque acima do necessário × taxa de oportunidade mensal).</p>
+
+  <p><strong>O que encontramos:</strong> Compras de emergência tipicamente custam 15-30% mais que compras planejadas. Se a fábrica faz R$ 50.000/mês em compras emergenciais, o sobrepreço é de R$ 7.500 a R$ 15.000.</p>
+
+  <p>O estoque excessivo é mais sutil. Uma fábrica com R$ 500.000 em estoque parado acima do necessário está perdendo R$ 5.000 a R$ 10.000/mês em custo de capital (considerando 1-2% ao mês de custo de oportunidade).</p>
+
+  <p><strong>Estimativa conservadora: R$ 10.000 a R$ 18.000/mês.</strong></p>
+
+  <h2>Categoria 4: Horas de gestão em compilação manual de dados</h2>
+
+  <p>Esta é a categoria mais ignorada — e uma das mais caras.</p>
+
+  <p>Quanto tempo por semana o supervisor, o gerente de produção e o PCP gastam compilando dados manualmente? Consolidando planilhas, ligando para o chão de fábrica para perguntar status, montando relatórios para reunião?</p>
+
+  <p><strong>Como calcular:</strong></p>
+
+  <p>Estime as horas semanais de cada cargo envolvido em compilação manual de dados de produção. Multiplique pelo custo/hora de cada cargo (salário + encargos ÷ horas úteis mensais). Multiplique por 4 semanas.</p>
+
+  <p><strong>O que encontramos:</strong> Em fábricas sem ERP industrial, é comum encontrar:</p>
+
+  <ul>
+    <li>Supervisor de produção: 8-12h/semana em relatórios manuais</li>
+    <li>Gerente industrial: 5-8h/semana consolidando informações</li>
+    <li>PCP: 10-15h/semana em controles paralelos em planilha</li>
+    <li>Qualidade: 6-10h/semana em registros manuais</li>
+  </ul>
+
+  <p>Somando, são facilmente 30-45 horas/semana de profissionais qualificados fazendo trabalho que um sistema faz automaticamente. A um custo médio de R$ 60-80/hora (com encargos), isso representa R$ 8.000 a R$ 15.000/mês em horas de gestão desperdiçadas.</p>
+
+  <p>Esse é o custo mais perverso porque não aparece como linha no balanço. Aparece como "a equipe de gestão está sempre sobrecarregada" e "não temos tempo para projetos de melhoria".</p>
+
+  <p><strong>Estimativa conservadora: R$ 8.000 a R$ 15.000/mês.</strong></p>
+
+  <h2>Categoria 5: Precificação baseada em custo estimado (não real)</h2>
+
+  <p>Esta é a categoria mais difícil de quantificar — e potencialmente a mais cara.</p>
+
+  <p>Sem dados reais de produção, o custo de cada produto é estimado com base em premissas que podem estar defasadas em meses ou anos. O tempo real de máquina, o consumo real de material, o refugo real de cada produto — nada disso entra no cálculo porque não existe de forma estruturada.</p>
+
+  <p>O resultado: alguns produtos são vendidos com margem muito menor do que o gestor imagina (às vezes negativa). Outros poderiam ser vendidos com preço mais competitivo porque a margem real é maior do que a estimada.</p>
+
+  <p><strong>Como avaliar:</strong></p>
+
+  <p>Escolha seus 5 produtos mais vendidos. Compare o custo estimado com o que o supervisor de produção acha que é o custo real (tempo de máquina, setup, refugo, retrabalho). Se a diferença for maior que 10%, sua precificação está baseada em premissas incorretas.</p>
+
+  <p><strong>O que encontramos:</strong> Em quase todas as fábricas que analisamos, pelo menos 1 dos 5 principais produtos tinha custo real 20-40% diferente do custo na planilha de formação de preço. Em uma fábrica, o produto "estrela" — o mais vendido — tinha margem real de 8% quando o gestor acreditava ser 22%.</p>
+
+  <p>Não colocamos valor fixo nesta categoria porque varia enormemente. Mas é a categoria que, quando corrigida, tem maior impacto no resultado da empresa.</p>
+
+  <h2>Somando as categorias</h2>
+
+  <p>Quando fazemos esse exercício com um cliente, pedimos que ele preencha com os números da própria operação. Mas para ilustrar, vamos usar valores no meio das faixas que tipicamente encontramos:</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Cost table -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Custo total estimado vs. custo do ERP
+    </div>
+    <div class="cost-table-wrap">
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Custo mensal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Refugo e retrabalho sem causa raiz</td>
+            <td>R$ 15.000</td>
+          </tr>
+          <tr>
+            <td>Paradas não planejadas e tempo ocioso</td>
+            <td>R$ 12.800</td>
+          </tr>
+          <tr>
+            <td>Compras emergência + excesso de estoque</td>
+            <td>R$ 14.000</td>
+          </tr>
+          <tr>
+            <td>Horas de gestão em compilação manual</td>
+            <td>R$ 12.450</td>
+          </tr>
+          <tr class="cost-table-total">
+            <td>TOTAL</td>
+            <td>R$ 54.250/mês → R$ 651.000/ano</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cost-comparison">
+        <div class="cost-comparison-title">Custo da ineficiência vs. Custo do ERP</div>
+        <div class="cost-bar-group">
+          <div class="cost-bar-label">
+            <span>Perdas mensais sem ERP</span>
+            <span class="cost-bar-value">R$ 54.250</span>
+          </div>
+          <div class="cost-bar-track">
+            <div class="cost-bar-fill loss"></div>
+          </div>
+        </div>
+        <div class="cost-bar-group">
+          <div class="cost-bar-label">
+            <span>Investimento mensal em ERP industrial</span>
+            <span class="cost-bar-value">R$ 2.000 – 5.000</span>
+          </div>
+          <div class="cost-bar-track">
+            <div class="cost-bar-fill erp"></div>
+          </div>
+        </div>
+        <div class="payback-highlight">
+          <div class="payback-label">Payback estimado</div>
+          <div class="payback-value">Em semanas, não em meses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Esses R$ 54.250/mês — ou R$ 651.000/ano — representam dinheiro que a fábrica já está gastando. Não é um custo novo. É um custo que existe hoje, distribuído e invisível.</p>
+
+  <p>Um ERP industrial adequado para uma fábrica desse porte custa entre R$ 2.000 e R$ 5.000/mês. Mesmo que o sistema resolva apenas 30% dessas perdas (uma premissa conservadora para os primeiros 6 meses), o retorno é de R$ 16.000/mês — pagando o investimento várias vezes.</p>
+
+  <p>O payback não é em meses. É em semanas.</p>
+
+  <h2>Como usar esse método na sua fábrica</h2>
+
+  <p>O exercício que fazemos com clientes segue um formato simples:</p>
+
+  <ol>
+    <li><strong>Reúna as pessoas certas:</strong> Supervisor de produção + gerente industrial (ou dono). Duas horas, sem interrupção.</li>
+    <li><strong>Passe por cada categoria:</strong> Use os critérios acima para estimar o custo mensal de cada uma. Não busque precisão — busque ordem de grandeza. Se o refugo custa "entre R$ 8.000 e R$ 20.000", use R$ 12.000. O importante é ter o número, não ter o número perfeito.</li>
+    <li><strong>Some e compare:</strong> Coloque o total ao lado do custo de um ERP industrial. Se a relação for maior que 3:1, a decisão não é "se", é "quando".</li>
+    <li><strong>Priorize:</strong> Identifique qual categoria tem maior impacto na sua operação. Essa é a que deve ser atacada primeiro na implementação.</li>
+  </ol>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — 4 steps flow -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      4 passos do método
+    </div>
+    <div class="steps-flow">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-label">Reúna supervisor + gerente</div>
+        <div class="step-sub">2 horas, sem interrupção</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-label">Estime por categoria</div>
+        <div class="step-sub">Ordem de grandeza, não precisão</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-label">Some e compare com ERP</div>
+        <div class="step-sub">Total das perdas vs. custo do sistema</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-label">Se > 3x, decisão de ROI</div>
+        <div class="step-sub">A pergunta muda de "se" para "quando"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que esse exercício não captura</h2>
+
+  <p>É importante ser honesto sobre as limitações. Esse método captura custos operacionais diretos. Não captura:</p>
+
+  <ul>
+    <li><strong>Custo de oportunidade:</strong> Vendas perdidas porque a produção não entregou no prazo. Clientes que não voltaram porque o pedido atrasou.</li>
+    <li><strong>Custo de decisões lentas:</strong> O tempo entre perceber um problema e resolvê-lo quando não há dados em tempo real.</li>
+    <li><strong>Custo de crescimento travado:</strong> A incapacidade de escalar a operação porque os controles manuais não acompanham o volume.</li>
+  </ul>
+
+  <p>Esses custos são reais, mas difíceis de quantificar. Por isso o método foca apenas no que é mensurável. Ainda assim, o número já é suficiente para fundamentar a decisão.</p>
+
+  <h2>Por que a maioria das fábricas nunca faz essa conta</h2>
+
+  <p>Se o exercício é simples e o resultado é revelador, por que tão poucas fábricas fazem?</p>
+
+  <p>Três razões:</p>
+
+  <p><strong>Normalização:</strong> Quando você opera da mesma forma há 10 anos, o refugo, as paradas e as horas em planilhas parecem "normais". Fazem parte do custo de operar. Ninguém questiona porque sempre foi assim.</p>
+
+  <p><strong>Invisibilidade:</strong> Diferente de um equipamento quebrado ou uma demissão, esses custos não aparecem como evento. São erosão contínua e silenciosa.</p>
+
+  <p><strong>Falta de referência:</strong> Sem conhecer fábricas que operam com dados em tempo real, o gestor não tem contra o que comparar. Ele não sabe que é possível reduzir refugo em 40% porque nunca viu isso acontecer.</p>
+
+  <p>O exercício que descrevemos aqui quebra essas três barreiras. Coloca número no que era intangível. Transforma "a gente perde um pouco aqui e ali" em "estamos perdendo R$ 54.000 por mês".</p>
+
+  <hr class="article-divider">
+
+  <p><em>Se quiser passar por esse exercício com dados da sua operação, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">entre em contato</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Descubra quanto custa operar sem dados de produção</h2>
+  <p>Use o método que aplicamos em dezenas de fábricas para calcular o custo real da ineficiência — e compare com o investimento em um ERP industrial.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reforma Tributária 2026 na indústria: checklist do que seu sistema de gestão precisa ter agora | SYSLED Blog</title>
+  <meta name="description" content="Checklist completo para verificar se seu ERP industrial está preparado para a Reforma Tributária 2026. NF-e, SPED, Bloco K e mais.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --green-accent: #10B981;
+      --green-bg: rgba(16,185,129,0.08);
+      --green-border: rgba(16,185,129,0.2);
+      --yellow-accent: #F59E0B;
+      --yellow-bg: rgba(245,158,11,0.08);
+      --yellow-border: rgba(245,158,11,0.2);
+      --red-accent: #EF4444;
+      --red-bg: rgba(239,68,68,0.08);
+      --red-border: rgba(239,68,68,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* CHECKLIST INFOGRAPHIC — Light bg version */
+    .infographic-inner.light-bg {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+    }
+    .infographic-inner.light-bg::before { display: none; }
+    .infographic-inner.light-bg .infographic-title { color: var(--dark); }
+    .infographic-inner.light-bg .infographic-title span { color: var(--green-accent); }
+
+    .infographic-inner.light-bg-blue .infographic-title span { color: var(--blue-deep); }
+
+    .checklist-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      position: relative;
+    }
+    .checklist-group {
+      background: var(--white); border-radius: 14px; padding: 1.5rem;
+      border: 1px solid var(--gray-200);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .checklist-group:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+    .checklist-group.warning-group {
+      border: 2px solid var(--red-accent);
+      background: linear-gradient(135deg, var(--white), rgba(239,68,68,0.03));
+    }
+    .checklist-group.warning-group .checklist-group-header {
+      background: var(--red-bg);
+      border-color: var(--red-border);
+    }
+    .checklist-group.warning-group .checklist-group-header svg { stroke: var(--red-accent); }
+    .checklist-group.warning-group .checklist-group-title { color: var(--red-accent); }
+    .checklist-group.warning-group .warning-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-family: var(--font-heading); font-size: 0.55rem; font-weight: 700;
+      color: var(--red-accent); background: var(--red-bg);
+      padding: 3px 10px; border-radius: 10px; margin-top: 6px;
+      border: 1px solid var(--red-border);
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .warning-badge { display: none; }
+
+    .checklist-group-header {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--green-bg); border: 1px solid var(--green-border);
+      border-radius: 10px; padding: 10px 14px; margin-bottom: 1.25rem;
+    }
+    .checklist-group-header svg {
+      width: 20px; height: 20px; stroke: var(--green-accent);
+      fill: none; stroke-width: 2; flex-shrink: 0;
+    }
+    .checklist-group-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--dark); line-height: 1.3;
+    }
+    .checklist-items { display: flex; flex-direction: column; gap: 0.75rem; }
+    .checklist-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.78rem; color: var(--gray-600); line-height: 1.55;
+    }
+    .checklist-item-icon {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; background: var(--green-bg);
+      border: 1px solid var(--green-border);
+    }
+    .checklist-item-icon svg {
+      width: 12px; height: 12px; stroke: var(--green-accent);
+      fill: none; stroke-width: 2.5;
+    }
+    .checklist-group.warning-group .checklist-item-icon {
+      background: var(--red-bg); border-color: var(--red-border);
+    }
+    .checklist-group.warning-group .checklist-item-icon svg {
+      stroke: var(--red-accent);
+    }
+
+    /* Blue accent variant for Part 2 */
+    .checklist-blue .checklist-group-header {
+      background: rgba(43,108,176,0.06);
+      border-color: rgba(43,108,176,0.15);
+    }
+    .checklist-blue .checklist-group-header svg { stroke: var(--blue-deep); }
+    .checklist-blue .checklist-group-title { color: var(--blue-deep); }
+    .checklist-blue .checklist-item-icon {
+      background: rgba(43,108,176,0.06);
+      border-color: rgba(43,108,176,0.15);
+    }
+    .checklist-blue .checklist-item-icon svg { stroke: var(--blue-deep); }
+
+    /* RESULT GAUGE INFOGRAPHIC */
+    .result-bands {
+      display: flex; flex-direction: column; gap: 1rem;
+      position: relative;
+    }
+    .result-band {
+      display: flex; align-items: center; gap: 1.5rem;
+      background: var(--dark-2); border-radius: 14px; padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .result-band:hover {
+      transform: translateX(4px);
+    }
+    .result-band.band-green { border-left: 4px solid var(--green-accent); }
+    .result-band.band-green:hover { border-color: var(--green-accent); }
+    .result-band.band-yellow { border-left: 4px solid var(--yellow-accent); }
+    .result-band.band-yellow:hover { border-color: var(--yellow-accent); }
+    .result-band.band-red { border-left: 4px solid var(--red-accent); }
+    .result-band.band-red:hover { border-color: var(--red-accent); }
+
+    .result-gauge {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative;
+    }
+    .band-green .result-gauge {
+      background: rgba(16,185,129,0.1); border: 3px solid rgba(16,185,129,0.3);
+    }
+    .band-yellow .result-gauge {
+      background: rgba(245,158,11,0.1); border: 3px solid rgba(245,158,11,0.3);
+    }
+    .band-red .result-gauge {
+      background: rgba(239,68,68,0.1); border: 3px solid rgba(239,68,68,0.3);
+    }
+    .result-gauge-label {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.7rem; text-align: center; line-height: 1.2;
+    }
+    .band-green .result-gauge-label { color: var(--green-accent); }
+    .band-yellow .result-gauge-label { color: var(--yellow-accent); }
+    .band-red .result-gauge-label { color: var(--red-accent); }
+
+    .result-text { flex: 1; }
+    .result-range {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .result-action {
+      font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.6;
+    }
+    .result-arrow {
+      font-size: 0.72rem; color: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .checklist-grid { grid-template-columns: 1fr; }
+      .result-bands { gap: 0.75rem; }
+      .result-band { flex-direction: column; text-align: center; gap: 1rem; padding: 1.5rem; }
+      .result-arrow { display: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .checklist-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Compliance Fiscal</span>
+  <h1>Reforma Tributária 2026 na indústria: checklist do que seu sistema de gestão precisa ter agora</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      6 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">A Reforma Tributária não é mais cenário futuro. O período de transição já começou, e para a indústria o impacto é mais profundo do que a maioria dos gestores percebe.</p>
+
+  <p>Enquanto a discussão pública se concentra em alíquotas e no IBS/CBS, o desafio real para quem opera uma fábrica é outro: <strong>o seu sistema de gestão consegue gerar, rastrear e reportar tudo o que o novo regime vai exigir?</strong></p>
+
+  <p>Não estamos falando de um ajuste em tabela de impostos. Estamos falando de rastreabilidade completa da cadeia produtiva, créditos vinculados a documentos eletrônicos, e um Bloco K que deixou de ser "aquele requisito que ninguém cumpre" para se tornar uma obrigação fiscalizada com multas reais.</p>
+
+  <p>Este artigo é um checklist prático. Não para contadores — para gestores industriais que precisam saber se o sistema que usam hoje vai funcionar amanhã.</p>
+
+  <hr class="article-divider">
+
+  <h2>Por que a Reforma muda o jogo para sistemas industriais</h2>
+
+  <p>O modelo tributário anterior era complexo, mas permitia uma certa "informalidade estruturada" nos sistemas. Uma empresa podia funcionar com um ERP que emitia nota fiscal e gerava guias de imposto, sem necessariamente ter rastreabilidade completa de produção.</p>
+
+  <p>A Reforma Tributária muda essa lógica de três formas que impactam diretamente o sistema de gestão:</p>
+
+  <p><strong>1. Créditos vinculados a documentos.</strong> No novo modelo, o aproveitamento de créditos tributários depende da existência e validade de documentos fiscais eletrônicos em cada etapa da cadeia. Sem documento, sem crédito. O sistema precisa garantir que nenhuma etapa fique sem registro.</p>
+
+  <p><strong>2. Rastreabilidade exigida, não opcional.</strong> O Bloco K do SPED Fiscal, que muitas empresas tratavam como obrigação "para depois", se torna peça central. A Receita quer enxergar o que entra, o que se transforma e o que sai — com lotes, quantidades e movimentações.</p>
+
+  <p><strong>3. Obrigações acessórias mais granulares.</strong> O SPED e suas variantes vão exigir dados mais detalhados. Um sistema que hoje "exporta para o contador ajustar" não vai dar conta do volume e da frequência de informações necessárias.</p>
+
+  <h2>Parte 1 do checklist: o que seu sistema precisa fazer hoje</h2>
+
+  <p>Antes de pensar na Reforma, seu sistema precisa cumprir o básico com excelência. Este é o pré-requisito. Se falhar aqui, a transição tributária vai encontrar a empresa com o alicerce rachado.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Visual Checklist Part 1 -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner light-bg">
+    <div class="infographic-title">
+      <span>Checklist Parte 1</span>
+      O que seu sistema precisa fazer hoje
+    </div>
+    <div class="checklist-grid">
+      <!-- Group 1: NF-e -->
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <div>
+            <div class="checklist-group-title">NF-e e documentos fiscais</div>
+          </div>
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Emissão de NF-e integrada ao faturamento
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Manifesto do destinatário automático
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            XML armazenado e acessível por 5+ anos
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Validação de CFOP e NCM em tempo real
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Carta de correção e cancelamento rastreáveis
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2: SPED -->
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div>
+            <div class="checklist-group-title">SPED e obrigações acessórias</div>
+          </div>
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Geração do SPED Fiscal sem intervenção manual
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            EFD-Contribuições (PIS/COFINS) automatizado
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Apuração de ICMS/IPI consistente com escrituração
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Registros de inventário atualizados mensalmente
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3: Bloco K (WARNING) -->
+      <div class="checklist-group warning-group">
+        <div class="checklist-group-header">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div>
+            <div class="checklist-group-title">Bloco K — rastreabilidade</div>
+            <div class="warning-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Ponto mais crítico
+            </div>
+          </div>
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Ficha técnica (BOM) cadastrada no sistema
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Ordens de produção com consumo real vs. previsto
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Rastreabilidade de lote: entrada, transformação, saída
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Movimentação interna de estoque registrada
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Perdas e sobras declaráveis com justificativa
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Se o seu sistema não cumpre pelo menos 80% desses itens de forma automatizada — sem depender de planilhas paralelas ou do contador reorganizando dados — você tem um problema estrutural que a Reforma vai amplificar.</p>
+
+  <p>O Bloco K merece atenção especial. A maioria das PMIs brasileiras ainda não entrega o Bloco K completo. Muitas entregam simplificado ou zerado. Isso funcionou até agora porque a fiscalização era branda. Com a Reforma, a rastreabilidade produtiva vira pré-requisito para créditos tributários. Não entregar o Bloco K corretamente vai significar perder dinheiro, não apenas arriscar multa.</p>
+
+  <h2>Parte 2 do checklist: o que seu sistema precisa estar preparado para fazer</h2>
+
+  <p>Além do básico, a Reforma vai exigir capacidades que muitos ERPs industriais simplesmente não têm na arquitetura atual. Estes são os itens de preparação — o que diferencia um sistema que vai "sobreviver" de um que vai operar com tranquilidade na transição.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Visual Checklist Part 2 -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner light-bg light-bg-blue">
+    <div class="infographic-title">
+      <span>Checklist Parte 2</span>
+      O que seu sistema precisa estar preparado para fazer
+    </div>
+    <div class="checklist-grid checklist-blue">
+      <!-- Group 1: Capacidade de adaptação -->
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div>
+            <div class="checklist-group-title">Capacidade de adaptação</div>
+          </div>
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Atualização de regras fiscais sem reimplantação
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Suporte a múltiplos regimes simultâneos (transição IBS/CBS)
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Parametrização de alíquotas por produto e destino
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Histórico de regras aplicadas por período fiscal
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2: Rastreabilidade da cadeia -->
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+          <div>
+            <div class="checklist-group-title">Rastreabilidade da cadeia</div>
+          </div>
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Vínculo automático entre NF-e de entrada e ordem de produção
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Rastreio de crédito tributário por documento de origem
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Auditoria de movimentações com trilha completa
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3: Integração fiscal + operacional -->
+      <div class="checklist-group">
+        <div class="checklist-group-header">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <div>
+            <div class="checklist-group-title">Integração fiscal + operacional</div>
+          </div>
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Dados de produção alimentam automaticamente o fiscal
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Custo real de produção calculado com impostos corretos
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-item-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Dashboard unificado: operação + compliance em uma tela
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Esses itens parecem "avançados", mas na prática são o mínimo para que a transição tributária não vire um projeto paralelo dentro da empresa. Se o sistema já faz isso nativamente, a Reforma é uma atualização de parâmetros. Se não faz, é um projeto de meses com risco de interrupção operacional.</p>
+
+  <h2>O que fazer com o resultado do checklist</h2>
+
+  <p>Se você preencheu o checklist mentalmente (ou imprimiu e marcou), o próximo passo depende de onde você se encontra.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Resultado do checklist -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Resultado</span>
+      Onde sua empresa se encontra
+    </div>
+    <div class="result-bands">
+      <div class="result-band band-green">
+        <div class="result-gauge">
+          <div class="result-gauge-label">80%+</div>
+        </div>
+        <div class="result-text">
+          <div class="result-range">Acima de 80% em conformidade</div>
+          <div class="result-action">Boa posição — valide a aderência ao Bloco K com seu contador e confirme que o sistema atualiza regras fiscais sem reimplantação.</div>
+        </div>
+        <div class="result-arrow">&#8594;</div>
+      </div>
+      <div class="result-band band-yellow">
+        <div class="result-gauge">
+          <div class="result-gauge-label">50-80%</div>
+        </div>
+        <div class="result-text">
+          <div class="result-range">Entre 50% e 80% em conformidade</div>
+          <div class="result-action">Risco moderado — priorize a implementação completa do Bloco K e a rastreabilidade de créditos. O tempo de transição ainda permite correção.</div>
+        </div>
+        <div class="result-arrow">&#8594;</div>
+      </div>
+      <div class="result-band band-red">
+        <div class="result-gauge">
+          <div class="result-gauge-label">&lt;50%</div>
+        </div>
+        <div class="result-text">
+          <div class="result-range">Abaixo de 50% em conformidade</div>
+          <div class="result-action">Exposição fiscal relevante — ação urgente necessária. Avalie se o sistema atual tem capacidade para evoluir ou se a troca é o caminho mais seguro.</div>
+        </div>
+        <div class="result-arrow">&#8594;</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Independentemente do resultado, existe uma verdade que vale para qualquer faixa: <strong>a pior decisão é esperar para ver</strong>. A transição tributária tem cronograma definido. Cada mês sem ação é um mês a menos para ajustar processos, treinar equipe e validar que o sistema funciona sob as novas regras.</p>
+
+  <h2>O erro mais comum: tratar compliance como problema do contador</h2>
+
+  <p>Existe um padrão perigoso em PMIs brasileiras. O dono da fábrica contrata um ERP para a operação e delega toda a parte fiscal para o escritório de contabilidade. O contador recebe os dados, ajusta o que precisa, entrega as obrigações. Funciona — até que não funciona mais.</p>
+
+  <p>Com a Reforma Tributária, o volume de dados exigidos e a frequência de entrega tornam esse modelo insustentável. O contador não consegue "consertar" dados que o sistema não gerou corretamente. Não consegue rastrear créditos que o sistema não vinculou. Não consegue declarar o Bloco K de uma produção que não foi registrada.</p>
+
+  <p>Compliance fiscal precisa ser função nativa do sistema de gestão, não um serviço externo que corrige os buracos. Essa é a mudança de mentalidade que a Reforma está forçando.</p>
+
+  <h2>Bloco K: o item que decide tudo</h2>
+
+  <p>Se existe um único item do checklist que merece atenção total, é o Bloco K. E não por acaso ele tem destaque especial na nossa lista.</p>
+
+  <p>O Bloco K exige que a empresa declare para o Fisco toda a movimentação de produção: o que entrou como matéria-prima, o que foi transformado, o que saiu como produto acabado, e o que se perdeu no processo. Com lotes, quantidades e referências cruzadas.</p>
+
+  <p>Para fazer isso, o sistema precisa ter:</p>
+
+  <ul>
+    <li>Ficha técnica cadastrada e atualizada para cada produto</li>
+    <li>Ordens de produção com apontamento real de consumo</li>
+    <li>Controle de lotes desde o recebimento até a expedição</li>
+    <li>Registro de perdas com tipificação e justificativa</li>
+    <li>Conciliação automática entre estoque físico e contábil</li>
+  </ul>
+
+  <p>A maioria dos ERPs do mercado tem algum módulo de produção. Poucos têm a integração nativa entre produção, estoque e fiscal que o Bloco K exige. E é exatamente nessa integração que as PMIs tropeçam.</p>
+
+  <h2>O custo de não estar preparado</h2>
+
+  <p>Vamos ser diretos sobre o que acontece com quem ignora o checklist:</p>
+
+  <p><strong>Multas por obrigações acessórias incorretas ou atrasadas.</strong> O SPED já prevê penalidades por informações inexatas. Com a Reforma, a fiscalização tende a se intensificar porque o sistema tributário depende da qualidade dos dados declarados.</p>
+
+  <p><strong>Perda de créditos tributários.</strong> No novo modelo, créditos dependem de documentação. Sem rastreabilidade, a empresa paga mais imposto do que deveria — e nem percebe.</p>
+
+  <p><strong>Impossibilidade de precificar corretamente.</strong> Se o custo real de produção não reflete a carga tributária correta, a margem que aparece no sistema é ficção. Decisões de preço baseadas em ficção destroem margem real.</p>
+
+  <p><strong>Dependência de correção manual.</strong> Quanto mais buracos o sistema tem, mais horas o contador gasta corrigindo. Essas horas custam dinheiro e adicionam risco de erro humano em declarações oficiais.</p>
+
+  <hr class="article-divider">
+
+  <p><em>No SYSLED, compliance fiscal não é módulo adicional — é fundação. Se quiser entender como tratamos as obrigações atuais e a preparação para a Reforma no produto, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Seu sistema está pronto para a Reforma Tributária?</h2>
+  <p>Descubra como o SYSLED integra compliance fiscal com operação industrial — sem módulos extras, sem surpresas na transição.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

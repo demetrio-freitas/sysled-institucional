@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo — Desafio SYSLED | SYSLED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --success: #10B981;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    .label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-deep); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(43,108,176,0.08);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1rem;
+    }
+    .big-title {
+      font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; color: var(--dark); margin-bottom: 1rem;
+    }
+    .sub-text { font-size: 1rem; color: var(--gray-400); max-width: 520px; line-height: 1.7; }
+
+    /* HERO */
+    .section-hero {
+      min-height: 60vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3a5c 50%, var(--blue-deep) 100%);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .section-hero::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,184,245,0.1) 0%, transparent 70%);
+    }
+    .section-hero > * { position: relative; }
+    .section-hero .label { background: rgba(255,255,255,0.1); color: var(--blue-light); }
+    .section-hero .big-title { color: #fff; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px; padding: 8px 20px; margin-top: 1.5rem;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--success);
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    .hero-badge-text {
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* CHALLENGE CARD */
+    .challenge-section { padding: 5rem 2rem; margin-top: -4rem; position: relative; z-index: 10; }
+    .challenge-wrap { max-width: 800px; margin: 0 auto; }
+
+    .challenge-card {
+      background: #fff; border: 1.5px solid var(--gray-200); border-radius: 24px;
+      padding: 3.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .challenge-number {
+      font-family: var(--font-heading); font-size: clamp(4rem, 8vw, 6rem);
+      font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .challenge-unit {
+      font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;
+      color: var(--dark); margin-top: 0.25rem;
+    }
+    .challenge-desc {
+      font-size: 1.05rem; color: var(--gray-600); max-width: 480px;
+      margin: 1.5rem auto 0; line-height: 1.8;
+    }
+    .challenge-desc strong { color: var(--dark); }
+
+    .challenge-divider {
+      width: 60px; height: 3px; border-radius: 2px; margin: 2.5rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+    }
+
+    .challenge-guarantee {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15);
+      border-radius: 14px; padding: 12px 20px;
+    }
+    .challenge-guarantee svg { width: 20px; height: 20px; color: var(--success); flex-shrink: 0; }
+    .challenge-guarantee span {
+      font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700; color: var(--dark);
+    }
+
+    /* HOW IT WORKS */
+    .how-section { padding: 5rem 2rem 7rem; }
+    .how-wrap { max-width: 900px; margin: 0 auto; }
+    .how-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .how-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: 18px;
+      padding: 2.25rem; text-align: center; transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .how-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .how-card:hover::before { opacity: 1; }
+    .how-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.05); transform: translateY(-3px); }
+
+    .how-card-num {
+      width: 40px; height: 40px; border-radius: 12px; margin: 0 auto 1.25rem;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 900; font-size: 0.9rem; color: #fff;
+    }
+    .how-card h4 {
+      font-family: var(--font-heading); font-size: 0.92rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .how-card p { font-size: 0.78rem; color: var(--gray-400); line-height: 1.65; }
+
+    /* COMPARISON */
+    .compare-section { padding: 7rem 2rem; background: var(--gray-50); }
+    .compare-wrap { max-width: 800px; margin: 0 auto; }
+    .compare-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      border-radius: 16px; overflow: hidden; margin-top: 3rem;
+      border: 1px solid var(--gray-200); background: #fff;
+    }
+    .compare-table th {
+      font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; padding: 1.25rem 1.5rem;
+      text-align: left; border-bottom: 1px solid var(--gray-200);
+    }
+    .compare-table th:first-child { color: var(--gray-400); background: var(--gray-50); }
+    .compare-table th:nth-child(2) { color: var(--gray-400); }
+    .compare-table th:nth-child(3) {
+      color: var(--blue-deep);
+      background: rgba(43,108,176,0.04);
+    }
+    .compare-table td {
+      padding: 1rem 1.5rem; font-size: 0.82rem; color: var(--gray-600);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .compare-table td:first-child {
+      font-family: var(--font-heading); font-weight: 600; color: var(--dark);
+      font-size: 0.78rem;
+    }
+    .compare-table td:nth-child(3) { background: rgba(43,108,176,0.02); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .val-good { color: var(--success); font-weight: 600; }
+    .compare-table .val-bad { color: var(--gray-400); }
+
+    /* RISK CARDS */
+    .risk-section { padding: 7rem 2rem; }
+    .risk-wrap { max-width: 900px; margin: 0 auto; }
+    .risk-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .risk-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: 16px;
+      padding: 2rem; display: flex; gap: 1rem; align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .risk-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
+    .risk-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(91,184,245,0.08), rgba(43,108,176,0.06));
+    }
+    .risk-icon svg { width: 20px; height: 20px; color: var(--blue-deep); }
+    .risk-card h4 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 4px;
+    }
+    .risk-card p { font-size: 0.78rem; color: var(--gray-400); line-height: 1.6; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px; font-family: var(--font-heading);
+      font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
+    }
+    .btn-blue {
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: #fff; box-shadow: 0 4px 20px rgba(43,108,176,0.3);
+    }
+    .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(43,108,176,0.4); }
+    .btn-white { background: #fff; color: var(--dark); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+
+    .cta-section {
+      text-align: center; padding: 6rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3a5c 50%, var(--blue-deep) 100%);
+      color: #fff;
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem;
+    }
+    .cta-section p { font-size: 0.95rem; color: rgba(255,255,255,0.4); max-width: 420px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    /* FOOTER */
+    footer { padding: 3rem 2rem; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .footer-cols { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .how-grid { grid-template-columns: 1fr; }
+      .risk-grid { grid-template-columns: 1fr; }
+      .compare-table { font-size: 0.72rem; }
+      .compare-table th, .compare-table td { padding: 0.75rem 1rem; }
+      .challenge-card { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED" style="height: 34px;">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="demo-calculadora.html">Calculadora</a></li>
+    <li><a href="./#porque">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="section-hero">
+  <span class="label">Desafio SYSLED</span>
+  <h1 class="big-title" style="color:#fff;">Implantação em 15 dias<br>ou o primeiro mês é grátis</h1>
+  <p class="sub-text" style="text-align:center; color:rgba(255,255,255,0.45);">Enquanto outros sistemas pedem 6 meses de implantação, o SYSLED te desafia: 15 dias ou você não paga.</p>
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    <span class="hero-badge-text">Garantia ativa — risco zero para começar</span>
+  </div>
+</section>
+
+<!-- CHALLENGE CARD -->
+<section class="challenge-section">
+  <div class="challenge-wrap">
+    <div class="challenge-card reveal">
+      <div class="challenge-number">15</div>
+      <div class="challenge-unit">dias para operar</div>
+      <p class="challenge-desc">
+        Da criação da conta ao <strong>go-live no chão de fábrica</strong>. Inclui configuração, migração de dados básicos, treinamento da equipe e ativação do monitoramento. Se não cumprir, <strong>o primeiro mês é por nossa conta</strong>.
+      </p>
+      <div class="challenge-divider"></div>
+      <div class="challenge-guarantee">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Garantia formal — sem letras miúdas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-wrap">
+    <div style="text-align:center;">
+      <span class="label">Como funciona o desafio</span>
+      <h2 class="big-title">3 etapas em 15 dias</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card reveal">
+        <div class="how-card-num">1</div>
+        <h4>Dias 1–3: Setup</h4>
+        <p>Criação da conta, configuração dos módulos prioritários e importação dos dados básicos (produtos, estoque, estrutura).</p>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-card-num">2</div>
+        <h4>Dias 4–10: Treinamento</h4>
+        <p>Treinamento da equipe por vídeo e chat. Operadores aprendem o apontamento básico em 30 minutos, sem treinamento formal presencial.</p>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-card-num">3</div>
+        <h4>Dias 11–15: Go-live</h4>
+        <p>Sistema operando em paralelo com o legado. Validação, ajustes finos e ativação completa. Suporte prioritário ativo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <div class="compare-wrap">
+    <div style="text-align:center;">
+      <span class="label">Comparativo</span>
+      <h2 class="big-title">Implantação tradicional vs. SYSLED</h2>
+    </div>
+    <table class="compare-table reveal">
+      <thead>
+        <tr>
+          <th>Critério</th>
+          <th>Tradicional</th>
+          <th>SYSLED</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tempo de implantação</td>
+          <td class="val-bad">3–12 meses</td>
+          <td class="val-good">15 dias</td>
+        </tr>
+        <tr>
+          <td>Custo de setup</td>
+          <td class="val-bad">R$ 30–100K</td>
+          <td class="val-good">Incluído no plano</td>
+        </tr>
+        <tr>
+          <td>Consultoria externa</td>
+          <td class="val-bad">Obrigatória (R$ 200/h)</td>
+          <td class="val-good">Desnecessária</td>
+        </tr>
+        <tr>
+          <td>Treinamento</td>
+          <td class="val-bad">Semanas presenciais</td>
+          <td class="val-good">30 min por operador</td>
+        </tr>
+        <tr>
+          <td>Risco de parada</td>
+          <td class="val-bad">Big bang — alto risco</td>
+          <td class="val-good">Paralelo — risco zero</td>
+        </tr>
+        <tr>
+          <td>Garantia</td>
+          <td class="val-bad">Nenhuma</td>
+          <td class="val-good">Grátis se atrasar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RISK ZERO -->
+<section class="risk-section">
+  <div class="risk-wrap">
+    <div style="text-align:center;">
+      <span class="label">Risco Zero</span>
+      <h2 class="big-title">Por que não tem desculpa<br>para não testar</h2>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-card reveal">
+        <div class="risk-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <h4>Sem compromisso de longo prazo</h4>
+          <p>Cancele quando quiser. Sem multa, sem carência, sem burocracia.</p>
+        </div>
+      </div>
+      <div class="risk-card reveal">
+        <div class="risk-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div>
+          <h4>Seus dados sempre seus</h4>
+          <p>Exporte tudo a qualquer momento em CSV, JSON ou XML. Sem lock-in.</p>
+        </div>
+      </div>
+      <div class="risk-card reveal">
+        <div class="risk-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h4>Implantação sem parar produção</h4>
+          <p>O SYSLED roda em paralelo com o sistema atual. Sem big bang, sem risco operacional.</p>
+        </div>
+      </div>
+      <div class="risk-card reveal">
+        <div class="risk-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <h4>Suporte prioritário incluído</h4>
+          <p>Primeiras 4 semanas com atendimento dedicado. Chat, vídeo e acompanhamento proativo.</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 3rem;">
+      <a href="./#contato" class="btn btn-blue">Aceitar o Desafio</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>15 dias. Sem desculpas.</h2>
+  <p>O único risco é continuar perdendo dinheiro com a ferramenta errada.</p>
+  <a href="./#contato" class="btn btn-white">Começar Agora — Risco Zero</a>
+</section>
+
+<footer>
+  <div class="footer-cols">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

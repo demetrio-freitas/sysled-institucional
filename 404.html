@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Página não encontrada | SYSLED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html, body {
+      height: 100%; font-family: var(--font-body);
+      color: var(--white); background: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(15,23,42,0.8);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--white);
+    }
+    .logo img { height: 36px; width: auto; }
+    .logo-text {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.2rem; letter-spacing: 2px;
+    }
+
+    /* MAIN */
+    main {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 50%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+
+    /* Background glow */
+    main::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(43,108,176,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .error-code {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(7rem, 20vw, 14rem);
+      line-height: 1; letter-spacing: -0.04em;
+      background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue-deep) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem; position: relative; z-index: 1;
+    }
+
+    .error-icon {
+      width: 64px; height: 64px; margin: 0 auto 2rem;
+      background: rgba(43,108,176,0.12); border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+
+    .label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase;
+      letter-spacing: 0.18em; margin-bottom: 1.25rem;
+      display: inline-block; background: rgba(43,108,176,0.12);
+      padding: 5px 16px; border-radius: 20px;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+
+    h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: -0.03em; line-height: 1.15;
+      color: var(--white); margin-bottom: 1rem;
+      position: relative; z-index: 1;
+    }
+
+    p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 440px; line-height: 1.7;
+      margin: 0 auto 2.5rem;
+      position: relative; z-index: 1;
+    }
+
+    .actions {
+      display: flex; gap: 1rem; justify-content: center;
+      flex-wrap: wrap; position: relative; z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      font-family: var(--font-heading); font-size: 0.85rem;
+      font-weight: 700; text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white);
+      box-shadow: 0 4px 24px rgba(43,108,176,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(43,108,176,0.45); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      padding: 1.5rem 2rem;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.2);
+      font-family: var(--font-body);
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 1.5rem; }
+      .actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+</nav>
+
+<main>
+  <div class="error-icon">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:#5BB8F5;">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="8" x2="12" y2="12"/>
+      <line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+  </div>
+
+  <span class="label">Erro 404</span>
+  <div class="error-code">404</div>
+
+  <h1>Página não encontrada</h1>
+  <p>A página que você procura não existe ou foi movida para outro endereço. Verifique o link e tente novamente.</p>
+
+  <div class="actions">
+    <a href="./" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Voltar ao início
+    </a>
+    <a href="javascript:history.back()" class="btn btn-ghost">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Página anterior
+    </a>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Sysled Tecnologia. Todos os direitos reservados.
+</footer>
+
+</body>
+</html>

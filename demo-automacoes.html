@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo — Regras de Automação | SYSLED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-back { font-size: 0.82rem; font-weight: 500; color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--blue-deep); }
+
+    .label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-deep); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(43,108,176,0.08);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1rem;
+    }
+    .big-title {
+      font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
+      color: var(--dark); margin-bottom: 1rem;
+    }
+    .sub-text { font-size: 1rem; color: var(--gray-400); max-width: 540px; line-height: 1.7; }
+
+    /* HERO */
+    .section-hero {
+      min-height: 50vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+
+    /* RULES SECTION */
+    .rules-section { padding: 0 2rem 7rem; }
+    .rules-wrap { max-width: 1080px; margin: 0 auto; }
+    .rules-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    }
+
+    .rule-card {
+      background: #fff; border: 1.5px solid var(--gray-200); border-radius: 20px;
+      padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .rule-card:hover {
+      border-color: var(--blue-light);
+      box-shadow: 0 12px 40px rgba(43,108,176,0.08);
+      transform: translateY(-3px);
+    }
+
+    .rule-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .rule-category {
+      font-family: var(--font-heading); font-size: 0.55rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .rule-cat-maintenance { color: var(--blue-deep); background: rgba(43,108,176,0.06); }
+    .rule-cat-quality { color: var(--success); background: rgba(16,185,129,0.06); }
+    .rule-cat-production { color: var(--warning); background: rgba(245,158,11,0.06); }
+    .rule-cat-safety { color: var(--danger); background: rgba(239,68,68,0.06); }
+
+    .rule-toggle {
+      width: 40px; height: 22px; border-radius: 11px;
+      background: var(--success); position: relative; cursor: pointer;
+    }
+    .rule-toggle::after {
+      content: ''; position: absolute; top: 3px; right: 3px;
+      width: 16px; height: 16px; border-radius: 50%; background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .rule-title {
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 1.25rem;
+    }
+
+    /* SE / ENTÃO blocks */
+    .rule-condition {
+      display: flex; gap: 12px; margin-bottom: 0.75rem; align-items: flex-start;
+    }
+    .rule-badge {
+      font-family: var(--font-heading); font-size: 0.6rem; font-weight: 800;
+      padding: 4px 10px; border-radius: 8px; white-space: nowrap;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .rule-badge-se {
+      color: var(--blue-deep); background: rgba(43,108,176,0.08);
+      border: 1px solid rgba(43,108,176,0.12);
+    }
+    .rule-badge-entao {
+      color: var(--success); background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.12);
+    }
+    .rule-text {
+      font-size: 0.82rem; color: var(--gray-600); line-height: 1.6;
+    }
+    .rule-text strong { color: var(--dark); font-weight: 600; }
+
+    .rule-separator {
+      width: 100%; height: 1px; background: var(--gray-200);
+      margin: 0.75rem 0;
+    }
+
+    .rule-footer {
+      display: flex; align-items: center; gap: 1rem; margin-top: 1.25rem;
+      padding-top: 1rem; border-top: 1px solid var(--gray-100);
+    }
+    .rule-stat {
+      font-size: 0.65rem; color: var(--gray-400);
+    }
+    .rule-stat strong {
+      color: var(--dark); font-weight: 700;
+    }
+
+    /* HOW IT WORKS */
+    .how-section { padding: 7rem 2rem; background: var(--gray-50); }
+    .how-wrap { max-width: 900px; margin: 0 auto; }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .how-step {
+      text-align: center; padding: 1.5rem 1rem;
+    }
+    .how-step-num {
+      width: 40px; height: 40px; border-radius: 12px; margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: #fff; font-family: var(--font-heading); font-weight: 900;
+      font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
+    }
+    .how-step h4 {
+      font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 6px;
+    }
+    .how-step p { font-size: 0.75rem; color: var(--gray-400); line-height: 1.6; }
+
+    /* BUILDER PREVIEW */
+    .builder-section { padding: 7rem 2rem; }
+    .builder-wrap { max-width: 800px; margin: 0 auto; }
+
+    .builder-frame {
+      background: var(--dark); border-radius: 20px; overflow: hidden;
+      box-shadow: 0 40px 120px rgba(15,23,42,0.18);
+    }
+    .bf-bar {
+      display: flex; align-items: center; gap: 7px;
+      padding: 14px 18px; background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .bf-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .bf-dot:nth-child(1) { background: #EF4444; }
+    .bf-dot:nth-child(2) { background: #F59E0B; }
+    .bf-dot:nth-child(3) { background: #22C55E; }
+    .bf-url {
+      margin-left: 12px; font-size: 0.65rem; color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04); padding: 4px 12px; border-radius: 4px;
+    }
+    .bf-body { padding: 2rem; }
+
+    .bf-rule-builder {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 2rem;
+    }
+    .bf-title {
+      font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700;
+      color: #fff; margin-bottom: 1.5rem;
+    }
+    .bf-row {
+      display: flex; gap: 10px; align-items: center; margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .bf-label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em;
+      width: 50px;
+    }
+    .bf-chip {
+      font-size: 0.72rem; font-weight: 500; padding: 8px 14px; border-radius: 10px;
+      color: #fff;
+    }
+    .bf-chip-condition {
+      background: rgba(91,184,245,0.15); border: 1px solid rgba(91,184,245,0.25);
+    }
+    .bf-chip-action {
+      background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.25);
+    }
+    .bf-chip-operator {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.65rem;
+    }
+    .bf-divider {
+      width: 100%; height: 1px; background: rgba(255,255,255,0.06);
+      margin: 1rem 0;
+    }
+    .bf-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 1.5rem;
+    }
+    .bf-status {
+      font-size: 0.68rem; color: rgba(255,255,255,0.4);
+    }
+    .bf-status span { color: var(--success); font-weight: 600; }
+    .bf-save {
+      padding: 8px 20px; border-radius: 10px; border: none;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: #fff; font-family: var(--font-heading); font-size: 0.72rem;
+      font-weight: 700; cursor: pointer;
+    }
+
+    /* STATS */
+    .stats-section { padding: 5rem 2rem; background: var(--gray-50); }
+    .stats-wrap { max-width: 900px; margin: 0 auto; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+    }
+    .stat-card {
+      background: #fff; border: 1px solid var(--gray-200); border-radius: 16px;
+      padding: 1.75rem; text-align: center;
+    }
+    .stat-value {
+      font-family: var(--font-heading); font-size: 2rem; font-weight: 900;
+      color: var(--dark); letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 0.72rem; color: var(--gray-400); margin-top: 4px; line-height: 1.4;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center; padding: 6rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3a5c 50%, var(--blue-deep) 100%);
+      color: #fff;
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem;
+    }
+    .cta-section p { font-size: 0.95rem; color: rgba(255,255,255,0.4); max-width: 420px; margin: 0 auto 2rem; line-height: 1.7; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px; font-family: var(--font-heading);
+      font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
+    }
+    .btn-white { background: #fff; color: var(--dark); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+
+    footer {
+      padding: 2rem; background: var(--dark);
+      text-align: center; font-size: 0.68rem; color: rgba(255,255,255,0.25);
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .rules-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .bf-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <a href="./" class="nav-back">&larr; Voltar ao site</a>
+</nav>
+
+<!-- HERO -->
+<section class="section-hero">
+  <span class="label">Automações Inteligentes</span>
+  <h1 class="big-title">Se acontecer X,<br>o SYSLED faz Y</h1>
+  <p class="sub-text" style="text-align:center;">Crie regras personalizadas que monitoram, alertam e agem automaticamente — sem intervenção humana, sem atraso.</p>
+</section>
+
+<!-- RULES CARDS -->
+<section class="rules-section">
+  <div class="rules-wrap">
+    <div class="rules-grid">
+
+      <!-- Rule 1 -->
+      <div class="rule-card reveal">
+        <div class="rule-header">
+          <span class="rule-category rule-cat-maintenance">Manutenção</span>
+          <div class="rule-toggle"></div>
+        </div>
+        <h3 class="rule-title">Vibração excessiva no motor</h3>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-se">SE</span>
+          <span class="rule-text">A vibração do <strong>Motor Principal L3</strong> ultrapassar <strong>4.5 mm/s</strong> por mais de <strong>5 minutos</strong></span>
+        </div>
+        <div class="rule-separator"></div>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-entao">ENTÃO</span>
+          <span class="rule-text">Criar <strong>OS preventiva</strong>, notificar equipe de manutenção via <strong>WhatsApp</strong> e registrar evento no <strong>histórico</strong></span>
+        </div>
+        <div class="rule-footer">
+          <span class="rule-stat">Disparos este mês: <strong>12</strong></span>
+          <span class="rule-stat">Tempo médio de resposta: <strong>3min</strong></span>
+        </div>
+      </div>
+
+      <!-- Rule 2 -->
+      <div class="rule-card reveal">
+        <div class="rule-header">
+          <span class="rule-category rule-cat-quality">Qualidade</span>
+          <div class="rule-toggle"></div>
+        </div>
+        <h3 class="rule-title">Desvio na temperatura de cura</h3>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-se">SE</span>
+          <span class="rule-text">A temperatura do <strong>Forno 02</strong> sair da faixa <strong>180°C ± 5°C</strong> durante o ciclo de cura</span>
+        </div>
+        <div class="rule-separator"></div>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-entao">ENTÃO</span>
+          <span class="rule-text">Emitir <strong>alerta sonoro</strong>, pausar alimentação do forno e gerar <strong>relatório de não-conformidade</strong></span>
+        </div>
+        <div class="rule-footer">
+          <span class="rule-stat">Disparos este mês: <strong>3</strong></span>
+          <span class="rule-stat">Redução de refugo: <strong>-67%</strong></span>
+        </div>
+      </div>
+
+      <!-- Rule 3 -->
+      <div class="rule-card reveal">
+        <div class="rule-header">
+          <span class="rule-category rule-cat-production">Produção</span>
+          <div class="rule-toggle"></div>
+        </div>
+        <h3 class="rule-title">Queda no OEE da linha</h3>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-se">SE</span>
+          <span class="rule-text">O <strong>OEE da Linha A</strong> cair abaixo de <strong>75%</strong> por <strong>2 horas consecutivas</strong></span>
+        </div>
+        <div class="rule-separator"></div>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-entao">ENTÃO</span>
+          <span class="rule-text">Escalar para <strong>supervisor de turno</strong>, gerar dashboard de causa-raiz e sugerir <strong>ações corretivas</strong></span>
+        </div>
+        <div class="rule-footer">
+          <span class="rule-stat">Disparos este mês: <strong>5</strong></span>
+          <span class="rule-stat">Aumento OEE: <strong>+12%</strong></span>
+        </div>
+      </div>
+
+      <!-- Rule 4 -->
+      <div class="rule-card reveal">
+        <div class="rule-header">
+          <span class="rule-category rule-cat-safety">Segurança</span>
+          <div class="rule-toggle"></div>
+        </div>
+        <h3 class="rule-title">Detecção de gás em área crítica</h3>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-se">SE</span>
+          <span class="rule-text">O sensor de <strong>CO detectar</strong> concentração acima de <strong>35 ppm</strong> na <strong>Área de Pintura</strong></span>
+        </div>
+        <div class="rule-separator"></div>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-entao">ENTÃO</span>
+          <span class="rule-text">Ativar <strong>evacuação sonora</strong>, desligar ventilação, notificar <strong>CIPA e bombeiros</strong> e bloquear acesso à área</span>
+        </div>
+        <div class="rule-footer">
+          <span class="rule-stat">Disparos este mês: <strong>0</strong></span>
+          <span class="rule-stat">Status: <strong>Monitorando 24/7</strong></span>
+        </div>
+      </div>
+
+      <!-- Rule 5 -->
+      <div class="rule-card reveal">
+        <div class="rule-header">
+          <span class="rule-category rule-cat-maintenance">Manutenção</span>
+          <div class="rule-toggle"></div>
+        </div>
+        <h3 class="rule-title">Consumo energético anormal</h3>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-se">SE</span>
+          <span class="rule-text">O consumo do <strong>Compressor 01</strong> ultrapassar <strong>120% da média</strong> por mais de <strong>30 minutos</strong></span>
+        </div>
+        <div class="rule-separator"></div>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-entao">ENTÃO</span>
+          <span class="rule-text">Agendar <strong>inspeção preventiva</strong>, ativar compressor reserva e enviar alerta para <strong>gestão de energia</strong></span>
+        </div>
+        <div class="rule-footer">
+          <span class="rule-stat">Disparos este mês: <strong>8</strong></span>
+          <span class="rule-stat">Economia estimada: <strong>R$ 4.200</strong></span>
+        </div>
+      </div>
+
+      <!-- Rule 6 -->
+      <div class="rule-card reveal">
+        <div class="rule-header">
+          <span class="rule-category rule-cat-production">Produção</span>
+          <div class="rule-toggle"></div>
+        </div>
+        <h3 class="rule-title">Estoque mínimo atingido</h3>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-se">SE</span>
+          <span class="rule-text">O estoque de <strong>matéria-prima X</strong> atingir o <strong>ponto de reposição</strong> configurado</span>
+        </div>
+        <div class="rule-separator"></div>
+        <div class="rule-condition">
+          <span class="rule-badge rule-badge-entao">ENTÃO</span>
+          <span class="rule-text">Gerar <strong>pedido de compra</strong> automático, enviar para aprovação do <strong>gestor</strong> e notificar <strong>fornecedor</strong></span>
+        </div>
+        <div class="rule-footer">
+          <span class="rule-stat">Disparos este mês: <strong>15</strong></span>
+          <span class="rule-stat">Stockouts evitados: <strong>100%</strong></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW RULES WORK -->
+<section class="how-section">
+  <div class="how-wrap">
+    <div style="text-align:center; margin-bottom: 3.5rem;">
+      <span class="label">Como criar regras</span>
+      <h2 class="big-title">4 passos, zero código</h2>
+      <p class="sub-text" style="text-align:center; margin: 0 auto;">Qualquer gestor pode criar regras poderosas sem precisar de TI.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="how-step-num">1</div>
+        <h4>Escolha o gatilho</h4>
+        <p>Selecione o sensor, máquina ou métrica que será monitorada.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">2</div>
+        <h4>Defina a condição</h4>
+        <p>Configure o limite, duração e frequência do monitoramento.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">3</div>
+        <h4>Configure a ação</h4>
+        <p>Escolha o que acontece: alerta, OS, relatório, integração.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">4</div>
+        <h4>Ative e monitore</h4>
+        <p>Ligue a regra e acompanhe os disparos pelo dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER PREVIEW -->
+<section class="builder-section">
+  <div class="builder-wrap">
+    <div style="text-align:center; margin-bottom: 3rem;">
+      <span class="label">Preview do Builder</span>
+      <h2 class="big-title">Editor visual de regras</h2>
+    </div>
+    <div class="builder-frame reveal">
+      <div class="bf-bar">
+        <div class="bf-dot"></div><div class="bf-dot"></div><div class="bf-dot"></div>
+        <span class="bf-url">app.sysled.com/automacoes/nova-regra</span>
+      </div>
+      <div class="bf-body">
+        <div class="bf-rule-builder">
+          <div class="bf-title">Nova Regra de Automação</div>
+
+          <div class="bf-row">
+            <span class="bf-label">SE</span>
+            <span class="bf-chip bf-chip-condition">Motor Principal L3</span>
+            <span class="bf-chip bf-chip-operator">vibração &gt;</span>
+            <span class="bf-chip bf-chip-condition">4.5 mm/s</span>
+            <span class="bf-chip bf-chip-operator">por</span>
+            <span class="bf-chip bf-chip-condition">5 minutos</span>
+          </div>
+
+          <div class="bf-divider"></div>
+
+          <div class="bf-row">
+            <span class="bf-label">ENTÃO</span>
+            <span class="bf-chip bf-chip-action">Criar OS preventiva</span>
+            <span class="bf-chip bf-chip-operator">+</span>
+            <span class="bf-chip bf-chip-action">Notificar WhatsApp</span>
+            <span class="bf-chip bf-chip-operator">+</span>
+            <span class="bf-chip bf-chip-action">Registrar histórico</span>
+          </div>
+
+          <div class="bf-footer">
+            <span class="bf-status">Status: <span>Pronto para ativar</span></span>
+            <button class="bf-save">Salvar e Ativar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-wrap">
+    <div style="text-align:center; margin-bottom: 3rem;">
+      <span class="label">Impacto Real</span>
+      <h2 class="big-title">Resultados das automações</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-value">-73%</div>
+        <div class="stat-label">Redução em paradas não planejadas</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-value">3min</div>
+        <div class="stat-label">Tempo médio de resposta a alertas</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-value">+18%</div>
+        <div class="stat-label">Aumento no OEE médio</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">Monitoramento contínuo e autônomo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Automatize sua operação<br>a partir de hoje</h2>
+  <p>Veja como as regras inteligentes eliminam gargalos e previnem problemas antes que aconteçam.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo de Automações</a>
+</section>
+
+<footer>
+  Demo — Seção "Regras de Automação" &middot; SYSLED &copy; 2026
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

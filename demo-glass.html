@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo — Glass-morphism Navbar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --dark: #0F172A;
+      --white: #FFFFFF;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); }
+
+    /* ===== COMPARAÇÃO: 3 NAVBARS ===== */
+    .demo-label {
+      position: sticky; top: 0; z-index: 9999;
+      background: var(--dark); color: #fff; text-align: center;
+      padding: 10px; font-family: var(--font-heading); font-size: 0.75rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* --- NAVBAR 1: Sólida (sem glass) --- */
+    .nav-solid {
+      position: fixed; top: 40px; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--gray-200);
+      transition: all 0.3s;
+    }
+
+    /* --- NAVBAR 2: Glass-morphism SUTIL --- */
+    .nav-glass-subtle {
+      position: fixed; top: 40px; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    /* --- NAVBAR 3: Glass-morphism FORTE (Apple-style) --- */
+    .nav-glass-strong {
+      position: fixed; top: 40px; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(40px) saturate(200%);
+      -webkit-backdrop-filter: blur(40px) saturate(200%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      transition: all 0.3s;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--dark);
+    }
+    .nav-logo img { height: 32px; }
+    .nav-logo span {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; letter-spacing: 2px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta-btn {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: #fff; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; text-decoration: none;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+
+    /* ===== PAGE CONTENT ===== */
+    .page-section {
+      min-height: 100vh; padding: 8rem 2rem 4rem;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: flex-start; position: relative;
+    }
+    .page-section:nth-child(odd) { background: #f8fafc; }
+
+    .section-hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1a3a5c 50%, #2B6CB0 100%);
+      color: #fff; min-height: 100vh; display: flex;
+      align-items: flex-start; justify-content: center; text-align: center;
+      padding-top: 130px; flex-direction: column;
+    }
+    .section-hero-inner {
+      display: flex; flex-direction: column; align-items: center;
+      width: 100%; padding: 0 2rem;
+    }
+    .section-hero h1 {
+      font-family: var(--font-heading); font-size: 3.5rem; font-weight: 900;
+      letter-spacing: -0.03em; margin-bottom: 1rem;
+    }
+    .section-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.5); max-width: 500px; margin-bottom: 2.5rem; }
+    .hero-blocks {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      max-width: 800px; width: 100%; margin: 0 auto;
+    }
+    .hero-block {
+      height: 100px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700; color: #fff;
+      font-size: 0.8rem;
+    }
+
+    /* Conteúdo colorido para mostrar o efeito glass */
+    .color-blocks {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      max-width: 900px; width: 100%; margin-top: 2rem;
+    }
+    .color-block {
+      height: 200px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700; color: #fff;
+      font-size: 0.85rem;
+    }
+    .cb-1 { background: linear-gradient(135deg, #5BB8F5, #2B6CB0); }
+    .cb-2 { background: linear-gradient(135deg, #F59E0B, #EF4444); }
+    .cb-3 { background: linear-gradient(135deg, #10B981, #059669); }
+    .cb-4 { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+    .cb-5 { background: linear-gradient(135deg, #EC4899, #DB2777); }
+    .cb-6 { background: linear-gradient(135deg, #F97316, #EA580C); }
+
+    .img-row {
+      display: flex; gap: 1.5rem; max-width: 900px; width: 100%; margin-top: 2rem;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .img-placeholder {
+      width: 280px; height: 180px; border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem;
+    }
+
+    .demo-title {
+      font-family: var(--font-heading); font-size: 2rem; font-weight: 900;
+      color: var(--dark); margin-bottom: 0.5rem; text-align: center;
+    }
+    .demo-desc {
+      font-size: 0.9rem; color: var(--gray-400); text-align: center;
+      max-width: 600px; margin-bottom: 2rem; line-height: 1.7;
+    }
+
+    /* ===== SWITCHER ===== */
+    .switcher {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      z-index: 10000; display: flex; gap: 0; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2); border: 1px solid var(--gray-200);
+    }
+    .switcher button {
+      padding: 14px 24px; border: none; cursor: pointer;
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      background: #fff; color: var(--dark); transition: all 0.2s;
+    }
+    .switcher button:not(:last-child) { border-right: 1px solid var(--gray-200); }
+    .switcher button.active {
+      background: var(--blue-deep); color: #fff;
+    }
+    .switcher button:hover:not(.active) { background: #f1f5f9; }
+
+    .explanation {
+      position: fixed; top: 120px; right: 2rem; z-index: 10000;
+      background: var(--dark); color: #fff; padding: 1.25rem 1.5rem;
+      border-radius: 14px; max-width: 280px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      font-size: 0.78rem; line-height: 1.7;
+      transition: opacity 0.3s;
+    }
+    .explanation strong { color: var(--blue-light); }
+    .explanation code {
+      display: block; margin-top: 8px; padding: 8px 10px;
+      background: rgba(255,255,255,0.08); border-radius: 6px;
+      font-size: 0.65rem; font-family: monospace; color: #94a3b8;
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .color-blocks { grid-template-columns: 1fr; }
+      .explanation { display: none; }
+      .switcher button { padding: 10px 14px; font-size: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Label fixo no topo -->
+<div class="demo-label" id="demo-label">Modo Atual: Navbar Solida (sem glass)</div>
+
+<!-- Navbar (troca dinamicamente) -->
+<nav class="nav-solid" id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span>SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Produto</a></li>
+    <li><a href="#">Funcionalidades</a></li>
+    <li><a href="#">Seguranca</a></li>
+    <li><a href="#" class="nav-cta-btn">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- Explicacao flutuante -->
+<div class="explanation" id="explanation">
+  <strong>Navbar Solida</strong><br>
+  Fundo branco 100% opaco. Nao deixa ver o conteudo atras.
+  <code>background: #FFFFFF;
+border-bottom: 1px solid #E2E8F0;</code>
+</div>
+
+<!-- Page Content -->
+<div class="section-hero">
+  <div class="section-hero-inner">
+    <h1>Glass-morphism</h1>
+    <p>Alterne os modos abaixo e veja como a navbar reage sobre este fundo colorido. O efeito de vidro aparece imediatamente.</p>
+    <div class="hero-blocks">
+      <div class="hero-block cb-1">Azul SYSLED</div>
+      <div class="hero-block cb-2">Laranja / Vermelho</div>
+      <div class="hero-block cb-3">Verde</div>
+      <div class="hero-block cb-4">Roxo</div>
+      <div class="hero-block cb-5">Rosa</div>
+      <div class="hero-block cb-6">Laranja</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-section">
+  <h2 class="demo-title">Blocos coloridos</h2>
+  <p class="demo-desc">Role a pagina e veja como os blocos coloridos aparecem (ou nao) por tras da navbar. Esse e o efeito do glass-morphism.</p>
+  <div class="color-blocks">
+    <div class="color-block cb-1">Azul SYSLED</div>
+    <div class="color-block cb-2">Laranja / Vermelho</div>
+    <div class="color-block cb-3">Verde</div>
+    <div class="color-block cb-4">Roxo</div>
+    <div class="color-block cb-5">Rosa</div>
+    <div class="color-block cb-6">Laranja</div>
+  </div>
+</div>
+
+<div class="page-section" style="background: linear-gradient(135deg, #0F172A 0%, #1a3a5c 50%, #2B6CB0 100%); color: #fff;">
+  <h2 class="demo-title" style="color: #fff;">Secao escura</h2>
+  <p class="demo-desc" style="color: rgba(255,255,255,0.5);">Veja como a navbar reage sobre fundo escuro — o glass-morphism deixa o blur visivel de forma elegante.</p>
+  <div class="color-blocks">
+    <div class="color-block cb-1">SYSLED</div>
+    <div class="color-block cb-3">IoT</div>
+    <div class="color-block cb-4">Analytics</div>
+  </div>
+</div>
+
+<div class="page-section">
+  <h2 class="demo-title">Mais conteudo</h2>
+  <p class="demo-desc">Imagens e cards passando por tras da navbar com efeito de transparencia controlada.</p>
+  <div class="img-row">
+    <div class="img-placeholder">Dashboard</div>
+    <div class="img-placeholder">Modulos</div>
+    <div class="img-placeholder">Integracoes</div>
+  </div>
+</div>
+
+<div class="page-section" style="min-height: 60vh;">
+  <h2 class="demo-title">Fim da demo</h2>
+  <p class="demo-desc">Use os botoes abaixo para alternar entre os 3 modos e comparar o efeito visual.</p>
+</div>
+
+<!-- Switcher -->
+<div class="switcher">
+  <button class="active" onclick="switchNav('solid')">Solida</button>
+  <button onclick="switchNav('subtle')">Glass Sutil</button>
+  <button onclick="switchNav('strong')">Glass Forte</button>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const label = document.getElementById('demo-label');
+  const explanation = document.getElementById('explanation');
+  const buttons = document.querySelectorAll('.switcher button');
+
+  const configs = {
+    solid: {
+      className: 'nav-solid',
+      label: 'Modo Atual: Navbar Solida (sem glass)',
+      explanation: `<strong>Navbar Solida</strong><br>Fundo branco 100% opaco. Nao deixa ver o conteudo atras.<code>background: #FFFFFF;\nborder-bottom: 1px solid #E2E8F0;</code>`
+    },
+    subtle: {
+      className: 'nav-glass-subtle',
+      label: 'Modo Atual: Glass-morphism SUTIL',
+      explanation: `<strong>Glass Sutil</strong><br>Fundo 72% opaco com blur de 20px. O conteudo aparece levemente por tras. Efeito elegante e discreto.<code>background: rgba(255,255,255, 0.72);\nbackdrop-filter: blur(20px)\n  saturate(180%);</code>`
+    },
+    strong: {
+      className: 'nav-glass-strong',
+      label: 'Modo Atual: Glass-morphism FORTE (Apple-style)',
+      explanation: `<strong>Glass Forte (Apple)</strong><br>Fundo 55% opaco com blur de 40px. Efeito de vidro fosco pronunciado. Igual ao apple.com.<code>background: rgba(255,255,255, 0.55);\nbackdrop-filter: blur(40px)\n  saturate(200%);</code>`
+    }
+  };
+
+  function switchNav(mode) {
+    navbar.className = configs[mode].className;
+    label.textContent = configs[mode].label;
+    explanation.innerHTML = configs[mode].explanation;
+    buttons.forEach(b => b.classList.remove('active'));
+    document.querySelector(`.switcher button[onclick="switchNav('${mode}')"]`).classList.add('active');
+  }
+</script>
+</body>
+</html>

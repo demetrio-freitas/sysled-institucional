@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carreiras — Faça parte do SYSLED</title>
+  <meta name="description" content="Junte-se ao time que está transformando a indústria brasileira com tecnologia. Vagas abertas no SYSLED.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 34px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* HERO */
+    .hero {
+      min-height: 50vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(43,108,176,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.25rem;
+      border: 1px solid rgba(91,184,245,0.2); position: relative;
+    }
+    .hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em;
+      line-height: 1.1; color: var(--white); margin-bottom: 1rem; position: relative;
+    }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 500px; line-height: 1.7; position: relative; }
+
+    /* VALORES */
+    .values-section { padding: 5rem 2rem; background: var(--gray-50); }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header .label { color: var(--blue-deep); background: rgba(43,108,176,0.08); border: none; }
+    .section-header h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.03em;
+      color: var(--dark); margin-bottom: 0.5rem;
+    }
+    .section-header p { font-size: 0.9rem; color: var(--gray-400); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      max-width: 1080px; margin: 0 auto;
+    }
+    .value-card {
+      border: 1px solid var(--gray-200); border-radius: 16px; padding: 2rem;
+      background: var(--white); text-align: left;
+    }
+    .value-icon {
+      width: 48px; height: 48px; border-radius: 12px; margin-bottom: 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(43,108,176,0.08);
+    }
+    .value-icon svg { width: 22px; height: 22px; color: var(--blue-deep); }
+    .value-card h4 { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+    .value-card p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.65; }
+
+    /* VAGAS */
+    .jobs-section { padding: 5rem 2rem; }
+    .jobs-wrap { max-width: 1080px; margin: 0 auto; }
+    .jobs-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .jobs-count { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; color: var(--gray-400); }
+    .jobs-count span { color: var(--blue-deep); }
+    .jobs-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 6px 14px; border-radius: 20px; font-family: var(--font-heading);
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; cursor: pointer;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white); color: var(--gray-400); transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--blue-deep); color: var(--white); border-color: var(--blue-deep); }
+
+    .job-card {
+      border: 1px solid var(--gray-200); border-radius: 14px;
+      padding: 1.75rem 2rem; background: var(--white);
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem; transition: all 0.25s; gap: 1.5rem;
+    }
+    .job-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); transform: translateY(-2px); border-color: rgba(43,108,176,0.2); }
+    .job-info { flex: 1; }
+    .job-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 3px 10px; border-radius: 4px;
+      background: rgba(43,108,176,0.08); color: var(--blue-deep);
+      margin-bottom: 0.6rem;
+    }
+    .job-card h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 0.4rem; }
+    .job-meta { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .job-meta span { font-size: 0.78rem; color: var(--gray-400); display: flex; align-items: center; gap: 5px; }
+    .job-meta svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .job-apply {
+      padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white); font-family: var(--font-heading);
+      font-size: 0.78rem; font-weight: 700; transition: all 0.2s;
+      white-space: nowrap; text-decoration: none;
+    }
+    .job-apply:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(43,108,176,0.35); }
+    .job-apply-outline {
+      padding: 10px 22px; border-radius: 10px; cursor: pointer;
+      background: var(--white); color: var(--blue-deep);
+      font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700;
+      border: 1.5px solid var(--gray-200); transition: all 0.2s;
+      white-space: nowrap; text-decoration: none;
+    }
+    .job-apply-outline:hover { border-color: var(--blue-deep); }
+
+    .jobs-empty {
+      text-align: center; padding: 4rem 2rem;
+      border: 1.5px dashed var(--gray-200); border-radius: 16px;
+      color: var(--gray-400);
+    }
+    .jobs-empty h4 { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+    .jobs-empty p { font-size: 0.85rem; }
+
+    /* CULTURA */
+    .culture-section {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+      text-align: center;
+    }
+    .culture-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .culture-section p { font-size: 0.9rem; color: rgba(255,255,255,0.4); max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
+    .perks-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+      max-width: 1080px; margin: 0 auto;
+    }
+    .perk-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 1.75rem 1.5rem; text-align: left;
+    }
+    .perk-icon {
+      width: 44px; height: 44px; border-radius: 10px; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(91,184,245,0.1);
+    }
+    .perk-icon svg { width: 20px; height: 20px; color: var(--blue-light); }
+    .perk-card h4 { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+    .perk-card p { font-size: 0.75rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
+
+    /* FOOTER */
+    footer { padding: 3rem 2rem; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .values-grid { grid-template-columns: 1fr; }
+      .perks-grid { grid-template-columns: 1fr 1fr; }
+      .job-card { flex-direction: column; align-items: flex-start; }
+      .footer-cols { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="demo-calculadora.html">Calculadora</a></li>
+    <li><a href="./#porque">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="label">Carreiras</span>
+  <h1>Construa a indústria<br>do futuro.</h1>
+  <p>Faça parte do time que está digitalizando a indústria brasileira — com propósito real, autonomia e impacto direto.</p>
+</section>
+
+<!-- VALORES -->
+<section class="values-section">
+  <div class="section-header">
+    <span class="label">Como trabalhamos</span>
+    <h2>Cultura de quem<br>constrói com propósito</h2>
+    <p>O SYSLED não é uma startup de apresentação bonita. É uma empresa de produto, obcecada por resolver problemas reais da indústria.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <h4>Impacto real, não KPI de vaidade</h4>
+      <p>Cada feature que lançamos chega direto no chão de fábrica de um cliente. Aqui você vê o resultado do seu trabalho funcionando na prática.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+        </svg>
+      </div>
+      <h4>Autonomia com responsabilidade</h4>
+      <p>Sem microgerenciamento. Você define como resolve o problema — e assume o resultado. Confiamos em quem contratamos.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <h4>100% remoto, sem fingir presencial</h4>
+      <p>Reuniões com propósito, documentação como cultura, assincronismo como padrão. Trabalhamos de onde faz sentido para você.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VAGAS -->
+<section class="jobs-section" id="vagas">
+  <div class="jobs-wrap">
+    <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+      <span class="label" style="color:var(--blue-deep);background:rgba(43,108,176,0.08);border:none;">Vagas abertas</span>
+      <h2 style="font-family:var(--font-heading);font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-0.03em;color:var(--dark);margin-bottom:0.5rem;">6 posições disponíveis</h2>
+    </div>
+    <div class="jobs-filters" style="margin-bottom:2rem;">
+      <button class="filter-btn active">Todas</button>
+      <button class="filter-btn">Engenharia</button>
+      <button class="filter-btn">Produto</button>
+      <button class="filter-btn">Comercial</button>
+      <button class="filter-btn">Operações</button>
+    </div>
+
+    <article class="job-card">
+      <div class="job-info">
+        <div class="job-tag">Engenharia</div>
+        <h3>Engenheiro(a) de Software Backend</h3>
+        <div class="job-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Node.js · PostgreSQL · IoT</span>
+        </div>
+      </div>
+      <a href="./#contato" class="job-apply">Candidatar-se</a>
+    </article>
+
+    <article class="job-card">
+      <div class="job-info">
+        <div class="job-tag">Engenharia</div>
+        <h3>Engenheiro(a) de Software Frontend</h3>
+        <div class="job-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>React · TypeScript · Dashboards</span>
+        </div>
+      </div>
+      <a href="./#contato" class="job-apply">Candidatar-se</a>
+    </article>
+
+    <article class="job-card">
+      <div class="job-info">
+        <div class="job-tag">Produto</div>
+        <h3>Product Manager — Plataforma Industrial</h3>
+        <div class="job-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Experiência em B2B SaaS</span>
+        </div>
+      </div>
+      <a href="./#contato" class="job-apply">Candidatar-se</a>
+    </article>
+
+    <article class="job-card">
+      <div class="job-info">
+        <div class="job-tag">Comercial</div>
+        <h3>Account Executive — Indústria</h3>
+        <div class="job-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Híbrido · SP/MG</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91"/></svg>Vendas consultivas B2B</span>
+        </div>
+      </div>
+      <a href="./#contato" class="job-apply">Candidatar-se</a>
+    </article>
+
+    <article class="job-card">
+      <div class="job-info">
+        <div class="job-tag">Operações</div>
+        <h3>Customer Success — Industrial</h3>
+        <div class="job-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Background técnico industrial</span>
+        </div>
+      </div>
+      <a href="./#contato" class="job-apply">Candidatar-se</a>
+    </article>
+
+    <article class="job-card">
+      <div class="job-info">
+        <div class="job-tag" style="background:rgba(16,185,129,0.08);color:#065F46;">Candidatura Espontânea</div>
+        <h3>Não encontrou sua vaga?</h3>
+        <div class="job-meta">
+          <span>Guarde seu currículo — crescemos rápido e novas posições surgem todo mês.</span>
+        </div>
+      </div>
+      <a href="./#contato" class="job-apply-outline">Enviar currículo</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- CULTURA / BENEFÍCIOS -->
+<section class="culture-section">
+  <span class="label" style="color:var(--blue-light);background:rgba(91,184,245,0.12);border-color:rgba(91,184,245,0.2);">Benefícios</span>
+  <h2>Por que trabalhar<br>no SYSLED</h2>
+  <p>Além de um trabalho com propósito, aqui estão os benefícios que fazem parte do pacote.</p>
+  <div class="perks-grid">
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <h4>Home Office Total</h4>
+      <p>Trabalhe de onde quiser, no Brasil ou no mundo.</p>
+    </div>
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h4>Plano de Saúde</h4>
+      <p>Saúde completa para você e dependentes desde o primeiro dia.</p>
+    </div>
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      <h4>Budget de Aprendizado</h4>
+      <p>R$ 2.400/ano para cursos, livros e certificações.</p>
+    </div>
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+        </svg>
+      </div>
+      <h4>Home Office Kit</h4>
+      <p>Equipamentos + ajuda de custo mensal para o seu espaço.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cols">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="blog.html">Blog</a>
+      <a href="carreiras.html">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

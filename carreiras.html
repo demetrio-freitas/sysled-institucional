@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carreiras — Faça parte do SYSLED</title>
-  <meta name="description" content="Junte-se ao time que está transformando a indústria brasileira com tecnologia. Vagas abertas no SYSLED.">
+  <title>Estágios — Faça parte do SYSLED</title>
+  <meta name="description" content="Vagas de estágio no SYSLED. Bolsa acima do mercado, tecnologia de ponta e possibilidade real de efetivação.">
   <meta name="theme-color" content="#1d6ea0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
@@ -57,7 +57,7 @@
 
     /* HERO */
     .hero {
-      min-height: 50vh; display: flex; flex-direction: column;
+      min-height: 52vh; display: flex; flex-direction: column;
       align-items: center; justify-content: center; text-align: center;
       padding: 8rem 2rem 4rem;
       background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
@@ -82,39 +82,17 @@
       font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em;
       line-height: 1.1; color: var(--white); margin-bottom: 1rem; position: relative;
     }
-    .hero p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 500px; line-height: 1.7; position: relative; }
-
-    /* VALORES */
-    .values-section { padding: 5rem 2rem; background: var(--gray-50); }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header .label { color: var(--blue-deep); background: rgba(43,108,176,0.08); border: none; }
-    .section-header h2 {
-      font-family: var(--font-heading); font-weight: 900;
-      font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.03em;
-      color: var(--dark); margin-bottom: 0.5rem;
-    }
-    .section-header p { font-size: 0.9rem; color: var(--gray-400); max-width: 480px; margin: 0 auto; line-height: 1.7; }
-    .values-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
-      max-width: 1080px; margin: 0 auto;
-    }
-    .value-card {
-      border: 1px solid var(--gray-200); border-radius: 16px; padding: 2rem;
-      background: var(--white); text-align: left;
-    }
-    .value-icon {
-      width: 48px; height: 48px; border-radius: 12px; margin-bottom: 1.25rem;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(43,108,176,0.08);
-    }
-    .value-icon svg { width: 22px; height: 22px; color: var(--blue-deep); }
-    .value-card h4 { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
-    .value-card p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.65; }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 520px; line-height: 1.7; position: relative; }
 
     /* VAGAS */
     .jobs-section { padding: 5rem 2rem; }
     .jobs-wrap { max-width: 1080px; margin: 0 auto; }
-    .jobs-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header .label-light { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: var(--blue-deep); text-transform: uppercase; letter-spacing: 0.18em; display: inline-block; background: rgba(43,108,176,0.08); padding: 5px 16px; border-radius: 20px; margin-bottom: 1.25rem; }
+    .section-header h2 { font-family: var(--font-heading); font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.03em; color: var(--dark); margin-bottom: 0.5rem; }
+    .section-header p { font-size: 0.9rem; color: var(--gray-400); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+    .jobs-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
     .jobs-count { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; color: var(--gray-400); }
     .jobs-count span { color: var(--blue-deep); }
     .jobs-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -134,15 +112,17 @@
       margin-bottom: 1rem; transition: all 0.25s; gap: 1.5rem;
     }
     .job-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); transform: translateY(-2px); border-color: rgba(43,108,176,0.2); }
+    .job-card[data-visible="false"] { display: none; }
     .job-info { flex: 1; }
+    .job-tags { display: flex; gap: 6px; margin-bottom: 0.6rem; flex-wrap: wrap; }
     .job-tag {
       display: inline-flex; align-items: center; gap: 6px;
       font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.1em;
       padding: 3px 10px; border-radius: 4px;
       background: rgba(43,108,176,0.08); color: var(--blue-deep);
-      margin-bottom: 0.6rem;
     }
+    .job-tag-estagio { background: rgba(16,185,129,0.08); color: #065F46; }
     .job-card h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 0.4rem; }
     .job-meta { display: flex; gap: 1.25rem; flex-wrap: wrap; }
     .job-meta span { font-size: 0.78rem; color: var(--gray-400); display: flex; align-items: center; gap: 5px; }
@@ -164,26 +144,19 @@
     }
     .job-apply-outline:hover { border-color: var(--blue-deep); }
 
-    .jobs-empty {
-      text-align: center; padding: 4rem 2rem;
-      border: 1.5px dashed var(--gray-200); border-radius: 16px;
-      color: var(--gray-400);
-    }
-    .jobs-empty h4 { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
-    .jobs-empty p { font-size: 0.85rem; }
-
-    /* CULTURA */
-    .culture-section {
+    /* BENEFÍCIOS */
+    .perks-section {
       padding: 5rem 2rem;
       background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
       text-align: center;
     }
-    .culture-section h2 {
+    .perks-section .label { margin-bottom: 1.25rem; }
+    .perks-section h2 {
       font-family: var(--font-heading); font-weight: 900;
       font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.03em;
       color: var(--white); margin-bottom: 1rem;
     }
-    .culture-section p { font-size: 0.9rem; color: rgba(255,255,255,0.4); max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
+    .perks-section > p { font-size: 0.9rem; color: rgba(255,255,255,0.4); max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
     .perks-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
       max-width: 1080px; margin: 0 auto;
@@ -191,7 +164,9 @@
     .perk-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px; padding: 1.75rem 1.5rem; text-align: left;
+      transition: all 0.2s;
     }
+    .perk-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(91,184,245,0.15); }
     .perk-icon {
       width: 44px; height: 44px; border-radius: 10px; margin-bottom: 1rem;
       display: flex; align-items: center; justify-content: center;
@@ -220,7 +195,6 @@
     @media (max-width: 768px) {
       nav { padding: 0 1.5rem; }
       .nav-links { display: none; }
-      .values-grid { grid-template-columns: 1fr; }
       .perks-grid { grid-template-columns: 1fr 1fr; }
       .job-card { flex-direction: column; align-items: flex-start; }
       .footer-cols { grid-template-columns: 1fr; gap: 2rem; }
@@ -248,135 +222,197 @@
 
 <!-- HERO -->
 <section class="hero">
-  <span class="label">Carreiras</span>
-  <h1>Construa a indústria<br>do futuro.</h1>
-  <p>Faça parte do time que está digitalizando a indústria brasileira — com propósito real, autonomia e impacto direto.</p>
-</section>
-
-<!-- VALORES -->
-<section class="values-section">
-  <div class="section-header">
-    <span class="label">Como trabalhamos</span>
-    <h2>Cultura de quem<br>constrói com propósito</h2>
-    <p>O SYSLED não é uma startup de apresentação bonita. É uma empresa de produto, obcecada por resolver problemas reais da indústria.</p>
-  </div>
-  <div class="values-grid">
-    <div class="value-card">
-      <div class="value-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-      </div>
-      <h4>Impacto real, não KPI de vaidade</h4>
-      <p>Cada feature que lançamos chega direto no chão de fábrica de um cliente. Aqui você vê o resultado do seu trabalho funcionando na prática.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-        </svg>
-      </div>
-      <h4>Autonomia com responsabilidade</h4>
-      <p>Sem microgerenciamento. Você define como resolve o problema — e assume o resultado. Confiamos em quem contratamos.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-        </svg>
-      </div>
-      <h4>100% remoto, sem fingir presencial</h4>
-      <p>Reuniões com propósito, documentação como cultura, assincronismo como padrão. Trabalhamos de onde faz sentido para você.</p>
-    </div>
-  </div>
+  <span class="label">Estágios</span>
+  <h1>Comece onde<br>a indústria muda.</h1>
+  <p>Vagas de estágio no SYSLED — tecnologia de ponta, bolsa acima do mercado e possibilidade real de efetivação.</p>
 </section>
 
 <!-- VAGAS -->
 <section class="jobs-section" id="vagas">
   <div class="jobs-wrap">
-    <div class="section-header" style="text-align:left; margin-bottom:2rem;">
-      <span class="label" style="color:var(--blue-deep);background:rgba(43,108,176,0.08);border:none;">Vagas abertas</span>
-      <h2 style="font-family:var(--font-heading);font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-0.03em;color:var(--dark);margin-bottom:0.5rem;">6 posições disponíveis</h2>
-    </div>
-    <div class="jobs-filters" style="margin-bottom:2rem;">
-      <button class="filter-btn active">Todas</button>
-      <button class="filter-btn">Engenharia</button>
-      <button class="filter-btn">Produto</button>
-      <button class="filter-btn">Comercial</button>
-      <button class="filter-btn">Operações</button>
+    <div class="section-header">
+      <span class="label-light">Vagas abertas</span>
+      <h2>6 oportunidades de estágio</h2>
+      <p>Todas as vagas são 100% remotas e abertas para estudantes de graduação.</p>
     </div>
 
-    <article class="job-card">
+    <div class="jobs-toolbar">
+      <div class="jobs-count">Exibindo <span id="count">6</span> vagas</div>
+      <div class="jobs-filters">
+        <button class="filter-btn active" data-filter="todos">Todas</button>
+        <button class="filter-btn" data-filter="tecnologia">Tecnologia</button>
+        <button class="filter-btn" data-filter="produto">Produto</button>
+        <button class="filter-btn" data-filter="marketing">Marketing</button>
+        <button class="filter-btn" data-filter="operacoes">Operações</button>
+        <button class="filter-btn" data-filter="dados">Dados</button>
+      </div>
+    </div>
+
+    <!-- Tecnologia: Backend -->
+    <article class="job-card" data-area="tecnologia">
       <div class="job-info">
-        <div class="job-tag">Engenharia</div>
-        <h3>Engenheiro(a) de Software Backend</h3>
+        <div class="job-tags">
+          <span class="job-tag">Tecnologia</span>
+          <span class="job-tag job-tag-estagio">Estágio</span>
+        </div>
+        <h3>Estágio em Desenvolvimento Backend</h3>
         <div class="job-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Node.js · PostgreSQL · IoT</span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            100% Remoto
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Bolsa acima do mercado
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Node.js · PostgreSQL · APIs REST
+          </span>
         </div>
       </div>
       <a href="./#contato" class="job-apply">Candidatar-se</a>
     </article>
 
-    <article class="job-card">
+    <!-- Tecnologia: Frontend -->
+    <article class="job-card" data-area="tecnologia">
       <div class="job-info">
-        <div class="job-tag">Engenharia</div>
-        <h3>Engenheiro(a) de Software Frontend</h3>
+        <div class="job-tags">
+          <span class="job-tag">Tecnologia</span>
+          <span class="job-tag job-tag-estagio">Estágio</span>
+        </div>
+        <h3>Estágio em Desenvolvimento Frontend</h3>
         <div class="job-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>React · TypeScript · Dashboards</span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            100% Remoto
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Bolsa acima do mercado
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            React · TypeScript · Dashboards
+          </span>
         </div>
       </div>
       <a href="./#contato" class="job-apply">Candidatar-se</a>
     </article>
 
-    <article class="job-card">
+    <!-- Produto -->
+    <article class="job-card" data-area="produto">
       <div class="job-info">
-        <div class="job-tag">Produto</div>
-        <h3>Product Manager — Plataforma Industrial</h3>
+        <div class="job-tags">
+          <span class="job-tag">Produto</span>
+          <span class="job-tag job-tag-estagio">Estágio</span>
+        </div>
+        <h3>Estágio em Produto & UX Research</h3>
         <div class="job-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Experiência em B2B SaaS</span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            100% Remoto
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Bolsa acima do mercado
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Figma · Entrevistas · Discovery
+          </span>
         </div>
       </div>
       <a href="./#contato" class="job-apply">Candidatar-se</a>
     </article>
 
-    <article class="job-card">
+    <!-- Marketing -->
+    <article class="job-card" data-area="marketing">
       <div class="job-info">
-        <div class="job-tag">Comercial</div>
-        <h3>Account Executive — Indústria</h3>
+        <div class="job-tags">
+          <span class="job-tag">Marketing</span>
+          <span class="job-tag job-tag-estagio">Estágio</span>
+        </div>
+        <h3>Estágio em Marketing de Conteúdo & Growth</h3>
         <div class="job-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Híbrido · SP/MG</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91"/></svg>Vendas consultivas B2B</span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            100% Remoto
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Bolsa acima do mercado
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            SEO · Blog · LinkedIn B2B
+          </span>
         </div>
       </div>
       <a href="./#contato" class="job-apply">Candidatar-se</a>
     </article>
 
-    <article class="job-card">
+    <!-- Operações -->
+    <article class="job-card" data-area="operacoes">
       <div class="job-info">
-        <div class="job-tag">Operações</div>
-        <h3>Customer Success — Industrial</h3>
+        <div class="job-tags">
+          <span class="job-tag">Operações</span>
+          <span class="job-tag job-tag-estagio">Estágio</span>
+        </div>
+        <h3>Estágio em Customer Success & Implementação</h3>
         <div class="job-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>100% Remoto</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>CLT ou PJ</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Background técnico industrial</span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            100% Remoto
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Bolsa acima do mercado
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91"/></svg>
+            Onboarding · Suporte técnico
+          </span>
         </div>
       </div>
       <a href="./#contato" class="job-apply">Candidatar-se</a>
     </article>
 
-    <article class="job-card">
+    <!-- Dados -->
+    <article class="job-card" data-area="dados">
       <div class="job-info">
-        <div class="job-tag" style="background:rgba(16,185,129,0.08);color:#065F46;">Candidatura Espontânea</div>
-        <h3>Não encontrou sua vaga?</h3>
+        <div class="job-tags">
+          <span class="job-tag">Dados</span>
+          <span class="job-tag job-tag-estagio">Estágio</span>
+        </div>
+        <h3>Estágio em Dados & Business Intelligence</h3>
         <div class="job-meta">
-          <span>Guarde seu currículo — crescemos rápido e novas posições surgem todo mês.</span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            100% Remoto
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Bolsa acima do mercado
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            SQL · Python · Power BI
+          </span>
+        </div>
+      </div>
+      <a href="./#contato" class="job-apply">Candidatar-se</a>
+    </article>
+
+    <!-- Candidatura espontânea -->
+    <article class="job-card" data-area="todos" style="margin-top:0.5rem; border-style: dashed;">
+      <div class="job-info">
+        <div class="job-tags">
+          <span class="job-tag" style="background:rgba(16,185,129,0.08);color:#065F46;">Candidatura Espontânea</span>
+        </div>
+        <h3>Não encontrou sua área?</h3>
+        <div class="job-meta">
+          <span>Mande seu currículo — abrimos novas vagas de estágio frequentemente.</span>
         </div>
       </div>
       <a href="./#contato" class="job-apply-outline">Enviar currículo</a>
@@ -385,48 +421,93 @@
   </div>
 </section>
 
-<!-- CULTURA / BENEFÍCIOS -->
-<section class="culture-section">
-  <span class="label" style="color:var(--blue-light);background:rgba(91,184,245,0.12);border-color:rgba(91,184,245,0.2);">Benefícios</span>
-  <h2>Por que trabalhar<br>no SYSLED</h2>
-  <p>Além de um trabalho com propósito, aqui estão os benefícios que fazem parte do pacote.</p>
+<!-- BENEFÍCIOS -->
+<section class="perks-section">
+  <span class="label">Por que estagiar no SYSLED</span>
+  <h2>Mais do que uma bolsa.<br>Uma largada de carreira.</h2>
+  <p>Você vai trabalhar com tecnologias reais, em projetos com impacto direto na indústria brasileira.</p>
   <div class="perks-grid">
+
     <div class="perk-card">
       <div class="perk-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
         </svg>
       </div>
-      <h4>Home Office Total</h4>
-      <p>Trabalhe de onde quiser, no Brasil ou no mundo.</p>
+      <h4>Bolsa acima do mercado</h4>
+      <p>Remuneração que respeita o seu tempo e o seu esforço — bem acima da média das vagas de estágio em tech.</p>
     </div>
+
     <div class="perk-card">
       <div class="perk-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
         </svg>
       </div>
-      <h4>Plano de Saúde</h4>
-      <p>Saúde completa para você e dependentes desde o primeiro dia.</p>
+      <h4>Tecnologia de ponta</h4>
+      <p>IoT industrial, automação, inteligência operacional e AI aplicada ao chão de fábrica. Nada de tutoriais — o real.</p>
     </div>
-    <div class="perk-card">
-      <div class="perk-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-        </svg>
-      </div>
-      <h4>Budget de Aprendizado</h4>
-      <p>R$ 2.400/ano para cursos, livros e certificações.</p>
-    </div>
+
     <div class="perk-card">
       <div class="perk-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
         </svg>
       </div>
-      <h4>Home Office Kit</h4>
-      <p>Equipamentos + ajuda de custo mensal para o seu espaço.</p>
+      <h4>Melhores ferramentas</h4>
+      <p>Figma, Linear, Notion, GitHub Copilot, Datadog — as mesmas ferramentas que as melhores empresas do mundo usam.</p>
     </div>
+
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <h4>Mentoria 1:1 com sêniors</h4>
+      <p>Cada estagiário tem um mentor dedicado — alguém que já passou por onde você está e quer te ver crescer.</p>
+    </div>
+
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <h4>Possibilidade de efetivação</h4>
+      <p>Desempenho reconhecido tem caminho direto para uma vaga CLT ou PJ ao final do estágio — sem processo seletivo novo.</p>
+    </div>
+
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <h4>Flexibilidade de horário</h4>
+      <p>Comprometimento com resultado, não com ponto. Compatível com grade curricular da faculdade.</p>
+    </div>
+
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <h4>100% Remoto</h4>
+      <p>Trabalhe de qualquer lugar do Brasil. Sem deslocamento, sem custo extra, sem perder tempo em trânsito.</p>
+    </div>
+
+    <div class="perk-card">
+      <div class="perk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <h4>Impacto real desde o dia 1</h4>
+      <p>Aqui estagiário não faz café nem PowerPoint. Você entrega para produção e vê seu trabalho rodando em fábricas reais.</p>
+    </div>
+
   </div>
 </section>
 
@@ -477,10 +558,28 @@
 </footer>
 
 <script>
+  const cards = document.querySelectorAll('.job-card[data-area]');
+  const countEl = document.getElementById('count');
+
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      let visible = 0;
+      cards.forEach(card => {
+        const show = filter === 'todos' || card.dataset.area === filter;
+        card.style.display = show ? 'flex' : 'none';
+        if (show) visible++;
+      });
+      // candidatura espontânea always visible except specific filter
+      const espontanea = document.querySelector('.job-card[data-area="todos"]');
+      if (espontanea) {
+        espontanea.style.display = 'flex';
+        if (filter !== 'todos') visible--;
+      }
+      countEl.textContent = visible;
     });
   });
 </script>

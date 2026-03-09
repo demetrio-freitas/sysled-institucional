@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O guia de 60 dias para avaliar e escolher um ERP industrial sem errar | SYSLED Blog</title>
+  <meta name="description" content="Guia prático de 60 dias para avaliar e escolher um ERP industrial. Processo estruturado para PMEs industriais evitarem erros caros.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem); letter-spacing: -0.01em;
+      line-height: 1.3; margin-top: 2rem; margin-bottom: 1rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS — break out of article width */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Timeline / Roadmap */
+    .timeline-flow {
+      display: flex; align-items: flex-start; justify-content: center;
+      gap: 0; position: relative; padding: 1rem 0;
+    }
+    .timeline-phase {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; flex: 1; max-width: 200px; position: relative;
+    }
+    .timeline-number {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 900; font-size: 1.1rem;
+      color: var(--white); margin-bottom: 0.75rem; position: relative; z-index: 2;
+      box-shadow: 0 4px 20px rgba(91,184,245,0.3);
+    }
+    .timeline-weeks {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 0.35rem;
+    }
+    .timeline-phase-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .timeline-phase-desc {
+      font-size: 0.68rem; color: rgba(255,255,255,0.4); line-height: 1.55;
+      max-width: 160px;
+    }
+    .timeline-phase-output {
+      margin-top: 0.6rem; font-size: 0.6rem; font-weight: 600;
+      color: var(--blue-pale); background: rgba(91,184,245,0.08);
+      padding: 4px 10px; border-radius: 8px;
+      border: 1px solid rgba(91,184,245,0.12);
+    }
+    .timeline-connector {
+      display: flex; align-items: center; flex: 0 0 auto;
+      padding-top: 22px;
+    }
+    .timeline-connector-line {
+      width: 32px; height: 2px;
+      background: linear-gradient(90deg, var(--blue-light), rgba(91,184,245,0.2));
+      position: relative;
+    }
+    .timeline-connector-line::after {
+      content: ''; position: absolute; right: -4px; top: -3px;
+      width: 0; height: 0; border-left: 6px solid rgba(91,184,245,0.5);
+      border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+    }
+
+    /* INFOGRAPHIC 2 — Scorecard matrix */
+    .scorecard-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .scorecard-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem 1.25rem;
+      border: 1px solid rgba(91,184,245,0.1);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .scorecard-card:hover {
+      border-color: rgba(91,184,245,0.25); transform: translateY(-3px);
+    }
+    .scorecard-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.1), rgba(43,108,176,0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.85rem;
+    }
+    .scorecard-icon svg { width: 20px; height: 20px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .scorecard-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); margin-bottom: 0.4rem;
+    }
+    .scorecard-card-desc {
+      font-size: 0.68rem; color: rgba(255,255,255,0.4); line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .scorecard-weight {
+      display: inline-block; font-family: var(--font-heading);
+      font-size: 0.58rem; font-weight: 700; color: var(--blue-light);
+      background: rgba(91,184,245,0.08); padding: 3px 10px;
+      border-radius: 8px; border: 1px solid rgba(91,184,245,0.12);
+    }
+
+    /* INFOGRAPHIC 3 — Red flags checklist */
+    .redflags-list {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      position: relative;
+    }
+    .redflag-item {
+      background: var(--dark-2); border-radius: 14px; padding: 1.25rem;
+      border: 1px solid rgba(91,184,245,0.08);
+      display: flex; align-items: flex-start; gap: 12px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .redflag-item:hover {
+      border-color: rgba(91,184,245,0.2); transform: translateY(-2px);
+    }
+    .redflag-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(91,184,245,0.12), rgba(43,108,176,0.12));
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .redflag-icon svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .redflag-text {
+      font-size: 0.75rem; color: rgba(255,255,255,0.55); line-height: 1.55;
+    }
+    .redflag-text strong {
+      display: block; font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .timeline-flow { flex-direction: column; align-items: center; gap: 1rem; }
+      .timeline-connector { transform: rotate(90deg); padding-top: 0; }
+      .timeline-phase { max-width: 100%; }
+      .scorecard-grid { grid-template-columns: 1fr; }
+      .redflags-list { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .scorecard-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Processo de Compra</span>
+  <h1>O guia de 60 dias para avaliar e escolher um ERP industrial sem errar</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      10 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">A maioria das escolhas ruins de ERP não acontece por falta de opções. Acontece por um processo de avaliação mal estruturado.</p>
+
+  <p>Demos bonitas que não testam o que importa, propostas comerciais incomparáveis entre si, decisão apressada para "encerrar o assunto", e descoberta das limitações reais 6 meses depois do go-live.</p>
+
+  <p>Este guia é o processo que recomendamos para qualquer PMI industrial que está iniciando uma avaliação de ERP. Ele cabe em 60 dias, pode ser executado sem consultoria externa, e foi desenhado para revelar os problemas antes da assinatura — não depois.</p>
+
+  <hr class="article-divider">
+
+  <h2>Por que 60 dias?</h2>
+
+  <p>Menos de 30 dias é pressa demais. Você não terá tempo de testar com usuários reais nem de verificar referências com profundidade.</p>
+
+  <p>Mais de 90 dias tende a ser indecisão disfarçada de processo. O risco é que o projeto se arraste, o "projeto ERP" ocupe atenção gerencial indefinidamente, e a decisão nunca seja tomada.</p>
+
+  <p>60 dias é suficiente para um processo rigoroso se você souber onde concentrar energia — e onde não desperdiçar tempo.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Timeline / Roadmap das 4 fases -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Roadmap de 60 dias: as 4 fases do processo
+    </div>
+    <div class="timeline-flow">
+      <div class="timeline-phase">
+        <div class="timeline-number">1</div>
+        <div class="timeline-weeks">Semanas 1–2</div>
+        <div class="timeline-phase-title">Mapeamento Interno</div>
+        <div class="timeline-phase-desc">Reúna as pessoas que mais sofrem com a falta de sistema. Mapeie dores, perfis de usuário e critérios não-negociáveis.</div>
+        <div class="timeline-phase-output">Documento de 1 página</div>
+      </div>
+
+      <div class="timeline-connector">
+        <div class="timeline-connector-line"></div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="timeline-number">2</div>
+        <div class="timeline-weeks">Semanas 3–4</div>
+        <div class="timeline-phase-title">Mapeamento de Mercado</div>
+        <div class="timeline-phase-desc">Pesquise 5–7 fornecedores, verifique reviews, converse com usuários reais na sua rede.</div>
+        <div class="timeline-phase-output">Lista curta: 3–4 fornecedores</div>
+      </div>
+
+      <div class="timeline-connector">
+        <div class="timeline-connector-line"></div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="timeline-number">3</div>
+        <div class="timeline-weeks">Semanas 5–6</div>
+        <div class="timeline-phase-title">Demos Customizadas</div>
+        <div class="timeline-phase-desc">Peça demos com cenários reais da sua fábrica. Coloque um operador para testar sem briefing.</div>
+        <div class="timeline-phase-output">Pontuação comparativa</div>
+      </div>
+
+      <div class="timeline-connector">
+        <div class="timeline-connector-line"></div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="timeline-number">4</div>
+        <div class="timeline-weeks">Semanas 7–8</div>
+        <div class="timeline-phase-title">Referências e Proposta</div>
+        <div class="timeline-phase-desc">Converse com clientes reais, calcule TCO de 3 anos, compare propostas padronizadas.</div>
+        <div class="timeline-phase-output">TCO comparativo final</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Semanas 1 e 2 — Mapeamento interno: o que você realmente precisa</h2>
+
+  <p>O erro mais comum nesta fase é ligar para fornecedores antes de ter clareza interna sobre o problema que está resolvendo.</p>
+
+  <p>Reúna as três ou quatro pessoas que mais sofrem com a falta de sistema (ou com o sistema atual): gerente de produção, supervisor de chão de fábrica, responsável financeiro/fiscal, e quem faz compras. Em uma ou duas reuniões de duas horas cada, mapeie:</p>
+
+  <p><strong>Dores operacionais concretas:</strong></p>
+  <ul>
+    <li>Que informação você precisa hoje e não consegue ter rápido?</li>
+    <li>Que processo consome tempo desnecessário porque é manual?</li>
+    <li>Qual foi o erro mais caro dos últimos 12 meses que um sistema poderia ter evitado?</li>
+  </ul>
+
+  <p><strong>Usuários reais por perfil:</strong></p>
+  <ul>
+    <li>Quem vai usar o sistema todos os dias, em qual função, em qual dispositivo?</li>
+    <li>Qual é o perfil técnico desses usuários? (há diferença enorme entre um analista financeiro e um operador de linha)</li>
+  </ul>
+
+  <p><strong>Não-negociáveis obrigatórios:</strong></p>
+  <ul>
+    <li>Quais funcionalidades precisam estar no sistema no dia 1? (compliance fiscal, NF-e, controle de estoque são exemplos típicos)</li>
+    <li>Quais são opcionais ou podem ser adicionadas depois?</li>
+  </ul>
+
+  <p><strong>Resultado desta fase:</strong> um documento de uma página com as 5 dores prioritárias, a lista de perfis de usuário e os critérios não-negociáveis. Esse documento vai guiar todas as demos e negociações seguintes.</p>
+
+  <h2>Semanas 3 e 4 — Mapeamento de mercado: quem avaliar</h2>
+
+  <p>Com as dores e critérios em mãos, agora faz sentido olhar para o mercado.</p>
+
+  <p><strong>Como montar a lista curta:</strong></p>
+
+  <p>Comece com 5 a 7 fornecedores que atendem o seu segmento (indústria manufatureira, seu porte, seu regime tributário). Para cada um, antes de agendar qualquer demo:</p>
+
+  <ul>
+    <li>Verifique se publicam preços no site. Se não publicam, você vai entrar em um ciclo de vendas sem ter referência de orçamento.</li>
+    <li>Pesquise reviews em plataformas como G2, Capterra, Reclame Aqui e LinkedIn. Filtre por tamanho de empresa similar ao seu.</li>
+    <li>Pergunte na sua rede — associação de classe, outros empresários do setor — se alguém usa aquele sistema. Uma conversa de 20 minutos com um usuário real vale mais do que qualquer demo.</li>
+  </ul>
+
+  <p><strong>Resultado desta fase:</strong> lista de 3 a 4 fornecedores para avaliação aprofundada.</p>
+
+  <h2>Semanas 5 e 6 — As demos: como extrair o que importa</h2>
+
+  <p>A demo padrão de ERP é uma apresentação preparada que mostra os fluxos mais comuns no melhor cenário possível. Dados limpos, processo linear, nenhuma exceção, vendedor no controle.</p>
+
+  <p>Você precisa de uma demo diferente.</p>
+
+  <p><strong>O que pedir antes de marcar a demo:</strong></p>
+
+  <blockquote>"Não quero ver a apresentação padrão de vocês. Quero ver o sistema sendo usado para resolver estes 3 casos específicos da nossa operação."</blockquote>
+
+  <p>E liste 3 situações reais que acontecem na sua fábrica — de preferência casos que são exceção ao fluxo padrão:</p>
+
+  <ul>
+    <li>Uma devolução parcial de fornecedor com nota de complemento</li>
+    <li>Uma ordem de produção que precisou ser dividida entre dois turnos no meio da execução</li>
+    <li>Um produto com ficha técnica que mudou no meio de uma ordem em andamento</li>
+  </ul>
+
+  <p>Se o fornecedor hesitar em mostrar o sistema ao vivo nesses cenários, você aprendeu algo importante. Se mostrar com fluência, você está vendo um produto que foi projetado para a realidade industrial — não para a demo.</p>
+
+  <p><strong>O teste do usuário real:</strong></p>
+
+  <p>Se possível, peça para colocar um operador do seu chão de fábrica — alguém que não participou de nenhuma reunião anterior, sem briefing prévio — para tentar executar o apontamento de produção no sistema. Observe sem intervir. Quanto tempo levou? Em que momento travou? Pediu ajuda?</p>
+
+  <p>Esse teste revela em 10 minutos o que meses de uso vão confirmar.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Scorecard de avaliação -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Scorecard: critérios essenciais de avaliação
+    </div>
+    <div class="scorecard-grid">
+      <div class="scorecard-card">
+        <div class="scorecard-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="scorecard-card-title">Chão de Fábrica</div>
+        <div class="scorecard-card-desc">Apontamento de produção, OPs, rastreabilidade, controle de qualidade no posto de trabalho.</div>
+        <div class="scorecard-weight">Peso: Crítico</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="scorecard-card-title">Fiscal e NF-e</div>
+        <div class="scorecard-card-desc">Emissão de notas, compliance tributário, atualização automática de regras fiscais.</div>
+        <div class="scorecard-weight">Peso: Crítico</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="scorecard-card-title">Mobile Real</div>
+        <div class="scorecard-card-desc">Interface nativa para celular de entrada, não versão responsiva de desktop.</div>
+        <div class="scorecard-weight">Peso: Alto</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+        </div>
+        <div class="scorecard-card-title">Funciona Offline</div>
+        <div class="scorecard-card-desc">Apontamentos continuam mesmo sem internet. Sincroniza quando houver sinal.</div>
+        <div class="scorecard-weight">Peso: Alto</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="scorecard-card-title">TCO Transparente</div>
+        <div class="scorecard-card-desc">Custo total em 3 anos claro: mensalidade, implantação, customizações, suporte, reajustes.</div>
+        <div class="scorecard-weight">Peso: Alto</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div class="scorecard-card-title">Suporte e SLA</div>
+        <div class="scorecard-card-desc">Tempo de resposta, canais de atendimento, suporte em horário de produção.</div>
+        <div class="scorecard-weight">Peso: Médio</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p><strong>Perguntas que todo fornecedor precisa responder:</strong></p>
+
+  <ol>
+    <li>Posso falar com 2 clientes do meu setor e porte que usam o sistema há mais de 12 meses? Posso escolher com quem falar da lista, não ser direcionado?</li>
+    <li>Qual foi o custo total — mensalidade + implantação + customizações + suporte — dos últimos 3 clientes com perfil similar no primeiro ano?</li>
+    <li>O que você não consegue fazer que eu precisaria contratar outro sistema para resolver?</li>
+    <li>Quando sai uma atualização fiscal obrigatória (exemplo: mudança na tabela de ICMS), em quanto tempo o sistema é atualizado e quem paga por isso?</li>
+    <li>Se eu quiser sair do sistema em 2 anos, como recebo meus dados? Em qual formato? Em quanto tempo? Quanto custa?</li>
+  </ol>
+
+  <p><strong>Resultado desta fase:</strong> pontuação comparativa dos 3 ou 4 fornecedores nos critérios não-negociáveis e nas demos ao vivo.</p>
+
+  <h2>Semanas 7 e 8 — Referências e proposta final</h2>
+
+  <h3>Conversa com clientes reais</h3>
+
+  <p>Esta é a etapa que mais empresas pulam e mais arrependem depois. Ligue ou reúna-se (presencialmente, se possível) com pelo menos 2 clientes de cada fornecedor finalista. Não os clientes que o fornecedor sugeriu — peça a lista completa de clientes no seu segmento e escolha com quem falar.</p>
+
+  <p><strong>Perguntas para os clientes de referência:</strong></p>
+
+  <blockquote>"Como foi o processo de implantação — prazo real vs. prazo prometido, custo real vs. custo prometido?"</blockquote>
+
+  <blockquote>"Quem na sua empresa usa o sistema todos os dias? O operador de chão de fábrica usa? O que aconteceu nos primeiros 3 meses?"</blockquote>
+
+  <blockquote>"O que você descobriu depois da assinatura que não estava claro antes?"</blockquote>
+
+  <blockquote>"Sabendo o que sabe hoje, escolheria o mesmo sistema? Indicaria para um amigo no mesmo setor?"</blockquote>
+
+  <h3>Análise das propostas</h3>
+
+  <p>Ao receber as propostas finais, padronize-as para comparação justa. Crie uma tabela com:</p>
+
+  <ul>
+    <li>Mensalidade mês 1 / mês 12 / mês 36 (cuidado com reajustes contratuais)</li>
+    <li>Custo total de implantação, sem omitir horas de treinamento e migração</li>
+    <li>O que está e o que <strong>não está</strong> incluído na mensalidade (atualizações fiscais? suporte? módulos específicos?)</li>
+    <li>Cláusulas de saída: multa por rescisão, portabilidade de dados, prazo de entrega dos dados após cancelamento</li>
+  </ul>
+
+  <p><strong>Resultado desta fase:</strong> comparativo finalista com TCO de 3 anos calculado. Decisão racional baseada em números verificáveis, não em relacionamento com vendedor ou apresentação mais bonita.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Red Flags Checklist -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Red flags: sinais de alerta durante a avaliação
+    </div>
+    <div class="redflags-list">
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>Recusa em mostrar cenários reais</strong>
+          Fornecedor só quer mostrar a demo padrão e evita simular os seus casos específicos.
+        </div>
+      </div>
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>Preço não publicado</strong>
+          Sem referência de custo antes da conversa comercial. Você entra no funil de vendas sem poder comparar.
+        </div>
+      </div>
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>Clientes de referência escolhidos</strong>
+          O fornecedor não deixa você escolher com quem falar — só oferece casos de sucesso selecionados.
+        </div>
+      </div>
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>"Mobile" = tela responsiva</strong>
+          Versão mobile é só o desktop encolhido. Não foi projetado para o operador no chão de fábrica.
+        </div>
+      </div>
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>Modelo de receita por consultoria</strong>
+          Fornecedor lucra quando você precisa de suporte. Incentivo para manter complexidade, não simplificar.
+        </div>
+      </div>
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>Sem cláusula de saída clara</strong>
+          Contrato sem portabilidade de dados, com multa pesada por rescisão e sem prazo definido para entrega dos seus dados.
+        </div>
+      </div>
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>Atualização fiscal cobrada à parte</strong>
+          Mudanças obrigatórias de legislação que geram custo extra. Surpresa recorrente no orçamento.
+        </div>
+      </div>
+      <div class="redflag-item">
+        <div class="redflag-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="redflag-text">
+          <strong>Pressão para fechar rápido</strong>
+          Desconto que expira, vaga de implantação limitada, urgência artificial. Bom produto não precisa de pressão.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Piloto antes de comprometer</h2>
+
+  <p>Se o fornecedor finalista oferecer período de teste real (não demo guiada — acesso ao produto de verdade), use-o. Coloque os usuários reais para executar as tarefas do dia a dia por 2 semanas.</p>
+
+  <p>Se não oferecer período de teste, negocie um contrato com cláusula de saída simplificada nos primeiros 90 dias de uso. Qualquer fornecedor confiante no produto aceita isso.</p>
+
+  <p><strong>O que avaliar no piloto:</strong></p>
+
+  <ul>
+    <li>Taxa de adoção real: quantos usuários previstos estão usando de fato ao final das 2 semanas?</li>
+    <li>Tempo médio de execução das tarefas mais frequentes</li>
+    <li>Número de vezes que precisou de suporte para resolver algo que deveria ser intuitivo</li>
+    <li>Qualidade e tempo de resposta do suporte quando acionado</li>
+  </ul>
+
+  <h2>O que fazer com empate técnico</h2>
+
+  <p>Se dois fornecedores chegam ao final do processo com scores muito próximos, existem dois desempates que recomendamos:</p>
+
+  <p><strong>Desempate 1: Adoção pelo usuário mais resistente.</strong> Qual dos dois sistemas o seu operador mais avesso a tecnologia conseguiu usar com mais facilidade no teste? Adoção de chão de fábrica é o fator que mais impacta o valor real do sistema — e é o mais difícil de recuperar depois que o contrato foi assinado com o produto errado.</p>
+
+  <p><strong>Desempate 2: Modelo de negócio do fornecedor.</strong> Qual dos dois fornecedores tem um modelo de receita que não depende de você precisar de consultoria? Fornecedor que lucra quando você não precisa dele tem incentivo para fazer o produto melhor. Fornecedor que lucra quando você precisa de suporte tem incentivo para manter a complexidade.</p>
+
+  <h2>O que não usar como critério de decisão</h2>
+
+  <p>Para fechar: algumas coisas que aparecem com frequência em processos de avaliação e que não são critérios válidos por si sós:</p>
+
+  <p><strong>"É o mais usado no Brasil"</strong> — popularidade não é funcionalidade. O ERP mais usado no Brasil foi projetado para grandes empresas. Popularidade em grande empresa diz zero sobre adequação para PMI.</p>
+
+  <p><strong>"Me passou mais confiança"</strong> — confiança é um sentimento válido, mas precisa estar ancorado em evidências verificáveis. O vendedor que passa mais confiança não é necessariamente o produto mais confiável.</p>
+
+  <p><strong>"O preço é mais barato"</strong> — preço de entrada sem TCO calculado é desinformação. O sistema mais barato na mensalidade pode ser o mais caro em 3 anos.</p>
+
+  <p><strong>"Já uso outro produto deles"</strong> — o argumento do ecossistema integrado é real em alguns casos, mas precisa ser verificado. "Integração nativa" às vezes significa uma exportação de CSV que você faz manualmente.</p>
+
+  <hr class="article-divider">
+
+  <p>Sessenta dias. Dez semanas. Uma decisão que vai durar 4 a 7 anos. Vale o processo.</p>
+
+  <hr class="article-divider">
+
+  <p><em>Se quiser fazer esse processo e incluir o SYSLED como um dos fornecedores avaliados, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>. Não fugimos das perguntas difíceis, colocamos nosso produto no teste do usuário real, e conectamos você com clientes que você pode escolher — não com os que escolhemos para você.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Avalie o SYSLED no seu processo de 60 dias</h2>
+  <p>Agende uma demo customizada com os cenários reais da sua fábrica. Sem apresentação padrão — direto ao que importa para a sua operação.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

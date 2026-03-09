@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15 perguntas que todo gestor industrial deve fazer antes de contratar um ERP | SYSLED Blog</title>
+  <meta name="description" content="As 15 perguntas essenciais que todo gestor industrial deve fazer antes de contratar um ERP. Guia prático para evitar armadilhas.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: 1.15rem; line-height: 1.3; margin-top: 2.2rem; margin-bottom: 0.8rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+    .good-answer {
+      background: rgba(43,108,176,0.06); border-left: 3px solid var(--blue-mid);
+      padding: 0.6rem 1rem; border-radius: 0 8px 8px 0; margin-bottom: 0.5rem;
+      font-size: 0.95rem; color: var(--gray-600); line-height: 1.7;
+    }
+    .bad-answer {
+      background: rgba(239,68,68,0.04); border-left: 3px solid #DC6464;
+      padding: 0.6rem 1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.6rem;
+      font-size: 0.95rem; color: var(--gray-600); line-height: 1.7;
+    }
+
+    /* INFOGRAPHIC SECTIONS — break out of article width */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Category cards */
+    .category-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .category-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem 1.25rem;
+      border: 1px solid rgba(91,184,245,0.1);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .category-card:hover {
+      border-color: rgba(91,184,245,0.25); transform: translateY(-3px);
+    }
+    .category-card-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem;
+    }
+    .category-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.1), rgba(43,108,176,0.1));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .category-icon svg { width: 20px; height: 20px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .category-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white);
+    }
+    .category-card-sub {
+      font-size: 0.6rem; color: var(--blue-light); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .category-questions { display: flex; flex-direction: column; gap: 0.65rem; }
+    .category-q {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 1.5;
+    }
+    .category-q-num {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.68rem; color: var(--blue-light);
+      background: rgba(91,184,245,0.1); padding: 2px 7px;
+      border-radius: 6px; flex-shrink: 0; min-width: 24px;
+      text-align: center;
+    }
+
+    /* INFOGRAPHIC 2 — Scorecard */
+    .scorecard-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative;
+    }
+    .scorecard-col {
+      background: var(--dark-2); border-radius: 14px; padding: 1.75rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .scorecard-col-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;
+    }
+    .scorecard-col-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .scorecard-good .scorecard-col-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .scorecard-good .scorecard-col-icon svg { stroke: var(--blue-light); }
+    .scorecard-bad .scorecard-col-icon {
+      background: linear-gradient(135deg, rgba(220,100,100,0.15), rgba(180,60,60,0.15));
+    }
+    .scorecard-bad .scorecard-col-icon svg { stroke: #DC6464; }
+    .scorecard-col-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white);
+    }
+    .scorecard-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .scorecard-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.55;
+    }
+    .scorecard-item-icon {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .scorecard-good .scorecard-item-icon {
+      background: rgba(91,184,245,0.1);
+    }
+    .scorecard-good .scorecard-item-icon svg { stroke: var(--blue-light); }
+    .scorecard-bad .scorecard-item-icon {
+      background: rgba(220,100,100,0.1);
+    }
+    .scorecard-bad .scorecard-item-icon svg { stroke: #DC6464; }
+
+    /* INFOGRAPHIC 3 — Decision matrix */
+    .matrix-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      position: relative;
+    }
+    .matrix-table thead th {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.7rem; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 1rem 0.75rem; text-align: left;
+      border-bottom: 1px solid rgba(91,184,245,0.15);
+      background: var(--dark-2);
+    }
+    .matrix-table thead th:first-child { border-radius: 10px 0 0 0; }
+    .matrix-table thead th:last-child { border-radius: 0 10px 0 0; }
+    .matrix-table tbody td {
+      font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 1.5;
+      padding: 0.85rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .matrix-table tbody tr:last-child td { border-bottom: none; }
+    .matrix-table tbody td:first-child {
+      font-family: var(--font-heading); font-weight: 600;
+      color: rgba(255,255,255,0.7); font-size: 0.72rem;
+    }
+    .matrix-badge-good {
+      display: inline-block; font-size: 0.6rem; font-weight: 600;
+      color: var(--blue-light); background: rgba(91,184,245,0.1);
+      padding: 2px 8px; border-radius: 8px;
+      border: 1px solid rgba(91,184,245,0.15);
+    }
+    .matrix-badge-bad {
+      display: inline-block; font-size: 0.6rem; font-weight: 600;
+      color: #DC6464; background: rgba(220,100,100,0.1);
+      padding: 2px 8px; border-radius: 8px;
+      border: 1px solid rgba(220,100,100,0.15);
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .category-grid { grid-template-columns: 1fr 1fr; }
+      .scorecard-grid { grid-template-columns: 1fr; }
+      .matrix-table { font-size: 0.65rem; }
+      .matrix-table thead th, .matrix-table tbody td { padding: 0.6rem 0.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .category-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Guia Prático</span>
+  <h1>15 perguntas que todo gestor industrial deve fazer antes de contratar um ERP</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      6 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Esta é a lista que os fornecedores de ERP preferem que você não tenha.</p>
+
+  <p>Não porque as perguntas sejam armadilhas — mas porque obrigam respostas concretas em vez de promessas genéricas. E respostas concretas revelam, antes da assinatura, diferenças que normalmente só aparecem depois.</p>
+
+  <p>Cada pergunta desta lista foi escolhida porque toca em um ponto onde a distância entre o que é prometido e o que é entregue costuma ser maior. Use-as em qualquer avaliação de ERP industrial — com qualquer fornecedor, incluindo o SYSLED.</p>
+
+  <hr class="article-divider">
+
+  <h2>Sobre o produto real</h2>
+
+  <h3>1. Posso ver o sistema sendo usado para resolver estes 3 casos específicos da minha operação — ao vivo, sem preparação prévia?</h3>
+
+  <p>A diferença entre uma demo preparada e uma demo ao vivo num caso real é a diferença entre ver o melhor cenário e ver o produto real. Se o fornecedor hesitar, você aprendeu algo importante.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> "Sim. Me manda os 3 casos antes da reunião e eu mostro ao vivo, sem roteiro."</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Podemos cobrir isso na nossa apresentação padrão."</div>
+
+  <h3>2. Posso colocar um operador do meu chão de fábrica para tentar usar o sistema agora, sem treinamento, para registrar um apontamento de produção?</h3>
+
+  <p>Este teste revela em 10 minutos o que meses de uso vão confirmar. O sistema que passa neste teste tem adoção real. O que não passa tem adoção frágil que vai depender de pressão do gestor para acontecer.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> "Pode. Quer fazer agora?"</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> qualquer hesitação ou "seria melhor depois de um treinamento rápido."</div>
+
+  <h3>3. Quais funcionalidades que eu precisaria NÃO estão no produto padrão e precisariam ser customizadas?</h3>
+
+  <p>Todo ERP tem limitações. O fornecedor que admite as suas é mais confiável do que o que diz que resolve tudo. Essa pergunta revela o que vai aparecer como "escopo adicional" durante a implantação.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> lista específica de funcionalidades que exigem customização, com estimativa de custo e prazo.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "O nosso sistema é muito completo, raramente há necessidade de customização."</div>
+
+  <h3>4. O sistema funciona offline? O que acontece se a internet da fábrica cair durante o turno?</h3>
+
+  <p>Para operadores de chão de fábrica, internet instável é realidade. Se o sistema para quando a conexão cai, você tem risco operacional real — e vai descobrir o tamanho dele só quando acontecer.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> descrição clara de quais funcionalidades operam offline e como a sincronização funciona quando a conexão volta.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Hoje em dia a internet é estável" ou "nosso sistema é em nuvem, precisa de conexão."</div>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Questions by category -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      15 perguntas organizadas por categoria
+    </div>
+    <div class="category-grid">
+      <div class="category-card">
+        <div class="category-card-header">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="category-card-title">Produto</div>
+            <div class="category-card-sub">Perguntas 1–4</div>
+          </div>
+        </div>
+        <div class="category-questions">
+          <div class="category-q"><span class="category-q-num">1</span>Demo ao vivo sem roteiro?</div>
+          <div class="category-q"><span class="category-q-num">2</span>Operador usa sem treinamento?</div>
+          <div class="category-q"><span class="category-q-num">3</span>O que NÃO está no padrão?</div>
+          <div class="category-q"><span class="category-q-num">4</span>Funciona offline?</div>
+        </div>
+      </div>
+      <div class="category-card">
+        <div class="category-card-header">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <div class="category-card-title">Custo Real</div>
+            <div class="category-card-sub">Perguntas 5–7</div>
+          </div>
+        </div>
+        <div class="category-questions">
+          <div class="category-q"><span class="category-q-num">5</span>Custo total dos últimos 3 clientes?</div>
+          <div class="category-q"><span class="category-q-num">6</span>O que está fora da mensalidade?</div>
+          <div class="category-q"><span class="category-q-num">7</span>Teto contratual para estouro?</div>
+        </div>
+      </div>
+      <div class="category-card">
+        <div class="category-card-header">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div>
+            <div class="category-card-title">Implantação</div>
+            <div class="category-card-sub">Perguntas 8–10</div>
+          </div>
+        </div>
+        <div class="category-questions">
+          <div class="category-q"><span class="category-q-num">8</span>Prazo real, não ideal?</div>
+          <div class="category-q"><span class="category-q-num">9</span>Quanto tempo interno exige?</div>
+          <div class="category-q"><span class="category-q-num">10</span>Suporte pós-go-live dedicado?</div>
+        </div>
+      </div>
+      <div class="category-card">
+        <div class="category-card-header">
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="category-card-title">Longo Prazo</div>
+            <div class="category-card-sub">Perguntas 11–15</div>
+          </div>
+        </div>
+        <div class="category-questions">
+          <div class="category-q"><span class="category-q-num">11</span>Atualização fiscal: prazo e custo?</div>
+          <div class="category-q"><span class="category-q-num">12</span>Portabilidade dos dados?</div>
+          <div class="category-q"><span class="category-q-num">13</span>Cláusulas de reajuste?</div>
+          <div class="category-q"><span class="category-q-num">14</span>Escolho com quem falar?</div>
+          <div class="category-q"><span class="category-q-num">15</span>Quem saiu e por quê?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Sobre o custo real</h2>
+
+  <h3>5. Qual foi o custo total — mensalidade, implantação, customizações e suporte — dos últimos 3 clientes com perfil similar ao meu nos primeiros 18 meses?</h3>
+
+  <p>Esta é a pergunta mais reveladora sobre custo. Não "qual é o preço?", mas "qual foi o custo real para quem já passou por isso." Fornecedores com processo maduro e confiança no produto respondem com números. Fornecedores que lucram com surpresas de escopo evitam responder diretamente.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> "O cliente A (metalúrgica, 90 funcionários) pagou R$ X na mensalidade, R$ Y de implantação, e teve R$ Z de customizações no primeiro ano."</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Cada projeto é único, difícil generalizar."</div>
+
+  <h3>6. O que está incluído na mensalidade e o que é cobrado separadamente?</h3>
+
+  <p>Atualizações fiscais, suporte acima de N horas por mês, novos usuários, módulos adicionais — cada item que não está explicitamente incluído na mensalidade é um custo potencial que vai aparecer depois.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> lista detalhada do que está e do que não está na mensalidade, preferencialmente em contrato.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> resposta vaga como "cobrimos tudo que você precisar."</div>
+
+  <h3>7. Se o custo de implantação estourar o orçamento original, qual é o processo? Há um teto contratual?</h3>
+
+  <p>Implementações frequentemente custam mais do que o previsto. A pergunta não é se vai acontecer — é quem arca com o custo quando acontece.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> contrato com escopo definido e processo de aprovação para escopo adicional, com previsão de teto ou milestone de revisão.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Cobramos por hora, então o total depende do que precisar."</div>
+
+  <h2>Sobre a implantação</h2>
+
+  <h3>8. Qual é o prazo real de implantação — não o prazo ideal, mas o prazo típico para clientes do meu perfil?</h3>
+
+  <p>Prazo de implantação prometido e prazo real frequentemente diferem. Pergunte pela mediana dos últimos 10 projetos no seu porte, não pelo melhor caso.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> "Para clientes do seu porte, nosso tempo médio de go-live é X semanas. O mais rápido foi Y, o mais longo foi Z."</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> apenas o prazo ideal, sem variância.</div>
+
+  <h3>9. O que a minha equipe precisa fazer durante a implantação? Quanto tempo interno isso vai exigir?</h3>
+
+  <p>A implantação que parece "o fornecedor faz tudo" invariavelmente exige mais da empresa do que o previsto. Melhor saber antes — e alocar o tempo adequado — do que descobrir que o projeto parou porque ninguém da empresa tinha tempo para validar o que precisava ser validado.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> estimativa de horas por perfil de usuário, com descrição das atividades esperadas da empresa.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "É simples, não vai exigir muito de vocês."</div>
+
+  <h3>10. Existe suporte dedicado durante as primeiras 8 semanas após o go-live? Como funciona e quanto custa?</h3>
+
+  <p>As primeiras semanas após o go-live são o momento de maior risco de abandono. Se o suporte pós-go-live for genérico, lento ou cobrado por hora, os problemas que aparecem nesse período viram razões para o time voltar às planilhas.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> descrição clara de como o suporte funciona no pós-go-live, com SLA e custo explícito.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Após o go-live você acessa nosso portal de suporte normalmente."</div>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Scorecard: Good vs Bad answers -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Como identificar boas e más respostas
+    </div>
+    <div class="scorecard-grid">
+      <div class="scorecard-col scorecard-good">
+        <div class="scorecard-col-header">
+          <div class="scorecard-col-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="scorecard-col-title">Boas respostas</div>
+        </div>
+        <div class="scorecard-items">
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Números concretos e exemplos reais de clientes anteriores
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Admite limitações e lista o que não está incluso
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Aceita demo ao vivo sem roteiro e teste com operador
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Oferece portabilidade de dados em formato aberto
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            SLA e custos claros em contrato
+          </div>
+        </div>
+      </div>
+      <div class="scorecard-col scorecard-bad">
+        <div class="scorecard-col-header">
+          <div class="scorecard-col-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="scorecard-col-title">Sinais de alerta</div>
+        </div>
+        <div class="scorecard-items">
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Respostas vagas: "cada projeto é único", "difícil generalizar"
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Diz que resolve tudo sem listar exceções
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Prefere apresentação padrão a demo ao vivo
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Cobra por hora sem teto e sem cláusula de reajuste
+          </div>
+          <div class="scorecard-item">
+            <div class="scorecard-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Dados em formato proprietário ou exportação com custo
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Sobre o longo prazo</h2>
+
+  <h3>11. Quando sai uma atualização fiscal obrigatória, em quanto tempo o sistema é atualizado e quem paga?</h3>
+
+  <p>Esta pergunta é especialmente crítica com a Reforma Tributária em andamento. Um fornecedor que cobra por cada atualização fiscal vai se tornar progressivamente mais caro ao longo dos próximos anos.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> "Atualizações fiscais obrigatórias saem em até X dias úteis da publicação e estão incluídas na mensalidade."</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Geralmente é coberto, mas depende do escopo da mudança."</div>
+
+  <h3>12. Se eu quiser sair do sistema em 2 anos, como recebo meus dados? Em qual formato? Quanto tempo leva? Tem custo?</h3>
+
+  <p>Dados retidos são o principal mecanismo de lock-in no mercado de ERP. Fornecedor confiante no produto não tem interesse em reter dados — porque não precisa de lock-in para manter o cliente.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> exportação em formato aberto (CSV, XML, JSON), em prazo definido contratualmente, sem custo adicional além do trabalho de extração.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> qualquer hesitação, menção a "formato proprietário" ou cobrança por extração de dados.</div>
+
+  <h3>13. Quais são as cláusulas de reajuste da mensalidade no contrato?</h3>
+
+  <p>Mensalidade de R$ 1.200 no ano 1 que reajusta 15% ao ano chega a R$ 2.180 no ano 5. Reajuste contratual é um custo real que precisa entrar no cálculo de TCO.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> índice de reajuste definido (IPCA, IGP-M ou fixo percentual), teto de reajuste anual, e previsão contratual clara.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Reajustamos conforme o mercado" ou ausência de cláusula de reajuste no contrato.</div>
+
+  <h2>Sobre referências</h2>
+
+  <h3>14. Posso escolher com quem falar na lista de clientes — não ser direcionado para os que vocês sugerem?</h3>
+
+  <p>Todo fornecedor tem os clientes de referência que selecionou para apresentar: os mais satisfeitos, os mais articulados, os mais parecidos com o perfil ideal. Você quer falar com alguém que teve um projeto difícil e superou, ou com alguém do seu setor que passou por um desafio que você vai enfrentar também.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> "Claro. Aqui está a lista de clientes no seu setor. Com quem você quer falar?"</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Vou passar o contato de alguns clientes que podem te ajudar."</div>
+
+  <h3>15. Quais foram os dois últimos clientes que saíram do sistema? Posso entender por quê?</h3>
+
+  <p>Esta é a pergunta mais poderosa da lista — e a que menos gestores fazem. Os clientes que saíram revelam os pontos fracos reais do produto e do relacionamento com o fornecedor muito mais honestamente do que qualquer case de sucesso.</p>
+
+  <div class="good-answer"><strong>Boa resposta:</strong> transparência sobre o que aconteceu, com contexto honesto.</div>
+  <div class="bad-answer"><strong>Sinal de alerta:</strong> "Temos churn muito baixo, raramente acontece" — ou recusa em responder.</div>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Decision matrix -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Matriz de avaliação rápida de fornecedores
+    </div>
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Critério</th>
+          <th>O que perguntar</th>
+          <th>Resposta confiável</th>
+          <th>Sinal de risco</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Demo real</td>
+          <td>Mostra ao vivo com meus casos?</td>
+          <td><span class="matrix-badge-good">Aceita sem roteiro</span></td>
+          <td><span class="matrix-badge-bad">Só apresentação padrão</span></td>
+        </tr>
+        <tr>
+          <td>Usabilidade</td>
+          <td>Operador usa sem treinar?</td>
+          <td><span class="matrix-badge-good">Teste imediato</span></td>
+          <td><span class="matrix-badge-bad">Precisa treinamento</span></td>
+        </tr>
+        <tr>
+          <td>Offline</td>
+          <td>Funciona sem internet?</td>
+          <td><span class="matrix-badge-good">Sync automático</span></td>
+          <td><span class="matrix-badge-bad">Depende de conexão</span></td>
+        </tr>
+        <tr>
+          <td>Custo total</td>
+          <td>Quanto custou para clientes similares?</td>
+          <td><span class="matrix-badge-good">Números reais</span></td>
+          <td><span class="matrix-badge-bad">"Cada caso é um caso"</span></td>
+        </tr>
+        <tr>
+          <td>Implantação</td>
+          <td>Prazo típico, não ideal?</td>
+          <td><span class="matrix-badge-good">Mediana + variância</span></td>
+          <td><span class="matrix-badge-bad">Só melhor cenário</span></td>
+        </tr>
+        <tr>
+          <td>Fiscal</td>
+          <td>Atualização inclusa na mensalidade?</td>
+          <td><span class="matrix-badge-good">Inclusa com SLA</span></td>
+          <td><span class="matrix-badge-bad">"Depende do escopo"</span></td>
+        </tr>
+        <tr>
+          <td>Lock-in</td>
+          <td>Como exporto meus dados?</td>
+          <td><span class="matrix-badge-good">Formato aberto, grátis</span></td>
+          <td><span class="matrix-badge-bad">Proprietário ou pago</span></td>
+        </tr>
+        <tr>
+          <td>Referências</td>
+          <td>Posso escolher com quem falar?</td>
+          <td><span class="matrix-badge-good">Lista aberta</span></td>
+          <td><span class="matrix-badge-bad">Referências selecionadas</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Como usar esta lista</h2>
+
+  <p>Não é necessário fazer todas as 15 perguntas em cada reunião. Use as que são mais relevantes para o ponto do processo em que você está:</p>
+
+  <ul>
+    <li><strong>Primeiras demos:</strong> perguntas 1, 2, 3 e 4 — sobre o produto real.</li>
+    <li><strong>Análise de proposta:</strong> perguntas 5, 6, 7 e 13 — sobre custo real.</li>
+    <li><strong>Negociação de contrato:</strong> perguntas 8, 9, 10, 11 e 12 — sobre implantação e longo prazo.</li>
+    <li><strong>Verificação de referências:</strong> perguntas 14 e 15 — sobre a experiência de outros clientes.</li>
+  </ul>
+
+  <p>A resposta a cada uma dessas perguntas não é pass/fail automático. É informação para você tomar uma decisão com mais clareza do que a maioria das empresas tem quando assina um contrato de ERP.</p>
+
+  <hr class="article-divider">
+
+  <p><em>Quer fazer essas perguntas para o SYSLED? Ótimo — é exatamente assim que gostamos de começar uma conversa. <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">Fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Pronto para fazer as perguntas certas?</h2>
+  <p>Agende uma demo com o SYSLED e faça todas as 15 perguntas. Estamos prontos para responder cada uma delas com transparência.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYSLED vs Nomus ERP Industrial: um comparativo honesto | SYSLED Blog</title>
+  <meta name="description" content="Comparativo honesto entre SYSLED e Nomus ERP Industrial. Entenda as diferenças reais de abordagem, público-alvo e funcionalidades.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem); letter-spacing: -0.01em;
+      line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+    .article-disclaimer {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem; font-size: 0.92rem; line-height: 1.7;
+      color: var(--gray-600);
+    }
+    .article-disclaimer strong { color: var(--dark); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* INFOGRAPHIC SECTIONS — break out of article width */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Feature comparison table */
+    .compare-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      position: relative;
+    }
+    .compare-table thead th {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); text-align: center;
+      padding: 1rem 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .compare-table thead th:first-child {
+      text-align: left; color: rgba(255,255,255,0.4); font-weight: 600;
+      font-size: 0.68rem;
+    }
+    .compare-table thead th:nth-child(2) {
+      background: rgba(91,184,245,0.08); border-radius: 10px 10px 0 0;
+      border: 1px solid rgba(91,184,245,0.15); border-bottom: none;
+    }
+    .compare-table thead th:nth-child(3) {
+      background: rgba(148,163,184,0.08); border-radius: 10px 10px 0 0;
+      border: 1px solid rgba(148,163,184,0.12); border-bottom: none;
+    }
+    .compare-table tbody td {
+      padding: 0.85rem 0.75rem; font-size: 0.78rem;
+      color: rgba(255,255,255,0.55); border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: middle;
+    }
+    .compare-table tbody td:first-child {
+      font-weight: 600; color: rgba(255,255,255,0.7);
+      font-family: var(--font-heading); font-size: 0.74rem;
+    }
+    .compare-table tbody td:nth-child(2) {
+      text-align: center; background: rgba(91,184,245,0.04);
+      border-left: 1px solid rgba(91,184,245,0.15);
+      border-right: 1px solid rgba(91,184,245,0.15);
+    }
+    .compare-table tbody td:nth-child(3) {
+      text-align: center; background: rgba(148,163,184,0.03);
+      border-left: 1px solid rgba(148,163,184,0.12);
+      border-right: 1px solid rgba(148,163,184,0.12);
+    }
+    .compare-table tbody tr:last-child td:nth-child(2) {
+      border-bottom: 1px solid rgba(91,184,245,0.15);
+      border-radius: 0 0 10px 10px;
+    }
+    .compare-table tbody tr:last-child td:nth-child(3) {
+      border-bottom: 1px solid rgba(148,163,184,0.12);
+      border-radius: 0 0 10px 10px;
+    }
+    .table-check {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 6px;
+    }
+    .table-check.yes { background: rgba(91,184,245,0.12); }
+    .table-check.yes svg { stroke: var(--blue-light); }
+    .table-check.no { background: rgba(148,163,184,0.1); }
+    .table-check.no svg { stroke: var(--gray-400); }
+    .table-check.neutral { background: rgba(148,163,184,0.08); }
+    .table-check.neutral svg { stroke: var(--gray-400); }
+    .table-check svg { width: 14px; height: 14px; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .table-text-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 8px;
+      font-family: var(--font-heading);
+    }
+    .table-text-badge.blue { background: rgba(91,184,245,0.12); color: var(--blue-light); }
+    .table-text-badge.gray { background: rgba(148,163,184,0.1); color: var(--gray-400); }
+
+    /* INFOGRAPHIC 2 — Split comparison (ideal customer) */
+    .split-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative;
+    }
+    .split-compare::after {
+      content: 'VS'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading); font-weight: 900; font-size: 0.75rem;
+      color: var(--blue-light); background: var(--dark-2);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(91,184,245,0.2); z-index: 2;
+    }
+    .split-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); position: relative;
+    }
+    .split-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .split-card-title .split-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .split-card:first-child .split-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .split-card:last-child .split-icon {
+      background: linear-gradient(135deg, rgba(148,163,184,0.15), rgba(100,116,139,0.15));
+    }
+    .split-card:first-child .split-icon svg { stroke: var(--blue-light); }
+    .split-card:last-child .split-icon svg { stroke: var(--gray-400); }
+    .split-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .split-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .split-item-icon {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .split-card:first-child .split-item-icon {
+      background: rgba(91,184,245,0.1);
+    }
+    .split-card:first-child .split-item-icon svg { stroke: var(--blue-light); }
+    .split-card:last-child .split-item-icon {
+      background: rgba(148,163,184,0.1);
+    }
+    .split-card:last-child .split-item-icon svg { stroke: var(--gray-400); }
+
+    /* INFOGRAPHIC 3 — Architecture comparison */
+    .arch-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      position: relative;
+    }
+    .arch-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .arch-card-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;
+    }
+    .arch-card-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .arch-card:first-child .arch-card-icon {
+      background: linear-gradient(135deg, rgba(91,184,245,0.15), rgba(43,108,176,0.15));
+    }
+    .arch-card:first-child .arch-card-icon svg { stroke: var(--blue-light); }
+    .arch-card:last-child .arch-card-icon {
+      background: linear-gradient(135deg, rgba(148,163,184,0.15), rgba(100,116,139,0.15));
+    }
+    .arch-card:last-child .arch-card-icon svg { stroke: var(--gray-400); }
+    .arch-card-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white);
+    }
+    .arch-card-sublabel {
+      font-size: 0.65rem; color: rgba(255,255,255,0.35);
+      margin-top: 2px;
+    }
+    .arch-layers { display: flex; flex-direction: column; gap: 0.6rem; }
+    .arch-layer {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0.65rem 0.85rem; border-radius: 10px;
+      font-size: 0.72rem; color: rgba(255,255,255,0.6);
+      position: relative;
+    }
+    .arch-card:first-child .arch-layer {
+      background: rgba(91,184,245,0.06);
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .arch-card:last-child .arch-layer {
+      background: rgba(148,163,184,0.04);
+      border: 1px solid rgba(148,163,184,0.08);
+    }
+    .arch-layer-num {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.62rem; width: 20px; height: 20px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .arch-card:first-child .arch-layer-num {
+      background: rgba(91,184,245,0.15); color: var(--blue-light);
+    }
+    .arch-card:last-child .arch-layer-num {
+      background: rgba(148,163,184,0.1); color: var(--gray-400);
+    }
+    .arch-layer-text { flex: 1; }
+    .arch-layer-text strong {
+      color: rgba(255,255,255,0.8); font-weight: 600; display: block;
+      font-size: 0.72rem; margin-bottom: 1px;
+    }
+    .arch-layer-text small {
+      font-size: 0.62rem; color: rgba(255,255,255,0.3);
+    }
+    .arch-direction {
+      text-align: center; margin-top: 1rem;
+      font-family: var(--font-heading); font-size: 0.62rem;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    .arch-card:first-child .arch-direction { color: var(--blue-light); }
+    .arch-card:last-child .arch-direction { color: var(--gray-400); }
+    .arch-arrow { display: block; margin: 0 auto; opacity: 0.5; }
+    .arch-card:first-child .arch-arrow svg { stroke: var(--blue-light); }
+    .arch-card:last-child .arch-arrow svg { stroke: var(--gray-400); }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .split-compare { grid-template-columns: 1fr; }
+      .split-compare::after { display: none; }
+      .arch-compare { grid-template-columns: 1fr; }
+      .compare-table { font-size: 0.72rem; }
+      .compare-table thead th { padding: 0.75rem 0.5rem; font-size: 0.68rem; }
+      .compare-table tbody td { padding: 0.65rem 0.5rem; font-size: 0.72rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .compare-table thead th:first-child { font-size: 0.6rem; }
+      .compare-table tbody td:first-child { font-size: 0.65rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Comparativo</span>
+  <h1>SYSLED vs Nomus ERP Industrial: um comparativo honesto</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      8 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <div class="article-disclaimer">
+    <strong>Aviso obrigatório:</strong> Este comparativo foi escrito pelo SYSLED sobre o Nomus ERP Industrial. Somos concorrentes diretos. Fizemos o esforço de ser factuais e justos — mas você deve considerar esse contexto ao ler. Recomendamos que você leia também o que o Nomus diz sobre si mesmo, converse com clientes de ambos, e faça suas próprias demos antes de qualquer decisão.
+  </div>
+
+  <p class="article-lead">Nomus é o nosso principal concorrente direto no mercado de ERP para manufatura discreta brasileira de médio porte. É um produto sério, com 20 anos de mercado, construído por engenheiros de produção que entendem o problema industrial de verdade.</p>
+
+  <p>Escrever um comparativo honesto sobre ele é mais difícil do que escrever um panfleto. Mas é mais útil — para você que está avaliando, e para nós, que precisamos entender claramente onde somos melhores e onde não somos.</p>
+
+  <hr class="article-divider">
+
+  <h2>Onde o Nomus é genuinamente forte</h2>
+
+  <p>Existem áreas onde o Nomus tem vantagens reais que seria desonesto ignorar.</p>
+
+  <p><strong>Compliance fiscal acumulado em 20 anos.</strong> O Nomus tem duas décadas de atualizações de NF-e, SPED, Bloco K, substituição tributária por estado, Simples Nacional e cada mudança de alíquota que o sistema tributário brasileiro produziu nesse período. Isso é patrimônio de produto que não se replica rápido. Qualquer sistema mais novo — incluindo o SYSLED — precisa provar que entrega compliance com o mesmo nível de robustez.</p>
+
+  <p><strong>PCP e custeio industrial como produto core.</strong> Diferente de ERPs generalistas que adicionaram módulo de produção depois, o Nomus foi construído de dentro para fora da manufatura. Sequenciamento de ordens, programação de capacidade finita, custeio real por ordem — funcionalidades que nos concorrentes maiores (TOTVS, Sankhya) são módulos adicionais caros, no Nomus são o coração do produto.</p>
+
+  <p><strong>Transparência de preços.</strong> O Nomus é o único ERP industrial brasileiro que publica preços no site. Isso é raro no mercado e é uma postura que respeitamos — permite comparação real sem ciclo de venda opaco.</p>
+
+  <p><strong>Selecionado Endeavor Promessas.</strong> Validação externa de qualidade que tem peso em processos de decisão de empresas maiores.</p>
+
+  <h2>Onde o SYSLED foi construído para ser diferente</h2>
+
+  <p>A seguir, as dimensões onde acreditamos ter vantagem real — com a transparência de que algumas dessas afirmações ainda estão sendo validadas com os primeiros clientes.</p>
+
+  <h3>Mobile nativo vs. web responsivo</h3>
+
+  <p>O Nomus é 100% web responsivo desde 2005. "Web responsivo" significa que a interface web se adapta ao tamanho da tela — o que tecnicamente permite acesso pelo celular.</p>
+
+  <p>Na prática, web responsivo para ERP industrial significa uma interface projetada para desktop sendo exibida num celular de R$ 800, com botões pequenos, campos de texto que exigem zoom, e fluxos que exigem múltiplas telas para completar tarefas simples.</p>
+
+  <p>O SYSLED foi construído mobile-first desde o início: fluxos projetados para tela pequena, gestos nativos, interface pensada para o operador que usa o celular com luvas ou em pé na linha de produção. A diferença não é estética — é de adoção. O operador que usa web responsivo num celular travará. O operador que usa uma interface projetada para ele tende a completar a tarefa.</p>
+
+  <p><strong>A afirmação honesta:</strong> o SYSLED tem arquitetura mobile-first. Isso ainda está sendo validado com dados de adoção real. O Nomus tem web responsivo há 20 anos — que funciona, mas com a experiência que web responsivo em celular entrega.</p>
+
+  <h3>Inteligência artificial integrada</h3>
+
+  <p>O Nomus não tem IA — nem no produto atual, nem no roadmap público 2024-2026. O site, os materiais de produto e o roadmap publicado não fazem nenhuma menção a inteligência artificial.</p>
+
+  <p>O SYSLED tem IA como diferencial central: customização acelerada por IA (o que num concorrente levaria 3 meses e R$ 30 a 50 mil, o SYSLED entrega em dias), alertas de anomalia baseados em histórico de dados, e sugestões de sequenciamento.</p>
+
+  <p><strong>A afirmação honesta:</strong> IA como diferencial é nossa aposta estratégica. Em produto novo, IA sem histórico de dados é limitada — e o histórico se acumula com o uso. O valor real da IA vai crescer à medida que os clientes usam o sistema e o modelo aprende os padrões da operação específica.</p>
+
+  <h3>Modelo de implantação</h3>
+
+  <p>Nomus tem dois métodos: Lean (R$ 4.800 a R$ 9.600, baseado em vídeos e reuniões quinzenais) e Tradicional (R$ 8.400 a R$ 28.800, reuniões individuais frequentes). Em ambos, implantação é um serviço separado com custo separado.</p>
+
+  <p>O SYSLED foi projetado para onboarding self-service como padrão, com implantação guiada para casos mais complexos — mas sem a dependência de consultoria como modelo base.</p>
+
+  <p><strong>A afirmação honesta:</strong> onboarding self-service para ERP industrial completo é ambicioso. Ainda estamos validando até onde a complexidade de manufatura permite self-service real vs. onde é necessário acompanhamento. O Nomus já tem um processo de implantação maduro que funciona, com cronograma e metodologia documentados.</p>
+
+  <h3>Limite de usuários simultâneos</h3>
+
+  <p>O plano de entrada do Nomus (Controlar, R$ 490/mês) permite 5 usuários simultâneos. Uma fábrica com 3 operadores de linha + supervisor + encarregado + gerente industrial já está no limite desse plano.</p>
+
+  <p>O SYSLED opera com acessos ilimitados em todos os planos — qualquer número de usuários simultâneos dentro do plano contratado.</p>
+
+  <p><strong>A afirmação factual:</strong> o limite do Nomus está documentado na própria página de preços. Verifique qual plano atende o número real de usuários da sua operação antes de comparar mensalidades.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — Feature comparison table -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Comparação lado a lado
+    </div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Dimensão</th>
+          <th>SYSLED</th>
+          <th>Nomus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Anos de mercado</td>
+          <td><span class="table-text-badge blue">Novo (2026)</span></td>
+          <td><span class="table-text-badge gray">20 anos</span></td>
+        </tr>
+        <tr>
+          <td>Compliance fiscal</td>
+          <td>Padrão atual — em validação</td>
+          <td>Robusto, 20 anos de histórico</td>
+        </tr>
+        <tr>
+          <td>Mobile</td>
+          <td>
+            <span class="table-check yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Mobile-first nativo
+          </td>
+          <td>
+            <span class="table-check neutral"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            Web responsivo
+          </td>
+        </tr>
+        <tr>
+          <td>Funciona offline</td>
+          <td><span class="table-check yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+          <td><span class="table-check no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+        </tr>
+        <tr>
+          <td>IA integrada</td>
+          <td><span class="table-check yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+          <td><span class="table-check no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>
+        </tr>
+        <tr>
+          <td>Usuários simultâneos</td>
+          <td><span class="table-text-badge blue">Ilimitados</span></td>
+          <td><span class="table-text-badge gray">5 no plano básico</span></td>
+        </tr>
+        <tr>
+          <td>Implantação</td>
+          <td>Self-service padrão</td>
+          <td>Serviço pago (R$ 4.800–28.800)</td>
+        </tr>
+        <tr>
+          <td>Preço publicado no site</td>
+          <td><span class="table-check yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+          <td><span class="table-check yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+        </tr>
+        <tr>
+          <td>Referências verificáveis</td>
+          <td>Primeiros clientes</td>
+          <td>20 anos de clientes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que os dois têm em comum — e onde os dois estão aquém</h2>
+
+  <p>Existe um conjunto de características que tanto o Nomus quanto o SYSLED compartilham, e que representa o estado atual do mercado de ERP industrial para PMIs brasileiras:</p>
+
+  <p><strong>Compliance fiscal sólido</strong> — obrigatório para operar no Brasil, presente em ambos.</p>
+
+  <p><strong>Foco em manufatura discreta</strong> — diferente de ERPs generalistas que tentam atender todos os segmentos superficialmente.</p>
+
+  <p><strong>Preço proporcional ao porte de PMI</strong> — diferente de TOTVS e Sankhya, cujos custos totais de primeiro ano raramente são adequados para empresas abaixo de R$ 15 milhões de faturamento.</p>
+
+  <p>Onde os dois ainda estão aquém — e onde o mercado como um todo tem espaço de evolução — é na integração com IoT/sensores de forma nativa e acessível para PMIs sem equipe de TI, e na capacidade de onboarding genuinamente self-service para todo o escopo de um ERP industrial completo.</p>
+
+  <h2>Quando escolher o Nomus</h2>
+
+  <p>Se você quer um sistema comprovado, com 20 anos de histórico de compliance fiscal, PCP e custeio industrial sólidos como produto core, e está disposto a aceitar uma interface de 2015 e o modelo de implantação consultiva — o Nomus é uma escolha sólida.</p>
+
+  <p>É especialmente adequado se você valoriza referências verificáveis de clientes com perfil similar ao seu que já usam o sistema há anos — porque o Nomus tem isso de sobra.</p>
+
+  <h2>Quando considerar o SYSLED</h2>
+
+  <p>Se você quer que o operador de chão de fábrica realmente use o sistema — não só o gestor e o financeiro — e está disposto a ser um dos primeiros clientes de um produto novo que foi construído em torno desse problema específico, o SYSLED foi feito para você.</p>
+
+  <p>A troca é clara: você abre mão da segurança de 20 anos de histórico e ganha um produto construído para a próxima década da manufatura — mobile-first, com IA integrada, sem limite de usuário.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Ideal customer profile -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Para quem cada produto é ideal
+    </div>
+    <div class="split-compare">
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          Escolha o SYSLED se...
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            O chão de fábrica não usa o ERP atual — os dados de produção não existem
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Precisa que operadores apontem direto no celular, inclusive offline
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Quer IA para alertas, customização e sequenciamento inteligente
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Precisa de muitos usuários sem pagar por cada acesso
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Aceita ser early adopter de um produto novo com visão de futuro
+          </div>
+        </div>
+      </div>
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          Escolha o Nomus se...
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Prioridade é compliance fiscal robusto e comprovado há 20 anos
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Precisa de PCP e custeio industrial avançados como funcionalidade core
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Valoriza referências verificáveis de clientes com perfil similar
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Prefere implantação consultiva com cronograma e metodologia definidos
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Quer a segurança de um produto maduro e consolidado no mercado
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>A pergunta que organiza a decisão</h2>
+
+  <p>Depois de tudo isso, existe uma pergunta que simplifica a comparação:</p>
+
+  <blockquote>"O principal problema da minha fábrica hoje é ter mais controle (gestão, fiscal, custo) — ou ter dado real do chão de fábrica (apontamento, qualidade, ocorrências registradas pelos operadores)?"</blockquote>
+
+  <p>Se o problema principal é controle e você precisa de um sistema comprovado: Nomus.</p>
+
+  <p>Se o problema principal é que o operador não usa o sistema e os dados do chão de fábrica não existem: SYSLED.</p>
+
+  <p>Os dois problemas são reais. Os dois produtos foram construídos para um deles.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Architecture comparison -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Duas arquiteturas, duas filosofias
+    </div>
+    <div class="arch-compare">
+      <div class="arch-card">
+        <div class="arch-card-header">
+          <div class="arch-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div>
+            <div class="arch-card-label">SYSLED</div>
+            <div class="arch-card-sublabel">De baixo para cima</div>
+          </div>
+        </div>
+        <div class="arch-layers">
+          <div class="arch-layer">
+            <div class="arch-layer-num">1</div>
+            <div class="arch-layer-text">
+              <strong>Operador no celular</strong>
+              <small>Apontamento mobile-first, offline, 30 segundos</small>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div class="arch-layer-num">2</div>
+            <div class="arch-layer-text">
+              <strong>Dados estruturados em tempo real</strong>
+              <small>Sincroniza automaticamente com a nuvem</small>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div class="arch-layer-num">3</div>
+            <div class="arch-layer-text">
+              <strong>IA processa e aprende</strong>
+              <small>Alertas, anomalias, sugestões de sequenciamento</small>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div class="arch-layer-num">4</div>
+            <div class="arch-layer-text">
+              <strong>Gestor decide com dados reais</strong>
+              <small>Dashboards com informação do chão de fábrica</small>
+            </div>
+          </div>
+        </div>
+        <div class="arch-direction">
+          <div class="arch-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>
+          Dado nasce no chão de fábrica
+        </div>
+      </div>
+      <div class="arch-card">
+        <div class="arch-card-header">
+          <div class="arch-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="arch-card-label">Nomus</div>
+            <div class="arch-card-sublabel">De cima para baixo</div>
+          </div>
+        </div>
+        <div class="arch-layers">
+          <div class="arch-layer">
+            <div class="arch-layer-num">1</div>
+            <div class="arch-layer-text">
+              <strong>Gestor no desktop</strong>
+              <small>PCP, custeio, fiscal — interface completa</small>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div class="arch-layer-num">2</div>
+            <div class="arch-layer-text">
+              <strong>Módulos de gestão integrados</strong>
+              <small>20 anos de funcionalidades acumuladas</small>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div class="arch-layer-num">3</div>
+            <div class="arch-layer-text">
+              <strong>Interface web responsiva</strong>
+              <small>Adaptada para acesso mobile via navegador</small>
+            </div>
+          </div>
+          <div class="arch-layer">
+            <div class="arch-layer-num">4</div>
+            <div class="arch-layer-text">
+              <strong>Operador acessa (quando possível)</strong>
+              <small>Mesma interface, tela menor, adoção limitada</small>
+            </div>
+          </div>
+        </div>
+        <div class="arch-direction">
+          <div class="arch-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div>
+          Sistema desce da diretoria
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE FINAL -->
+<article class="article-wrap">
+
+  <hr class="article-divider">
+
+  <p><em>Quer conversar diretamente sobre qual dos dois faz mais sentido para sua operação? O SYSLED não tem medo dessa conversa. <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">Fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Compare na prática, não no papel</h2>
+  <p>Agende uma demo gratuita do SYSLED e veja como o operador realmente usa o sistema no celular — direto do chão de fábrica.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indústria 4.0 sem buzzwords: o que realmente se aplica a uma fábrica com 40 a 200 funcionários | SYSLED Blog</title>
+  <meta name="description" content="Uma análise honesta dos 8 pilares da Indústria 4.0 e o que realmente se aplica a PMIs industriais brasileiras com 40 a 200 funcionários.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem); letter-spacing: -0.01em;
+      line-height: 1.3; margin-top: 2rem; margin-bottom: 0.8rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS — break out of article width */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — 8 Pillars Grid */
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .pillar-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.25rem 1rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .pillar-card:hover {
+      border-color: rgba(91,184,245,0.2); transform: translateY(-3px);
+    }
+    .pillar-name {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .pillar-badge {
+      display: inline-block; font-family: var(--font-heading);
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 3px 10px; border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .pillar-badge.alta {
+      background: rgba(34,197,94,0.12); color: #22C55E;
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+    .pillar-badge.media {
+      background: rgba(234,179,8,0.12); color: #EAB308;
+      border: 1px solid rgba(234,179,8,0.2);
+    }
+    .pillar-badge.baixa {
+      background: rgba(239,68,68,0.12); color: #EF4444;
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .pillar-reality {
+      font-size: 0.68rem; color: rgba(255,255,255,0.38); line-height: 1.5;
+    }
+
+    /* INFOGRAPHIC 2 — Timeline Phases */
+    .timeline-phases {
+      position: relative; padding: 2rem 0 1rem;
+    }
+    .timeline-track {
+      position: relative; height: 180px; margin: 0 auto;
+      max-width: 100%;
+    }
+    .timeline-axis {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: rgba(255,255,255,0.08);
+    }
+    .timeline-axis-labels {
+      display: flex; justify-content: space-between;
+      position: absolute; bottom: -24px; left: 0; right: 0;
+      font-size: 0.58rem; color: rgba(255,255,255,0.25);
+      font-family: var(--font-heading); font-weight: 600;
+    }
+    .timeline-phase {
+      position: absolute; border-radius: 12px; padding: 1rem 1.25rem;
+      border: 1px solid; min-width: 200px;
+    }
+    .timeline-phase-1 {
+      left: 0; right: 62%; top: 0; bottom: 40px;
+      background: rgba(43,108,176,0.12); border-color: rgba(43,108,176,0.25);
+    }
+    .timeline-phase-2 {
+      left: 25%; right: 25%; top: 0; bottom: 40px;
+      background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.2);
+    }
+    .timeline-phase-3 {
+      left: 50%; right: 0; top: 0; bottom: 40px;
+      background: rgba(126,206,244,0.06); border-color: rgba(126,206,244,0.15);
+    }
+    .timeline-phase-label {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.72rem; margin-bottom: 0.3rem;
+    }
+    .timeline-phase-1 .timeline-phase-label { color: var(--blue-deep); }
+    .timeline-phase-2 .timeline-phase-label { color: #38BDF8; }
+    .timeline-phase-3 .timeline-phase-label { color: var(--blue-pale); }
+    .timeline-phase-name {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .timeline-phase-desc {
+      font-size: 0.68rem; color: rgba(255,255,255,0.4); line-height: 1.5;
+    }
+    .timeline-phase-period {
+      font-family: var(--font-heading); font-size: 0.55rem; font-weight: 600;
+      color: rgba(255,255,255,0.25); margin-top: 0.4rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    /* Stacked version for better readability */
+    .timeline-stacked {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      position: relative; padding-left: 20px;
+    }
+    .timeline-stacked::before {
+      content: ''; position: absolute; left: 6px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(180deg, var(--blue-deep), #38BDF8, var(--blue-pale));
+    }
+    .ts-phase {
+      position: relative; border-radius: 14px; padding: 1.25rem 1.5rem;
+      border: 1px solid; display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .ts-phase::before {
+      content: ''; position: absolute; left: -17px; top: 50%;
+      transform: translateY(-50%); width: 10px; height: 10px;
+      border-radius: 50%; border: 2px solid;
+    }
+    .ts-phase-1 {
+      background: rgba(43,108,176,0.1); border-color: rgba(43,108,176,0.25);
+    }
+    .ts-phase-1::before { border-color: var(--blue-deep); background: var(--dark); }
+    .ts-phase-2 {
+      background: rgba(56,189,248,0.07); border-color: rgba(56,189,248,0.2);
+    }
+    .ts-phase-2::before { border-color: #38BDF8; background: var(--dark); }
+    .ts-phase-3 {
+      background: rgba(126,206,244,0.05); border-color: rgba(126,206,244,0.15);
+    }
+    .ts-phase-3::before { border-color: var(--blue-pale); background: var(--dark); }
+    .ts-phase-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ts-phase-1 .ts-phase-icon { background: rgba(43,108,176,0.2); }
+    .ts-phase-2 .ts-phase-icon { background: rgba(56,189,248,0.15); }
+    .ts-phase-3 .ts-phase-icon { background: rgba(126,206,244,0.12); }
+    .ts-phase-icon svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .ts-phase-1 .ts-phase-icon svg { stroke: var(--blue-deep); }
+    .ts-phase-2 .ts-phase-icon svg { stroke: #38BDF8; }
+    .ts-phase-3 .ts-phase-icon svg { stroke: var(--blue-pale); }
+    .ts-phase-content { flex: 1; }
+    .ts-phase-header {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .ts-phase-tag {
+      font-family: var(--font-heading); font-size: 0.55rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 2px 8px; border-radius: 8px;
+    }
+    .ts-phase-1 .ts-phase-tag { color: var(--blue-deep); background: rgba(43,108,176,0.15); }
+    .ts-phase-2 .ts-phase-tag { color: #38BDF8; background: rgba(56,189,248,0.12); }
+    .ts-phase-3 .ts-phase-tag { color: var(--blue-pale); background: rgba(126,206,244,0.1); }
+    .ts-phase-time {
+      font-family: var(--font-heading); font-size: 0.55rem; font-weight: 600;
+      color: rgba(255,255,255,0.25); letter-spacing: 0.05em;
+    }
+    .ts-phase-name {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.92rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .ts-phase-desc {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.55;
+    }
+    .ts-overlap-note {
+      text-align: center; margin-top: 1.25rem;
+      font-size: 0.65rem; color: rgba(255,255,255,0.25);
+      font-style: italic;
+    }
+
+    /* INFOGRAPHIC 3 — Warning Cards */
+    .errors-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      position: relative;
+    }
+    .error-card {
+      border-radius: 14px; padding: 1.5rem 1.25rem;
+      border: 1px solid; position: relative; overflow: hidden;
+    }
+    .error-card-warning {
+      background: rgba(245,158,11,0.06); border-color: rgba(245,158,11,0.15);
+    }
+    .error-card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .error-card-warning .error-card-icon {
+      background: rgba(245,158,11,0.12);
+    }
+    .error-card-warning .error-card-icon svg {
+      width: 22px; height: 22px; stroke: #F59E0B; fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .error-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: #FBBF24; margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .error-card-wrong {
+      font-size: 0.72rem; color: rgba(239,68,68,0.7); line-height: 1.55;
+      margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 6px;
+    }
+    .error-card-wrong::before {
+      content: ''; flex-shrink: 0; width: 6px; height: 6px;
+      border-radius: 50%; background: rgba(239,68,68,0.5); margin-top: 5px;
+    }
+    .error-card-right {
+      font-size: 0.72rem; color: rgba(34,197,94,0.8); line-height: 1.55;
+      display: flex; align-items: flex-start; gap: 6px;
+      padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .error-card-right::before {
+      content: ''; flex-shrink: 0; width: 6px; height: 6px;
+      border-radius: 50%; background: rgba(34,197,94,0.6); margin-top: 5px;
+    }
+    .error-card-right-label, .error-card-wrong-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em;
+      display: block; margin-bottom: 2px;
+    }
+    .error-card-wrong .error-card-wrong-label { color: rgba(239,68,68,0.6); }
+    .error-card-right .error-card-right-label { color: rgba(34,197,94,0.7); }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .errors-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .errors-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Indústria 4.0</span>
+  <h1>Indústria 4.0 sem buzzwords: o que realmente se aplica a uma fábrica com 40 a 200 funcionários</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      8 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Toda semana surge um novo artigo prometendo que a Indústria 4.0 vai revolucionar a manufatura. Robôs autônomos. Gêmeos digitais. Inteligência artificial preditiva. Blockchain na cadeia de suprimentos.</p>
+
+  <p>Essas tecnologias existem. Funcionam. Mas funcionam em fábricas com orçamento de P&D maior que o faturamento anual de muitas PMIs brasileiras.</p>
+
+  <p>Se você tem uma fábrica com 40 a 200 funcionários — metalurgia, plástico, alimentos, confecção, qualquer segmento — a pergunta que importa não é "o que é Indústria 4.0". A pergunta é: <strong>o que da Indústria 4.0 realmente se aplica à minha realidade, hoje, com o orçamento que eu tenho?</strong></p>
+
+  <p>Esse artigo tenta responder isso sem romantismo e sem interesse em vender tecnologia pela tecnologia.</p>
+
+  <hr class="article-divider">
+
+  <h2>Os 8 pilares — e o que cada um significa de verdade para uma PMI</h2>
+
+  <p>A Indústria 4.0 é normalmente apresentada como um conjunto de 8 pilares tecnológicos. Vamos olhar para cada um com honestidade sobre o que se aplica a uma fábrica brasileira de médio porte.</p>
+
+  <h3>1. Internet das Coisas (IoT)</h3>
+
+  <p>O pilar mais acessível. Sensores de temperatura, vibração, consumo de energia e contadores de ciclo já custam menos de R$ 500 por ponto. Para uma PMI, a IoT não significa conectar tudo — significa colocar sensores nos 3 a 5 pontos que mais geram dor: a máquina que mais para, o processo com mais variação de qualidade, o gargalo que ninguém mede.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Alta. Mas comece com 5 sensores, não com 500.</p>
+
+  <h3>2. Computação em Nuvem</h3>
+
+  <p>Já é realidade para quem usa qualquer SaaS. O ponto para PMIs não é "adotar a nuvem" — é parar de depender de servidores locais que ninguém faz backup e que param quando falta energia. Cloud não é inovação para PMI. É higiene digital.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Alta. Provavelmente você já usa sem saber.</p>
+
+  <h3>3. Big Data e Analytics</h3>
+
+  <p>Aqui começa o exagero. Big Data pressupõe volume massivo de dados. Uma fábrica de 100 pessoas não gera "big data" — gera dados suficientes para análise, se estiverem estruturados. O problema da PMI não é analisar grandes volumes. É que os dados que ela tem estão em cadernos, planilhas desconectadas e na cabeça do encarregado.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Média. O conceito se aplica, mas a necessidade real é mais básica — é estruturar dados que hoje não existem digitalmente.</p>
+
+  <h3>4. Inteligência Artificial</h3>
+
+  <p>IA para manutenção preditiva, otimização de processos e controle de qualidade é real e funciona. Mas exige uma base de dados estruturada que a maioria das PMIs simplesmente não tem. Não adianta comprar IA se você não tem 12 meses de dados de produção organizados para treinar o modelo.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Baixa hoje. Alta no futuro — se você começar a estruturar dados agora.</p>
+
+  <h3>5. Robótica Avançada</h3>
+
+  <p>Cobots (robôs colaborativos) estão ficando mais acessíveis, com preços a partir de R$ 150 mil. Para linhas com alto volume e operações repetitivas, fazem sentido. Para a maioria das PMIs com produção variada e lotes pequenos, o retorno é questionável. A prioridade é automatizar informação antes de automatizar movimento.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Baixa para a maioria. Depende muito do tipo de operação.</p>
+
+  <h3>6. Simulação e Gêmeos Digitais</h3>
+
+  <p>Gêmeos digitais — réplicas virtuais do processo fabril — são fascinantes. E completamente fora da realidade de uma PMI hoje. Exigem modelagem 3D detalhada, sensoriamento completo e equipe técnica para manter. Para quem ainda não tem dados básicos de OEE, é como comprar um carro de Fórmula 1 sem ter carteira de motorista.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Baixa. Solução para quem já resolveu os problemas básicos.</p>
+
+  <h3>7. Manufatura Aditiva (Impressão 3D)</h3>
+
+  <p>Útil para prototipagem e peças de reposição sob demanda. Não substitui processos produtivos convencionais na escala de PMI. É uma ferramenta auxiliar, não uma transformação do modelo produtivo.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Média, para casos específicos. Não é prioridade de digitalização.</p>
+
+  <h3>8. Integração de Sistemas</h3>
+
+  <p>Esse é o pilar que mais falta nas PMIs e que menos aparece nos eventos de Indústria 4.0. Integrar o ERP com o chão de fábrica, conectar o comercial com a produção, fazer o financeiro enxergar custos reais por ordem de produção. Não é glamouroso, não tem slide bonito, mas é onde está o dinheiro.</p>
+
+  <p><strong>Aplicabilidade real:</strong> Alta. É provavelmente o primeiro passo real.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — 8 Pillars Grid -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      8 pilares — aplicabilidade real para PMIs
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-name">Internet das Coisas (IoT)</div>
+        <div class="pillar-badge alta">Alta</div>
+        <div class="pillar-reality">Comece com 5 sensores nos pontos de maior dor, não 500.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-name">Computação em Nuvem</div>
+        <div class="pillar-badge alta">Alta</div>
+        <div class="pillar-reality">Não é inovação. É higiene digital. Você já usa sem saber.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-name">Big Data e Analytics</div>
+        <div class="pillar-badge media">Média</div>
+        <div class="pillar-reality">Seu problema não é volume. É que os dados nem existem digitalmente.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-name">Inteligência Artificial</div>
+        <div class="pillar-badge baixa">Baixa (hoje)</div>
+        <div class="pillar-reality">Exige 12+ meses de dados estruturados que a maioria não tem.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-name">Robótica Avançada</div>
+        <div class="pillar-badge baixa">Baixa</div>
+        <div class="pillar-reality">Automatize informação antes de automatizar movimento.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-name">Gêmeos Digitais</div>
+        <div class="pillar-badge baixa">Baixa</div>
+        <div class="pillar-reality">F1 sem carteira. Resolva o básico antes.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-name">Manufatura Aditiva</div>
+        <div class="pillar-badge media">Média</div>
+        <div class="pillar-reality">Ferramenta auxiliar, não transformação produtiva.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-name">Integração de Sistemas</div>
+        <div class="pillar-badge alta">Alta</div>
+        <div class="pillar-reality">Sem glamour, mas é onde está o dinheiro de verdade.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>A sequência que ninguém apresenta</h2>
+
+  <p>Nos eventos e consultorias de Indústria 4.0, a abordagem é quase sempre a mesma: apresentar todas as tecnologias como se fossem paralelas, com igual prioridade, e deixar o empresário escolher "por onde começar".</p>
+
+  <p>Isso não funciona. Existe uma sequência lógica, e ela tem a ver com maturidade de dados — não com sofisticação tecnológica.</p>
+
+  <p><strong>Fase 1: Dado humano.</strong> Antes de qualquer sensor, o dado mais valioso da fábrica está na cabeça dos operadores. A primeira fase é estruturar o que já acontece: apontamentos de produção, registros de parada, controle de qualidade, rastreabilidade básica. O operador alimenta o sistema com o celular que já tem no bolso. Sem investimento em hardware, sem projeto de TI, sem consultoria de 18 meses.</p>
+
+  <p><strong>Fase 2: Integração digital.</strong> Com dados humanos estruturados, você identifica onde sensores agregam valor real. Coloca IoT nos pontos-chave — não em tudo, nos pontos-chave. Integra o chão de fábrica com o ERP fiscal/contábil. Automatiza fluxos que antes dependiam de alguém lembrar de algo.</p>
+
+  <p><strong>Fase 3: Inteligência.</strong> Com 12 a 24 meses de dados estruturados — humanos e de sensores — aí sim faz sentido aplicar analytics preditivos. Manutenção preditiva, otimização de programação de produção, análise de tendências de qualidade. Não porque é moderno, mas porque agora você tem dados para alimentar essas ferramentas.</p>
+
+  <p>Essas fases não são estritamente sequenciais. Elas se sobrepõem. Mas a lógica é clara: <strong>dado humano primeiro, automação depois, inteligência por último.</strong></p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Timeline Phases -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Sequência real para PMIs
+    </div>
+    <div class="timeline-stacked">
+      <div class="ts-phase ts-phase-1">
+        <div class="ts-phase-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="ts-phase-content">
+          <div class="ts-phase-header">
+            <span class="ts-phase-tag">Fase 1</span>
+            <span class="ts-phase-time">0 — 18 meses</span>
+          </div>
+          <div class="ts-phase-name">"Dado humano"</div>
+          <div class="ts-phase-desc">Operadores alimentam o sistema com celular. Apontamentos, paradas, qualidade. Sem hardware, sem projeto de TI. O dado mais valioso já existe — na cabeça das pessoas.</div>
+        </div>
+      </div>
+      <div class="ts-phase ts-phase-2">
+        <div class="ts-phase-icon">
+          <svg viewBox="0 0 24 24"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+        </div>
+        <div class="ts-phase-content">
+          <div class="ts-phase-header">
+            <span class="ts-phase-tag">Fase 2</span>
+            <span class="ts-phase-time">12 — 36 meses</span>
+          </div>
+          <div class="ts-phase-name">"Integração digital"</div>
+          <div class="ts-phase-desc">Sensores em pontos-chave. IoT onde agrega valor real. Integração chão de fábrica com ERP fiscal/contábil. Automação de fluxos que dependiam de memória humana.</div>
+        </div>
+      </div>
+      <div class="ts-phase ts-phase-3">
+        <div class="ts-phase-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="ts-phase-content">
+          <div class="ts-phase-header">
+            <span class="ts-phase-tag">Fase 3</span>
+            <span class="ts-phase-time">24+ meses</span>
+          </div>
+          <div class="ts-phase-name">"Inteligência"</div>
+          <div class="ts-phase-desc">Analytics preditivos com base em dados reais. Manutenção preditiva, otimização de programação, tendências de qualidade. Funciona porque agora existem dados para alimentar.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ts-overlap-note">As fases se sobrepõem — não são estritamente sequenciais. A lógica: dado humano primeiro, automação depois, inteligência por último.</div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Os três erros mais comuns</h2>
+
+  <p>Acompanhando PMIs que tentaram embarcar na Indústria 4.0 nos últimos anos, três padrões de erro se repetem com consistência preocupante.</p>
+
+  <p><strong>Erro 1: Começar pela tecnologia visível.</strong> O empresário vai a uma feira, vê um robô colaborativo ou uma tela de dashboard em tempo real, e quer aquilo na fábrica dele. Mas aquela tela bonita depende de uma infraestrutura de dados que ele não tem. É como querer o painel do avião sem ter construído o avião.</p>
+
+  <p><strong>Erro 2: Tratar como projeto pontual.</strong> "Vamos fazer um projeto de Indústria 4.0". Isso não funciona. Digitalização industrial é uma evolução contínua, não um projeto com início, meio e fim. Quem trata como projeto entrega um piloto, declara sucesso e volta à rotina anterior em 6 meses.</p>
+
+  <p><strong>Erro 3: Copiar soluções de grande empresa.</strong> O case de referência é sempre a Volkswagen, a Ambev, a Gerdau. Essas empresas têm times inteiros de engenharia de dados, orçamento de TI de milhões por ano e parceiros tecnológicos dedicados. Aplicar a mesma abordagem numa fábrica de 80 pessoas não é ambição — é desperdício de recurso.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — 3 Error Cards -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      3 erros comuns na jornada 4.0 de PMIs
+    </div>
+    <div class="errors-grid">
+      <div class="error-card error-card-warning">
+        <div class="error-card-icon">
+          <!-- Robot icon -->
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="16" x2="8" y2="16.01"/><line x1="16" y1="16" x2="16" y2="16.01"/></svg>
+        </div>
+        <div class="error-card-title">Começar pela tecnologia visível</div>
+        <div class="error-card-wrong">
+          <span><span class="error-card-wrong-label">O erro</span>Comprar dashboard, robô ou sensor antes de ter dados estruturados. Painel do avião sem ter o avião.</span>
+        </div>
+        <div class="error-card-right">
+          <span><span class="error-card-right-label">O correto</span>Fundação primeiro. Estruture dados básicos de produção, depois pense em tecnologia visível.</span>
+        </div>
+      </div>
+      <div class="error-card error-card-warning">
+        <div class="error-card-icon">
+          <!-- Checkmark/done icon -->
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="error-card-title">Tratar como projeto pontual</div>
+        <div class="error-card-wrong">
+          <span><span class="error-card-wrong-label">O erro</span>"Vamos fazer um projeto de Indústria 4.0." Piloto, declaração de sucesso, retorno à rotina em 6 meses.</span>
+        </div>
+        <div class="error-card-right">
+          <span><span class="error-card-right-label">O correto</span>Evolução contínua. Digitalização é um processo permanente, não um entregável com data de fim.</span>
+        </div>
+      </div>
+      <div class="error-card error-card-warning">
+        <div class="error-card-icon">
+          <!-- Building icon -->
+          <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><path d="M9 18h6"/></svg>
+        </div>
+        <div class="error-card-title">Tecnologia de grande empresa</div>
+        <div class="error-card-wrong">
+          <span><span class="error-card-wrong-label">O erro</span>Copiar cases da Volkswagen e Ambev. Elas têm times de engenharia de dados e milhões em TI por ano.</span>
+        </div>
+        <div class="error-card-right">
+          <span><span class="error-card-right-label">O correto</span>Soluções proporcionais. Ferramentas pensadas para o porte, o orçamento e a equipe que você realmente tem.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que realmente move o ponteiro para uma PMI</h2>
+
+  <p>Se tivesse que resumir em uma frase: <strong>a Indústria 4.0 para PMIs é, antes de tudo, a eliminação do caderno e da planilha como sistema de gestão de produção.</strong></p>
+
+  <p>Isso pode parecer pouco ambicioso para quem está acostumado com slides sobre fábricas do futuro. Mas para uma indústria de 80 funcionários onde o dono não sabe o OEE real de nenhuma máquina, onde o custo por ordem de produção é estimado em vez de calculado, e onde o retrabalho não é medido — estruturar esses dados básicos é revolucionário.</p>
+
+  <p>Revolução não é necessariamente o que parece futurista. Revolução é o que muda o resultado.</p>
+
+  <p>Na prática, o que move o ponteiro para PMIs é:</p>
+
+  <ul>
+    <li><strong>Apontamento de produção em tempo real</strong> — feito pelo operador no celular, em 30 segundos, sem treinamento formal.</li>
+    <li><strong>Registro de paradas com classificação de causa</strong> — para finalmente saber onde a fábrica está perdendo capacidade.</li>
+    <li><strong>Rastreabilidade de ordem de produção</strong> — para calcular custo real, não custo estimado.</li>
+    <li><strong>Indicadores operacionais automáticos</strong> — OEE, produtividade por turno, refugo por máquina — gerados a partir dos dados que o operador já alimentou.</li>
+    <li><strong>Integração com ERP fiscal</strong> — para que o financeiro enxergue a realidade do chão de fábrica, não a estimativa do supervisor.</li>
+  </ul>
+
+  <p>Nada disso exige sensor. Nada disso exige investimento de capital. Exige uma ferramenta que foi desenhada para o operador usar — não para o gerente comprar.</p>
+
+  <h2>Como saber se a sua fábrica está pronta</h2>
+
+  <p>Existe um teste simples. Responda mentalmente a estas perguntas:</p>
+
+  <ol>
+    <li>Você sabe, agora, qual é o OEE de cada máquina do chão de fábrica?</li>
+    <li>Consegue dizer quanto custou produzir a última ordem de produção — com dados reais, não estimados?</li>
+    <li>Se o encarregado do turno da noite faltar amanhã, você saberá o que aconteceu na produção de ontem?</li>
+    <li>O seu ERP atual tem dados de produção alimentados por quem está no chão de fábrica?</li>
+  </ol>
+
+  <p>Se respondeu "não" a duas ou mais, a sua fábrica não precisa de Indústria 4.0. Precisa da Fase 1. Precisa de dado humano estruturado. E isso é completamente acessível, implementável em semanas — não meses — e com retorno mensurável no primeiro ciclo.</p>
+
+  <blockquote>"A melhor tecnologia para uma fábrica não é a mais avançada. É a que o operador realmente usa."</blockquote>
+
+  <hr class="article-divider">
+
+  <p><em>O SYSLED foi construído para ser o primeiro passo real na jornada de digitalização de PMIs industriais brasileiras — estruturando dados de produção a partir do operador, com o celular que ele já tem, em 30 segundos por apontamento. Se quiser entender como isso funciona na prática para uma indústria do seu porte, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Comece pela fundação, não pelo telhado</h2>
+  <p>Descubra como o SYSLED estrutura dados de produção a partir do operador — o primeiro passo real na jornada de digitalização da sua fábrica.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

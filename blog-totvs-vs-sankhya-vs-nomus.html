@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOTVS vs Sankhya vs Nomus: qual ERP industrial para PMIs em 2026? | SYSLED Blog</title>
+  <meta name="description" content="Comparativo completo entre TOTVS Protheus, Sankhya e Nomus para pequenas e médias indústrias. Custos reais, funcionalidades e o que nenhum vendedor conta.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem); letter-spacing: -0.01em;
+      line-height: 1.3; margin-top: 2rem; margin-bottom: 1rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — Profile cards */
+    .profile-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      position: relative;
+    }
+    .profile-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.75rem 1.25rem;
+      border: 1px solid rgba(91,184,245,0.1);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .profile-card:hover {
+      border-color: rgba(91,184,245,0.25); transform: translateY(-3px);
+    }
+    .profile-card-name {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.9rem; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .profile-card-tagline {
+      font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.5;
+      margin-bottom: 1.25rem; font-style: italic; min-height: 40px;
+    }
+    .profile-card-label {
+      font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
+      color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .rating-bar-bg {
+      width: 100%; height: 8px; background: rgba(255,255,255,0.08);
+      border-radius: 4px; overflow: hidden; margin-bottom: 0.35rem;
+    }
+    .rating-bar-fill {
+      height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      transition: width 0.8s ease;
+    }
+    .rating-bar-value {
+      font-family: var(--font-heading); font-size: 0.85rem; font-weight: 800;
+      color: var(--blue-light);
+    }
+
+    /* INFOGRAPHIC 2 — Cost comparison table */
+    .cost-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      border-radius: 12px; overflow: hidden; position: relative;
+    }
+    .cost-table thead th {
+      font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700;
+      color: var(--white); text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 1rem 1.25rem; text-align: center;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+    }
+    .cost-table thead th:first-child {
+      text-align: left; width: 28%;
+    }
+    .cost-table tbody td {
+      padding: 0.9rem 1.25rem; text-align: center;
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .cost-table tbody td:first-child {
+      text-align: left; font-weight: 600; color: rgba(255,255,255,0.8);
+      font-family: var(--font-heading); font-size: 0.78rem;
+    }
+    .cost-table tbody tr:nth-child(odd) td {
+      background: var(--dark-2);
+    }
+    .cost-table tbody tr:nth-child(even) td {
+      background: rgba(30,41,59,0.6);
+    }
+    .cost-table tbody tr:last-child td {
+      font-weight: 700; color: var(--white);
+      background: rgba(91,184,245,0.08);
+    }
+    .cost-table tbody tr:last-child td:first-child {
+      color: var(--blue-light);
+    }
+
+    /* INFOGRAPHIC 3 — Feature matrix */
+    .feature-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      border-radius: 12px; overflow: hidden; position: relative;
+    }
+    .feature-table thead th {
+      font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700;
+      color: var(--white); text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 1rem 1rem; text-align: center;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+    }
+    .feature-table thead th:first-child {
+      text-align: left; width: 30%;
+    }
+    .feature-table tbody td {
+      padding: 0.75rem 1rem; text-align: center;
+      font-size: 0.95rem; color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .feature-table tbody td:first-child {
+      text-align: left; font-weight: 600; color: rgba(255,255,255,0.8);
+      font-family: var(--font-heading); font-size: 0.78rem;
+    }
+    .feature-table tbody tr:nth-child(odd) td {
+      background: var(--dark-2);
+    }
+    .feature-table tbody tr:nth-child(even) td {
+      background: rgba(30,41,59,0.6);
+    }
+    .feat-yes { color: #34D399; font-size: 1.1rem; }
+    .feat-partial { color: #FBBF24; font-size: 1.1rem; }
+    .feat-no { color: #EF4444; font-size: 1.1rem; }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .profile-cards { grid-template-columns: 1fr; }
+      .cost-table thead th, .cost-table tbody td { padding: 0.7rem 0.6rem; font-size: 0.7rem; }
+      .feature-table thead th, .feature-table tbody td { padding: 0.6rem 0.5rem; font-size: 0.7rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .cost-table { display: block; overflow-x: auto; }
+      .feature-table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Comparativo ERP</span>
+  <h1>TOTVS vs Sankhya vs Nomus: qual ERP industrial para PMIs em 2026?</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      10 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Se você pesquisou "melhor ERP para indústria" no Google, provavelmente caiu num artigo genérico que lista 10 sistemas sem explicar qual deles realmente funciona para uma fábrica com 30 a 200 funcionários.</p>
+
+  <p>Esse artigo é diferente. Aqui, vamos comparar os três ERPs que mais aparecem nas buscas de gestores industriais brasileiros — <strong>TOTVS Protheus, Sankhya e Nomus</strong> — sob a perspectiva de quem realmente precisa decidir: o dono ou gestor de uma pequena ou média indústria (PMI).</p>
+
+  <p>Não vamos repetir o que está no site de cada fornecedor. Vamos falar sobre o que eles não colocam no material de vendas: custo real de implantação, complexidade operacional, adequação ao chão de fábrica e o que acontece depois que o contrato é assinado.</p>
+
+  <hr class="article-divider">
+
+  <h2>Antes de comparar: o que uma PMI realmente precisa de um ERP</h2>
+
+  <p>Existe uma armadilha comum na escolha de ERP industrial: avaliar o sistema pela quantidade de funcionalidades em vez de avaliar pela adequação ao contexto real da fábrica.</p>
+
+  <p>Uma PMI com faturamento entre R$ 5 e R$ 50 milhões/ano tem necessidades muito diferentes de uma multinacional. O time de TI (quando existe) é uma pessoa. O orçamento de implantação não pode consumir meses de caixa. E o sistema precisa ser adotado por operadores que nunca usaram software de gestão.</p>
+
+  <p>Os critérios que realmente importam para essa realidade são:</p>
+
+  <ul>
+    <li><strong>Custo total no primeiro ano</strong> — não apenas a mensalidade, mas implantação, treinamento e customizações</li>
+    <li><strong>Tempo até o sistema estar operando</strong> — cada mês de implantação é um mês sem retorno sobre o investimento</li>
+    <li><strong>Adoção no chão de fábrica</strong> — se o operador não usa, o dado não existe</li>
+    <li><strong>Autonomia do gestor</strong> — depender de consultoria externa para cada ajuste cria um custo oculto permanente</li>
+    <li><strong>Escalabilidade real</strong> — o sistema precisa crescer com a fábrica, sem recontratação de projeto</li>
+  </ul>
+
+  <p>Com esses critérios claros, vamos olhar cada concorrente.</p>
+
+  <h2>TOTVS Protheus: o gigante que foi feito para outros gigantes</h2>
+
+  <p>A TOTVS é o maior fornecedor de ERP do Brasil. Ponto. Com mais de 70 mil clientes e uma participação dominante no mercado nacional, é impossível falar de ERP sem mencioná-la. O Protheus é seu produto mais conhecido para o segmento industrial.</p>
+
+  <h3>O que funciona bem</h3>
+
+  <p>O Protheus é um sistema maduro. Tem décadas de desenvolvimento, cobertura fiscal completa para a legislação brasileira e módulos para praticamente qualquer necessidade: manufatura, compras, estoque, financeiro, contábil, fiscal, RH. A comunidade de desenvolvedores e consultores é enorme — se você precisa de alguém que saiba mexer no Protheus, vai encontrar.</p>
+
+  <p>Para indústrias de grande porte, com equipe de TI dedicada e orçamento robusto, o Protheus oferece profundidade funcional difícil de igualar.</p>
+
+  <h3>Onde complica para PMIs</h3>
+
+  <p>O problema começa no modelo de negócio. O Protheus foi construído para empresas grandes e depois adaptado (comercialmente, não tecnicamente) para empresas menores. Isso significa que a PMI recebe o mesmo sistema complexo, mas com menos suporte e menos orçamento para domá-lo.</p>
+
+  <p><strong>Implantação longa e cara.</strong> Projetos de Protheus para indústria raramente ficam abaixo de R$ 30 mil em implantação — e facilmente passam de R$ 100 mil quando incluem módulos de manufatura. O tempo típico é de 6 a 12 meses até a operação completa.</p>
+
+  <p><strong>Dependência de consultoria.</strong> A linguagem proprietária (ADVPL/TL++) cria uma barreira: qualquer customização requer um desenvolvedor especializado. Para a PMI, isso significa pagar consultoria recorrente para ajustes que, em outros sistemas, seriam configuráveis pelo próprio gestor.</p>
+
+  <p><strong>Interface do chão de fábrica.</strong> O Protheus tem módulos de PCP e apontamento, mas a experiência no celular do operador ainda é secundária. A lógica de navegação reflete a complexidade do sistema — muitos campos, muitas telas, muita curva de aprendizado para quem precisa apontar em 30 segundos.</p>
+
+  <h3>Veredicto para PMIs</h3>
+
+  <p>O TOTVS Protheus é como comprar um caminhão para entregar encomendas no bairro. Ele faz o serviço, mas o custo de operação, manutenção e o tamanho do veículo estão dimensionados para uma escala que a PMI não tem — e talvez não venha a ter nos próximos 5 anos.</p>
+
+  <h2>Sankhya: a alternativa moderna com preço de interrogação</h2>
+
+  <p>A Sankhya se posiciona como uma alternativa mais moderna à TOTVS, com foco em gestão integrada e uma interface visual superior. Nos últimos anos, ganhou espaço significativo entre empresas de médio porte.</p>
+
+  <h3>O que funciona bem</h3>
+
+  <p>A interface é, de fato, mais amigável que a do Protheus. A plataforma é web-native, o que elimina problemas de instalação local. Os dashboards e relatórios são bem construídos, e o sistema tem boa cobertura fiscal e contábil.</p>
+
+  <p>A Sankhya também investe forte em comunidade e eventos — o SankhyaW é referência no mercado. Isso cria um ecossistema de parceiros e integradores que facilita a vida do cliente.</p>
+
+  <h3>Onde complica para PMIs</h3>
+
+  <p><strong>Precificação opaca.</strong> A Sankhya não publica preços. Isso já é um sinal: quando o preço depende inteiramente da negociação, quem tem menos poder de barganha (a PMI) tende a pagar mais proporcionalmente. Os relatos de mercado sugerem que o custo total fica entre o Protheus e o Nomus, mas sem previsibilidade.</p>
+
+  <p><strong>Foco generalista.</strong> A Sankhya é forte em gestão empresarial (financeiro, fiscal, contábil), mas o módulo de manufatura não tem a mesma profundidade. Para uma indústria que precisa de PCP detalhado, MRP com múltiplos níveis, ou rastreabilidade lote a lote, o sistema pode exigir customizações significativas.</p>
+
+  <p><strong>Implantação via parceiros.</strong> A experiência de implantação varia muito dependendo do parceiro local. Alguns são excelentes; outros, nem tanto. Para a PMI que está em uma cidade menor, a disponibilidade de um bom parceiro pode ser o fator determinante — e isso não está sob controle da Sankhya.</p>
+
+  <p><strong>Chão de fábrica como extensão.</strong> Assim como no Protheus, o módulo de produção existe, mas foi construído como extensão do ERP administrativo, não como o coração do sistema. O operador não é o usuário primário.</p>
+
+  <h3>Veredicto para PMIs</h3>
+
+  <p>A Sankhya é uma evolução em experiência de uso comparada ao Protheus, mas mantém a mesma lógica de construção: um ERP administrativo que estica para o chão de fábrica. Para PMIs com necessidades mais complexas de manufatura, a pergunta que fica é: o módulo industrial tem a profundidade que você precisa, ou vai precisar complementar com outro sistema?</p>
+
+  <h2>Nomus: o especialista em manufatura com cara de planilha turbinada</h2>
+
+  <p>A Nomus é uma das poucas empresas brasileiras que nasceu focada em ERP industrial. O público-alvo declarado são pequenas e médias indústrias, e o discurso é centrado em PCP, custos e chão de fábrica.</p>
+
+  <h3>O que funciona bem</h3>
+
+  <p><strong>Foco real em manufatura.</strong> A Nomus entende o vocabulário do gestor industrial. Os módulos de PCP, engenharia de produto e custeio foram construídos como funcionalidades primárias, não como add-ons. Isso se traduz em uma lógica de uso que faz sentido para quem vive a realidade fabril.</p>
+
+  <p><strong>Preço acessível e transparente.</strong> Com planos publicados que vão de R$ 490 a R$ 4.090/mês, a Nomus é significativamente mais acessível que TOTVS e Sankhya. A implantação também é mais enxuta, com projetos que podem começar a rodar em semanas, não meses.</p>
+
+  <p><strong>Conteúdo educativo.</strong> A Nomus investe pesado em conteúdo — blog, vídeos, webinars sobre gestão industrial. Para o gestor que está aprendendo sobre ERP, esse material é genuinamente útil.</p>
+
+  <h3>Onde complica para PMIs</h3>
+
+  <p><strong>Interface datada.</strong> A experiência visual do Nomus lembra softwares da década passada. Telas densas, muitos campos, navegação por menus tradicionais. Para o gestor que já se acostumou com interfaces modernas (pense no nível de usabilidade de um Nubank ou iFood), a curva de aprendizado pode ser frustrante.</p>
+
+  <p><strong>Mobile limitado.</strong> Embora tenha funcionalidades acessíveis via navegador, a experiência mobile não foi construída pensando no operador do chão de fábrica com celular de entrada e 30 segundos entre etapas. O apontamento mobile existe, mas não é a experiência central.</p>
+
+  <p><strong>Escalabilidade técnica.</strong> Para indústrias que planejam crescer rapidamente ou que precisam de integrações complexas com outros sistemas, a arquitetura pode apresentar limitações. A API e as opções de integração são mais restritas que as dos concorrentes maiores.</p>
+
+  <p><strong>Sem modo offline.</strong> Em fábricas com rede instável — que é a realidade da maioria das PMIs brasileiras — a dependência de conexão contínua pode ser um problema crítico para o apontamento de produção.</p>
+
+  <h3>Veredicto para PMIs</h3>
+
+  <p>A Nomus é a opção com melhor custo-benefício entre as três para quem busca um ERP focado em manufatura. Mas a interface e a experiência mobile revelam uma limitação estrutural: o sistema foi construído para o gestor que configura e analisa, não para o operador que precisa apontar no chão de fábrica com velocidade e simplicidade.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — 3 perfis em uma frase -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      3 perfis em uma frase
+    </div>
+    <div class="profile-cards">
+      <div class="profile-card">
+        <div class="profile-card-name">TOTVS Protheus</div>
+        <div class="profile-card-tagline">"Feito para grandes, vendido para médias"</div>
+        <div class="profile-card-label">Adequação PMI</div>
+        <div class="rating-bar-bg">
+          <div class="rating-bar-fill" style="width: 50%;"></div>
+        </div>
+        <div class="rating-bar-value">5/10</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-name">Sankhya</div>
+        <div class="profile-card-tagline">"Mais moderno, preço opaco"</div>
+        <div class="profile-card-label">Adequação PMI</div>
+        <div class="rating-bar-bg">
+          <div class="rating-bar-fill" style="width: 60%;"></div>
+        </div>
+        <div class="rating-bar-value">6/10</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-name">Nomus</div>
+        <div class="profile-card-tagline">"Especialista em manufatura, interface de 2015"</div>
+        <div class="profile-card-label">Adequação PMI</div>
+        <div class="rating-bar-bg">
+          <div class="rating-bar-fill" style="width: 70%;"></div>
+        </div>
+        <div class="rating-bar-value">7/10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O custo real que ninguém coloca no slide de vendas</h2>
+
+  <p>A maior armadilha na escolha de ERP é comparar apenas a mensalidade. O custo real inclui implantação, treinamento, customizações e, principalmente, o custo oculto da consultoria recorrente.</p>
+
+  <p>Quando um fornecedor diz "a partir de R$ X por mês", ele está omitindo que a mensalidade é apenas 30-40% do custo total no primeiro ano. O restante vai para implantação, treinamento e aqueles "ajustes" que sempre aparecem nos primeiros meses.</p>
+
+  <p>Para uma PMI com 30 a 100 funcionários, a conta real fica assim:</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Custo real comparativo -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Custo real comparativo — PMI 30 a 100 funcionários
+    </div>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>TOTVS Protheus</th>
+          <th>Sankhya</th>
+          <th>Nomus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mensalidade</td>
+          <td>R$ 1.800 – 8.000</td>
+          <td>Não publicada</td>
+          <td>R$ 490 – 4.090</td>
+        </tr>
+        <tr>
+          <td>Implantação</td>
+          <td>R$ 30 – 300k</td>
+          <td>R$ 30 – 100k</td>
+          <td>R$ 5 – 30k</td>
+        </tr>
+        <tr>
+          <td>Total 1º ano</td>
+          <td>R$ 80 – 300k</td>
+          <td>R$ 60 – 200k</td>
+          <td>R$ 16 – 80k</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Note que a faixa de variação é enorme em todos os casos. Isso acontece porque o custo final depende do número de módulos, usuários, complexidade da operação e, principalmente, da habilidade de negociação do comprador.</p>
+
+  <p>Para a PMI, o número que importa é o <strong>total do primeiro ano</strong>. É esse número que vai competir com outras prioridades de investimento — uma máquina nova, um galpão maior, capital de giro.</p>
+
+  <p>Existe ainda um custo que não entra na tabela: o <strong>custo da não-adoção</strong>. Se você paga R$ 80 mil no primeiro ano e o chão de fábrica não usa o sistema, o desperdício não é de R$ 80 mil — é de R$ 80 mil mais todos os dados de produção que continuam perdidos em cadernos e planilhas.</p>
+
+  <h2>Capacidades técnicas: o que cada um entrega de verdade</h2>
+
+  <p>Quando o assunto é funcionalidade industrial, a conversa precisa ir além do "temos esse módulo". O que importa é a profundidade da implementação e a usabilidade real.</p>
+
+  <p>Um sistema pode ter "MRP" na lista de funcionalidades, mas rodar o cálculo de necessidades de material de forma simplificada que não atende uma BOM com 5 níveis. Outro pode ter "PCP" no menu, mas exigir que o planejador preencha 40 campos para programar uma ordem de produção.</p>
+
+  <p>Aqui está o que cada sistema realmente entrega nas funcionalidades que mais importam para a PMI industrial:</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Funcionalidades comparativas -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Funcionalidades comparativas — manufatura
+    </div>
+    <table class="feature-table">
+      <thead>
+        <tr>
+          <th>Funcionalidade</th>
+          <th>TOTVS</th>
+          <th>Sankhya</th>
+          <th>Nomus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MRP</td>
+          <td class="feat-yes">&#10003;</td>
+          <td class="feat-partial">&#9679;</td>
+          <td class="feat-yes">&#10003;</td>
+        </tr>
+        <tr>
+          <td>PCP</td>
+          <td class="feat-yes">&#10003;</td>
+          <td class="feat-partial">&#9679;</td>
+          <td class="feat-yes">&#10003;</td>
+        </tr>
+        <tr>
+          <td>Bloco K</td>
+          <td class="feat-yes">&#10003;</td>
+          <td class="feat-yes">&#10003;</td>
+          <td class="feat-yes">&#10003;</td>
+        </tr>
+        <tr>
+          <td>Custeio real</td>
+          <td class="feat-yes">&#10003;</td>
+          <td class="feat-partial">&#9679;</td>
+          <td class="feat-yes">&#10003;</td>
+        </tr>
+        <tr>
+          <td>Mobile nativo</td>
+          <td class="feat-partial">&#9679;</td>
+          <td class="feat-partial">&#9679;</td>
+          <td class="feat-no">&#10007;</td>
+        </tr>
+        <tr>
+          <td>IA</td>
+          <td class="feat-partial">&#9679;</td>
+          <td class="feat-partial">&#9679;</td>
+          <td class="feat-no">&#10007;</td>
+        </tr>
+        <tr>
+          <td>Offline</td>
+          <td class="feat-no">&#10007;</td>
+          <td class="feat-no">&#10007;</td>
+          <td class="feat-no">&#10007;</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 1.5rem; font-size: 0.72rem; color: rgba(255,255,255,0.4);">
+      <span><span class="feat-yes" style="font-size: 0.85rem;">&#10003;</span> Completo</span>
+      <span><span class="feat-partial" style="font-size: 0.85rem;">&#9679;</span> Parcial / básico</span>
+      <span><span class="feat-no" style="font-size: 0.85rem;">&#10007;</span> Ausente</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Dois pontos chamam atenção nessa comparação:</p>
+
+  <p><strong>Primeiro: nenhum dos três oferece modo offline.</strong> Para uma PMI com chão de fábrica onde a rede Wi-Fi é instável — que é a realidade da esmagadora maioria — isso significa que o apontamento de produção fica refém da conexão. Se caiu a internet, o operador volta para o caderno.</p>
+
+  <p><strong>Segundo: mobile nativo é parcial ou ausente em todos.</strong> "Parcial" significa que existe uma versão mobile, mas ela é uma adaptação da interface desktop — não uma experiência construída do zero para o celular do operador. A diferença é enorme na prática.</p>
+
+  <h2>O que nenhum dos três resolve</h2>
+
+  <p>Depois de analisar TOTVS, Sankhya e Nomus em profundidade, um padrão emerge claramente: os três foram construídos com a mesma filosofia — <strong>do escritório para o chão de fábrica</strong>.</p>
+
+  <p>Todos começam pelo módulo financeiro, fiscal ou contábil. Depois adicionam manufatura. Depois tentam criar uma interface mobile. É uma construção de cima para baixo que deixa o chão de fábrica sempre como prioridade secundária.</p>
+
+  <p>O resultado prático para a PMI é previsível:</p>
+
+  <ul>
+    <li>O financeiro e o fiscal funcionam bem</li>
+    <li>O PCP funciona razoavelmente, mas com complexidade desnecessária</li>
+    <li>O apontamento no chão de fábrica é a parte mais fraca — e é justamente onde os dados de produção são gerados</li>
+    <li>O operador não adota, o dado não existe, e o gestor decide no escuro</li>
+  </ul>
+
+  <p>Não é que esses sistemas sejam ruins. Eles são bons para o que foram projetados. O problema é que foram projetados para um usuário diferente do operador de chão de fábrica de uma PMI brasileira.</p>
+
+  <h2>Existe uma quarta via?</h2>
+
+  <p>A pergunta que o gestor industrial deveria fazer não é "qual desses três eu escolho?" — mas sim "existe uma abordagem que resolve o problema de forma diferente?"</p>
+
+  <p>A resposta é sim.</p>
+
+  <p>Nos últimos anos, surgiu uma nova categoria de software industrial que inverte a lógica de construção: em vez de começar pelo escritório e descer para o chão de fábrica, <strong>começa pelo operador e sobe para o gestor</strong>.</p>
+
+  <p>Esses sistemas partem de uma premissa diferente: se o dado de produção não é capturado no momento em que acontece, pelo operador que está lá, todo o restante do ERP opera com informações incompletas. Então o primeiro problema a resolver não é o financeiro ou o fiscal — é a captura de dados no chão de fábrica.</p>
+
+  <p>Isso muda tudo: a interface precisa funcionar no celular de entrada do operador, em 30 segundos, sem treinamento, com ou sem internet. Só depois que esse dado existe de forma confiável é que ele alimenta o PCP, o custeio, os relatórios gerenciais.</p>
+
+  <blockquote>O melhor ERP é aquele que os seus operadores realmente usam. Sem dados do chão de fábrica, qualquer relatório gerencial é ficção.</blockquote>
+
+  <hr class="article-divider">
+
+  <p>O SYSLED foi construído para preencher exatamente esse espaço. Um sistema que nasce no chão de fábrica — mobile-first, offline-first, feito para o celular do operador — e que transforma dados reais de produção em inteligência para o gestor. Se você quer entender como isso funciona na prática para uma indústria do seu porte, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>E se o ERP começasse pelo chão de fábrica?</h2>
+  <p>Descubra como o SYSLED captura dados de produção em tempo real, direto do celular do operador — sem treinamento, sem complicação, com ou sem internet.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

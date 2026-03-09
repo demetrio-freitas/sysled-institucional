@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERP em nuvem para indústria: o que muda na prática para uma fábrica de médio porte | SYSLED Blog</title>
+  <meta name="description" content="Entenda o que realmente muda quando uma fábrica de médio porte migra para um ERP em nuvem — benefícios reais, exageros do mercado e as perguntas certas para o fornecedor.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — 4 benefit cards */
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .benefit-card {
+      background: linear-gradient(135deg, var(--dark-2), rgba(43,108,176,0.12));
+      border-radius: 14px; padding: 1.5rem 1.25rem;
+      text-align: center; border: 1px solid rgba(91,184,245,0.12);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .benefit-card:hover {
+      border-color: rgba(91,184,245,0.3); transform: translateY(-3px);
+    }
+    .benefit-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.12), rgba(43,108,176,0.12));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .benefit-icon svg { width: 26px; height: 26px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .benefit-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .benefit-desc {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+    }
+
+    /* INFOGRAPHIC 2 — Split comparison real vs exagerado */
+    .split-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      position: relative;
+    }
+    .split-compare::after {
+      content: 'VS'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading); font-weight: 900; font-size: 0.75rem;
+      color: var(--blue-light); background: var(--dark-2);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(91,184,245,0.2); z-index: 2;
+    }
+    .split-card {
+      background: var(--dark-2); border-radius: 14px; padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06); position: relative;
+    }
+    .split-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: var(--white); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .split-card-title .split-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .split-card:first-child .split-icon {
+      background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(22,163,74,0.15));
+    }
+    .split-card:last-child .split-icon {
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(220,100,20,0.15));
+    }
+    .split-card:first-child .split-icon svg { stroke: #22C55E; }
+    .split-card:last-child .split-icon svg { stroke: #F59E0B; }
+    .split-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .split-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .split-item-icon {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .split-card:first-child .split-item-icon {
+      background: rgba(34,197,94,0.1);
+    }
+    .split-card:first-child .split-item-icon svg { stroke: #22C55E; }
+    .split-card:last-child .split-item-icon {
+      background: rgba(245,158,11,0.1);
+    }
+    .split-card:last-child .split-item-icon svg { stroke: #F59E0B; }
+
+    /* INFOGRAPHIC 3 — Questions grid */
+    .questions-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+      position: relative;
+    }
+    .question-card {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.1);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .question-card:hover {
+      border-color: rgba(91,184,245,0.25); transform: translateY(-3px);
+    }
+    .question-card-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 1.2rem;
+    }
+    .question-card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(91,184,245,0.1), rgba(43,108,176,0.1));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .question-card-icon svg { width: 20px; height: 20px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .question-card-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.82rem; color: var(--white);
+    }
+    .question-list {
+      list-style: none; display: flex; flex-direction: column; gap: 0.65rem;
+    }
+    .question-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.55;
+    }
+    .question-number {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.65rem; color: var(--blue-light);
+      background: rgba(91,184,245,0.1); border-radius: 6px;
+      width: 20px; height: 20px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .split-compare { grid-template-columns: 1fr; }
+      .split-compare::after { display: none; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .questions-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Tecnologia Industrial</span>
+  <h1>ERP em nuvem para indústria: o que muda na prática para uma fábrica de médio porte</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      7 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">"Migrar para a nuvem" virou mantra de fornecedor de ERP. Mas quando uma fábrica de médio porte avalia essa decisão, precisa separar o que realmente muda do que é apenas discurso comercial.</p>
+
+  <p>Este artigo não é a favor nem contra a nuvem. É um guia prático para quem precisa decidir com clareza — sem se deixar levar por promessas genéricas nem por medo infundado.</p>
+
+  <p>Vamos ao que importa: o que muda de verdade, o que é exagero, e as perguntas que nenhum fornecedor quer ouvir.</p>
+
+  <hr class="article-divider">
+
+  <h2>O que "ERP em nuvem" realmente significa</h2>
+
+  <p>Antes de discutir benefícios, vale alinhar o conceito. Um ERP em nuvem é um sistema hospedado em servidores remotos (normalmente AWS, Azure ou Google Cloud), acessado via navegador ou aplicativo, onde a infraestrutura é gerenciada pelo fornecedor — não pela sua equipe de TI.</p>
+
+  <p>Isso se opõe ao modelo on-premise, onde o servidor fica dentro da fábrica, a equipe interna cuida de backup, atualizações e segurança, e o acesso é limitado à rede local (ou via VPN).</p>
+
+  <p>A distinção parece simples. Mas as implicações práticas para uma operação industrial são mais nuançadas do que a maioria dos fornecedores admite.</p>
+
+  <h2>4 coisas que realmente mudam — sem exagero</h2>
+
+  <p>Existem benefícios concretos e mensuráveis na migração para nuvem. Aqui estão os quatro que resistem a um olhar crítico:</p>
+
+  <p><strong>1. Zero infraestrutura de TI para manter.</strong> Você não precisa de sala de servidor climatizada, nobreak industrial, técnico de plantão para quando o servidor travar às 3h da manhã. Para uma PMI que não tem (e não deveria ter) um departamento de TI robusto, isso é uma mudança real.</p>
+
+  <p><strong>2. Atualizações automáticas — inclusive fiscais.</strong> Mudanças tributárias, atualizações de layout de NF-e, novas obrigações acessórias. Num sistema on-premise, cada atualização dessas é um projeto. Na nuvem, o fornecedor atualiza e você já está em conformidade. Para quem já perdeu prazo de obrigação fiscal por causa de versão desatualizada, isso tem valor direto.</p>
+
+  <p><strong>3. Acesso de qualquer lugar, por qualquer dispositivo.</strong> O dono da fábrica pode ver os indicadores de produção do celular enquanto viaja. O gerente comercial pode consultar estoque antes de fechar um pedido. Isso não é luxo — é agilidade operacional que se traduz em receita.</p>
+
+  <p><strong>4. Custo previsível no modelo OPEX.</strong> Em vez de um investimento grande de implantação (CAPEX) mais custos imprevisíveis de manutenção, você tem uma mensalidade fixa. Para o fluxo de caixa de uma PMI, essa previsibilidade é relevante.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — O que realmente muda -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      O que realmente muda
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <!-- Server with X -->
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/>
+            <line x1="6" y1="18" x2="6.01" y2="18"/>
+            <line x1="16" y1="3" x2="21" y2="8"/>
+            <line x1="21" y1="3" x2="16" y2="8"/>
+          </svg>
+        </div>
+        <div class="benefit-title">Zero Infraestrutura TI</div>
+        <div class="benefit-desc">Sem sala de servidor, sem nobreak, sem técnico de plantão. O fornecedor cuida de tudo.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <!-- Refresh icon -->
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </div>
+        <div class="benefit-title">Atualizações Fiscais</div>
+        <div class="benefit-desc">NF-e, obrigações acessórias e mudanças tributárias atualizadas automaticamente.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <!-- Globe icon -->
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <div class="benefit-title">Acesso de Qualquer Lugar</div>
+        <div class="benefit-desc">Indicadores no celular durante viagem. Estoque consultado antes de fechar pedido.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <!-- Chart icon -->
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="20" x2="12" y2="10"/>
+            <line x1="18" y1="20" x2="18" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="16"/>
+          </svg>
+        </div>
+        <div class="benefit-title">Custo Previsível OPEX</div>
+        <div class="benefit-desc">Mensalidade fixa no lugar de CAPEX pesado e manutenção imprevisível.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que a nuvem não resolve — e o mercado finge que resolve</h2>
+
+  <p>Aqui é onde a conversa fica honesta. Existem promessas associadas ao ERP em nuvem que não resistem a um exame mais cuidadoso:</p>
+
+  <p><strong>"A nuvem é mais segura."</strong> Depende. AWS e Azure têm segurança de infraestrutura superior ao que qualquer PMI conseguiria montar internamente. Mas segurança não é só infraestrutura. Um ERP em nuvem mal configurado, com senhas fracas, sem autenticação em dois fatores, sem política de acesso por perfil, é tão vulnerável quanto um servidor local. A nuvem dá a base — mas a segurança real depende de como o fornecedor (e você) configuram o sistema.</p>
+
+  <p><strong>"Funciona no celular."</strong> Tecnicamente, sim. Um sistema web abre no navegador do celular. Mas "abrir no celular" é muito diferente de "funcionar bem no celular". Uma tela projetada para desktop, encolhida numa tela de 6 polegadas, com campos minúsculos e navegação confusa, não é mobile — é sofrimento. Se o seu critério for "o operador consegue usar isso no chão de fábrica sem querer jogar o celular na parede", a maioria dos ERPs em nuvem falha.</p>
+
+  <p><strong>"Nunca cai."</strong> O servidor na nuvem tem SLA de 99,9%? Ótimo. Mas o seu acesso ao servidor depende da sua internet. Se a fibra óptica da fábrica cair — e em muitas regiões do Brasil isso acontece com frequência — o ERP em nuvem fica tão inacessível quanto um servidor desligado. Para operações críticas como apontamento de produção, isso é um risco real que precisa ser endereçado com arquitetura offline-first, não com promessa de uptime.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Benefícios reais vs exagerados -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Benefícios reais vs exagerados
+    </div>
+    <div class="split-compare">
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          Real
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Zero infraestrutura de TI para manter
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Atualizações fiscais automáticas
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Acesso remoto de qualquer dispositivo
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            Custo mensal previsível (OPEX)
+          </div>
+        </div>
+      </div>
+      <div class="split-card">
+        <div class="split-card-title">
+          <div class="split-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          Exagerado
+        </div>
+        <div class="split-items">
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            "Mais segura" — depende da configuração, não só da infra
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            "Funciona no celular" — web responsivo não é mobile-first
+          </div>
+          <div class="split-item">
+            <div class="split-item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            "Nunca cai" — depende da sua internet, não só do SLA do servidor
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O elefante na sala: e quando a internet cai?</h2>
+
+  <p>Essa é a pergunta que todo gestor industrial deveria fazer — e que a maioria dos fornecedores de ERP em nuvem evita responder com clareza.</p>
+
+  <p>A realidade de infraestrutura de telecomunicações no Brasil é desigual. Capitais e grandes centros têm fibra estável. Mas muitas fábricas ficam em distritos industriais, cidades menores ou áreas rurais onde a conexão é instável. E mesmo em grandes centros, cortes de fibra acontecem.</p>
+
+  <p>Para o financeiro que está emitindo uma nota fiscal, uma queda de internet de 2 horas é um inconveniente. Ele espera e emite depois.</p>
+
+  <p>Para o chão de fábrica que está apontando produção em tempo real, 2 horas sem sistema significa 2 horas de dados perdidos. Produção que aconteceu mas não foi registrada. Paradas que ocorreram mas não foram contabilizadas. Qualidade que foi inspecionada mas não foi documentada.</p>
+
+  <p>A solução não é "ter duas operadoras de internet" (embora isso ajude). A solução é o sistema ser desenhado com <strong>arquitetura offline-first</strong>: funciona sem internet, registra tudo localmente, e sincroniza automaticamente quando a conexão volta. Sem perda de dado, sem retrabalho.</p>
+
+  <p>Surpreendentemente poucos ERPs em nuvem oferecem isso. A maioria simplesmente assume que você terá internet 100% do tempo — uma premissa que não sobrevive à realidade industrial brasileira.</p>
+
+  <h2>Nuvem vs on-premise: a pergunta errada</h2>
+
+  <p>A maioria dos artigos sobre esse tema enquadra a decisão como "nuvem OU on-premise". Essa é uma falsa dicotomia.</p>
+
+  <p>A pergunta certa não é onde o sistema está hospedado. É: <strong>o sistema foi projetado para a realidade da minha operação?</strong></p>
+
+  <p>Um ERP on-premise mal implantado é tão ruim quanto um ERP em nuvem genérico. E um ERP em nuvem desenhado especificamente para indústria, com arquitetura offline-first, interface mobile-first e dados de produção em tempo real, é incomparavelmente melhor do que um servidor local rodando um sistema de 2005.</p>
+
+  <p>O que importa é a combinação de três fatores:</p>
+
+  <ul>
+    <li><strong>Arquitetura resiliente:</strong> funciona mesmo quando a internet falha.</li>
+    <li><strong>Interface adequada:</strong> projetada para quem realmente usa — incluindo o operador no chão de fábrica.</li>
+    <li><strong>Dados em tempo real:</strong> o gestor vê o que está acontecendo agora, não o que aconteceu ontem.</li>
+  </ul>
+
+  <p>Se o ERP em nuvem que você está avaliando atende esses três critérios, a hospedagem em nuvem é uma vantagem adicional. Se não atende, a nuvem é só um detalhe de infraestrutura que não muda nada na sua operação.</p>
+
+  <h2>12 perguntas para fazer ao fornecedor antes de assinar</h2>
+
+  <p>Se você está avaliando um ERP em nuvem para a sua fábrica, aqui estão as perguntas que vão separar fornecedores sérios de discurso comercial:</p>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Perguntas ao fornecedor -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Perguntas ao fornecedor
+    </div>
+    <div class="questions-grid">
+      <div class="question-card">
+        <div class="question-card-header">
+          <div class="question-card-icon">
+            <!-- Availability icon -->
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="question-card-title">Disponibilidade</div>
+        </div>
+        <ul class="question-list">
+          <li>
+            <span class="question-number">1</span>
+            Qual o SLA contratual de disponibilidade? E qual foi o uptime real nos últimos 12 meses?
+          </li>
+          <li>
+            <span class="question-number">2</span>
+            O sistema funciona offline no chão de fábrica? Como sincroniza quando a internet volta?
+          </li>
+          <li>
+            <span class="question-number">3</span>
+            Se o data center do fornecedor ficar fora do ar, existe redundância? Em quanto tempo o sistema volta?
+          </li>
+        </ul>
+      </div>
+      <div class="question-card">
+        <div class="question-card-header">
+          <div class="question-card-icon">
+            <!-- Data icon -->
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <div class="question-card-title">Dados</div>
+        </div>
+        <ul class="question-list">
+          <li>
+            <span class="question-number">1</span>
+            Se eu cancelar o contrato, como exporto todos os meus dados? Em qual formato? Em quanto tempo?
+          </li>
+          <li>
+            <span class="question-number">2</span>
+            Onde exatamente os dados ficam hospedados? O data center é no Brasil?
+          </li>
+          <li>
+            <span class="question-number">3</span>
+            Qual a política de backup? Consigo restaurar dados de um ponto específico no tempo?
+          </li>
+        </ul>
+      </div>
+      <div class="question-card">
+        <div class="question-card-header">
+          <div class="question-card-icon">
+            <!-- Security icon -->
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="question-card-title">Segurança</div>
+        </div>
+        <ul class="question-list">
+          <li>
+            <span class="question-number">1</span>
+            O sistema tem autenticação em dois fatores? Controle de acesso por perfil e por módulo?
+          </li>
+          <li>
+            <span class="question-number">2</span>
+            Os dados são criptografados em trânsito e em repouso? Qual o padrão de criptografia?
+          </li>
+          <li>
+            <span class="question-number">3</span>
+            O fornecedor tem certificação de segurança (SOC 2, ISO 27001)? Ou apenas "usa AWS"?
+          </li>
+        </ul>
+      </div>
+      <div class="question-card">
+        <div class="question-card-header">
+          <div class="question-card-icon">
+            <!-- Updates icon -->
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+          </div>
+          <div class="question-card-title">Atualizações</div>
+        </div>
+        <ul class="question-list">
+          <li>
+            <span class="question-number">1</span>
+            As atualizações são automáticas ou eu preciso agendar janelas de manutenção?
+          </li>
+          <li>
+            <span class="question-number">2</span>
+            Atualizações fiscais (NF-e, SPED, obrigações acessórias) estão incluídas no contrato ou são cobradas à parte?
+          </li>
+          <li>
+            <span class="question-number">3</span>
+            Se uma atualização gerar problema na minha operação, qual é o processo de rollback?
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Se o fornecedor responder essas 12 perguntas com clareza e especificidade, você está diante de um parceiro sério. Se as respostas forem vagas ou evasivas, isso diz mais do que qualquer apresentação comercial.</p>
+
+  <h2>O que procurar em 2026</h2>
+
+  <p>O mercado de ERP industrial está mudando. Os sistemas legados — aqueles que nasceram nos anos 2000 e foram "adaptados" para nuvem — estão sendo substituídos por plataformas nativas em nuvem, construídas do zero para a realidade atual.</p>
+
+  <p>Os critérios que separavam bons ERPs em 2015 (lista de módulos, integrações, marca do fornecedor) não são mais suficientes. Em 2026, os critérios que importam são:</p>
+
+  <ul>
+    <li><strong>Nativo em nuvem</strong> — não uma versão on-premise hospedada num servidor remoto.</li>
+    <li><strong>Offline-first</strong> — funciona sem internet, sincroniza depois.</li>
+    <li><strong>Mobile-first para chão de fábrica</strong> — projetado para o operador, não adaptado às pressas.</li>
+    <li><strong>Dados de produção em tempo real</strong> — não relatórios consolidados do dia anterior.</li>
+    <li><strong>Transparência contratual</strong> — SLA claro, portabilidade de dados garantida, sem lock-in.</li>
+  </ul>
+
+  <p>A nuvem é o meio, não o fim. O fim é ter visibilidade total da sua operação industrial, do chão de fábrica à diretoria, em tempo real, sem depender de intermediários humanos para transferir dados de um mundo para o outro.</p>
+
+  <hr class="article-divider">
+
+  <p><em>O SYSLED é nativo em nuvem e foi desenhado com offline-first para chão de fábrica. Se quiser entender como isso funciona na prática para uma indústria do seu porte, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>ERP em nuvem que funciona de verdade na indústria</h2>
+  <p>O SYSLED é nativo em nuvem e foi desenhado com offline-first para chão de fábrica — sem depender de internet 100% do tempo.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Demo Gratuita</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

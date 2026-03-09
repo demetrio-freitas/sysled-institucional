@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 sinais de que sua indústria está perdendo dinheiro por falta de rastreabilidade de produção | SYSLED Blog</title>
+  <meta name="description" content="Descubra os 5 sinais de que sua fábrica perde dinheiro por falta de rastreabilidade e quanto isso custa por ano para PMIs industriais brasileiras.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — 5 Signal Cards */
+    .signals-list {
+      display: flex; flex-direction: column; gap: 1rem;
+      position: relative;
+    }
+    .signal-card {
+      display: flex; align-items: center; gap: 1.25rem;
+      background: var(--dark-2); border-radius: 14px; padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(91,184,245,0.1);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .signal-card:hover {
+      border-color: rgba(91,184,245,0.25); transform: translateX(6px);
+    }
+    .signal-number {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-heading); font-weight: 900; font-size: 1.2rem;
+      color: var(--white);
+    }
+    .signal-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(91,184,245,0.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .signal-icon svg { width: 22px; height: 22px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .signal-content { flex: 1; }
+    .signal-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.88rem; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .signal-desc {
+      font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.5;
+    }
+
+    /* INFOGRAPHIC 2 — Cost Breakdown Bars */
+    .cost-bars {
+      display: flex; flex-direction: column; gap: 1rem;
+      position: relative;
+    }
+    .cost-bar-row {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .cost-bar-label {
+      width: 160px; flex-shrink: 0; text-align: right;
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 0.78rem; color: rgba(255,255,255,0.6);
+    }
+    .cost-bar-track {
+      flex: 1; height: 36px; background: var(--dark-2);
+      border-radius: 8px; overflow: hidden; position: relative;
+    }
+    .cost-bar-fill {
+      height: 100%; border-radius: 8px;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 12px;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.72rem; color: var(--white);
+      transition: width 0.8s ease;
+    }
+    .cost-bar-fill.refugo {
+      background: linear-gradient(90deg, #3B82F6, #60A5FA);
+      width: 55%;
+    }
+    .cost-bar-fill.paradas {
+      background: linear-gradient(90deg, #8B5CF6, #A78BFA);
+      width: 42%;
+    }
+    .cost-bar-fill.qualidade {
+      background: linear-gradient(90deg, #F59E0B, #FBBF24);
+      width: 28%;
+    }
+    .cost-bar-fill.pcp {
+      background: linear-gradient(90deg, #EF4444, #F87171);
+      width: 55%;
+    }
+    .cost-total {
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      gap: 1rem;
+    }
+    .cost-total-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .cost-total-value {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.6rem; color: #EF4444;
+      background: rgba(239,68,68,0.1);
+      padding: 8px 20px; border-radius: 12px;
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .cost-total-sub {
+      font-size: 0.68rem; color: rgba(255,255,255,0.3);
+      text-align: center; margin-top: 0.75rem;
+    }
+
+    /* INFOGRAPHIC 3 — Diagnostic Gauge */
+    .diagnostic-gauge {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 2rem; position: relative;
+    }
+    .gauge-question {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 1rem; color: var(--white); text-align: center;
+    }
+    .gauge-levels {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      width: 100%;
+    }
+    .gauge-level {
+      background: var(--dark-2); border-radius: 14px; padding: 1.5rem 1.25rem;
+      text-align: center; border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    .gauge-level:hover { transform: translateY(-3px); }
+    .gauge-level.green { border-color: rgba(34,197,94,0.3); }
+    .gauge-level.green:hover { border-color: rgba(34,197,94,0.6); }
+    .gauge-level.yellow { border-color: rgba(245,158,11,0.3); }
+    .gauge-level.yellow:hover { border-color: rgba(245,158,11,0.6); }
+    .gauge-level.red { border-color: rgba(239,68,68,0.3); }
+    .gauge-level.red:hover { border-color: rgba(239,68,68,0.6); }
+    .gauge-range {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.8rem; margin-bottom: 0.5rem;
+    }
+    .gauge-level.green .gauge-range { color: #22C55E; }
+    .gauge-level.yellow .gauge-range { color: #F59E0B; }
+    .gauge-level.red .gauge-range { color: #EF4444; }
+    .gauge-indicator {
+      width: 40px; height: 4px; border-radius: 2px;
+      margin: 0 auto 0.75rem;
+    }
+    .gauge-level.green .gauge-indicator { background: #22C55E; }
+    .gauge-level.yellow .gauge-indicator { background: #F59E0B; }
+    .gauge-level.red .gauge-indicator { background: #EF4444; }
+    .gauge-status {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; margin-bottom: 0.35rem;
+    }
+    .gauge-level.green .gauge-status { color: #22C55E; }
+    .gauge-level.yellow .gauge-status { color: #F59E0B; }
+    .gauge-level.red .gauge-status { color: #EF4444; }
+    .gauge-desc {
+      font-size: 0.7rem; color: rgba(255,255,255,0.4); line-height: 1.5;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .signal-card { padding: 1rem 1.25rem; gap: 1rem; }
+      .signal-number { width: 40px; height: 40px; font-size: 1rem; }
+      .signal-icon { width: 36px; height: 36px; }
+      .cost-bar-label { width: 100px; font-size: 0.68rem; }
+      .gauge-levels { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .cost-bar-row { flex-direction: column; gap: 0.25rem; align-items: stretch; }
+      .cost-bar-label { width: 100%; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Produtividade</span>
+  <h1>5 sinais de que sua indústria está perdendo dinheiro por falta de rastreabilidade de produção</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      5 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">Existe um tipo de prejuízo que não aparece no balanço mensal. Ele não gera alerta no ERP, não dispara notificação no financeiro e não entra em nenhuma reunião de diretoria. Mas ele está lá — corroendo a margem, inflando custos e fazendo sua fábrica operar abaixo do potencial.</p>
+
+  <p>Esse prejuízo vem da <strong>falta de rastreabilidade de produção</strong>. Da incapacidade de saber, com precisão, o que aconteceu em cada etapa do processo produtivo — quem fez, quando fez, quanto tempo levou, o que deu errado e por quê.</p>
+
+  <p>A maioria das PMIs industriais brasileiras opera assim. Não por negligência, mas porque nunca tiveram acesso a ferramentas pensadas para o chão de fábrica real. O resultado é um conjunto de sinais que, quando você aprende a reconhecer, revelam quanto dinheiro está escorrendo silenciosamente.</p>
+
+  <p>Estes são os 5 sinais mais comuns.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — 5 Signal Cards -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      5 sinais de perda por falta de rastreabilidade
+    </div>
+    <div class="signals-list">
+      <div class="signal-card">
+        <div class="signal-number">1</div>
+        <div class="signal-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="signal-content">
+          <div class="signal-title">Rejeita, mas não sabe por quê</div>
+          <div class="signal-desc">Peças são descartadas ou retrabalhadas sem registro da causa-raiz real</div>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-number">2</div>
+        <div class="signal-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <div class="signal-content">
+          <div class="signal-title">Paradas se repetem</div>
+          <div class="signal-desc">As mesmas máquinas param pelas mesmas razões, semana após semana</div>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-number">3</div>
+        <div class="signal-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/><circle cx="15" cy="17" r="3" style="stroke: #EF4444;"/><line x1="13.5" y1="15.5" x2="16.5" y2="18.5" style="stroke: #EF4444;"/></svg>
+        </div>
+        <div class="signal-content">
+          <div class="signal-title">Custo real &#8800; calculado</div>
+          <div class="signal-desc">O custo de produção no sistema não reflete o que realmente acontece na linha</div>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-number">4</div>
+        <div class="signal-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="7.5" y1="4.21" x2="7.5" y2="4.21"/><line x1="9" y1="18" x2="15" y2="18" style="stroke: #EF4444; stroke-width: 2.5;"/></svg>
+        </div>
+        <div class="signal-content">
+          <div class="signal-title">Qualidade falha no cliente</div>
+          <div class="signal-desc">Defeitos só são descobertos depois da entrega, gerando devoluções e desgaste</div>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-number">5</div>
+        <div class="signal-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="15" r="2"/><polyline points="12 13 12 15 13.5 16"/></svg>
+        </div>
+        <div class="signal-content">
+          <div class="signal-title">PCP com dados de semana passada</div>
+          <div class="signal-desc">O planejamento usa informações defasadas e toma decisões no escuro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Sinal 1: Você rejeita peças, mas não sabe exatamente por quê</h2>
+
+  <p>Toda fábrica tem refugo. Isso é inevitável. O que não é inevitável é não saber a causa real de cada rejeição.</p>
+
+  <p>Quando não existe rastreabilidade, o refugo é registrado como um número global: "hoje rejeitamos 3% da produção". Mas ninguém sabe se esse refugo veio de uma máquina específica, de um lote de matéria-prima com problema, de um setup mal feito no turno da noite, ou de um operador novo que não recebeu orientação suficiente.</p>
+
+  <p>Sem essa informação, o refugo continua. Semana após semana, o mesmo percentual aparece no relatório. Vira "normal". Vira um custo aceito. E o gestor não tem dados para atacar a causa porque <strong>o dado simplesmente não existe de forma estruturada</strong>.</p>
+
+  <p>Uma fábrica com faturamento de R$ 10 milhões e 2% de refugo não rastreado está perdendo entre R$ 80 mil e R$ 200 mil por ano em material, mão de obra e retrabalho que poderiam ser evitados.</p>
+
+  <h2>Sinal 2: As mesmas paradas se repetem</h2>
+
+  <p>Máquina parou. Manutenção foi chamada. Consertou. Voltou a produzir. Duas semanas depois, a mesma máquina para pelo mesmo motivo.</p>
+
+  <p>Esse ciclo é sintoma clássico de falta de rastreabilidade. Quando as paradas não são registradas com contexto — qual máquina, qual defeito, quanto tempo durou, o que foi feito, quem fez — não existe histórico para análise. Cada parada é tratada como evento isolado, quando na verdade pode ser parte de um padrão.</p>
+
+  <p>O custo não é só o tempo da máquina parada. É o custo do manutentor que poderia estar fazendo preventiva. É o custo do lote atrasado. É o custo da hora extra para compensar. É o custo da entrega que atrasou e do cliente que reclamou.</p>
+
+  <p>Numa PMI típica, <strong>paradas recorrentes não rastreadas custam entre R$ 60 mil e R$ 150 mil por ano</strong> quando se soma tudo.</p>
+
+  <h2>Sinal 3: O custo real de produção não bate com o calculado</h2>
+
+  <p>O financeiro calcula o custo de produção com base em premissas: tempo padrão de máquina, consumo teórico de matéria-prima, percentual estimado de refugo. Esses números entram no ERP e formam a base para precificação, margens e decisões comerciais.</p>
+
+  <p>Mas no chão de fábrica, a realidade é outra. O setup demora mais do que o padrão. O consumo de matéria-prima varia conforme o operador. O refugo real é maior do que o estimado. As paradas não contabilizadas comem horas produtivas.</p>
+
+  <p>O resultado: <strong>a margem que aparece no sistema não é a margem real</strong>. O produto que parece rentável pode estar dando prejuízo. A linha que parece eficiente pode estar sendo subsidiada por outra.</p>
+
+  <p>Sem rastreabilidade, o gestor está precificando no escuro. E cada ponto percentual de distorção na margem, numa fábrica de R$ 10 milhões, pode representar R$ 100 mil por ano.</p>
+
+  <h2>Sinal 4: Problemas de qualidade só aparecem no cliente</h2>
+
+  <p>Quando não existe controle rastreável durante a produção, a inspeção de qualidade se resume a duas coisas: uma verificação final antes da expedição (que nem sempre pega tudo) e a reclamação do cliente depois da entrega.</p>
+
+  <p>O custo de uma falha de qualidade que chega ao cliente é exponencialmente maior do que o custo de pegá-la na linha. Inclui o custo logístico da devolução, o reprocessamento ou descarte, o tempo administrativo de tratar a reclamação, e — o mais caro de todos — o dano à relação comercial.</p>
+
+  <p>Com rastreabilidade, você sabe exatamente em qual etapa o desvio ocorreu, pode intervir antes da expedição e, quando um problema chega ao cliente, consegue identificar o lote afetado em minutos em vez de semanas.</p>
+
+  <p><strong>Falhas de qualidade não rastreadas custam entre R$ 40 mil e R$ 100 mil por ano</strong> para uma PMI típica — sem contar o custo intangível de perder a confiança do cliente.</p>
+
+  <h2>Sinal 5: O PCP trabalha com dados de semana passada</h2>
+
+  <p>O planejamento e controle de produção (PCP) é o cérebro operacional da fábrica. Ele decide o que produzir, quando, em qual máquina, com qual prioridade. Mas para decidir bem, precisa de dados atualizados.</p>
+
+  <p>Quando não existe rastreabilidade em tempo real, o PCP opera com dados consolidados manualmente — geralmente com um ou dois dias de defasagem, às vezes uma semana. Isso significa que ele programa a produção de amanhã com base no que aconteceu na semana passada.</p>
+
+  <p>O resultado são decisões desalinhadas: máquinas programadas para ordens que já deveriam ter sido repriorizadas, capacidade mal alocada, prazos prometidos que não podem ser cumpridos. Cada decisão errada do PCP gera um efeito cascata de ineficiência.</p>
+
+  <p><strong>Um PCP operando com dados defasados custa entre R$ 80 mil e R$ 200 mil por ano</strong> em ineficiência acumulada — horas extras desnecessárias, ociosidade, atrasos e reprogramações.</p>
+
+  <h2>O custo acumulado: quanto sua fábrica realmente perde</h2>
+
+  <p>Olhando cada sinal isoladamente, os números já são significativos. Mas o mais revelador é somar tudo. Para uma fábrica com faturamento anual de R$ 10 milhões, a falta de rastreabilidade custa entre <strong>R$ 300 mil e R$ 800 mil por ano</strong>.</p>
+
+  <p>Isso representa de 3% a 8% do faturamento. É dinheiro que não aparece como "prejuízo" em nenhum relatório — aparece como margem menor, custo maior, entrega atrasada, cliente insatisfeito. São custos invisíveis para quem não tem os dados, mas perfeitamente evitáveis para quem tem.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Cost Breakdown -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Custo anual acumulado (fábrica de R$ 10M)
+    </div>
+    <div class="cost-bars">
+      <div class="cost-bar-row">
+        <div class="cost-bar-label">Refugo não rastreado</div>
+        <div class="cost-bar-track">
+          <div class="cost-bar-fill refugo">R$ 80-200k</div>
+        </div>
+      </div>
+      <div class="cost-bar-row">
+        <div class="cost-bar-label">Paradas recorrentes</div>
+        <div class="cost-bar-track">
+          <div class="cost-bar-fill paradas">R$ 60-150k</div>
+        </div>
+      </div>
+      <div class="cost-bar-row">
+        <div class="cost-bar-label">Qualidade no cliente</div>
+        <div class="cost-bar-track">
+          <div class="cost-bar-fill qualidade">R$ 40-100k</div>
+        </div>
+      </div>
+      <div class="cost-bar-row">
+        <div class="cost-bar-label">PCP defasado</div>
+        <div class="cost-bar-track">
+          <div class="cost-bar-fill pcp">R$ 80-200k</div>
+        </div>
+      </div>
+    </div>
+    <div class="cost-total">
+      <div class="cost-total-label">Total estimado</div>
+      <div class="cost-total-value">R$ 300-800k/ano</div>
+    </div>
+    <div class="cost-total-sub">*Estimativa para PMI industrial com faturamento de R$&nbsp;10M/ano</div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>O que muda quando existe rastreabilidade</h2>
+
+  <p>Rastreabilidade de produção não é um luxo de multinacional. É a capacidade básica de saber o que aconteceu, quando, onde e por quê. Com essa informação estruturada, tudo muda:</p>
+
+  <ul>
+    <li><strong>Refugo ganha causa-raiz.</strong> Em vez de "3% de rejeição", você sabe que 60% do refugo vem de uma máquina específica operando fora de parâmetro no turno da noite.</li>
+    <li><strong>Paradas ganham histórico.</strong> O manutentor não conserta o sintoma — ele identifica o padrão e faz a correção definitiva.</li>
+    <li><strong>Custo de produção fica real.</strong> A precificação passa a refletir o que realmente acontece na linha, não o que o padrão teórico diz.</li>
+    <li><strong>Qualidade é controlada no processo.</strong> Desvios são identificados antes da expedição, não depois da reclamação do cliente.</li>
+    <li><strong>PCP opera em tempo real.</strong> As decisões de programação usam dados de hoje, não de semana passada.</li>
+  </ul>
+
+  <p>A rastreabilidade não cria processos novos. Ela estrutura o que já acontece e torna visível o que antes era invisível.</p>
+
+  <hr class="article-divider">
+
+</article>
+
+<!-- INFOGRAPHIC 3 — Diagnostic Gauge -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Teste rápido</span>
+      Quantos sinais você reconheceu?
+    </div>
+    <div class="diagnostic-gauge">
+      <div class="gauge-levels">
+        <div class="gauge-level green">
+          <div class="gauge-range">0-1</div>
+          <div class="gauge-indicator"></div>
+          <div class="gauge-status">Operação sob controle</div>
+          <div class="gauge-desc">Sua fábrica já tem visibilidade razoável. Foque em otimizar o que funciona.</div>
+        </div>
+        <div class="gauge-level yellow">
+          <div class="gauge-range">2-3</div>
+          <div class="gauge-indicator"></div>
+          <div class="gauge-status">Atenção</div>
+          <div class="gauge-desc">Custos invisíveis prováveis. Vale investigar onde estão as lacunas de dados.</div>
+        </div>
+        <div class="gauge-level red">
+          <div class="gauge-range">4-5</div>
+          <div class="gauge-indicator"></div>
+          <div class="gauge-status">Urgente</div>
+          <div class="gauge-desc">Perda significativa. Sua fábrica está operando muito abaixo do potencial por falta de visibilidade.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE FINAL -->
+<article class="article-wrap">
+
+  <p><em>O SYSLED oferece uma sessão de diagnóstico gratuita para PMIs industriais. Se você reconheceu 2 ou mais sinais neste artigo, vale uma conversa de 30 minutos para mapear onde sua fábrica está perdendo dinheiro e como resolver. <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">Agende aqui</a>.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Descubra quanto sua fábrica perde por falta de rastreabilidade</h2>
+  <p>O SYSLED oferece uma sessão de diagnóstico gratuita para PMIs industriais. Mapeamos os pontos cegos da sua produção e mostramos o caminho para recuperar a margem perdida.</p>
+  <a href="./#contato" class="btn btn-white">Agendar Diagnóstico Gratuito</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

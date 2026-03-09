@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quanto custa implementar um ERP industrial no Brasil em 2026? Valores reais | SYSLED Blog</title>
+  <meta name="description" content="Valores reais de ERP industrial no Brasil em 2026: licenças, implantação, customizações e suporte. Comparativo completo sem omissões para PMEs industriais.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* BLOG HERO */
+    .blog-hero {
+      min-height: 52vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blog-hero-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
+      max-width: 760px;
+    }
+    .blog-hero-meta {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+    .blog-hero-meta svg { width: 16px; height: 16px; stroke: var(--blue-light); fill: none; stroke-width: 2; }
+    .blog-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ARTICLE */
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+    .article-wrap p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--gray-600);
+      margin-bottom: 1.6rem;
+    }
+    .article-wrap h2 {
+      font-family: var(--font-heading); font-weight: 800; color: var(--dark);
+      font-size: clamp(1.4rem, 3vw, 1.75rem); letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: 3rem; margin-bottom: 1.2rem;
+    }
+    .article-wrap h3 {
+      font-family: var(--font-heading); font-weight: 700; color: var(--dark);
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem); letter-spacing: -0.01em;
+      line-height: 1.3; margin-top: 2.5rem; margin-bottom: 1rem;
+    }
+    .article-wrap strong { color: var(--dark); font-weight: 600; }
+    .article-wrap blockquote {
+      border-left: 4px solid var(--blue-light);
+      background: var(--gray-50); padding: 1.25rem 1.5rem;
+      margin: 2rem 0; border-radius: 0 10px 10px 0;
+      font-style: italic; color: var(--gray-600);
+      font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap ul, .article-wrap ol {
+      margin: 1rem 0 1.6rem 1.5rem;
+      color: var(--gray-600); font-size: 1.05rem; line-height: 1.85;
+    }
+    .article-wrap li { margin-bottom: 0.5rem; }
+    .article-lead {
+      font-size: 1.15rem !important; color: var(--dark) !important;
+      font-weight: 400; line-height: 1.85;
+    }
+    .article-divider {
+      width: 60px; height: 3px; margin: 3rem auto;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-deep));
+      border: none; border-radius: 2px;
+    }
+
+    /* INFOGRAPHIC SECTIONS */
+    .infographic-section {
+      max-width: 900px; margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .infographic-inner {
+      background: var(--dark); border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      border: 1px solid rgba(91,184,245,0.1);
+    }
+    .infographic-inner::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .infographic-title {
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1.1rem; color: var(--white); text-align: center;
+      margin-bottom: 2rem; position: relative;
+    }
+    .infographic-title span {
+      font-size: 0.6rem; font-weight: 700; color: var(--blue-light);
+      text-transform: uppercase; letter-spacing: 0.15em;
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    /* INFOGRAPHIC 1 — 4 Cost Components (horizontal flow) */
+    .cost-flow {
+      display: flex; align-items: flex-start; justify-content: center;
+      gap: 0; position: relative; flex-wrap: nowrap;
+    }
+    .cost-block {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; flex: 1; max-width: 180px; padding: 0 0.5rem;
+    }
+    .cost-block-icon {
+      width: 60px; height: 60px; border-radius: 16px;
+      background: var(--dark-2); border: 2px solid rgba(91,184,245,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.85rem;
+    }
+    .cost-block-icon svg { width: 26px; height: 26px; stroke: var(--blue-light); fill: none; stroke-width: 1.8; }
+    .cost-block-label {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.78rem; color: var(--white); margin-bottom: 0.4rem;
+    }
+    .cost-block-desc {
+      font-size: 0.68rem; color: rgba(255,255,255,0.4); line-height: 1.55; max-width: 150px;
+    }
+    .cost-arrow {
+      display: flex; align-items: center; flex: 0 0 auto;
+      padding-top: 18px;
+    }
+    .cost-arrow-line {
+      width: 36px; height: 2px;
+      background: linear-gradient(90deg, rgba(91,184,245,0.5), rgba(91,184,245,0.15));
+      position: relative;
+    }
+    .cost-arrow-line::after {
+      content: ''; position: absolute; right: -4px; top: -3px;
+      width: 0; height: 0; border-left: 6px solid rgba(91,184,245,0.5);
+      border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+    }
+
+    /* INFOGRAPHIC 2 — Pricing Table */
+    .pricing-table-wrap {
+      overflow-x: auto; position: relative;
+    }
+    .pricing-table {
+      width: 100%; border-collapse: collapse; min-width: 600px;
+    }
+    .pricing-table thead th {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 1rem 0.75rem; text-align: center; color: var(--white);
+      border-bottom: 2px solid rgba(91,184,245,0.15);
+    }
+    .pricing-table thead th:first-child {
+      text-align: left; color: rgba(255,255,255,0.4);
+    }
+    .pricing-table thead th .tier-badge {
+      display: inline-block; padding: 3px 10px; border-radius: 6px;
+      font-size: 0.62rem; font-weight: 700; margin-top: 4px;
+    }
+    .tier-gen { background: rgba(148,163,184,0.15); color: var(--gray-400); }
+    .tier-esp { background: rgba(91,184,245,0.15); color: var(--blue-light); }
+    .tier-mid { background: rgba(168,85,247,0.15); color: #C084FC; }
+    .tier-ent { background: rgba(245,158,11,0.15); color: #FBBF24; }
+    .pricing-table tbody td {
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 0.82rem; padding: 0.85rem 0.75rem; text-align: center;
+      color: rgba(255,255,255,0.7); border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .pricing-table tbody td:first-child {
+      text-align: left; font-weight: 500; font-family: var(--font-body);
+      font-size: 0.78rem; color: rgba(255,255,255,0.45);
+    }
+    .pricing-table tbody tr:last-child td {
+      border-bottom: none; padding-top: 1rem;
+      font-weight: 800; color: var(--white); font-size: 0.88rem;
+    }
+    .pricing-table tbody tr:last-child td:first-child {
+      color: var(--blue-light); font-weight: 700; font-family: var(--font-heading);
+      font-size: 0.78rem;
+    }
+
+    /* INFOGRAPHIC 3 — TCO Bar Chart */
+    .tco-chart {
+      position: relative; max-width: 600px; margin: 0 auto;
+    }
+    .tco-bar-row {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
+    }
+    .tco-bar-label {
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 0.78rem; color: rgba(255,255,255,0.6);
+      width: 130px; flex-shrink: 0; text-align: right;
+    }
+    .tco-bar-track {
+      flex: 1; height: 42px; background: var(--dark-2);
+      border-radius: 10px; position: relative; overflow: hidden;
+    }
+    .tco-bar-fill {
+      height: 100%; border-radius: 10px; display: flex;
+      align-items: center; justify-content: flex-end; padding-right: 14px;
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 0.85rem; color: var(--white);
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tco-bar-fill.bar-blue {
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-light));
+      width: 42%;
+    }
+    .tco-bar-fill.bar-gray {
+      background: linear-gradient(90deg, #475569, #64748B);
+      width: 100%;
+    }
+    .tco-savings {
+      text-align: center; margin-top: 2rem;
+      padding: 1.2rem; background: rgba(91,184,245,0.08);
+      border: 1px solid rgba(91,184,245,0.15); border-radius: 12px;
+    }
+    .tco-savings-amount {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: 1.4rem; color: var(--blue-light); margin-bottom: 0.25rem;
+    }
+    .tco-savings-label {
+      font-size: 0.72rem; color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center; padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--white);
+      margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      font-size: 1rem; color: rgba(255,255,255,0.45);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .btn {
+      display: inline-block; padding: 14px 36px; border-radius: 12px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .article-wrap { padding: 3rem 1.25rem 2rem; }
+      .infographic-section { padding: 0 1rem; }
+      .infographic-inner { padding: 1.5rem; }
+      .cost-flow { flex-direction: column; align-items: center; gap: 0.5rem; }
+      .cost-arrow { transform: rotate(90deg); padding-top: 0; }
+      .cost-block { max-width: none; }
+      .pricing-table-wrap { margin: 0 -0.5rem; }
+      .tco-bar-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .tco-bar-label { width: auto; text-align: left; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .blog-hero h1 { font-size: 1.4rem; }
+      .blog-hero-meta { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <span class="blog-hero-tag">Custos ERP</span>
+  <h1>Quanto custa implementar um ERP industrial no Brasil em 2026? Valores reais, sem omissões</h1>
+  <div class="blog-hero-meta">
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      8 minutos de leitura
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Março 2026
+    </span>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <p class="article-lead">A pergunta mais pesquisada por donos de indústria antes de contratar um ERP é também a mais mal respondida.</p>
+
+  <p>"Quanto custa um ERP industrial?" — e o que aparece no Google é uma coleção de respostas evasivas: "depende do porte", "solicite um orçamento", "entre em contato com nosso comercial". Páginas inteiras que dançam ao redor do número sem nunca dizê-lo.</p>
+
+  <p>Existe uma razão para isso. A maioria dos fornecedores de ERP trata o preço como informação estratégica — algo que só deve ser revelado depois que o vendedor já entendeu o orçamento do comprador. Isso cria uma assimetria que beneficia quem vende e prejudica quem compra.</p>
+
+  <p>Neste artigo, vamos fazer o oposto. Vamos abrir a estrutura real de custo de um ERP industrial no Brasil em 2026, com valores de mercado, faixas por perfil de fornecedor e os custos ocultos que transformam um investimento planejado em surpresa desagradável.</p>
+
+  <hr class="article-divider">
+
+  <h2>A estrutura de custo que ninguém explica antes da assinatura</h2>
+
+  <p>O custo de um ERP industrial nunca é apenas a mensalidade. Quando um fornecedor apresenta um valor mensal atrativo, ele está mostrando apenas uma das quatro camadas de custo que compõem o investimento real.</p>
+
+  <p>Essas quatro camadas existem em qualquer fornecedor — do mais barato ao mais caro. A diferença está na proporção entre elas e na transparência com que são apresentadas.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 1 — 4 Cost Components -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      4 componentes de custo de um ERP industrial
+    </div>
+    <div class="cost-flow">
+      <div class="cost-block">
+        <div class="cost-block-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>
+        </div>
+        <div class="cost-block-label">Licença / Mensalidade</div>
+        <div class="cost-block-desc">Valor recorrente pelo uso do software. Varia por usuários ou módulos ativos.</div>
+      </div>
+
+      <div class="cost-arrow">
+        <div class="cost-arrow-line"></div>
+      </div>
+
+      <div class="cost-block">
+        <div class="cost-block-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.38-2 2.5-2 3.5 0 2.5 3.5 3 3.5 3s3.5-.5 3.5-3c0-1-.5-2.12-2-3.5L4.5 16.5z"/><path d="M12 2L8 6h8l-4-4z"/><line x1="12" y1="6" x2="12" y2="14"/></svg>
+        </div>
+        <div class="cost-block-label">Implantação</div>
+        <div class="cost-block-desc">Setup inicial, migração de dados, configuração e treinamento da equipe.</div>
+      </div>
+
+      <div class="cost-arrow">
+        <div class="cost-arrow-line"></div>
+      </div>
+
+      <div class="cost-block">
+        <div class="cost-block-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="cost-block-label">Customizações</div>
+        <div class="cost-block-desc">Adaptações específicas para o processo da sua fábrica. Podem ou não existir.</div>
+      </div>
+
+      <div class="cost-arrow">
+        <div class="cost-arrow-line"></div>
+      </div>
+
+      <div class="cost-block">
+        <div class="cost-block-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div class="cost-block-label">Suporte Contínuo</div>
+        <div class="cost-block-desc">Manutenção, atualizações, atendimento técnico e acompanhamento pós-go-live.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>Entender essa estrutura é o primeiro passo para comparar fornecedores de forma honesta. Um ERP com mensalidade baixa mas implantação de R$ 80 mil pode custar mais no primeiro ano do que um com mensalidade mais alta e implantação inclusa.</p>
+
+  <h2>Faixa 1: ERPs generalistas de entrada (R$ 50 a R$ 650/mês)</h2>
+
+  <p>São plataformas como Bling, Tiny e Conta Azul — sistemas de gestão que atendem bem o financeiro, emissão de notas e controle de estoque básico. São acessíveis, rápidos de implementar e funcionais para o que se propõem.</p>
+
+  <p>O problema aparece quando uma indústria tenta usar essas plataformas para controlar produção. Elas não foram desenhadas para isso. Não têm apontamento de chão de fábrica, ordem de produção com roteiro, rastreabilidade de lote ou controle de qualidade integrado.</p>
+
+  <ul>
+    <li><strong>Mensalidade:</strong> R$ 50 a R$ 650/mês</li>
+    <li><strong>Implantação:</strong> R$ 0 a R$ 2.000 (geralmente autoatendimento)</li>
+    <li><strong>Customizações:</strong> inexistentes ou via integrações externas</li>
+    <li><strong>Custo total do 1º ano:</strong> R$ 600 a R$ 10.000</li>
+  </ul>
+
+  <p><strong>Quando faz sentido:</strong> indústrias muito pequenas (até 10 funcionários) que ainda não têm complexidade de produção e precisam organizar o básico financeiro primeiro.</p>
+
+  <h2>Faixa 2: ERPs especializados para indústria (R$ 490 a R$ 4.090/mês)</h2>
+
+  <p>Aqui entram os sistemas que foram construídos especificamente para fábricas. O SYSLED se posiciona nesta faixa. São plataformas que entendem o vocabulário da produção — ordem de produção, roteiro de fabricação, apontamento, OEE, rastreabilidade.</p>
+
+  <p>A diferença fundamental é que esses sistemas começam pelo chão de fábrica, não pelo financeiro. O módulo de produção não é um complemento — é o núcleo do produto.</p>
+
+  <ul>
+    <li><strong>Mensalidade:</strong> R$ 490 a R$ 4.090/mês (dependendo dos módulos e volume)</li>
+    <li><strong>Implantação:</strong> R$ 5.000 a R$ 30.000</li>
+    <li><strong>Customizações:</strong> R$ 0 a R$ 20.000 (muitos operam sem customização)</li>
+    <li><strong>Custo total do 1º ano:</strong> R$ 15.000 a R$ 80.000</li>
+  </ul>
+
+  <p><strong>Quando faz sentido:</strong> PMIs de 15 a 200 funcionários que precisam de controle real da produção, rastreabilidade e dados operacionais confiáveis.</p>
+
+  <h2>Faixa 3: ERPs mid-market (R$ 2.000 a R$ 8.000/mês)</h2>
+
+  <p>TOTVS Protheus, Sankhya e similares. São sistemas robustos, com décadas de mercado e presença em milhares de indústrias brasileiras. Cobrem praticamente qualquer necessidade funcional.</p>
+
+  <p>O ponto de atenção está no custo total de propriedade. A licença é apenas o início. A implantação frequentemente envolve consultorias especializadas, e o prazo pode variar de 6 a 18 meses. Customizações são comuns e caras — e criam dependência da consultoria que as fez.</p>
+
+  <ul>
+    <li><strong>Mensalidade:</strong> R$ 2.000 a R$ 8.000/mês</li>
+    <li><strong>Implantação:</strong> R$ 30.000 a R$ 100.000</li>
+    <li><strong>Customizações:</strong> R$ 10.000 a R$ 80.000</li>
+    <li><strong>Custo total do 1º ano:</strong> R$ 60.000 a R$ 200.000</li>
+  </ul>
+
+  <p><strong>Quando faz sentido:</strong> indústrias acima de 150 funcionários com operações complexas, múltiplas unidades ou exigências regulatórias severas que justifiquem o investimento.</p>
+
+  <h2>Faixa 4: ERPs enterprise (SAP, Oracle — R$ 1.800 a R$ 15.000+/mês por módulo)</h2>
+
+  <p>SAP Business One, SAP S/4HANA, Oracle NetSuite. São sistemas globais, projetados para operações de grande escala. Oferecem tudo — e cobram por tudo.</p>
+
+  <p>O custo de implantação pode facilmente superar o valor de um ano inteiro de licenças. O projeto envolve equipes dedicadas, meses de planejamento e uma mudança organizacional significativa.</p>
+
+  <ul>
+    <li><strong>Mensalidade:</strong> R$ 1.800 a R$ 15.000+/mês (por módulo ou pacote)</li>
+    <li><strong>Implantação:</strong> R$ 30.000 a R$ 300.000+</li>
+    <li><strong>Customizações:</strong> R$ 20.000 a R$ 150.000+</li>
+    <li><strong>Custo total do 1º ano:</strong> R$ 80.000 a R$ 400.000+</li>
+  </ul>
+
+  <p><strong>Quando faz sentido:</strong> indústrias com faturamento acima de R$ 50 milhões/ano, operações internacionais ou exigências de compliance que só essas plataformas atendem.</p>
+
+</article>
+
+<!-- INFOGRAPHIC 2 — Pricing Table -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      Valores por perfil de fornecedor — comparativo direto
+    </div>
+    <div class="pricing-table-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Generalista<br><span class="tier-badge tier-gen">Entrada</span></th>
+            <th>Especializado<br><span class="tier-badge tier-esp">Indústria</span></th>
+            <th>Mid-Market<br><span class="tier-badge tier-mid">Corporativo</span></th>
+            <th>Enterprise<br><span class="tier-badge tier-ent">Global</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mensalidade</td>
+            <td>R$ 50–650</td>
+            <td>R$ 490–4.090</td>
+            <td>R$ 2–8 mil</td>
+            <td>R$ 1,8–15 mil</td>
+          </tr>
+          <tr>
+            <td>Implantação</td>
+            <td>R$ 0–2 mil</td>
+            <td>R$ 5–30 mil</td>
+            <td>R$ 30–100 mil</td>
+            <td>R$ 30–300 mil</td>
+          </tr>
+          <tr>
+            <td>Total 1º ano</td>
+            <td>R$ 0,6–10 mil</td>
+            <td>R$ 15–80 mil</td>
+            <td>R$ 60–200 mil</td>
+            <td>R$ 80–400 mil</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <h2>Os custos que não aparecem na proposta</h2>
+
+  <p>Além das quatro camadas que descrevemos, existem custos que quase nunca são mencionados na fase comercial — mas que aparecem inevitavelmente durante ou após a implantação.</p>
+
+  <h3>Custo de parada operacional durante a implantação</h3>
+
+  <p>Quanto tempo a sua equipe vai dedicar ao projeto de implantação? Reuniões de levantamento, validação de dados migrados, testes, treinamento. Esse tempo tem custo — e raramente é contabilizado. Em projetos mid-market, é comum que o gestor de TI ou o gerente industrial dedique 20-40% do seu tempo ao projeto por meses.</p>
+
+  <h3>Custo de customizações que viram dependência</h3>
+
+  <p>Toda customização cria uma amarração. Quando o fornecedor atualiza o sistema, a customização precisa ser refeita ou adaptada. Isso gera custo recorrente e cria dependência da consultoria que fez o trabalho original. Algumas indústrias gastam mais em manutenção de customizações do que na própria licença.</p>
+
+  <h3>Custo da adoção que não acontece</h3>
+
+  <p>O custo mais caro de todos não está no contrato — está no ERP que foi pago mas não é usado. Quando o chão de fábrica não adota o sistema, os dados de produção não existem, e o investimento inteiro perde o sentido. Você paga por uma ferramenta que funciona em 40% da operação.</p>
+
+  <h3>Custo de troca (lock-in)</h3>
+
+  <p>Quanto custa trocar de ERP depois de 2 anos? Migração de dados, retraining, novo processo de implantação. Isso cria um incentivo perverso: mesmo insatisfeito, o custo de sair é tão alto que o cliente fica. Fornecedores sabem disso — e alguns desenham seus contratos contando com isso.</p>
+
+  <h2>TCO de 3 anos: a conta que realmente importa</h2>
+
+  <p>O custo do primeiro ano é enganoso porque inclui a implantação — um custo que não se repete. Para comparar fornecedores de forma justa, o indicador correto é o <strong>TCO (Total Cost of Ownership) de 3 anos</strong>.</p>
+
+  <p>Vamos comparar dois cenários reais para uma PMI com 60 funcionários:</p>
+
+  <p><strong>Cenário A — ERP especializado para indústria:</strong></p>
+  <ul>
+    <li>Mensalidade: R$ 1.500/mês = R$ 54.000 em 3 anos</li>
+    <li>Implantação: R$ 18.000 (uma vez)</li>
+    <li>Customizações: R$ 8.000</li>
+    <li>Suporte adicional: R$ 10.000 em 3 anos</li>
+    <li><strong>TCO 3 anos: ~R$ 90.000</strong></li>
+  </ul>
+
+  <p><strong>Cenário B — ERP mid-market tradicional:</strong></p>
+  <ul>
+    <li>Mensalidade: R$ 3.500/mês = R$ 126.000 em 3 anos</li>
+    <li>Implantação: R$ 45.000 (uma vez)</li>
+    <li>Customizações: R$ 25.000</li>
+    <li>Manutenção de customizações: R$ 17.000 em 3 anos</li>
+    <li><strong>TCO 3 anos: ~R$ 213.000</strong></li>
+  </ul>
+
+</article>
+
+<!-- INFOGRAPHIC 3 — TCO Bar Chart -->
+<div class="infographic-section reveal">
+  <div class="infographic-inner">
+    <div class="infographic-title">
+      <span>Infográfico</span>
+      TCO 3 anos — comparativo direto
+    </div>
+    <div class="tco-chart">
+      <div class="tco-bar-row">
+        <div class="tco-bar-label">ERP Especializado</div>
+        <div class="tco-bar-track">
+          <div class="tco-bar-fill bar-blue">R$ 90.000</div>
+        </div>
+      </div>
+      <div class="tco-bar-row">
+        <div class="tco-bar-label">Mid-Market</div>
+        <div class="tco-bar-track">
+          <div class="tco-bar-fill bar-gray">R$ 213.000</div>
+        </div>
+      </div>
+      <div class="tco-savings">
+        <div class="tco-savings-amount">R$ 123.000 de economia</div>
+        <div class="tco-savings-label">em 3 anos com ERP especializado para indústria — sem perda funcional no chão de fábrica</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE CONTINUES -->
+<article class="article-wrap">
+
+  <p>A diferença de R$ 123 mil em 3 anos não é abstrata. É dinheiro que pode ser investido em equipamentos, contratações ou capital de giro. E no cenário A, o sistema foi projetado para a produção — o que significa maior adoção no chão de fábrica e dados mais confiáveis para tomada de decisão.</p>
+
+  <h2>O que perguntar antes de assinar qualquer contrato</h2>
+
+  <p>Com essa estrutura de custo clara, existem perguntas específicas que revelam a honestidade de um fornecedor:</p>
+
+  <ol>
+    <li><strong>"Qual é o custo total do primeiro ano, incluindo implantação?"</strong> — Se o vendedor não souber responder com uma faixa concreta, ele não quer que você saiba.</li>
+    <li><strong>"Quantas customizações são necessárias para o meu caso?"</strong> — Um ERP bem projetado para o seu segmento exige poucas ou nenhuma customização.</li>
+    <li><strong>"Qual é o prazo real de implantação?"</strong> — "Depende" não é resposta. Peça exemplos de clientes similares com prazo concreto.</li>
+    <li><strong>"O que acontece se eu quiser sair?"</strong> — Portabilidade de dados, aviso prévio, formato de exportação. Isso diz muito sobre a confiança do fornecedor no próprio produto.</li>
+    <li><strong>"Onde estão seus preços publicados?"</strong> — A resposta a essa pergunta, por si só, já é um indicador de transparência.</li>
+  </ol>
+
+  <h2>Por que transparência de preço é um sinal de produto maduro</h2>
+
+  <p>Existe uma correlação interessante no mercado de software: os fornecedores mais confiantes no próprio produto são os que publicam seus preços. Quando o preço está na página, o produto precisa se justificar pelo valor que entrega — não pela habilidade do vendedor em calibrar o orçamento.</p>
+
+  <p>Esconder o preço é uma tática comercial que protege margens variáveis. Publicar o preço é uma decisão de produto que respeita o tempo do comprador.</p>
+
+  <p>Indústrias que estão comparando fornecedores em 2026 deveriam considerar a transparência de preço como critério de seleção — não apenas como detalhe comercial.</p>
+
+  <hr class="article-divider">
+
+  <p><em>No SYSLED, publicamos nossos preços. Se quiser ver os valores detalhados por módulo e simular o custo para o seu porte de operação, <a href="./#contato" style="color: var(--blue-deep); font-weight: 600; text-decoration: underline;">fale com a gente</a> ou acesse a página de planos.</em></p>
+
+</article>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2>Saiba exatamente quanto custa antes de decidir</h2>
+  <p>No SYSLED, publicamos nossos preços. Sem surpresas na implantação, sem custos ocultos. Veja se faz sentido para a sua operação.</p>
+  <a href="./#contato" class="btn btn-white">Ver Planos e Preços</a>
+  <a href="demo-como-funciona.html" class="btn btn-outline">Ver Como Funciona</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

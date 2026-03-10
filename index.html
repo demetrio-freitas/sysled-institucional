@@ -138,6 +138,17 @@
       display: flex; flex-direction: column; align-items: center; gap: 6px;
     }
     .hero-scroll svg { width: 16px; height: 16px; color: var(--blue-mid); animation: bob 2s infinite; }
+    .trust-bar {
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 3rem; padding-top: 2.5rem;
+      border-top: 1px solid var(--gray-200);
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600;
+      color: var(--gray-400);
+    }
+    .trust-item svg { width: 16px; height: 16px; color: var(--blue-mid); }
     @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
     /* ===== SHARED ===== */
@@ -841,14 +852,32 @@
 <!-- HERO -->
 <section class="hero">
   <img src="sysled-icone.svg" alt="" class="hero-cloud">
-  <h1>Inteligência que <span class="accent">conecta</span><br>sua indústria.</h1>
-  <p class="hero-p">O SYSLED é a plataforma que integra dados operacionais, logísticos e produtivos em tempo real, transformando a gestão industrial com automação inteligente e decisões baseadas em dados.</p>
+  <h1>O ERP feito para indústrias que querem <span class="accent">vender mais</span> e operar melhor.</h1>
+  <p class="hero-p">Do chão de fábrica até a venda direta ao consumidor final. O Sysled é o ERP completo que sua indústria precisa — integrado, descomplicado e 100% online.</p>
   <div class="hero-btns">
     <a href="#contato" class="btn btn-blue">
-      Agendar Demo
+      Testar grátis 15 dias
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
-    <a href="#produto" class="btn btn-ghost">Ver Produto</a>
+    <a href="#produto" class="btn btn-ghost">Ver módulos</a>
+  </div>
+  <div class="trust-bar">
+    <span class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Implanta em 15 dias
+    </span>
+    <span class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      IA integrada
+    </span>
+    <span class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      100% online
+    </span>
+    <span class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      NF-e automática
+    </span>
   </div>
   <div class="hero-scroll">
     Scroll

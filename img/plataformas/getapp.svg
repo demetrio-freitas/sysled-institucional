@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 100" role="img">
+  <title>GetApp</title>
+  <!-- GetApp arrow-down icon -->
+  <g transform="translate(15, 10)">
+    <rect width="80" height="80" rx="16" fill="#00B4B6"/>
+    <g transform="translate(40, 12) scale(0.7)">
+      <path d="M0 0L-30 38h18v16h24v-16h18L0 0z" fill="#fff" transform="translate(0, 5)"/>
+      <rect x="-20" y="65" width="40" height="8" rx="3" fill="#fff" opacity="0.85"/>
+    </g>
+  </g>
+  <text x="112" y="62" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="600" fill="#00B4B6" letter-spacing="-0.5">GetApp</text>
+</svg>

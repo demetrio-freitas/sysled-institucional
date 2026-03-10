@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 100" role="img">
+  <title>ABStartups</title>
+  <!-- ABStartups rocket icon -->
+  <g transform="translate(15, 10)">
+    <rect width="80" height="80" rx="16" fill="#1B1464"/>
+    <g transform="translate(40, 42)">
+      <!-- Rocket/launch icon -->
+      <path d="M0-26c-5 7-9 16-9 26 0 4 1 7 3 9l-7 5 3.5 3.5 5.5-4c2 1.5 4 2.5 5.5 2.5s3.5-1 5.5-2.5l5.5 4 3.5-3.5-7-5c2-2 3-5 3-9 0-10-4-19-9-26h-2.5zm0 8c0 0 5.5 9 5.5 18 0 3.5-2.5 6.5-5.5 6.5s-5.5-3-5.5-6.5c0-9 5.5-18 5.5-18z" fill="#fff"/>
+    </g>
+  </g>
+  <text x="112" y="62" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="600" fill="#1B1464" letter-spacing="-0.5">ABStartups</text>
+</svg>

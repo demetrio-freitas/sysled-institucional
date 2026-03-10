@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 100" role="img">
+  <title>Capterra</title>
+  <!-- Icon scaled from original Capterra logo -->
+  <g transform="translate(10, 5) scale(0.27)">
+    <path d="M4.978 121.868l135.18.027 82.2.014V40.475z" fill="#FF9D28"/>
+    <path d="M222.357 40.475v287.503L325.022 2.022z" fill="#FF9D28" opacity="0.7"/>
+    <path d="M222.357 121.909l-82.199-.014 82.2 206.083z" fill="#FF9D28" opacity="0.5"/>
+    <path d="M4.978 121.868l156.26 52.905-21.08-52.878-135.18-.027z" fill="#FF9D28" opacity="0.85"/>
+  </g>
+  <text x="115" y="62" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="600" fill="#FF9D28" letter-spacing="-0.5">Capterra</text>
+</svg>

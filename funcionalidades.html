@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funcionalidades — Módulo Produção | SYSLED</title>
+  <meta name="description" content="OS digitais offline, IoT preditivo, QR Code por lote e painel ao vivo. Conheça os recursos avançados do módulo de produção do Sysled.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --blue-soft: #A8E0F8;
+      --blue-dark: #1B2D5B;
+      --blue-accent: #5BA4CF;
+      --cyan: #48C9B0;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    body {
+      font-family: var(--font-body); color: var(--dark);
+      background: var(--white); line-height: 1.6; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== HEADER DA SEÇÃO ===== */
+    .section-header {
+      text-align: center; padding: 5rem 2rem 1rem;
+    }
+    .section-tag {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-accent); text-transform: uppercase;
+      letter-spacing: 0.18em; margin-bottom: 1rem;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 16px; border-radius: 20px;
+      background: rgba(91,164,207,0.08); border: 1px solid rgba(91,164,207,0.18);
+    }
+    .section-tag svg { width: 14px; height: 14px; }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1.1; color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--gray-400); max-width: 520px;
+      line-height: 1.7; margin: 0 auto;
+    }
+
+    /* ===== FEATURES (mesmo estilo da home) ===== */
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    .features-list { display: flex; flex-direction: column; gap: 6rem; padding: 4rem 0 6rem; }
+
+    .feature-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+
+    .feature-num {
+      font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
+      color: var(--blue-deep); letter-spacing: 0.15em; margin-bottom: 1rem;
+    }
+    .feature-row h3 {
+      font-family: var(--font-heading); font-size: 1.8rem; font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1.12; color: var(--dark); margin-bottom: 1rem;
+    }
+    .feature-row .desc {
+      font-size: 0.92rem; color: var(--gray-400); line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .feature-bullets {
+      list-style: none; display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .feature-bullets li {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; color: var(--gray-600); font-weight: 500;
+    }
+    .feature-bullets li svg {
+      width: 16px; height: 16px; flex-shrink: 0; color: var(--success);
+    }
+
+    /* ===== VISUAL (mockup do sistema) ===== */
+    .feature-visual {
+      background: var(--gray-50); border-radius: 20px; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--gray-200); overflow: hidden;
+    }
+    .fv-inner { width: 85%; }
+
+    /* Cards do sistema */
+    .fv-card {
+      background: #fff; border-radius: 12px; padding: 1.25rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06); border: 1px solid var(--gray-200);
+    }
+    .fv-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .fv-badge {
+      font-size: 0.55rem; font-weight: 700; padding: 3px 10px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .fv-badge.open { background: rgba(91,184,245,0.1); color: var(--blue-deep); }
+    .fv-badge.done { background: rgba(16,185,129,0.1); color: var(--success); }
+    .fv-badge.offline { background: rgba(148,163,184,0.1); color: var(--gray-600); }
+    .fv-badge.warn { background: rgba(245,158,11,0.1); color: #D97706; }
+    .fv-badge.sync { background: rgba(72,201,176,0.1); color: var(--cyan); }
+    .fv-id { font-size: 0.6rem; color: var(--gray-400); font-weight: 600; }
+    .fv-title { font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .fv-meta { display: flex; gap: 1rem; font-size: 0.6rem; color: var(--gray-400); }
+    .fv-progress { height: 4px; border-radius: 100px; background: var(--gray-200); margin-top: 10px; }
+    .fv-progress-fill { height: 100%; border-radius: 100px; }
+    .fv-progress-fill.blue { background: linear-gradient(90deg, var(--blue-light), var(--blue-deep)); }
+    .fv-progress-fill.green { background: var(--success); }
+
+    /* Mini cards */
+    .fv-minis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .fv-mini {
+      background: #fff; border-radius: 10px; padding: 12px;
+      border: 1px solid var(--gray-200);
+    }
+    .fv-mini-label { font-size: 0.5rem; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .fv-mini-val { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 900; color: var(--dark); margin-top: 2px; }
+    .fv-mini-note { font-size: 0.5rem; font-weight: 700; }
+
+    /* Gauge */
+    .fv-gauge { text-align: center; }
+    .fv-gauge-ring {
+      width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 10px;
+      border: 6px solid var(--gray-200); position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fv-gauge-ring::before {
+      content: ''; position: absolute; inset: -6px; border-radius: 50%;
+      border: 6px solid transparent;
+    }
+    .fv-gauge-ring.ok::before { border-top-color: var(--success); border-right-color: var(--success); transform: rotate(45deg); }
+    .fv-gauge-ring.warn::before { border-top-color: var(--warning); border-right-color: var(--warning); border-bottom-color: var(--warning); transform: rotate(20deg); }
+    .fv-gauge-val { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 900; color: var(--dark); }
+    .fv-gauge-label { font-size: 0.6rem; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .fv-gauge-status { font-size: 0.6rem; font-weight: 700; margin-top: 3px; }
+
+    /* Rows de dados */
+    .fv-rows { margin-top: 10px; }
+    .fv-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 7px 0; border-bottom: 1px solid var(--gray-100);
+      font-size: 0.62rem; color: var(--gray-400);
+    }
+    .fv-row:last-child { border-bottom: none; }
+    .fv-row strong { color: var(--dark); font-weight: 600; }
+    .fv-row .status-dot {
+      width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 4px;
+    }
+
+    /* Wifi indicator */
+    .fv-wifi {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 0.55rem; color: var(--gray-400); margin-top: 8px;
+    }
+    .fv-wifi svg { width: 12px; height: 12px; }
+    .fv-wifi.off svg { opacity: 0.3; }
+    .fv-wifi.on svg { color: var(--success); }
+
+    /* QR visual */
+    .fv-qr-grid {
+      display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center;
+    }
+    .fv-qr-box {
+      width: 72px; height: 72px; border-radius: 10px;
+      background: var(--white); border: 2px solid var(--dark);
+      display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(7, 1fr);
+      gap: 1px; padding: 6px;
+    }
+    .fv-qr-cell { border-radius: 1px; }
+    .fv-qr-cell.b { background: var(--dark); }
+    .fv-qr-cell.w { background: transparent; }
+    .fv-qr-info { display: flex; flex-direction: column; gap: 4px; }
+    .fv-qr-lote {
+      font-family: var(--font-heading); font-size: 0.75rem; font-weight: 800;
+      color: var(--dark);
+    }
+    .fv-qr-detail { font-size: 0.58rem; color: var(--gray-400); }
+
+    /* Timeline de rastreio */
+    .fv-trace { margin-top: 12px; padding-left: 12px; border-left: 2px solid var(--gray-200); }
+    .fv-trace-item {
+      position: relative; padding: 0 0 10px 14px;
+      font-size: 0.58rem; color: var(--gray-400);
+    }
+    .fv-trace-item:last-child { padding-bottom: 0; }
+    .fv-trace-item::before {
+      content: ''; position: absolute; left: -18px; top: 3px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gray-200); border: 2px solid var(--white);
+    }
+    .fv-trace-item.active::before { background: var(--success); }
+    .fv-trace-item.current::before { background: var(--blue-light); }
+    .fv-trace-item strong { color: var(--dark); }
+
+    /* Painel TV */
+    /* Painel TV (fundo branco) */
+    .fv-tv-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px;
+    }
+    .fv-tv-title {
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+      color: var(--dark);
+    }
+    .fv-tv-live {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 0.5rem; font-weight: 700; color: var(--success);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .fv-tv-live::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--success); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .fv-tv-bar-section {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: 10px; padding: 12px; margin-top: 10px;
+    }
+    .fv-tv-bar-title { font-size: 0.5rem; color: var(--gray-400); font-weight: 600; margin-bottom: 8px; }
+    .fv-tv-bars { display: flex; align-items: flex-end; gap: 4px; height: 50px; }
+    .fv-tv-b {
+      flex: 1; border-radius: 3px 3px 0 0; min-height: 4px;
+    }
+    .fv-tv-b.pri { background: linear-gradient(180deg, var(--blue-light), var(--blue-deep)); }
+    .fv-tv-b.sec { background: var(--gray-200); }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; color: var(--dark); }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px; background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s; box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* ===== OUTROS MÓDULOS ===== */
+    .modulos-section {
+      padding: 5rem 2rem; background: var(--gray-50);
+      text-align: center;
+    }
+    .modulos-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      max-width: 1080px; margin: 2.5rem auto 0;
+    }
+    .mod-card {
+      border: 1px solid var(--gray-200); border-radius: 16px; padding: 2rem;
+      background: #fff; text-align: left; transition: all 0.3s;
+    }
+    .mod-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.05); transform: translateY(-3px); }
+    .mod-icon {
+      width: 48px; height: 48px; border-radius: 12px; margin-bottom: 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(91,184,245,0.08), rgba(43,108,176,0.06));
+    }
+    .mod-icon svg { width: 22px; height: 22px; color: var(--blue-deep); }
+    .mod-card h4 { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .mod-card p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.65; }
+
+    /* ===== CTA FINAL ===== */
+    .final-cta {
+      text-align: center; padding: 8rem 2rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a3a5c 50%, var(--blue-deep) 100%);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .final-cta::before {
+      content: ''; position: absolute; top: -300px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,184,245,0.08) 0%, transparent 70%);
+    }
+    .final-cta > * { position: relative; }
+    .final-cta h2 {
+      font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.25rem;
+    }
+    .final-cta p { font-size: 1rem; color: rgba(255,255,255,0.4); max-width: 420px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px; font-family: var(--font-heading);
+      font-size: 0.85rem; font-weight: 700; text-decoration: none;
+      transition: all 0.25s; border: none; cursor: pointer;
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-white { background: #fff; color: var(--dark); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 3rem 2rem;
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;
+    }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1080px; margin: 0 auto; padding-top: 1.5rem;
+    }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .feature-row, .feature-row.reverse { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
+      .feature-visual { aspect-ratio: auto; padding: 2rem 1rem; }
+      .features-list { gap: 4rem; }
+      .modulos-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#modulos">Módulos</a></li>
+    <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
+    <li><a href="index.html#contato" class="nav-cta">Testar grátis</a></li>
+  </ul>
+</nav>
+
+<!-- Header -->
+<div class="section-header" style="padding-top: 8rem;">
+  <div class="section-tag">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852 1.003 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    Módulo Produção
+  </div>
+  <h2 class="section-title">Recursos que levam sua<br>fábrica ao próximo nível.</h2>
+  <p class="section-sub">Tecnologia que funciona onde sua operação acontece. No chão de fábrica, com ou sem internet.</p>
+</div>
+
+<div class="wrap">
+  <div class="features-list">
+
+    <!-- ====== 01 — OS DIGITAIS OFFLINE ====== -->
+    <div class="feature-row">
+      <div>
+        <div class="feature-num">01</div>
+        <h3>OS digitais que<br>funcionam offline.</h3>
+        <p class="desc">Abra, preencha e finalize ordens de serviço direto no tablet ou celular. Sem depender de Wi-Fi. Os dados sincronizam automaticamente quando a conexão voltar.</p>
+        <ul class="feature-bullets">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Funciona em áreas sem cobertura de sinal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sincronização automática ao reconectar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fotos, assinaturas e checklists integrados</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-inner">
+          <div class="fv-card">
+            <div class="fv-header">
+              <span class="fv-badge open">Em Execução</span>
+              <span class="fv-id">#OS-1247</span>
+            </div>
+            <div class="fv-title">Manutenção Preventiva — Extrusora L-03</div>
+            <div class="fv-meta"><span>Carlos Silva</span><span>Setor B2</span><span>Prioridade Alta</span></div>
+            <div class="fv-progress"><div class="fv-progress-fill blue" style="width:65%"></div></div>
+            <div class="fv-rows">
+              <div class="fv-row"><span>Checklist</span><strong>4 de 6 itens</strong></div>
+              <div class="fv-row"><span>Fotos anexas</span><strong>2 registros</strong></div>
+              <div class="fv-row"><span>Tempo decorrido</span><strong>1h 24min</strong></div>
+            </div>
+            <div class="fv-wifi off">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+              Offline — dados salvos localmente
+            </div>
+          </div>
+          <div class="fv-card" style="margin-top: 8px; opacity: 0.45; transform: scale(0.96);">
+            <div class="fv-header">
+              <span class="fv-badge done">Concluída</span>
+              <span class="fv-id">#OS-1246</span>
+            </div>
+            <div class="fv-title">Inspeção — Compressor C-12</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== 02 — IOT PREDITIVO ====== -->
+    <div class="feature-row reverse">
+      <div>
+        <div class="feature-num">02</div>
+        <h3>IoT preditivo.<br>Falha evitada.</h3>
+        <p class="desc">Sensores conectados às suas máquinas monitoram vibração, temperatura e consumo. A IA identifica padrões anormais e avisa antes da falha acontecer.</p>
+        <ul class="feature-bullets">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Reduz paradas não planejadas em até 70%</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Alertas por vibração e temperatura</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Histórico de saúde de cada equipamento</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-inner">
+          <div class="fv-card">
+            <div class="fv-header">
+              <span class="fv-badge warn">Atenção</span>
+              <span class="fv-id">Extrusora L-03</span>
+            </div>
+            <div class="fv-title">Monitoramento em tempo real</div>
+            <div class="fv-minis">
+              <div class="fv-mini">
+                <div class="fv-mini-label">Vibração</div>
+                <div class="fv-mini-val">4.2 <span style="font-size:0.6rem;font-weight:400">mm/s</span></div>
+                <div class="fv-mini-note" style="color:var(--warning)">Acima do ideal</div>
+              </div>
+              <div class="fv-mini">
+                <div class="fv-mini-label">Temperatura</div>
+                <div class="fv-mini-val">72°C</div>
+                <div class="fv-mini-note" style="color:var(--success)">Normal</div>
+              </div>
+              <div class="fv-mini">
+                <div class="fv-mini-label">Consumo</div>
+                <div class="fv-mini-val">12.4 <span style="font-size:0.6rem;font-weight:400">kW</span></div>
+                <div class="fv-mini-note" style="color:var(--success)">Estável</div>
+              </div>
+              <div class="fv-mini">
+                <div class="fv-mini-label">Horas ativas</div>
+                <div class="fv-mini-val">1.847h</div>
+                <div class="fv-mini-note" style="color:var(--blue-deep)">Desde última rev.</div>
+              </div>
+            </div>
+            <div style="margin-top:10px; padding:10px 12px; background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.15); border-radius:10px; display:flex; align-items:flex-start; gap:8px;">
+              <svg style="width:16px;height:16px;flex-shrink:0;margin-top:1px;color:var(--warning)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <div>
+                <div style="font-family:var(--font-heading);font-size:0.65rem;font-weight:700;color:var(--dark);margin-bottom:2px">IA recomenda: manutenção em 48h</div>
+                <div style="font-size:0.58rem;color:var(--gray-400)">Padrão de vibração similar à falha registrada em Out/2024.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== 03 — QR CODE POR LOTE ====== -->
+    <div class="feature-row">
+      <div>
+        <div class="feature-num">03</div>
+        <h3>QR Code por lote.<br>Rastreabilidade total.</h3>
+        <p class="desc">Cada lote recebe um QR Code gerado automaticamente. Operador escaneia com celular e registra cada etapa. Se o cliente reclamar, rastreia o lote inteiro em segundos.</p>
+        <ul class="feature-bullets">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>QR Code gerado automaticamente por lote</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Escaneia com o celular que já tem</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Histórico completo de cada produto</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-inner">
+          <div class="fv-card">
+            <div class="fv-header">
+              <span class="fv-badge done">Rastreado</span>
+              <span class="fv-id">Lote #2024-0847</span>
+            </div>
+            <div class="fv-qr-grid">
+              <div class="fv-qr-box">
+                <div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div>
+                <div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div>
+                <div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div>
+                <div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div>
+                <div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div>
+                <div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div>
+                <div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell w"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div><div class="fv-qr-cell b"></div>
+              </div>
+              <div class="fv-qr-info">
+                <div class="fv-qr-lote">Produto: Luminária LED 60W</div>
+                <div class="fv-qr-detail">Lote: 2024-0847 &nbsp;|&nbsp; 500 unidades</div>
+                <div class="fv-qr-detail">Fabricação: 08/03/2026</div>
+              </div>
+            </div>
+            <div class="fv-trace">
+              <div class="fv-trace-item active"><strong>08:15</strong> — Matéria-prima separada</div>
+              <div class="fv-trace-item active"><strong>09:40</strong> — Corte e estampagem concluídos</div>
+              <div class="fv-trace-item active"><strong>11:20</strong> — Montagem finalizada</div>
+              <div class="fv-trace-item current"><strong>13:05</strong> — Teste de qualidade em andamento</div>
+              <div class="fv-trace-item"><strong>—</strong> — Embalagem e expedição</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== 04 — PAINEL AO VIVO ====== -->
+    <div class="feature-row reverse">
+      <div>
+        <div class="feature-num">04</div>
+        <h3>Painel ao vivo no<br>chão de fábrica.</h3>
+        <p class="desc">Dashboard em qualquer TV ou monitor. Produção do dia vs. meta, máquinas ativas e próximas ordens. A equipe enxerga o progresso sem precisar perguntar.</p>
+        <ul class="feature-bullets">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Roda no navegador, sem instalar nada</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Atualização em tempo real</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Equipe alinhada sem reuniões</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-inner">
+          <div class="fv-card">
+            <div class="fv-tv-header">
+              <span class="fv-tv-title">Produção — Linha B</span>
+              <span class="fv-tv-live">Ao vivo</span>
+            </div>
+            <div class="fv-minis" style="grid-template-columns: 1fr 1fr 1fr;">
+              <div class="fv-mini">
+                <div class="fv-mini-label">Produzido</div>
+                <div class="fv-mini-val">847</div>
+                <div class="fv-mini-note" style="color:var(--success)">de 1.000 (meta)</div>
+              </div>
+              <div class="fv-mini">
+                <div class="fv-mini-label">Eficiência</div>
+                <div class="fv-mini-val">92%</div>
+                <div class="fv-mini-note" style="color:var(--success)">+4% vs ontem</div>
+              </div>
+              <div class="fv-mini">
+                <div class="fv-mini-label">Máquinas</div>
+                <div class="fv-mini-val">5/6</div>
+                <div class="fv-mini-note" style="color:var(--warning)">1 em manutenção</div>
+              </div>
+            </div>
+            <div class="fv-tv-bar-section">
+              <div class="fv-tv-bar-title">Produção por hora (hoje)</div>
+              <div class="fv-tv-bars">
+                <div class="fv-tv-b pri" style="height:60%"></div>
+                <div class="fv-tv-b pri" style="height:75%"></div>
+                <div class="fv-tv-b pri" style="height:68%"></div>
+                <div class="fv-tv-b pri" style="height:90%"></div>
+                <div class="fv-tv-b pri" style="height:85%"></div>
+                <div class="fv-tv-b pri" style="height:95%"></div>
+                <div class="fv-tv-b pri" style="height:82%"></div>
+                <div class="fv-tv-b pri" style="height:78%"></div>
+                <div class="fv-tv-b sec" style="height:30%"></div>
+                <div class="fv-tv-b sec" style="height:20%"></div>
+                <div class="fv-tv-b sec" style="height:10%"></div>
+                <div class="fv-tv-b sec" style="height:5%"></div>
+              </div>
+            </div>
+            <div class="fv-progress" style="margin-top:10px"><div class="fv-progress-fill blue" style="width:84.7%"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:0.55rem;color:var(--gray-400);">
+              <span>84.7% da meta diária</span>
+              <span style="color:var(--success);font-weight:600">153 restantes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- OUTROS MÓDULOS -->
+<section class="modulos-section">
+  <div class="section-tag" style="margin-bottom:1rem;">Explore mais</div>
+  <h2 class="section-title">Outros módulos<br>do Sysled.</h2>
+  <div class="modulos-grid">
+    <div class="mod-card">
+      <div class="mod-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h4>Financeiro e Fiscal</h4>
+      <p>NF-e automática, contas a pagar e receber, DRE e controle fiscal completo integrado à operação.</p>
+    </div>
+    <div class="mod-card">
+      <div class="mod-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h4>Vendas e E-commerce</h4>
+      <p>Venda direta ao consumidor via e-commerce e marketplaces. Mais margem, mais controle sobre o canal.</p>
+    </div>
+    <div class="mod-card">
+      <div class="mod-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <h4>Estoque e Logística</h4>
+      <p>Gestão de inventário, endereçamento, movimentações e rastreabilidade completa de materiais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="final-cta">
+  <img src="sysled-icone.svg" alt="" style="width: 60px; margin-bottom: 2rem; filter: brightness(0) invert(1); opacity: 0.3;">
+  <h2>Sua fábrica merece<br>operar no próximo nível.</h2>
+  <p>Teste o Sysled por 15 dias, sem compromisso. Implantação rápida, suporte dedicado e resultado imediato.</p>
+  <a href="index.html#contato" class="btn btn-white">
+    Testar grátis 15 dias
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>ERP completo para indústrias que querem vender mais e operar melhor. Do chão de fábrica ao consumidor final.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="index.html#modulos">Módulos</a>
+      <a href="index.html#funcionalidades">Funcionalidades</a>
+      <a href="index.html#integracoes">Integrações</a>
+      <a href="index.html#seguranca">Segurança</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="#">Como Funciona</a>
+      <a href="#">Calculadora</a>
+      <a href="#">Comparativo</a>
+      <a href="#">Blog</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="#">Nossa História</a>
+      <a href="index.html#contato">Contato</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

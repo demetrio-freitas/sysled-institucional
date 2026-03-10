@@ -718,6 +718,106 @@
       .t-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
       .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
     }
+
+    /* ===== SEÇÃO MARKETPLACES ===== */
+    .mkt-section {
+      padding: 7rem 2rem; overflow: hidden;
+      background: linear-gradient(165deg, #F0F7FF 0%, #E8F1FB 35%, #EDF4FD 70%, #F5F9FF 100%);
+      position: relative;
+    }
+    .mkt-section::before {
+      content: ''; position: absolute; top: -150px; right: -80px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(126,206,244,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .mkt-section::after {
+      content: ''; position: absolute; bottom: -160px; left: -100px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(168,224,248,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .mkt-content { text-align: center; margin-bottom: 3.5rem; position: relative; }
+    .mkt-label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; padding: 5px 16px; border-radius: 20px; margin-bottom: 1.25rem;
+      color: var(--blue-mid); background: rgba(58,143,214,0.08); border: 1px solid rgba(58,143,214,0.14);
+    }
+    .mkt-title {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; line-height: 1.1;
+      color: var(--dark);
+    }
+    .mkt-sub {
+      font-size: 1rem; line-height: 1.7; max-width: 540px; margin: 1rem auto 0;
+      color: var(--gray-600);
+    }
+    .mkt-features {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      justify-content: center; margin-top: 2rem;
+    }
+    .feat-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600;
+      padding: 8px 16px; border-radius: 8px;
+      color: var(--dark); background: rgba(255,255,255,0.75); border: 1px solid rgba(126,206,244,0.2);
+      backdrop-filter: blur(8px);
+    }
+    .feat-tag svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--blue-mid); }
+    .marquee-container { position: relative; }
+    .marquee-container::before,
+    .marquee-container::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
+    }
+    .marquee-container::before { left: 0; background: linear-gradient(90deg, #F0F7FF, transparent); }
+    .marquee-container::after { right: 0; background: linear-gradient(90deg, transparent, #F5F9FF); }
+    .marquee-row { overflow: hidden; margin-bottom: 1.75rem; }
+    .marquee-track { display: flex; gap: 1.75rem; width: max-content; }
+    .marquee-row .marquee-track { animation: ml 50s linear infinite; }
+    .marquee-row.reverse .marquee-track { animation: mr 55s linear infinite; }
+    .marquee-row:hover .marquee-track { animation-play-state: paused; }
+    @keyframes ml { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes mr { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+    .mkt-counter {
+      text-align: center; margin-top: 2.5rem;
+      font-family: var(--font-heading); font-size: 0.78rem; font-weight: 600;
+      color: var(--gray-600);
+    }
+    .mkt-counter span { color: var(--blue-mid); font-weight: 800; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 14px;
+      border-radius: 20px; padding: 18px 32px; min-width: 220px; height: 90px;
+      flex-shrink: 0; transition: all 0.3s;
+      background: rgba(255,255,255,0.88); border: 1px solid rgba(126,206,244,0.15);
+      box-shadow: 0 4px 16px rgba(126,206,244,0.08);
+      backdrop-filter: blur(8px);
+    }
+    .pill:hover {
+      background: var(--white); box-shadow: 0 12px 36px rgba(126,206,244,0.16);
+      transform: translateY(-3px); border-color: rgba(126,206,244,0.35);
+    }
+    .pill img {
+      width: 52px; height: 52px; border-radius: 12px; object-fit: contain;
+      flex-shrink: 0;
+    }
+    .pill img.wordmark {
+      width: auto; height: 32px; max-width: 180px; border-radius: 0;
+    }
+    .pill.wordmark-only { justify-content: center; min-width: 200px; }
+    .pill.wordmark-only .pill-name { display: none; }
+    .pill .pill-name {
+      font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem;
+      color: var(--dark); letter-spacing: -0.02em; white-space: nowrap;
+    }
+    @media (max-width: 768px) {
+      .mkt-section { padding: 4rem 1rem; }
+      .mkt-features { gap: 0.5rem; }
+      .feat-tag { font-size: 0.65rem; padding: 6px 12px; }
+      .pill { min-width: 180px; height: 72px; padding: 12px 20px; gap: 10px; }
+      .pill img { width: 40px; height: 40px; border-radius: 10px; }
+      .pill .pill-name { font-size: 0.88rem; }
+    }
   </style>
 </head>
 <body>
@@ -1148,6 +1248,73 @@
       MQTT, OPC-UA, Modbus, REST API, webhooks e integrações nativas. Conecte qualquer sistema da sua planta em minutos.
     </p>
   </div>
+</section>
+
+<!-- MARKETPLACES -->
+<section class="mkt-section">
+  <div class="mkt-content">
+    <div class="mkt-label">Integração com Marketplaces</div>
+    <h2 class="mkt-title">Produza e venda direto<br>para seus clientes.</h2>
+    <p class="mkt-sub">Conecte sua linha de produção aos maiores marketplaces do Brasil e do mundo. Sem intermediário. Sem complicação.</p>
+    <div class="mkt-features">
+      <span class="feat-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>+50 integrações nativas</span>
+      <span class="feat-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Estoque centralizado</span>
+      <span class="feat-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pedidos automatizados</span>
+      <span class="feat-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Do chão de fábrica ao cliente final</span>
+    </div>
+  </div>
+
+  <!-- Row 1 -->
+  <div class="marquee-row marquee-container">
+    <div class="marquee-track">
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=amazon.com.br&sz=128" alt=""><span class="pill-name">Amazon</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=mercadolivre.com.br&sz=128" alt=""><span class="pill-name">Mercado Livre</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=lojasrenner.com.br&sz=128" alt=""><span class="pill-name">Renner</span></div>
+      <div class="pill"><img src="img/marketplaces/leroymerlin.svg" alt=""><span class="pill-name">Leroy Merlin</span></div>
+      <div class="pill"><img src="img/marketplaces/tiktok.svg" alt=""><span class="pill-name">TikTok Shop</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=kwai.com&sz=128" alt=""><span class="pill-name">Kwai Shop</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=casasbahia.com.br&sz=128" alt=""><span class="pill-name">Casas Bahia</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=madeiramadeira.com.br&sz=128" alt=""><span class="pill-name">MadeiraMadeira</span></div>
+      <!-- Duplicado para loop -->
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=amazon.com.br&sz=128" alt=""><span class="pill-name">Amazon</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=mercadolivre.com.br&sz=128" alt=""><span class="pill-name">Mercado Livre</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=lojasrenner.com.br&sz=128" alt=""><span class="pill-name">Renner</span></div>
+      <div class="pill"><img src="img/marketplaces/leroymerlin.svg" alt=""><span class="pill-name">Leroy Merlin</span></div>
+      <div class="pill"><img src="img/marketplaces/tiktok.svg" alt=""><span class="pill-name">TikTok Shop</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=kwai.com&sz=128" alt=""><span class="pill-name">Kwai Shop</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=casasbahia.com.br&sz=128" alt=""><span class="pill-name">Casas Bahia</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=madeiramadeira.com.br&sz=128" alt=""><span class="pill-name">MadeiraMadeira</span></div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="marquee-row reverse marquee-container">
+    <div class="marquee-track">
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=olist.com&sz=128" alt=""><span class="pill-name">Olist</span></div>
+      <div class="pill wordmark-only"><img src="img/marketplaces/netshoes.svg" alt="Netshoes" class="wordmark"></div>
+      <div class="pill wordmark-only"><img src="img/marketplaces/americanas.svg" alt="Americanas" class="wordmark"></div>
+      <div class="pill"><img src="img/marketplaces/aliexpress.svg" alt="" style="width:80px;height:80px;"><span class="pill-name">AliExpress</span></div>
+      <div class="pill"><img src="img/marketplaces/shopify.svg" alt=""><span class="pill-name">Shopify</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=privalia.com&sz=128" alt=""><span class="pill-name">Privalia</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=tray.com.br&sz=128" alt=""><span class="pill-name">Tray</span></div>
+      <div class="pill"><img src="img/marketplaces/woocommerce.svg" alt=""><span class="pill-name">WooCommerce</span></div>
+      <div class="pill"><img src="img/marketplaces/shopee.svg" alt=""><span class="pill-name">Shopee</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=shein.com&sz=128" alt=""><span class="pill-name">Shein</span></div>
+      <!-- Duplicado para loop -->
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=olist.com&sz=128" alt=""><span class="pill-name">Olist</span></div>
+      <div class="pill wordmark-only"><img src="img/marketplaces/netshoes.svg" alt="Netshoes" class="wordmark"></div>
+      <div class="pill wordmark-only"><img src="img/marketplaces/americanas.svg" alt="Americanas" class="wordmark"></div>
+      <div class="pill"><img src="img/marketplaces/aliexpress.svg" alt="" style="width:80px;height:80px;"><span class="pill-name">AliExpress</span></div>
+      <div class="pill"><img src="img/marketplaces/shopify.svg" alt=""><span class="pill-name">Shopify</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=privalia.com&sz=128" alt=""><span class="pill-name">Privalia</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=tray.com.br&sz=128" alt=""><span class="pill-name">Tray</span></div>
+      <div class="pill"><img src="img/marketplaces/woocommerce.svg" alt=""><span class="pill-name">WooCommerce</span></div>
+      <div class="pill"><img src="img/marketplaces/shopee.svg" alt=""><span class="pill-name">Shopee</span></div>
+      <div class="pill"><img src="https://www.google.com/s2/favicons?domain=shein.com&sz=128" alt=""><span class="pill-name">Shein</span></div>
+    </div>
+  </div>
+
+  <div class="mkt-counter">Conectado a <span>+50 marketplaces</span> e plataformas de e-commerce</div>
 </section>
 
 <!-- SECURITY (NEW SECTION 2) -->

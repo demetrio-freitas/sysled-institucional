@@ -107,7 +107,14 @@
     .hero {
       min-height: 100vh; display: flex; flex-direction: column;
       align-items: center; justify-content: center; text-align: center;
-      padding: 8rem 2rem 6rem; position: relative;
+      padding: 8rem 2rem 6rem; position: relative; overflow: hidden;
+      background: linear-gradient(165deg, rgba(168,224,248,0.25) 0%, rgba(126,206,244,0.18) 35%, rgba(168,224,248,0.12) 70%, #F8FAFC 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(91,184,245,0.14) 0%, transparent 70%);
+      pointer-events: none;
     }
     .hero-cloud {
       width: 80px; height: auto; margin-bottom: 2rem; opacity: 0.9;
@@ -1227,7 +1234,7 @@
   <img src="sysled-icone.svg" alt="" class="hero-cloud">
   <h1>O ERP feito para indústrias que querem <span class="accent">vender mais</span> e operar melhor.</h1>
   <p class="hero-tagline">Integrado, descomplicado, 100% online.</p>
-  <p class="hero-p">Do chão de fábrica até a venda direta ao consumidor final.<br>O Sysled é o ERP completo que sua indústria precisa.<br>Pronto para escalar sua operação sem limites.</p>
+  <p class="hero-p">Do chão de fábrica até a venda direta ao consumidor final.</p>
   <div class="hero-btns">
     <a href="#contato" class="btn btn-blue">
       Testar grátis 15 dias
@@ -1969,6 +1976,13 @@
   </div>
 
   <div class="mkt-counter">Conectado a <span>+50 marketplaces</span> e plataformas de e-commerce</div>
+
+  <div class="features-cta" style="margin-top: 2.5rem;">
+    <a href="integracoes.html" class="btn-features">
+      Ver todas as integrações
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
 </section>
 
 <!-- SECURITY (NEW SECTION 2) -->

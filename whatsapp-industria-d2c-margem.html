@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Templates WhatsApp — D2C Margem</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #0B141A; color: #E9EDEF; padding: 2rem; }
+    h1 { font-size: 1.1rem; color: #8696A0; text-align: center; margin-bottom: 2rem; font-weight: 500; letter-spacing: 0.5px; }
+    h2 { font-size: 0.75rem; color: #8696A0; text-transform: uppercase; letter-spacing: 1.5px; margin: 2.5rem 0 1rem; text-align: center; }
+
+    .chat-container { max-width: 480px; margin: 0 auto; }
+
+    .bubble {
+      background: #005C4B; border-radius: 8px 8px 8px 0;
+      padding: 10px 14px; margin-bottom: 1.5rem;
+      font-size: 14.5px; line-height: 1.55; color: #E9EDEF;
+      position: relative; word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    .bubble::after {
+      content: ''; position: absolute; bottom: 0; left: -8px;
+      width: 0; height: 0;
+      border-right: 8px solid #005C4B;
+      border-bottom: 8px solid transparent;
+    }
+    .bubble a { color: #53BDEB; text-decoration: none; word-break: break-all; }
+    .bubble .time {
+      display: block; text-align: right; font-size: 11px;
+      color: rgba(255,255,255,0.45); margin-top: 4px;
+    }
+
+    .label {
+      display: inline-block; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
+      padding: 4px 12px; font-size: 11px; color: #8696A0;
+      margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 0.5px;
+    }
+
+    .copy-btn {
+      display: block; width: 100%; margin-top: 8px; padding: 10px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; color: #53BDEB; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; font-family: inherit;
+    }
+    .copy-btn:hover { background: rgba(83,189,235,0.1); border-color: rgba(83,189,235,0.3); }
+    .copy-btn.copied { color: #25D366; border-color: rgba(37,211,102,0.3); }
+
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.06); margin: 2rem 0; }
+
+    .note { font-size: 12px; color: #8696A0; text-align: center; margin-top: 1rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<h1>Templates WhatsApp — Artigo D2C</h1>
+
+<div class="chat-container">
+
+  <!-- VERSÃO 1: CURTA (broadcast / status) -->
+  <h2>Versão 1 — Curta (broadcast / status)</h2>
+  <div class="label">📲 Ideal para: Status, Broadcast rápido</div>
+
+  <div class="bubble" id="v1">A indústria que não vende direto está perdendo margem — e talvez nem saiba.
+
+📉 Varejo pressionando preço
+📉 Inadimplência em recorde histórico
+📉 Margem encolhendo a cada negociação
+
+A saída? Vender direto ao consumidor (D2C).
+
+No novo artigo do blog, explicamos por que o D2C deixou de ser tendência e virou necessidade para a indústria brasileira.
+
+👉 <a href="https://sysled.site/blog-industria-d2c-margem">sysled.site/blog-industria-d2c-margem</a>
+<span class="time">10:30 ✓✓</span></div>
+  <button class="copy-btn" onclick="copyText('v1', this)">Copiar texto</button>
+
+  <div class="divider"></div>
+
+  <!-- VERSÃO 2: COMPLETA (envio individual / grupo) -->
+  <h2>Versão 2 — Completa (envio individual)</h2>
+  <div class="label">💬 Ideal para: Leads quentes, grupos de gestores</div>
+
+  <div class="bubble" id="v2">Oi! Queria compartilhar um artigo que acabamos de publicar no blog do SYSLED. Achei que pode ser relevante pra você:
+
+*A Indústria que Não Vende Direto Está Perdendo Margem — e Talvez Nem Saiba*
+
+O cenário atual:
+📌 Inadimplência empresarial em recorde histórico no Brasil
+📌 Selic no maior nível em quase duas décadas
+📌 Varejistas pressionando a indústria por mais prazo e menor preço
+
+A saída que as indústrias mais espertas já encontraram:
+✅ Mais margem — sem intermediário
+✅ Mais controle — a marca decide para quem vende
+✅ Zero inadimplência — consumidor paga no ato (Pix, cartão)
+
+Só no 1º semestre de 2025, marcas D2C faturaram mais de R$ 3 bilhões (+26% vs ano anterior). E o D2C ainda é só 5% do faturamento da indústria no Brasil — nos EUA já é 15%.
+
+O artigo completo está aqui:
+👉 <a href="https://sysled.site/blog-industria-d2c-margem">sysled.site/blog-industria-d2c-margem</a>
+
+Se quiser entender como o SYSLED ajuda indústrias a estruturar a operação D2C de ponta a ponta, é só me chamar. 🤝
+<span class="time">10:32 ✓✓</span></div>
+  <button class="copy-btn" onclick="copyText('v2', this)">Copiar texto</button>
+
+  <div class="divider"></div>
+
+  <!-- VERSÃO 3: PROVOCATIVA (prospecção fria) -->
+  <h2>Versão 3 — Provocativa (prospecção fria)</h2>
+  <div class="label">🎯 Ideal para: Prospecção, cold outreach</div>
+
+  <div class="bubble" id="v3">Pergunta rápida: a sua indústria ainda depende 100% do varejo para vender?
+
+Se sim, tem um dado que pode te preocupar:
+
+O Brasil bateu *recorde histórico* de inadimplência empresarial em 2025. Vender para varejista com prazo de 60-120 dias virou aposta.
+
+Enquanto isso, indústrias que vendem direto ao consumidor (D2C) cresceram 26% no último ano — e recebem no ato, via Pix.
+
+Escrevi sobre isso no blog:
+👉 <a href="https://sysled.site/blog-industria-d2c-margem">sysled.site/blog-industria-d2c-margem</a>
+
+Vale a leitura de 7 minutos. Se fizer sentido, podemos conversar sobre como estruturar isso na prática.
+<span class="time">10:35 ✓✓</span></div>
+  <button class="copy-btn" onclick="copyText('v3', this)">Copiar texto</button>
+
+  <div class="divider"></div>
+
+  <!-- VERSÃO 4: FOLLOW-UP (pós-demo / pós-contato) -->
+  <h2>Versão 4 — Follow-up (pós-demo / pós-contato)</h2>
+  <div class="label">🔄 Ideal para: Leads que já tiveram contato</div>
+
+  <div class="bubble" id="v4">Oi [Nome]! Tudo bem?
+
+Lembrei da nossa conversa e publiquei um artigo que tem tudo a ver com o cenário que você comentou.
+
+*"A Indústria que Não Vende Direto Está Perdendo Margem"*
+
+Fala sobre o D2C como estratégia para indústrias que querem:
+→ Recuperar margem perdida para intermediários
+→ Eliminar o risco de inadimplência do varejo
+→ Ter dados próprios do consumidor final
+
+👉 <a href="https://sysled.site/blog-industria-d2c-margem">sysled.site/blog-industria-d2c-margem</a>
+
+Quando tiver 7 minutinhos, dá uma olhada. Depois me conta o que achou! 😉
+<span class="time">10:38 ✓✓</span></div>
+  <button class="copy-btn" onclick="copyText('v4', this)">Copiar texto</button>
+
+  <p class="note">Clique em "Copiar texto" e cole direto no WhatsApp.<br>Os *asteriscos* viram <strong>negrito</strong> automaticamente no WhatsApp.</p>
+
+</div>
+
+<script>
+function copyText(id, btn) {
+  const el = document.getElementById(id);
+  // Get text content, removing the time stamp
+  let text = el.innerText.replace(/\n\d{2}:\d{2} ✓✓$/, '').trim();
+  // Replace the displayed URL with the actual URL
+  const links = el.querySelectorAll('a');
+  links.forEach(link => {
+    text = text.replace(link.textContent, link.href);
+  });
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar texto';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

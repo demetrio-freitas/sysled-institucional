@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Inteligência Industrial | SYSLED</title>
+  <meta name="description" content="Artigos, casos de uso e insights sobre ERP industrial, gestão de produção e digitalização do chão de fábrica.">
+  <meta name="theme-color" content="#1d6ea0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-deep: #2B6CB0;
+      --blue-mid: #3A8FD6;
+      --blue-light: #5BB8F5;
+      --blue-pale: #7ECEF4;
+      --dark: #0F172A;
+      --dark-2: #1E293B;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-600: #475569;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 3rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+    .logo img { height: 38px; width: auto; }
+    .logo-text { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-deep); }
+    .nav-cta {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white) !important; border-radius: 10px; font-weight: 600;
+      font-size: 0.8rem; transition: all 0.2s;
+      box-shadow: 0 2px 12px rgba(43,108,176,0.25);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+
+    /* HERO */
+    .hero {
+      min-height: 44vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 60%, #0a2540 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,184,245,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .label {
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700;
+      color: var(--blue-light); text-transform: uppercase; letter-spacing: 0.18em;
+      display: inline-block; background: rgba(91,184,245,0.12);
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.25rem;
+      border: 1px solid rgba(91,184,245,0.2);
+    }
+    .hero h1 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em;
+      line-height: 1.1; color: var(--white); margin-bottom: 1rem;
+    }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 480px; line-height: 1.7; }
+
+    /* CATEGORIAS */
+    .categories {
+      padding: 2.5rem 2rem 0;
+      max-width: 1080px; margin: 0 auto;
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+    }
+    .cat-btn {
+      padding: 7px 18px; border-radius: 20px; font-family: var(--font-heading);
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; cursor: pointer; border: 1.5px solid var(--gray-200);
+      background: var(--white); color: var(--gray-400); transition: all 0.2s;
+    }
+    .cat-btn.active, .cat-btn:hover { background: var(--blue-deep); color: var(--white); border-color: var(--blue-deep); }
+
+    /* POSTS GRID */
+    .posts-section { padding: 2.5rem 2rem 6rem; }
+    .posts-wrap { max-width: 1080px; margin: 0 auto; }
+    .posts-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+
+    /* POST CARD */
+    .post-card {
+      border: 1px solid var(--gray-200); border-radius: 16px;
+      background: var(--white); overflow: hidden;
+      transition: all 0.3s; display: flex; flex-direction: column;
+    }
+    .post-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .post-card.hidden { display: none; }
+    .post-thumb {
+      height: 200px;
+      position: relative; overflow: hidden;
+    }
+    .post-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .post-thumb::after {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(15,23,42,0.5) 0%, rgba(43,108,176,0.3) 100%);
+      z-index: 1;
+    }
+    .post-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .post-cat {
+      font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue-deep);
+      margin-bottom: 0.6rem;
+    }
+    .post-card h3 {
+      font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800;
+      color: var(--dark); line-height: 1.35; margin-bottom: 0.6rem;
+    }
+    .post-card p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.65; flex: 1; }
+    .post-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1.25rem; padding-top: 1rem;
+      border-top: 1px solid var(--gray-100);
+      font-size: 0.72rem; color: var(--gray-400);
+    }
+    .post-meta-author { font-weight: 600; color: var(--gray-600); }
+    .post-read-link {
+      font-size: 0.72rem; font-weight: 600; color: var(--blue-deep);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .post-read-link:hover { color: var(--blue-mid); }
+
+    /* POST DESTAQUE */
+    .post-featured {
+      grid-column: 1 / -1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--gray-200); border-radius: 18px;
+      background: var(--white); overflow: hidden;
+      transition: all 0.3s; margin-bottom: 0.5rem;
+    }
+    .post-featured:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .post-featured.hidden { display: none; }
+    .post-featured .post-thumb { height: 100%; min-height: 280px; }
+    .post-featured .post-body { padding: 2.5rem; justify-content: center; }
+    .post-featured .post-cat { font-size: 0.65rem; }
+    .post-featured h3 { font-size: 1.4rem; margin-bottom: 0.75rem; line-height: 1.25; }
+    .post-featured p { font-size: 0.88rem; }
+    .featured-badge {
+      display: inline-block; font-family: var(--font-heading);
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; padding: 3px 10px; border-radius: 4px;
+      background: rgba(43,108,176,0.1); color: var(--blue-deep);
+      margin-bottom: 0.75rem;
+    }
+
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: linear-gradient(135deg, var(--dark) 0%, #0d1f3c 100%);
+      padding: 5rem 2rem; text-align: center;
+    }
+    .newsletter h2 {
+      font-family: var(--font-heading); font-weight: 900;
+      font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+    .newsletter p { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-bottom: 2rem; }
+    .newsletter-form {
+      display: flex; gap: 0.75rem; justify-content: center;
+      max-width: 440px; margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1; padding: 12px 18px; border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06); color: var(--white);
+      font-family: var(--font-body); font-size: 0.85rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.25); }
+    .newsletter-form input:focus { border-color: rgba(91,184,245,0.5); }
+    .newsletter-form button {
+      padding: 12px 24px; border-radius: 10px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      color: var(--white); font-family: var(--font-heading);
+      font-size: 0.82rem; font-weight: 700; transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.4); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem; background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      max-width: 1080px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .footer-logo span { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--blue-light); }
+
+    /* Selo SENAI */
+    .footer-selo {
+      max-width: 1080px; margin: 0 auto;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-selo-badge {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(91,184,245,0.04);
+      border: 1px solid rgba(91,184,245,0.1);
+      border-radius: 12px; padding: 12px 24px;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .footer-selo-badge:hover {
+      border-color: rgba(91,184,245,0.25);
+      background: rgba(91,184,245,0.07);
+    }
+    .footer-selo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-selo-text { text-align: left; }
+    .footer-selo-line1 {
+      font-family: var(--font-heading); font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--blue-light);
+      line-height: 1.3;
+    }
+    .footer-selo-line2 {
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; margin: 0 auto; padding-top: 2rem; }
+    .footer-bottom span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.68rem; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--blue-light); }
+
+    /* NO RESULTS */
+    .no-results {
+      grid-column: 1 / -1; text-align: center; padding: 4rem 2rem;
+      display: none;
+    }
+    .no-results p {
+      font-family: var(--font-heading); font-size: 1rem; color: var(--gray-400);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .post-featured { grid-template-columns: 1fr; }
+      .post-featured .post-thumb { min-height: 200px; }
+      .newsletter-form { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-selo { padding: 1.5rem 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .categories { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV (from blog-erp-chao-de-fabrica.html — no Calculadora link) -->
+<nav>
+  <a href="./" class="logo">
+    <img src="sysled-icone.svg" alt="SYSLED">
+    <span class="logo-text">SYSLED</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="./#produto">Produto</a></li>
+    <li><a href="./#modulos">Módulos</a></li>
+    <li><a href="demo-como-funciona.html">Como Funciona</a></li>
+    <li><a href="./#por-que">Por Quê</a></li>
+    <li><a href="./#faq">FAQ</a></li>
+    <li><a href="./#contato" class="nav-cta">Agendar Demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="label">Blog</span>
+  <h1>Inteligência industrial<br>em texto.</h1>
+  <p>Artigos, casos de uso e insights sobre ERP industrial, gestão de produção e digitalização do chão de fábrica.</p>
+</section>
+
+<!-- CATEGORIAS -->
+<div class="categories">
+  <button class="cat-btn active" data-filter="Todos">Todos</button>
+  <button class="cat-btn" data-filter="Gestão Industrial">Gestão Industrial</button>
+  <button class="cat-btn" data-filter="Comparativo">Comparativo</button>
+  <button class="cat-btn" data-filter="Implantação ERP">Implantação ERP</button>
+  <button class="cat-btn" data-filter="Guia Prático">Guia Prático</button>
+  <button class="cat-btn" data-filter="Caso de Uso">Caso de Uso</button>
+  <button class="cat-btn" data-filter="Estratégia Industrial">Estratégia Industrial</button>
+  <button class="cat-btn" data-filter="Regulatório">Regulatório</button>
+</div>
+
+<!-- POSTS -->
+<section class="posts-section">
+  <div class="posts-wrap">
+    <div class="posts-grid">
+
+      <!-- 1. FEATURED — Estratégia Industrial -->
+      <article class="post-featured" data-category="Estratégia Industrial">
+        <div class="post-thumb">
+          <img src="img/blog/blog-industria-d2c-margem-cover.png" alt="Indústria D2C" loading="lazy">
+        </div>
+        <div class="post-body">
+          <span class="featured-badge">Destaque</span>
+          <div class="post-cat">Estratégia Industrial</div>
+          <h3>A Indústria que Não Vende Direto Está Perdendo Margem — e Talvez Nem Saiba</h3>
+          <p>O modelo que funcionou por décadas está quebrado. A inadimplência do varejo bateu recorde e a margem encolhe. O D2C é a saída.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span>7 min de leitura · Mar 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. SYSLED vs Nomus -->
+      <article class="post-card" data-category="Comparativo">
+        <a href="blog-sysled-vs-nomus.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-sysled-vs-nomus-cover.png" alt="SYSLED vs Nomus" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Comparativo</div>
+          <h3>SYSLED vs Nomus ERP Industrial: um comparativo honesto</h3>
+          <p>Comparativo transparente entre duas abordagens diferentes para o ERP industrial. Entenda qual faz mais sentido para o seu perfil.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">8 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 3. 15 perguntas -->
+      <article class="post-card" data-category="Guia Prático">
+        <a href="blog-15-perguntas-erp.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-15-perguntas-erp-cover.png" alt="15 perguntas ERP" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Guia Prático</div>
+          <h3>15 perguntas que todo gestor industrial deve fazer antes de contratar um ERP</h3>
+          <p>As perguntas essenciais que revelam se um fornecedor de ERP está preparado para a realidade do chão de fábrica.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">6 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 4. Caso metalúrgica -->
+      <article class="post-card" data-category="Caso de Uso">
+        <a href="blog-caso-metalurgica-refugo.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-caso-metalurgica-refugo-cover.png" alt="Metalúrgica digital" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Caso de Uso</div>
+          <h3>Da planilha ao chão de fábrica digital: metalúrgica reduziu refugo em 31%</h3>
+          <p>Caso real de uma metalúrgica de médio porte que digitalizou a operação e cortou desperdício em 5 meses.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 5. Implementações ERP falham -->
+      <article class="post-card" data-category="Implantação ERP">
+        <a href="blog-implementacoes-erp-falham.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-implementacoes-erp-falham-cover.png" alt="Implementações ERP falham" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Implantação ERP</div>
+          <h3>Por que 7 em cada 10 implementações de ERP industrial falham</h3>
+          <p>Os padrões que separam implementações bem-sucedidas dos projetos que viram pesadelo — e como não repetir os erros.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">8 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 6. Guia 60 dias -->
+      <article class="post-card" data-category="Guia Prático">
+        <a href="blog-guia-60-dias-erp.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-guia-60-dias-erp-cover.png" alt="" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Guia Prático</div>
+          <h3>O guia de 60 dias para avaliar e escolher um ERP industrial sem errar</h3>
+          <p>Processo estruturado de avaliação que cabe em 60 dias, sem consultoria externa, e revela problemas antes da assinatura.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">10 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 7. Indústria 4.0 sem buzzwords -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-industria-4-sem-buzzwords.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-industria-4-sem-buzzwords-cover.png" alt="" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>Indústria 4.0 sem buzzwords: o que realmente muda no chão de fábrica</h3>
+          <p>Menos hype e mais realidade sobre o que a digitalização industrial significa para PMEs brasileiras.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 8. Sinais falta rastreabilidade -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-sinais-falta-rastreabilidade.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-sinais-falta-rastreabilidade-cover.png" alt="" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>5 sinais de que sua fábrica está perdendo dinheiro por falta de rastreabilidade</h3>
+          <p>Os sintomas silenciosos da falta de rastreabilidade — e quanto isso custa por mês sem você perceber.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">6 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 9. Quanto custa ERP -->
+      <article class="post-card" data-category="Guia Prático">
+        <a href="blog-quanto-custa-erp-industrial.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-quanto-custa-erp-industrial-cover.png" alt="" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Guia Prático</div>
+          <h3>Quanto custa um ERP industrial? O guia definitivo de preços 2026</h3>
+          <p>Todos os custos envolvidos na contratação de um ERP industrial — os visíveis e os que ninguém conta.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">8 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 10. TOTVS vs Sankhya vs Nomus -->
+      <article class="post-card" data-category="Comparativo">
+        <a href="blog-totvs-vs-sankhya-vs-nomus.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-totvs-vs-sankhya-vs-nomus-cover.png" alt="" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Comparativo</div>
+          <h3>TOTVS vs Sankhya vs Nomus: comparativo para PMIs industriais</h3>
+          <p>Análise honesta dos três ERPs mais procurados por PMEs industriais brasileiras.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">9 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 11. ERP na nuvem -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-erp-nuvem-industria.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-erp-nuvem-industria-cover.png" alt="ERP na nuvem" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>ERP na nuvem para indústria: vale a pena migrar?</h3>
+          <p>Prós, contras e mitos sobre ERPs cloud para o ambiente industrial. O que realmente muda na prática.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 12. UX do ERP -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-problema-facil-de-usar.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-problema-facil-de-usar-cover.png" alt="UX do ERP industrial" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>O problema de "fácil de usar": por que a UX do ERP industrial importa</h3>
+          <p>Por que a maioria dos ERPs falha no chão de fábrica não é falta de funcionalidade — é falta de usabilidade.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">6 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 13. Reforma tributária -->
+      <article class="post-card" data-category="Regulatório">
+        <a href="blog-reforma-tributaria-checklist.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-reforma-tributaria-checklist-cover.png" alt="Reforma tributária checklist" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Regulatório</div>
+          <h3>Reforma tributária: checklist de sobrevivência para a indústria</h3>
+          <p>O que muda, o que fazer agora e como o seu ERP precisa se adaptar à reforma tributária.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 14. Custo real sem ERP -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-custo-real-sem-erp.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-custo-real-sem-erp-cover.png" alt="Custo real sem ERP" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>O custo real de operar sem ERP: o que ninguém calcula</h3>
+          <p>Os custos invisíveis que se acumulam quando a operação industrial roda sem sistema integrado.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 15. IoT chão de fábrica -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-iot-chao-de-fabrica.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-iot-chao-de-fabrica-cover.png" alt="IoT chão de fábrica" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>IoT no chão de fábrica: por onde começar sem gastar uma fortuna</h3>
+          <p>Guia prático para iniciar a jornada IoT na sua fábrica com investimento mínimo e retorno rápido.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">8 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 16. MES vs ERP -->
+      <article class="post-card" data-category="Comparativo">
+        <a href="blog-mes-vs-erp.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-mes-vs-erp-cover.png" alt="MES vs ERP" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Comparativo</div>
+          <h3>MES vs ERP: você precisa dos dois ou está pagando dobrado?</h3>
+          <p>A diferença real entre MES e ERP industrial — e por que a maioria das PMIs não precisa dos dois.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 17. Lógica perversa ERP caro -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-logica-perversa-erp-caro.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-logica-perversa-erp-caro-cover.png" alt="Lógica perversa ERP caro" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>A lógica perversa do ERP caro: por que pagar mais nem sempre é melhor</h3>
+          <p>Como o mercado de ERP industrial criou uma estrutura de preços que penaliza quem mais precisa.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">6 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 18. Bloco K reforma tributária -->
+      <article class="post-card" data-category="Regulatório">
+        <a href="blog-bloco-k-reforma-tributaria.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-bloco-k-reforma-tributaria-cover.png" alt="Bloco K reforma tributária" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Regulatório</div>
+          <h3>Bloco K e reforma tributária: o que muda para a indústria em 2026</h3>
+          <p>As obrigações fiscais que estão mudando e como se preparar sem pânico.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">8 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 19. Operador nunca usou ERP -->
+      <article class="post-card" data-category="Implantação ERP">
+        <a href="blog-operador-nunca-usou-erp.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-operador-nunca-usou-erp-cover.png" alt="Operador usando ERP" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Implantação ERP</div>
+          <h3>Quando o operador nunca usou um ERP: guia de adoção no chão de fábrica</h3>
+          <p>Como fazer o operador de produção adotar o sistema sem resistência e sem treinamento formal.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">6 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 20. Parametrizar ou customizar -->
+      <article class="post-card" data-category="Implantação ERP">
+        <a href="blog-parametrizar-customizar.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-parametrizar-customizar-cover.png" alt="Parametrizar ou customizar" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Implantação ERP</div>
+          <h3>Parametrizar ou customizar: o dilema que define o sucesso do seu ERP</h3>
+          <p>A diferença entre configurar e modificar o ERP — e por que essa decisão errada custa milhões.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 21. ERP chão de fábrica -->
+      <article class="post-card" data-category="Gestão Industrial">
+        <a href="blog-erp-chao-de-fabrica.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%;">
+        <div class="post-thumb">
+          <img src="img/blog/blog-erp-chao-de-fabrica-cover.png" alt="ERP chão de fábrica vs diretoria" loading="lazy">
+        </div>
+        <div class="post-body">
+          <div class="post-cat">Gestão Industrial</div>
+          <h3>Por que o ERP do chão de fábrica é diferente do ERP da diretoria</h3>
+          <p>Entenda por que ERPs tradicionais falham no chão de fábrica e como essa confusão custa caro.</p>
+          <div class="post-meta">
+            <span class="post-meta-author">Equipe SYSLED</span>
+            <span class="post-read-link">7 min · Ler artigo →</span>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- NO RESULTS MESSAGE -->
+      <div class="no-results">
+        <p>Nenhum artigo encontrado nesta categoria.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <span class="label" style="color:var(--blue-light);background:rgba(91,184,245,0.12);border-color:rgba(91,184,245,0.2);">Newsletter</span>
+  <h2>Inteligência industrial<br>toda semana.</h2>
+  <p>Novos artigos, casos de uso e insights direto no seu e-mail. Sem spam.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="seu@email.com.br">
+    <button type="button">Assinar</button>
+  </div>
+</section>
+
+<!-- FOOTER (from blog-erp-chao-de-fabrica.html — with SENAI selo, footer-top class) -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="sysled-icone.svg" alt="SYSLED">
+        <span>SYSLED</span>
+      </div>
+      <p>Plataforma IndTech para automação, logística e inteligência operacional. Do chão de fábrica à nuvem.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Plataforma</div>
+      <a href="./#modulos">Módulos</a>
+      <a href="./#funcionalidades">Funcionalidades</a>
+      <a href="./#integracoes">Integrações</a>
+      <a href="./#seguranca">Segurança</a>
+      <a href="./#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Recursos</div>
+      <a href="demo-como-funciona.html">Como Funciona</a>
+      <a href="demo-automacoes.html">Automações Inteligentes</a>
+      <a href="demo-calculadora.html">Calculadora de Desperdício</a>
+      <a href="demo-comparativo.html">Comparativo</a>
+      <a href="demo-desafio.html">Desafio 15 Dias</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Empresa</div>
+      <a href="demo-historia.html">Nossa História</a>
+      <a href="./#contato">Contato</a>
+      <a href="#">Blog</a>
+      <a href="#">Carreiras</a>
+    </div>
+  </div>
+  <div class="footer-selo">
+    <a href="demo-selo-senai.html" class="footer-selo-badge">
+      <div class="footer-selo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/>
+        </svg>
+      </div>
+      <div class="footer-selo-text">
+        <div class="footer-selo-line1">Projeto aprovado</div>
+        <div class="footer-selo-line2">SENAI Ceará</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sysled Ltda. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Category filter
+  const buttons = document.querySelectorAll('.cat-btn');
+  const cards = document.querySelectorAll('.post-card, .post-featured');
+  const noResults = document.querySelector('.no-results');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+      let visible = 0;
+
+      cards.forEach(card => {
+        if (filter === 'Todos' || card.getAttribute('data-category') === filter) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+</script>
+</body>
+</html>

@@ -88,6 +88,20 @@
       box-shadow: 0 2px 12px rgba(43,108,176,0.25);
     }
     .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(43,108,176,0.35); }
+    /* Hamburger */
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 40px; height: 40px; position: relative; z-index: 1001;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px; background: var(--dark);
+      border-radius: 2px; transition: all 0.3s; margin: 0 auto;
+    }
+    .nav-hamburger span:nth-child(1) { margin-bottom: 6px; }
+    .nav-hamburger span:nth-child(3) { margin-top: 6px; }
+    .nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 7px); }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -7px); }
 
     /* ===== HERO ===== */
     .hero {
@@ -770,6 +784,13 @@
       color: var(--dark); margin-bottom: 8px;
     }
     .mod-card p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.65; }
+    .mod-tag {
+      display: inline-block; font-size: 0.45rem; font-weight: 700;
+      padding: 2px 8px; border-radius: 100px; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-top: 10px;
+    }
+    .mod-tag.core { background: rgba(43,108,176,0.08); color: var(--blue-deep); }
+    .mod-tag.new { background: rgba(16,185,129,0.1); color: var(--success); }
 
     /* ===== WHY SYSLED ===== */
     .why-grid {
@@ -919,7 +940,7 @@
     .footer-bottom-links a:hover { color: var(--blue-light); }
 
     @media (max-width: 768px) {
-      .modules-grid, .why-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
       .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .form-row { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -933,20 +954,150 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      nav { padding: 0 1.5rem; }
-      .nav-links { display: none; }
-      section { padding: 5rem 1.5rem; }
-      .hero h1 { font-size: 2.6rem; }
+      nav { padding: 0 1.25rem; }
+      .nav-hamburger { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .nav-links {
+        display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+        flex-direction: column; align-items: center; justify-content: center;
+        gap: 2rem; z-index: 1000;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.1rem; }
+      .nav-cta { font-size: 1rem; padding: 14px 32px; }
+      section { padding: 4rem 1.25rem; }
+      .hero { min-height: auto; padding: 7rem 1.5rem 4rem; }
+      .hero h1 { font-size: 1.8rem; max-width: 100%; }
+      .hero-p { font-size: 0.95rem; margin-bottom: 2rem; }
+      .hero-tagline { font-size: 0.78rem; padding: 6px 18px; }
       .hero-btns { flex-direction: column; width: 100%; max-width: 300px; }
-      .btn { width: 100%; justify-content: center; }
-      .pf-body { grid-template-columns: 1fr; }
+      .btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 0.82rem; }
+      .hero-scroll { display: none; }
+      .trust-bar { gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; }
+      .trust-item { font-size: 0.65rem; }
+      .big-title { font-size: 1.6rem; }
+      .sub-text { font-size: 0.88rem; margin-bottom: 2.5rem; }
+      .product-frame { border-radius: 14px; }
+      .pf-body { grid-template-columns: 1fr; padding: 1.25rem; gap: 0.75rem; }
       .pf-wide { grid-column: span 1; }
-      .feature-row, .feature-row.reverse { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
-      .flip-grid { grid-template-columns: repeat(2, 1fr); }
-      .integrations-grid { grid-template-columns: repeat(2, 1fr); }
-      .security-grid { grid-template-columns: 1fr; }
+      .pf-card { padding: 1rem; }
+      .pf-card-value { font-size: 1.5rem; }
+      .pf-bars { height: 80px; }
+      .features-list { gap: 3.5rem; }
+      .feature-row, .feature-row.reverse { grid-template-columns: 1fr; gap: 1.5rem; direction: ltr; }
+      .feature-row h3 { font-size: 1.35rem; }
+      .feature-row p, .feature-row .desc { font-size: 0.85rem; }
+      .feature-visual { border-radius: 14px; }
+      .carousel-slide { padding: 1.25rem; }
+      .carousel-slide .fv-inner { width: 92%; }
+      .carousel-btn { width: 28px; height: 28px; }
+      .carousel-btn svg { width: 14px; height: 14px; }
+      .carousel-prev { left: 4px; }
+      .carousel-next { right: 4px; }
+      .fv-card { padding: 1rem; border-radius: 10px; }
+      .fv-card-title { font-size: 0.65rem; }
+      .fv-minis.cols-4 { grid-template-columns: 1fr 1fr; gap: 6px; }
+      .fv-mini { padding: 8px; }
+      .fv-mini-val { font-size: 0.85rem; }
+      .fv-mini-label { font-size: 0.42rem; }
+      .fv-mini-note { font-size: 0.42rem; }
+      .fv-table th { font-size: 0.42rem; padding: 4px 0; }
+      .fv-table td { font-size: 0.52rem; padding: 6px 0; }
+      .fv-stock-bar { width: 35px; }
+      .fv-consume-name { font-size: 0.5rem; }
+      .fv-consume-qty { font-size: 0.48rem; min-width: 40px; }
+      .fv-consume-bar { width: 40px; }
+      .fv-nfe-item { padding: 6px 8px; gap: 8px; }
+      .fv-nfe-icon { width: 24px; height: 24px; border-radius: 6px; }
+      .fv-nfe-icon svg { width: 12px; height: 12px; }
+      .fv-nfe-num { font-size: 0.52rem; }
+      .fv-nfe-detail { font-size: 0.42rem; }
+      .fv-nfe-val { font-size: 0.52rem; }
+      .fv-nfe-detail-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
+      .fv-nfe-field { font-size: 0.45rem; }
+      .fv-nfe-field strong { font-size: 0.52rem; }
+      .fv-flow-bars { height: 45px; }
+      .fv-flow-month { font-size: 0.38rem; }
+      .fv-acc-row { font-size: 0.52rem; padding: 5px 0; }
+      .fv-acc-date { font-size: 0.45rem; }
+      .fv-acc-status { font-size: 0.4rem; padding: 2px 5px; }
+      .fv-dre { padding: 10px; }
+      .fv-dre-row { font-size: 0.5rem; }
+      .fv-spark-label { font-size: 0.5rem; width: 55px; }
+      .fv-spark-val { font-size: 0.55rem; width: 38px; }
+      .fv-spark-change { font-size: 0.4rem; width: 25px; }
+      .fv-goal { padding: 6px 10px; }
+      .fv-goal-name { font-size: 0.5rem; }
+      .fv-goal-pct { font-size: 0.52rem; }
+      .fv-goal-detail { font-size: 0.4rem; }
+      .fv-rank-row { gap: 6px; padding: 4px 0; }
+      .fv-rank-pos { width: 16px; height: 16px; font-size: 0.4rem; }
+      .fv-rank-name { font-size: 0.5rem; }
+      .fv-rank-val { font-size: 0.48rem; }
+      .fv-rank-eff { font-size: 0.42rem; width: 25px; }
+      .fv-compare th { font-size: 0.4rem; padding: 4px 2px; }
+      .fv-compare td { font-size: 0.48rem; padding: 4px 2px; }
+      .fv-compare td:first-child { font-size: 0.45rem; }
+      .fv-compare-change { font-size: 0.38rem; }
+      .fv-area-chart { padding: 8px; }
+      .fv-area-title { font-size: 0.42rem; }
+      .fv-area-legend { gap: 8px; }
+      .fv-area-legend-item { font-size: 0.38rem; }
+      .fv-export { font-size: 0.45rem; padding: 4px 10px; }
+      .fv-export svg { width: 10px; height: 10px; }
+      .feature-bullets li { font-size: 0.72rem; }
+      .feature-bullets li svg { width: 14px; height: 14px; }
+      .features-cta { margin-top: 2.5rem; }
+      .btn-features { font-size: 0.78rem; }
+      .btn-features svg { width: 18px; height: 18px; }
+      .modules-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .mod-card { padding: 1.25rem; border-radius: 12px; }
+      .mod-icon { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 1rem; }
+      .mod-icon svg { width: 18px; height: 18px; }
+      .mod-card h4 { font-size: 0.82rem; margin-bottom: 4px; }
+      .mod-card p { font-size: 0.72rem; }
+      .mod-tag { font-size: 0.4rem; }
+      .flip-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .flip-card { height: 190px; }
+      .flip-face { padding: 1.25rem 1rem; }
+      .flip-icon-wrap { width: 42px; height: 42px; border-radius: 12px; margin-bottom: 0.75rem; }
+      .flip-icon-wrap svg { width: 20px; height: 20px; }
+      .flip-front-title { font-size: 0.68rem; }
+      .flip-front-sub { font-size: 0.62rem; }
+      .flip-back-icon { width: 36px; height: 36px; border-radius: 10px; margin-bottom: 0.625rem; }
+      .flip-back-icon svg { width: 18px; height: 18px; }
+      .flip-back-title { font-size: 0.72rem; }
+      .flip-back-desc { font-size: 0.65rem; }
+      .flip-back-badge { font-size: 0.58rem; padding: 2px 10px; }
+      .flip-hint { font-size: 0.68rem; }
+      .security-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .sec-card { padding: 1.5rem; }
       .t-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+      .t-card { padding: 1.5rem; }
+      .t-quote { font-size: 0.82rem; }
+      .faq-q { font-size: 0.85rem; }
+      .faq-a { font-size: 0.78rem; }
+      .final-cta { padding: 5rem 1.5rem; }
+      .final-cta h2 { font-size: 1.8rem; }
+      .final-cta p { font-size: 0.88rem; }
       .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+      footer .f-links { justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.5rem; }
+      .hero-p { font-size: 0.85rem; }
+      .big-title { font-size: 1.35rem; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .flip-grid { grid-template-columns: 1fr; }
+      .flip-card { height: 200px; }
+      .feature-row h3 { font-size: 1.15rem; }
+      .pf-body { padding: 1rem; }
+      .pf-card-value { font-size: 1.2rem; }
+      .carousel-slide { padding: 1rem; }
+      .carousel-slide .fv-inner { width: 95%; }
+      .fv-minis.cols-4 { grid-template-columns: 1fr 1fr; }
+      .fv-minis.cols-3 { grid-template-columns: 1fr; }
+      .fv-minis.cols-2 { grid-template-columns: 1fr; }
     }
 
     /* ===== SEÇÃO MARKETPLACES ===== */
@@ -1058,7 +1209,7 @@
     <img src="sysled-icone.svg" alt="SYSLED" style="height: 34px;">
     <span class="logo-text">SYSLED</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#produto">Produto</a></li>
     <li><a href="#modulos">Módulos</a></li>
     <li><a href="demo-como-funciona.html">Como Funciona</a></li>
@@ -1066,6 +1217,9 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contato" class="nav-cta">Agendar Demo</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1481,50 +1635,56 @@
   <div class="wrap" style="text-align: center;">
     <div class="label r">Plataforma</div>
     <h2 class="big-title r">Módulos que cobrem<br>toda a operação.</h2>
-    <p class="sub-text r" style="margin-left: auto; margin-right: auto;">Do recebimento de materiais à expedição. Cada módulo opera de forma independente e se integra perfeitamente com os demais.</p>
+    <p class="sub-text r" style="margin-left: auto; margin-right: auto;">Do chão de fábrica ao consumidor final. Cada módulo opera de forma independente e se integra perfeitamente com os demais.</p>
 
     <div class="modules-grid">
       <div class="mod-card r">
         <div class="mod-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        </div>
-        <h4>Manutenção Industrial</h4>
-        <p>OS digitais, checklists, fotos e assinaturas. Manutenção preventiva, preditiva e corretiva com rastreabilidade total.</p>
-      </div>
-      <div class="mod-card r">
-        <div class="mod-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        </div>
-        <h4>Estoque e Logística</h4>
-        <p>Gestão inteligente de inventário, endereçamento, movimentações e rastreabilidade completa de materiais.</p>
-      </div>
-      <div class="mod-card r">
-        <div class="mod-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
-        <h4>Qualidade e Conformidade</h4>
-        <p>Laudos, checklists de inspeção, não-conformidades e indicadores SQCDM para padrões de excelência.</p>
-      </div>
-      <div class="mod-card r">
-        <div class="mod-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852 1.003 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         </div>
         <h4>Produção Industrial</h4>
         <p>Ordens de produção, consumo de materiais, apontamentos e monitoramento de OEE em tempo real.</p>
+        <span class="mod-tag core">Core</span>
       </div>
       <div class="mod-card r">
         <div class="mod-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
         </div>
-        <h4>IoT e Sensores</h4>
-        <p>Conexão com sensores, CLPs e dispositivos via MQTT, OPC-UA e protocolos industriais. Monitoramento contínuo.</p>
+        <h4>Estoque e Logística</h4>
+        <p>Gestão inteligente de inventário, endereçamento, movimentações e rastreabilidade completa de materiais.</p>
+        <span class="mod-tag core">Core</span>
       </div>
       <div class="mod-card r">
         <div class="mod-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h4>Financeiro e Fiscal</h4>
+        <p>NF-e automática, contas a pagar e receber, DRE e conciliação bancária. Tudo conectado à operação.</p>
+        <span class="mod-tag new">Novo</span>
+      </div>
+      <div class="mod-card r">
+        <div class="mod-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h4>Vendas e D2C</h4>
+        <p>Gestão de pedidos, integração multicanal e venda direta ao consumidor. Mais margem, mais controle.</p>
+        <span class="mod-tag new">Novo</span>
+      </div>
+      <div class="mod-card r">
+        <div class="mod-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
         <h4>BI e Analytics</h4>
         <p>Dashboards analíticos, KPIs customizáveis e relatórios automatizados para decisões baseadas em dados.</p>
+        <span class="mod-tag core">Core</span>
+      </div>
+      <div class="mod-card r">
+        <div class="mod-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h4>Qualidade e Conformidade</h4>
+        <p>Laudos, checklists de inspeção e controle de não-conformidades para garantir padrões de excelência.</p>
+        <span class="mod-tag core">Core</span>
       </div>
     </div>
   </div>
@@ -2117,6 +2277,22 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px 40px 0px' });
   document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+  // Hamburger menu
+  const hamburger = document.getElementById('navHamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
 
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {

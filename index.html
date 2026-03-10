@@ -994,8 +994,8 @@
         gap: 2rem; z-index: 1000;
         opacity: 1; pointer-events: auto; transform: none;
       }
-      .nav-links.open { display: flex; }
-      nav { background: transparent; }
+      .nav-links.open { display: flex; opacity: 1; pointer-events: auto; transform: none; }
+      nav.scrolled { background: rgba(255,255,255,0.82); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); }
       nav.scrolled .logo img { opacity: 1; max-width: 40px; }
       .nav-links a { font-size: 1.1rem; }
       .nav-cta { font-size: 1rem; padding: 14px 32px; }

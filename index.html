@@ -281,6 +281,219 @@
     .fv-mini-label { font-size: 0.5rem; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
     .fv-mini-val { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 900; color: var(--dark); margin-top: 2px; }
     .fv-mini-note { font-size: 0.5rem; font-weight: 700; }
+    .fv-minis.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .fv-minis.cols-2 { grid-template-columns: 1fr 1fr; }
+    .fv-card-title {
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 12px;
+    }
+    .fv-progress-text {
+      display: flex; justify-content: space-between; font-size: 0.55rem; color: var(--gray-400);
+      margin-top: 4px; font-weight: 600;
+    }
+
+    /* Tabela estoque */
+    .fv-table { width: 100%; border-collapse: collapse; }
+    .fv-table th {
+      font-size: 0.5rem; font-weight: 700; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.06em; text-align: left;
+      padding: 6px 0; border-bottom: 1px solid var(--gray-200);
+    }
+    .fv-table td {
+      font-size: 0.6rem; color: var(--dark); padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100); font-weight: 500;
+    }
+    .fv-table tr:last-child td { border-bottom: none; }
+    .fv-stock-bar {
+      height: 4px; border-radius: 100px; background: var(--gray-200); width: 50px;
+      display: inline-block; vertical-align: middle; margin-left: 6px;
+    }
+    .fv-stock-fill { height: 100%; border-radius: 100px; }
+    .fv-stock-fill.ok { background: var(--success); }
+    .fv-stock-fill.low { background: var(--warning); }
+    .fv-stock-fill.crit { background: #EF4444; }
+    .fv-status-tag {
+      font-size: 0.48rem; font-weight: 700; padding: 2px 8px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .fv-status-tag.ok { background: rgba(16,185,129,0.1); color: var(--success); }
+    .fv-status-tag.low { background: rgba(245,158,11,0.1); color: #D97706; }
+    .fv-status-tag.crit { background: rgba(239,68,68,0.1); color: #EF4444; }
+
+    /* Consumo materiais */
+    .fv-consume-title {
+      font-size: 0.52rem; font-weight: 700; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .fv-consume-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .fv-consume-item:last-child { margin-bottom: 0; }
+    .fv-consume-name { font-size: 0.58rem; color: var(--dark); font-weight: 600; flex: 1; }
+    .fv-consume-qty { font-size: 0.55rem; color: var(--gray-400); font-weight: 600; min-width: 55px; text-align: right; }
+    .fv-consume-bar { height: 4px; border-radius: 100px; background: var(--gray-200); width: 60px; }
+    .fv-consume-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--blue-light), var(--blue-deep)); }
+    .fv-alert {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15);
+      border-radius: 8px; padding: 8px 12px; margin-top: 10px;
+    }
+    .fv-alert svg { width: 14px; height: 14px; color: var(--warning); flex-shrink: 0; }
+    .fv-alert-text { font-size: 0.55rem; color: #92400E; font-weight: 600; line-height: 1.4; }
+
+    /* NF-e list */
+    .fv-nfe-list { display: flex; flex-direction: column; gap: 6px; }
+    .fv-nfe-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px; border-radius: 8px; background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+    }
+    .fv-nfe-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .fv-nfe-icon.green { background: rgba(16,185,129,0.1); }
+    .fv-nfe-icon.yellow { background: rgba(245,158,11,0.1); }
+    .fv-nfe-icon svg { width: 14px; height: 14px; }
+    .fv-nfe-info { flex: 1; }
+    .fv-nfe-num { font-size: 0.6rem; font-weight: 700; color: var(--dark); }
+    .fv-nfe-detail { font-size: 0.5rem; color: var(--gray-400); }
+    .fv-nfe-val { font-size: 0.6rem; font-weight: 700; color: var(--dark); text-align: right; }
+
+    /* Fluxo de caixa */
+    .fv-flow-chart { margin-bottom: 12px; }
+    .fv-flow-label { font-size: 0.5rem; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .fv-flow-bars { display: flex; align-items: flex-end; gap: 3px; height: 60px; }
+    .fv-flow-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .fv-flow-bar-up { width: 100%; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, var(--success), rgba(16,185,129,0.5)); }
+    .fv-flow-bar-down { width: 100%; border-radius: 0 0 3px 3px; background: linear-gradient(180deg, rgba(239,68,68,0.5), #EF4444); }
+    .fv-flow-month { font-size: 0.42rem; color: var(--gray-400); font-weight: 600; margin-top: 4px; }
+
+    /* Contas */
+    .fv-accounts-title { font-size: 0.52rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .fv-acc-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--gray-100); font-size: 0.6rem; }
+    .fv-acc-row:last-child { border-bottom: none; }
+    .fv-acc-name { color: var(--dark); font-weight: 600; }
+    .fv-acc-date { color: var(--gray-400); font-size: 0.52rem; }
+    .fv-acc-val { font-weight: 700; }
+    .fv-acc-val.in { color: var(--success); }
+    .fv-acc-val.out { color: #EF4444; }
+    .fv-acc-status { font-size: 0.45rem; font-weight: 700; padding: 2px 7px; border-radius: 100px; text-transform: uppercase; }
+    .fv-acc-status.due { background: rgba(245,158,11,0.1); color: #D97706; }
+    .fv-acc-status.late { background: rgba(239,68,68,0.1); color: #EF4444; }
+
+    /* NF-e detail */
+    .fv-nfe-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+    .fv-nfe-field { font-size: 0.52rem; color: var(--gray-400); font-weight: 600; }
+    .fv-nfe-field strong { color: var(--dark); font-weight: 700; display: block; font-size: 0.6rem; margin-top: 1px; }
+    .fv-badge.auth { background: rgba(16,185,129,0.1); color: var(--success); }
+
+    /* DRE mini */
+    .fv-dre { background: var(--gray-50); border-radius: 10px; padding: 12px; border: 1px solid var(--gray-200); margin-top: 10px; }
+    .fv-dre-title { font-size: 0.52rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .fv-dre-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.58rem; }
+    .fv-dre-row span:first-child { color: var(--gray-600); }
+    .fv-dre-row span:last-child { font-weight: 700; color: var(--dark); }
+    .fv-dre-row.total { border-top: 1px solid var(--gray-200); margin-top: 4px; padding-top: 8px; }
+    .fv-dre-row.total span:last-child { color: var(--success); font-size: 0.65rem; }
+    .fv-margin-bar { height: 6px; border-radius: 100px; background: var(--gray-200); margin-top: 8px; }
+    .fv-margin-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--success), #34D399); }
+    .fv-margin-text { display: flex; justify-content: space-between; font-size: 0.5rem; margin-top: 4px; color: var(--gray-400); font-weight: 600; }
+
+    /* Carrossel */
+    .feature-visual.has-carousel { aspect-ratio: auto; }
+    .carousel { position: relative; overflow: hidden; width: 100%; }
+    .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .carousel-slide {
+      min-width: 100%; padding: 2rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-slide .fv-inner { width: 85%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--white); border: 1px solid var(--gray-200);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 10; transition: all 0.2s;
+    }
+    .carousel-btn:hover {
+      border-color: var(--blue-accent);
+      box-shadow: 0 4px 16px rgba(27,45,91,0.12);
+    }
+    .carousel-btn svg { width: 16px; height: 16px; color: var(--dark); }
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 6px; padding: 0 0 14px; }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gray-200); border: none; cursor: pointer; transition: all 0.3s;
+    }
+    .carousel-dot.active { background: var(--blue-deep); width: 18px; border-radius: 100px; }
+
+    /* Sparklines */
+    .fv-spark-section { background: var(--gray-50); border-radius: 10px; padding: 12px; border: 1px solid var(--gray-200); }
+    .fv-spark-title { font-size: 0.5rem; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .fv-spark-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--gray-100); }
+    .fv-spark-row:last-child { border-bottom: none; }
+    .fv-spark-label { font-size: 0.58rem; font-weight: 600; color: var(--dark); width: 70px; }
+    .fv-spark-line { flex: 1; height: 20px; }
+    .fv-spark-svg { width: 100%; height: 20px; }
+    .fv-spark-val { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 800; color: var(--dark); width: 45px; text-align: right; }
+    .fv-spark-change { font-size: 0.45rem; font-weight: 700; width: 30px; text-align: right; }
+    .fv-export { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 0.52rem; font-weight: 700; color: var(--blue-deep); background: rgba(43,108,176,0.06); border: 1px solid rgba(43,108,176,0.15); padding: 5px 12px; border-radius: 6px; }
+    .fv-export svg { width: 12px; height: 12px; }
+
+    /* Metas + Ranking */
+    .fv-goals { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .fv-goal { background: var(--gray-50); border-radius: 10px; padding: 8px 12px; border: 1px solid var(--gray-200); }
+    .fv-goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .fv-goal-name { font-size: 0.55rem; font-weight: 700; color: var(--dark); }
+    .fv-goal-pct { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 900; }
+    .fv-goal-bar { height: 4px; border-radius: 100px; background: var(--gray-200); }
+    .fv-goal-fill { height: 100%; border-radius: 100px; }
+    .fv-goal-detail { display: flex; justify-content: space-between; font-size: 0.45rem; color: var(--gray-400); font-weight: 600; margin-top: 3px; }
+    .fv-rank-title { font-size: 0.52rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .fv-rank-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--gray-100); }
+    .fv-rank-row:last-child { border-bottom: none; }
+    .fv-rank-pos { width: 18px; height: 18px; border-radius: 50%; font-family: var(--font-heading); font-size: 0.45rem; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .fv-rank-pos.gold { background: rgba(245,158,11,0.15); color: #D97706; }
+    .fv-rank-pos.silver { background: rgba(148,163,184,0.15); color: var(--gray-600); }
+    .fv-rank-pos.bronze { background: rgba(180,130,90,0.15); color: #92400E; }
+    .fv-rank-name { font-size: 0.55rem; font-weight: 600; color: var(--dark); flex: 1; }
+    .fv-rank-val { font-family: var(--font-heading); font-size: 0.55rem; font-weight: 800; color: var(--dark); }
+    .fv-rank-eff { font-size: 0.48rem; font-weight: 700; width: 30px; text-align: right; }
+
+    /* Comparativo */
+    .fv-compare { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    .fv-compare th { font-size: 0.45rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.06em; text-align: center; padding: 5px 3px; border-bottom: 2px solid var(--gray-200); }
+    .fv-compare th:first-child { text-align: left; }
+    .fv-compare td { font-size: 0.55rem; color: var(--dark); padding: 5px 3px; border-bottom: 1px solid var(--gray-100); font-weight: 600; text-align: center; }
+    .fv-compare td:first-child { text-align: left; color: var(--gray-600); font-size: 0.52rem; }
+    .fv-compare tr:last-child td { border-bottom: none; }
+    .fv-compare .highlight { font-weight: 800; color: var(--dark); }
+    .fv-compare-change { font-size: 0.42rem; font-weight: 700; display: block; margin-top: 1px; }
+    .fv-area-chart { background: var(--gray-50); border-radius: 10px; padding: 10px; border: 1px solid var(--gray-200); }
+    .fv-area-title { font-size: 0.48rem; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .fv-area-legend { display: flex; gap: 12px; margin-top: 4px; }
+    .fv-area-legend-item { display: flex; align-items: center; gap: 4px; font-size: 0.42rem; color: var(--gray-400); font-weight: 600; }
+    .fv-area-legend-dot { width: 8px; height: 3px; border-radius: 2px; }
+    .fv-minis.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+    /* Botão funcionalidades */
+    .features-cta { text-align: center; margin-top: 3.5rem; }
+    .btn-features {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-heading); font-size: 0.88rem; font-weight: 800;
+      color: var(--blue-deep); text-decoration: none;
+      position: relative; padding-bottom: 4px; transition: all 0.3s;
+    }
+    .btn-features::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--blue-deep);
+      border-radius: 100px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-features:hover::after { width: 100%; }
+    .btn-features svg { width: 20px; height: 20px; transition: transform 0.3s; }
+    .btn-features:hover svg { transform: translateX(6px); }
 
     /* ===== NUMBERS ===== */
     /* ===== FLIP CARDS ===== */
@@ -951,27 +1164,71 @@
       <div class="feature-row r">
         <div>
           <div class="feature-num">01</div>
-          <h3>OS digitais que<br>funcionam offline.</h3>
-          <p>Checklists, fotos, assinaturas e geolocalização. O técnico executa no tablet mesmo sem internet. Sincroniza quando reconectar.</p>
+          <h3>Produção e estoque<br>sob controle.</h3>
+          <p>Ordens de produção, consumo de materiais e estoque em tempo real. Sem planilha, sem retrabalho, sem surpresa.</p>
         </div>
-        <div class="feature-visual">
-          <div class="fv-inner">
-            <div class="fv-card">
-              <div class="fv-header">
-                <span class="fv-badge open">Em Execução</span>
-                <span class="fv-id">#OS-2847</span>
+        <div class="feature-visual has-carousel">
+          <div class="carousel" id="carouselHome">
+            <button class="carousel-btn carousel-prev" onclick="moveSlideHome(-1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="carousel-btn carousel-next" onclick="moveSlideHome(1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="carousel-track" id="trackHome">
+              <!-- SLIDE 1 — Dashboard Estoque -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-card-title">Estoque — Visão Geral</div>
+                    <div class="fv-minis cols-3">
+                      <div class="fv-mini"><div class="fv-mini-label">Itens cadastrados</div><div class="fv-mini-val">347</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Abaixo do mínimo</div><div class="fv-mini-val" style="color:var(--warning);">12</div><div class="fv-mini-note" style="color:var(--warning);">Atenção</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Valor em estoque</div><div class="fv-mini-val">R$ 284k</div></div>
+                    </div>
+                    <table class="fv-table">
+                      <thead><tr><th>Material</th><th>Qtd</th><th>Nível</th><th>Status</th></tr></thead>
+                      <tbody>
+                        <tr><td>Chapa alumínio 1mm</td><td>1.420 kg</td><td><span class="fv-stock-bar"><span class="fv-stock-fill ok" style="width:78%"></span></span></td><td><span class="fv-status-tag ok">Normal</span></td></tr>
+                        <tr><td>LED chip SMD 5050</td><td>8.200 un</td><td><span class="fv-stock-bar"><span class="fv-stock-fill ok" style="width:65%"></span></span></td><td><span class="fv-status-tag ok">Normal</span></td></tr>
+                        <tr><td>Driver eletrônico 40W</td><td>84 un</td><td><span class="fv-stock-bar"><span class="fv-stock-fill low" style="width:28%"></span></span></td><td><span class="fv-status-tag low">Baixo</span></td></tr>
+                        <tr><td>Difusor policarbonato</td><td>22 un</td><td><span class="fv-stock-bar"><span class="fv-stock-fill crit" style="width:10%"></span></span></td><td><span class="fv-status-tag crit">Crítico</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <div class="fv-title">Troca de rolamento — Bomba P-204</div>
-              <div class="fv-meta"><span>Carlos Silva</span><span>Setor A3</span><span>Alta</span></div>
-              <div class="fv-progress"><div class="fv-progress-fill" style="width:65%"></div></div>
-            </div>
-            <div class="fv-card" style="margin-top: 8px; opacity: 0.5; transform: scale(0.96);">
-              <div class="fv-header">
-                <span class="fv-badge done">Concluída</span>
-                <span class="fv-id">#OS-2846</span>
+              <!-- SLIDE 2 — OP + Consumo -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-header">
+                      <span class="fv-badge open">Em Produção</span>
+                      <span class="fv-id">#OP-3042</span>
+                    </div>
+                    <div class="fv-title">Luminária LED Painel 40W — Lote 500 un</div>
+                    <div class="fv-progress"><div class="fv-progress-fill" style="width:72%"></div></div>
+                    <div class="fv-progress-text"><span>360 produzidas</span><span>72%</span></div>
+                    <div class="fv-minis cols-2" style="margin-top:10px;">
+                      <div class="fv-mini"><div class="fv-mini-label">Produzido</div><div class="fv-mini-val">360</div><div class="fv-mini-note" style="color:var(--success);">de 500 un</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Estoque atual</div><div class="fv-mini-val">2.140</div><div class="fv-mini-note" style="color:var(--blue-deep);">+360 hoje</div></div>
+                    </div>
+                    <div class="fv-consume-title">Consumo de materiais</div>
+                    <div class="fv-consume-item"><span class="fv-consume-name">Chapa alumínio</span><span class="fv-consume-qty">86/120 kg</span><span class="fv-consume-bar"><span class="fv-consume-fill" style="width:72%"></span></span></div>
+                    <div class="fv-consume-item"><span class="fv-consume-name">LED chip SMD</span><span class="fv-consume-qty">1.440/2.000</span><span class="fv-consume-bar"><span class="fv-consume-fill" style="width:72%"></span></span></div>
+                    <div class="fv-consume-item"><span class="fv-consume-name">Driver 40W</span><span class="fv-consume-qty">360/500</span><span class="fv-consume-bar"><span class="fv-consume-fill" style="width:72%"></span></span></div>
+                    <div class="fv-alert">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                      <span class="fv-alert-text">Driver 40W com estoque para mais 140 un. Considere nova compra.</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="fv-title">Inspeção preventiva — Compressor C-12</div>
             </div>
+          </div>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" onclick="goToSlideHome(0)"></button>
+            <button class="carousel-dot" onclick="goToSlideHome(1)"></button>
           </div>
         </div>
       </div>
@@ -979,20 +1236,124 @@
       <div class="feature-row reverse r">
         <div>
           <div class="feature-num">02</div>
-          <h3>IoT preditivo.<br>Falha evitada.</h3>
-          <p>Sensores de vibração, temperatura e pressão conectados. Alertas antes da quebra. Manutenção preditiva real.</p>
+          <h3>Financeiro e fiscal<br>integrados.</h3>
+          <p>NF-e automática, contas a pagar e receber, controle fiscal completo. Tudo conectado à operação, sem lançamento manual.</p>
         </div>
-        <div class="feature-visual">
-          <div class="fv-inner" style="text-align: center;">
-            <div class="fv-gauge">
-              <div class="fv-gauge-ring"><div class="fv-gauge-val">72°C</div></div>
-              <div class="fv-gauge-label">Temperatura Motor M-15</div>
-              <div class="fv-gauge-status">Normal</div>
+        <div class="feature-visual has-carousel">
+          <div class="carousel" id="carouselFin">
+            <button class="carousel-btn carousel-prev" onclick="moveSlideFin(-1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="carousel-btn carousel-next" onclick="moveSlideFin(1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="carousel-track" id="trackFin">
+              <!-- SLIDE 1 — KPIs + NF-e Recentes -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-card-title">Financeiro — Março 2026</div>
+                    <div class="fv-minis cols-3">
+                      <div class="fv-mini"><div class="fv-mini-label">Faturado</div><div class="fv-mini-val">R$ 412k</div><div class="fv-mini-note" style="color:var(--success);">+18% vs mês</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">A receber</div><div class="fv-mini-val">R$ 87k</div><div class="fv-mini-note" style="color:var(--blue-deep);">14 títulos</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">A pagar</div><div class="fv-mini-val">R$ 63k</div><div class="fv-mini-note" style="color:var(--warning);">8 vencendo</div></div>
+                    </div>
+                    <div class="fv-card-title" style="margin-top:4px;">NF-e Recentes</div>
+                    <div class="fv-nfe-list">
+                      <div class="fv-nfe-item">
+                        <div class="fv-nfe-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="fv-nfe-info"><div class="fv-nfe-num">NF-e 4.521</div><div class="fv-nfe-detail">Eletro Distrib. Ltda · Autorizada</div></div>
+                        <div class="fv-nfe-val">R$ 24.800</div>
+                      </div>
+                      <div class="fv-nfe-item">
+                        <div class="fv-nfe-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="fv-nfe-info"><div class="fv-nfe-num">NF-e 4.520</div><div class="fv-nfe-detail">Lumi Corp S.A. · Autorizada</div></div>
+                        <div class="fv-nfe-val">R$ 18.350</div>
+                      </div>
+                      <div class="fv-nfe-item">
+                        <div class="fv-nfe-icon yellow"><svg viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+                        <div class="fv-nfe-info"><div class="fv-nfe-num">NF-e 4.519</div><div class="fv-nfe-detail">MegaLuz Ind. · Aguardando SEFAZ</div></div>
+                        <div class="fv-nfe-val">R$ 41.200</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- SLIDE 2 — Fluxo de Caixa + Contas -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-card-title">Fluxo de Caixa</div>
+                    <div class="fv-minis cols-2" style="margin-bottom:14px;">
+                      <div class="fv-mini"><div class="fv-mini-label">Saldo atual</div><div class="fv-mini-val" style="color:var(--success);">R$ 184k</div><div class="fv-mini-note" style="color:var(--success);">Positivo</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Projeção 30d</div><div class="fv-mini-val">R$ 221k</div><div class="fv-mini-note" style="color:var(--blue-deep);">+R$ 37k</div></div>
+                    </div>
+                    <div class="fv-flow-chart">
+                      <div class="fv-flow-label">Entradas vs Saídas (6 meses)</div>
+                      <div class="fv-flow-bars">
+                        <div class="fv-flow-col"><div class="fv-flow-bar-up" style="height:35px"></div><div class="fv-flow-bar-down" style="height:22px"></div><div class="fv-flow-month">Out</div></div>
+                        <div class="fv-flow-col"><div class="fv-flow-bar-up" style="height:40px"></div><div class="fv-flow-bar-down" style="height:28px"></div><div class="fv-flow-month">Nov</div></div>
+                        <div class="fv-flow-col"><div class="fv-flow-bar-up" style="height:48px"></div><div class="fv-flow-bar-down" style="height:30px"></div><div class="fv-flow-month">Dez</div></div>
+                        <div class="fv-flow-col"><div class="fv-flow-bar-up" style="height:32px"></div><div class="fv-flow-bar-down" style="height:25px"></div><div class="fv-flow-month">Jan</div></div>
+                        <div class="fv-flow-col"><div class="fv-flow-bar-up" style="height:44px"></div><div class="fv-flow-bar-down" style="height:26px"></div><div class="fv-flow-month">Fev</div></div>
+                        <div class="fv-flow-col"><div class="fv-flow-bar-up" style="height:52px"></div><div class="fv-flow-bar-down" style="height:28px"></div><div class="fv-flow-month">Mar</div></div>
+                      </div>
+                    </div>
+                    <div class="fv-accounts-title">Próximos vencimentos</div>
+                    <div class="fv-acc-row">
+                      <div><span class="fv-acc-name">Fornecedor Alumax</span><br><span class="fv-acc-date">Vence 15/03</span></div>
+                      <span class="fv-acc-val out">- R$ 12.400</span>
+                      <span class="fv-acc-status due">A vencer</span>
+                    </div>
+                    <div class="fv-acc-row">
+                      <div><span class="fv-acc-name">Cliente Eletro Distrib.</span><br><span class="fv-acc-date">Vence 18/03</span></div>
+                      <span class="fv-acc-val in">+ R$ 24.800</span>
+                      <span class="fv-acc-status due">A receber</span>
+                    </div>
+                    <div class="fv-acc-row">
+                      <div><span class="fv-acc-name">Energia elétrica</span><br><span class="fv-acc-date">Venceu 05/03</span></div>
+                      <span class="fv-acc-val out">- R$ 8.900</span>
+                      <span class="fv-acc-status late">Atrasado</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- SLIDE 3 — NF-e Detalhada + DRE -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-header">
+                      <span class="fv-badge auth">Autorizada</span>
+                      <span class="fv-id">NF-e 4.521</span>
+                    </div>
+                    <div class="fv-title">Eletro Distribuidora Ltda</div>
+                    <div class="fv-meta"><span>CNPJ 12.345.678/0001-90</span><span>Série 1</span></div>
+                    <div class="fv-nfe-detail-grid">
+                      <div class="fv-nfe-field">Valor produtos<strong>R$ 22.400,00</strong></div>
+                      <div class="fv-nfe-field">ICMS<strong>R$ 2.688,00 (12%)</strong></div>
+                      <div class="fv-nfe-field">IPI<strong>R$ 1.120,00 (5%)</strong></div>
+                      <div class="fv-nfe-field">Total NF-e<strong>R$ 24.800,00</strong></div>
+                    </div>
+                    <div class="fv-meta" style="margin-top:8px;"><span>Chave: 3526 0312 3456 7800 0190 5500 1000 0045 2111 2345 6789</span></div>
+                  </div>
+                  <div class="fv-dre">
+                    <div class="fv-dre-title">DRE Resumido — Março 2026</div>
+                    <div class="fv-dre-row"><span>Receita bruta</span><span>R$ 412.000</span></div>
+                    <div class="fv-dre-row"><span>(-) Impostos</span><span>R$ 57.680</span></div>
+                    <div class="fv-dre-row"><span>(-) CMV</span><span>R$ 198.400</span></div>
+                    <div class="fv-dre-row"><span>(-) Despesas operacionais</span><span>R$ 82.100</span></div>
+                    <div class="fv-dre-row total"><span>Lucro líquido</span><span>R$ 73.820</span></div>
+                    <div class="fv-margin-bar"><div class="fv-margin-fill" style="width:17.9%"></div></div>
+                    <div class="fv-margin-text"><span>Margem líquida</span><span>17,9%</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="fv-minis" style="margin-top: 16px;">
-              <div class="fv-mini"><div class="fv-mini-label">Vibração</div><div class="fv-mini-val">2.1 mm/s</div><div class="fv-mini-note" style="color:var(--success)">Normal</div></div>
-              <div class="fv-mini"><div class="fv-mini-label">Pressão</div><div class="fv-mini-val">4.2 bar</div><div class="fv-mini-note" style="color:var(--success)">Estável</div></div>
-            </div>
+          </div>
+          <div class="carousel-dots" id="dotsFin">
+            <button class="carousel-dot active" onclick="goToSlideFin(0)"></button>
+            <button class="carousel-dot" onclick="goToSlideFin(1)"></button>
+            <button class="carousel-dot" onclick="goToSlideFin(2)"></button>
           </div>
         </div>
       </div>
@@ -1001,19 +1362,116 @@
         <div>
           <div class="feature-num">03</div>
           <h3>Dashboards que<br>o board entende.</h3>
-          <p>KPIs de manutenção em tempo real. MTTR, MTBF, disponibilidade e custo. Export PDF em um clique.</p>
+          <p>KPIs de operação em tempo real. Produção, eficiência, faturamento e custo. Export PDF em um clique.</p>
         </div>
-        <div class="feature-visual">
-          <div class="fv-inner">
-            <div class="fv-minis">
-              <div class="fv-mini"><div class="fv-mini-label">MTTR</div><div class="fv-mini-val">2.4h</div><div class="fv-mini-note" style="color:var(--success)">-18%</div></div>
-              <div class="fv-mini"><div class="fv-mini-label">MTBF</div><div class="fv-mini-val">720h</div><div class="fv-mini-note" style="color:var(--success)">+12%</div></div>
-              <div class="fv-mini"><div class="fv-mini-label">Backlog</div><div class="fv-mini-val">23</div><div class="fv-mini-note" style="color:var(--blue-deep)">-8 vs sem.</div></div>
-              <div class="fv-mini"><div class="fv-mini-label">Custo/mês</div><div class="fv-mini-val">R$47k</div><div class="fv-mini-note" style="color:var(--success)">-22%</div></div>
+        <div class="feature-visual has-carousel">
+          <div class="carousel" id="carouselDash">
+            <button class="carousel-btn carousel-prev" onclick="moveSlideDash(-1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="carousel-btn carousel-next" onclick="moveSlideDash(1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="carousel-track" id="trackDash">
+              <!-- SLIDE 1 — KPIs atuais -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-card-title">Indicadores — Março 2026</div>
+                    <div class="fv-minis cols-2">
+                      <div class="fv-mini"><div class="fv-mini-label">MTTR</div><div class="fv-mini-val">2.4h</div><div class="fv-mini-note" style="color:var(--success)">-18%</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">MTBF</div><div class="fv-mini-val">720h</div><div class="fv-mini-note" style="color:var(--success)">+12%</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Backlog</div><div class="fv-mini-val">23</div><div class="fv-mini-note" style="color:var(--blue-deep)">-8 vs sem.</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Custo/mês</div><div class="fv-mini-val">R$47k</div><div class="fv-mini-note" style="color:var(--success)">-22%</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- SLIDE 2 — Painel Executivo + Sparklines -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-card-title">Painel Executivo</div>
+                    <div class="fv-minis cols-4" style="margin-bottom:10px;">
+                      <div class="fv-mini"><div class="fv-mini-label">Produção</div><div class="fv-mini-val">12.4k</div><div class="fv-mini-note" style="color:var(--success)">+14%</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Eficiência</div><div class="fv-mini-val">92%</div><div class="fv-mini-note" style="color:var(--success)">+3pp</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Faturado</div><div class="fv-mini-val">R$412k</div><div class="fv-mini-note" style="color:var(--success)">+18%</div></div>
+                      <div class="fv-mini"><div class="fv-mini-label">Custo/un</div><div class="fv-mini-val">R$18,2</div><div class="fv-mini-note" style="color:var(--success)">-8%</div></div>
+                    </div>
+                    <div class="fv-spark-section">
+                      <div class="fv-spark-title">Tendência — 6 meses</div>
+                      <div class="fv-spark-row"><span class="fv-spark-label">Produção</span><div class="fv-spark-line"><svg class="fv-spark-svg" viewBox="0 0 120 20"><polyline points="0,16 20,14 40,12 60,10 80,7 100,5 120,3" fill="none" stroke="#10B981" stroke-width="1.5"/></svg></div><span class="fv-spark-val">12.4k</span><span class="fv-spark-change" style="color:var(--success)">+14%</span></div>
+                      <div class="fv-spark-row"><span class="fv-spark-label">Eficiência</span><div class="fv-spark-line"><svg class="fv-spark-svg" viewBox="0 0 120 20"><polyline points="0,12 20,13 40,10 60,8 80,6 100,5 120,4" fill="none" stroke="#2B6CB0" stroke-width="1.5"/></svg></div><span class="fv-spark-val">92%</span><span class="fv-spark-change" style="color:var(--success)">+3pp</span></div>
+                      <div class="fv-spark-row"><span class="fv-spark-label">Custo/un</span><div class="fv-spark-line"><svg class="fv-spark-svg" viewBox="0 0 120 20"><polyline points="0,4 20,6 40,8 60,9 80,11 100,14 120,16" fill="none" stroke="#10B981" stroke-width="1.5"/></svg></div><span class="fv-spark-val">R$18,2</span><span class="fv-spark-change" style="color:var(--success)">-8%</span></div>
+                    </div>
+                    <div class="fv-export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Exportar PDF</div>
+                  </div>
+                </div>
+              </div>
+              <!-- SLIDE 3 — Metas + Ranking -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-card-title">Metas — Março 2026</div>
+                    <div class="fv-goals">
+                      <div class="fv-goal"><div class="fv-goal-header"><span class="fv-goal-name">Produção mensal</span><span class="fv-goal-pct" style="color:var(--success);">88%</span></div><div class="fv-goal-bar"><div class="fv-goal-fill" style="width:88%;background:var(--success);"></div></div><div class="fv-goal-detail"><span>12.400 / 14.000 un</span><span>Faltam 1.600</span></div></div>
+                      <div class="fv-goal"><div class="fv-goal-header"><span class="fv-goal-name">Faturamento</span><span class="fv-goal-pct" style="color:var(--blue-deep);">82%</span></div><div class="fv-goal-bar"><div class="fv-goal-fill" style="width:82%;background:linear-gradient(90deg,var(--blue-light),var(--blue-deep));"></div></div><div class="fv-goal-detail"><span>R$ 412k / R$ 500k</span><span>Faltam R$ 88k</span></div></div>
+                      <div class="fv-goal"><div class="fv-goal-header"><span class="fv-goal-name">Eficiência geral</span><span class="fv-goal-pct" style="color:var(--success);">92%</span></div><div class="fv-goal-bar"><div class="fv-goal-fill" style="width:92%;background:var(--success);"></div></div><div class="fv-goal-detail"><span>Meta: 90%</span><span>Acima da meta</span></div></div>
+                    </div>
+                    <div class="fv-rank-title">Ranking — Eficiência por linha</div>
+                    <div class="fv-rank-row"><span class="fv-rank-pos gold">1</span><span class="fv-rank-name">Linha A — Painéis</span><span class="fv-rank-val">4.820 un</span><span class="fv-rank-eff" style="color:var(--success);">96%</span></div>
+                    <div class="fv-rank-row"><span class="fv-rank-pos silver">2</span><span class="fv-rank-name">Linha B — Refletores</span><span class="fv-rank-val">3.940 un</span><span class="fv-rank-eff" style="color:var(--success);">91%</span></div>
+                    <div class="fv-rank-row"><span class="fv-rank-pos bronze">3</span><span class="fv-rank-name">Linha C — Tubulares</span><span class="fv-rank-val">3.640 un</span><span class="fv-rank-eff" style="color:var(--warning);">84%</span></div>
+                  </div>
+                </div>
+              </div>
+              <!-- SLIDE 4 — Comparativo Mensal -->
+              <div class="carousel-slide">
+                <div class="fv-inner">
+                  <div class="fv-card">
+                    <div class="fv-card-title">Comparativo Mensal</div>
+                    <table class="fv-compare">
+                      <thead><tr><th>Indicador</th><th>Jan</th><th>Fev</th><th>Mar</th></tr></thead>
+                      <tbody>
+                        <tr><td>Produção</td><td>9.800</td><td>10.900</td><td class="highlight">12.400<span class="fv-compare-change" style="color:var(--success)">+14%</span></td></tr>
+                        <tr><td>Faturamento</td><td>R$ 310k</td><td>R$ 349k</td><td class="highlight">R$ 412k<span class="fv-compare-change" style="color:var(--success)">+18%</span></td></tr>
+                        <tr><td>Eficiência</td><td>86%</td><td>89%</td><td class="highlight">92%<span class="fv-compare-change" style="color:var(--success)">+3pp</span></td></tr>
+                        <tr><td>Custo/un</td><td>R$ 21,4</td><td>R$ 19,8</td><td class="highlight">R$ 18,2<span class="fv-compare-change" style="color:var(--success)">-8%</span></td></tr>
+                      </tbody>
+                    </table>
+                    <div class="fv-area-chart">
+                      <div class="fv-area-title">Produção vs Custo unitário</div>
+                      <svg viewBox="0 0 240 45" width="100%" height="45">
+                        <path d="M0,38 L40,32 L80,28 L120,22 L160,16 L200,11 L240,6 L240,45 L0,45 Z" fill="rgba(43,108,176,0.1)"/>
+                        <polyline points="0,38 40,32 80,28 120,22 160,16 200,11 240,6" fill="none" stroke="#2B6CB0" stroke-width="1.5"/>
+                        <path d="M0,12 L40,15 L80,19 L120,24 L160,29 L200,33 L240,38 L240,45 L0,45 Z" fill="rgba(16,185,129,0.08)"/>
+                        <polyline points="0,12 40,15 80,19 120,24 160,29 200,33 240,38" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3"/>
+                      </svg>
+                      <div class="fv-area-legend">
+                        <div class="fv-area-legend-item"><div class="fv-area-legend-dot" style="background:var(--blue-deep);"></div>Produção (↑)</div>
+                        <div class="fv-area-legend-item"><div class="fv-area-legend-dot" style="background:var(--success);"></div>Custo/un (↓)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="carousel-dots" id="dotsDash">
+            <button class="carousel-dot active" onclick="goToSlideDash(0)"></button>
+            <button class="carousel-dot" onclick="goToSlideDash(1)"></button>
+            <button class="carousel-dot" onclick="goToSlideDash(2)"></button>
+            <button class="carousel-dot" onclick="goToSlideDash(3)"></button>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="features-cta">
+      <a href="funcionalidades.html" class="btn-features">
+        Conheça todos os recursos
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -1667,6 +2125,39 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // Carrossel Bloco 1
+  let cH = 0;
+  const trackH = document.getElementById('trackHome');
+  const dotsH = document.querySelectorAll('#carouselHome ~ .carousel-dots .carousel-dot');
+  function updateCH() {
+    trackH.style.transform = `translateX(-${cH * 100}%)`;
+    dotsH.forEach((d, i) => d.classList.toggle('active', i === cH));
+  }
+  function moveSlideHome(dir) { cH = (cH + dir + 2) % 2; updateCH(); }
+  function goToSlideHome(i) { cH = i; updateCH(); }
+
+  // Carrossel Bloco 2 — Financeiro
+  let cF = 0;
+  const trackF = document.getElementById('trackFin');
+  const dotsF = document.querySelectorAll('#dotsFin .carousel-dot');
+  function updateCF() {
+    trackF.style.transform = `translateX(-${cF * 100}%)`;
+    dotsF.forEach((d, i) => d.classList.toggle('active', i === cF));
+  }
+  function moveSlideFin(dir) { cF = (cF + dir + 3) % 3; updateCF(); }
+  function goToSlideFin(i) { cF = i; updateCF(); }
+
+  // Carrossel Bloco 3 — Dashboards
+  let cD = 0;
+  const trackD = document.getElementById('trackDash');
+  const dotsD = document.querySelectorAll('#dotsDash .carousel-dot');
+  function updateCD() {
+    trackD.style.transform = `translateX(-${cD * 100}%)`;
+    dotsD.forEach((d, i) => d.classList.toggle('active', i === cD));
+  }
+  function moveSlideDash(dir) { cD = (cD + dir + 4) % 4; updateCD(); }
+  function goToSlideDash(i) { cD = i; updateCD(); }
 </script>
 </body>
 </html>

@@ -97,11 +97,43 @@
 
     /* ===== VISUAL (mockup do sistema) ===== */
     .feature-visual {
-      background: var(--gray-50); border-radius: 20px; aspect-ratio: 4/3;
+      background: var(--gray-50); border-radius: 20px;
       display: flex; align-items: center; justify-content: center;
       border: 1px solid var(--gray-200); overflow: hidden;
+      position: relative;
     }
+    .feature-visual:not(.has-carousel) { aspect-ratio: 4/3; }
     .fv-inner { width: 85%; }
+
+    /* ===== CARROSSEL ===== */
+    .carousel { position: relative; overflow: hidden; width: 100%; }
+    .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .carousel-slide {
+      min-width: 100%; padding: 2rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-slide .fv-inner { width: 85%; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--white); border: 1px solid var(--gray-200);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 10; transition: all 0.2s;
+    }
+    .carousel-btn:hover {
+      border-color: var(--blue-accent);
+      box-shadow: 0 4px 16px rgba(27,45,91,0.12);
+    }
+    .carousel-btn svg { width: 16px; height: 16px; color: var(--dark); }
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 6px; padding: 0 0 14px; }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gray-200); border: none; cursor: pointer; transition: all 0.3s;
+    }
+    .carousel-dot.active { background: var(--blue-deep); width: 18px; border-radius: 100px; }
 
     /* Cards do sistema */
     .fv-card {
@@ -125,9 +157,19 @@
     .fv-progress-fill { height: 100%; border-radius: 100px; }
     .fv-progress-fill.blue { background: linear-gradient(90deg, var(--blue-light), var(--blue-deep)); }
     .fv-progress-fill.green { background: var(--success); }
+    .fv-progress-text {
+      display: flex; justify-content: space-between; font-size: 0.55rem; color: var(--gray-400);
+      margin-top: 4px; font-weight: 600;
+    }
+    .fv-card-title {
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 12px;
+    }
 
     /* Mini cards */
     .fv-minis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .fv-minis.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .fv-minis.cols-2 { grid-template-columns: 1fr 1fr; }
     .fv-mini {
       background: #fff; border-radius: 10px; padding: 12px;
       border: 1px solid var(--gray-200);
@@ -174,6 +216,54 @@
     .fv-wifi svg { width: 12px; height: 12px; }
     .fv-wifi.off svg { opacity: 0.3; }
     .fv-wifi.on svg { color: var(--success); }
+
+    /* Tabela estoque */
+    .fv-table { width: 100%; border-collapse: collapse; }
+    .fv-table th {
+      font-size: 0.5rem; font-weight: 700; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.06em; text-align: left;
+      padding: 6px 0; border-bottom: 1px solid var(--gray-200);
+    }
+    .fv-table td {
+      font-size: 0.6rem; color: var(--dark); padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100); font-weight: 500;
+    }
+    .fv-table tr:last-child td { border-bottom: none; }
+    .fv-stock-bar {
+      height: 4px; border-radius: 100px; background: var(--gray-200); width: 50px;
+      display: inline-block; vertical-align: middle; margin-left: 6px;
+    }
+    .fv-stock-fill { height: 100%; border-radius: 100px; }
+    .fv-stock-fill.ok { background: var(--success); }
+    .fv-stock-fill.low { background: var(--warning); }
+    .fv-stock-fill.crit { background: #EF4444; }
+    .fv-status-tag {
+      font-size: 0.48rem; font-weight: 700; padding: 2px 8px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .fv-status-tag.ok { background: rgba(16,185,129,0.1); color: var(--success); }
+    .fv-status-tag.low { background: rgba(245,158,11,0.1); color: #D97706; }
+    .fv-status-tag.crit { background: rgba(239,68,68,0.1); color: #EF4444; }
+
+    /* Consumo materiais */
+    .fv-consume-title {
+      font-size: 0.52rem; font-weight: 700; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .fv-consume-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .fv-consume-item:last-child { margin-bottom: 0; }
+    .fv-consume-name { font-size: 0.58rem; color: var(--dark); font-weight: 600; flex: 1; }
+    .fv-consume-qty { font-size: 0.55rem; color: var(--gray-400); font-weight: 600; min-width: 55px; text-align: right; }
+    .fv-consume-bar { height: 4px; border-radius: 100px; background: var(--gray-200); width: 60px; }
+    .fv-consume-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--blue-light), var(--blue-deep)); }
+
+    .fv-alert {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15);
+      border-radius: 8px; padding: 8px 12px; margin-top: 10px;
+    }
+    .fv-alert svg { width: 14px; height: 14px; color: var(--warning); flex-shrink: 0; }
+    .fv-alert-text { font-size: 0.55rem; color: #92400E; font-weight: 600; line-height: 1.4; }
 
     /* QR visual */
     .fv-qr-grid {
@@ -387,45 +477,132 @@
 <div class="wrap">
   <div class="features-list">
 
-    <!-- ====== 01 — OS DIGITAIS OFFLINE ====== -->
+    <!-- ====== 01 — PRODUÇÃO E ESTOQUE ====== -->
     <div class="feature-row">
       <div>
         <div class="feature-num">01</div>
-        <h3>OS digitais que<br>funcionam offline.</h3>
-        <p class="desc">Abra, preencha e finalize ordens de serviço direto no tablet ou celular. Sem depender de Wi-Fi. Os dados sincronizam automaticamente quando a conexão voltar.</p>
+        <h3>Produção e estoque<br>sob controle.</h3>
+        <p class="desc">Ordens de produção, consumo de materiais e estoque em tempo real. Sem planilha, sem retrabalho, sem surpresa.</p>
         <ul class="feature-bullets">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Funciona em áreas sem cobertura de sinal</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sincronização automática ao reconectar</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fotos, assinaturas e checklists integrados</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Ordens de produção com status em tempo real</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Consumo de matéria-prima automático</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Estoque atualizado a cada movimentação</li>
         </ul>
       </div>
-      <div class="feature-visual">
-        <div class="fv-inner">
-          <div class="fv-card">
-            <div class="fv-header">
-              <span class="fv-badge open">Em Execução</span>
-              <span class="fv-id">#OS-1247</span>
+      <div class="feature-visual has-carousel">
+        <div class="carousel" id="carousel1">
+          <button class="carousel-btn carousel-prev" onclick="moveSlide1(-1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="carousel-btn carousel-next" onclick="moveSlide1(1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="carousel-track" id="track1">
+            <!-- SLIDE 1 — Dashboard Estoque -->
+            <div class="carousel-slide">
+              <div class="fv-inner">
+                <div class="fv-card">
+                  <div class="fv-card-title">Estoque — Visão Geral</div>
+                  <div class="fv-minis cols-3">
+                    <div class="fv-mini">
+                      <div class="fv-mini-label">Itens cadastrados</div>
+                      <div class="fv-mini-val">347</div>
+                    </div>
+                    <div class="fv-mini">
+                      <div class="fv-mini-label">Abaixo do mínimo</div>
+                      <div class="fv-mini-val" style="color: var(--warning);">12</div>
+                      <div class="fv-mini-note" style="color: var(--warning);">Atenção</div>
+                    </div>
+                    <div class="fv-mini">
+                      <div class="fv-mini-label">Valor em estoque</div>
+                      <div class="fv-mini-val">R$ 284k</div>
+                    </div>
+                  </div>
+                  <table class="fv-table">
+                    <thead>
+                      <tr><th>Material</th><th>Qtd</th><th>Nível</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Chapa alumínio 1mm</td>
+                        <td>1.420 kg</td>
+                        <td><span class="fv-stock-bar"><span class="fv-stock-fill ok" style="width:78%"></span></span></td>
+                        <td><span class="fv-status-tag ok">Normal</span></td>
+                      </tr>
+                      <tr>
+                        <td>LED chip SMD 5050</td>
+                        <td>8.200 un</td>
+                        <td><span class="fv-stock-bar"><span class="fv-stock-fill ok" style="width:65%"></span></span></td>
+                        <td><span class="fv-status-tag ok">Normal</span></td>
+                      </tr>
+                      <tr>
+                        <td>Driver eletrônico 40W</td>
+                        <td>84 un</td>
+                        <td><span class="fv-stock-bar"><span class="fv-stock-fill low" style="width:28%"></span></span></td>
+                        <td><span class="fv-status-tag low">Baixo</span></td>
+                      </tr>
+                      <tr>
+                        <td>Difusor policarbonato</td>
+                        <td>22 un</td>
+                        <td><span class="fv-stock-bar"><span class="fv-stock-fill crit" style="width:10%"></span></span></td>
+                        <td><span class="fv-status-tag crit">Crítico</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-            <div class="fv-title">Manutenção Preventiva — Extrusora L-03</div>
-            <div class="fv-meta"><span>Carlos Silva</span><span>Setor B2</span><span>Prioridade Alta</span></div>
-            <div class="fv-progress"><div class="fv-progress-fill blue" style="width:65%"></div></div>
-            <div class="fv-rows">
-              <div class="fv-row"><span>Checklist</span><strong>4 de 6 itens</strong></div>
-              <div class="fv-row"><span>Fotos anexas</span><strong>2 registros</strong></div>
-              <div class="fv-row"><span>Tempo decorrido</span><strong>1h 24min</strong></div>
-            </div>
-            <div class="fv-wifi off">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-              Offline — dados salvos localmente
+            <!-- SLIDE 2 — OP + Consumo -->
+            <div class="carousel-slide">
+              <div class="fv-inner">
+                <div class="fv-card">
+                  <div class="fv-header">
+                    <span class="fv-badge open">Em Produção</span>
+                    <span class="fv-id">#OP-3042</span>
+                  </div>
+                  <div class="fv-title">Luminária LED Painel 40W — Lote 500 un</div>
+                  <div class="fv-progress"><div class="fv-progress-fill blue" style="width:72%"></div></div>
+                  <div class="fv-progress-text"><span>360 produzidas</span><span>72%</span></div>
+                  <div class="fv-minis cols-2" style="margin-top: 10px;">
+                    <div class="fv-mini">
+                      <div class="fv-mini-label">Produzido</div>
+                      <div class="fv-mini-val">360</div>
+                      <div class="fv-mini-note" style="color: var(--success);">de 500 un</div>
+                    </div>
+                    <div class="fv-mini">
+                      <div class="fv-mini-label">Estoque atual</div>
+                      <div class="fv-mini-val">2.140</div>
+                      <div class="fv-mini-note" style="color: var(--blue-deep);">+360 hoje</div>
+                    </div>
+                  </div>
+                  <div class="fv-consume-title">Consumo de materiais</div>
+                  <div class="fv-consume-item">
+                    <span class="fv-consume-name">Chapa alumínio</span>
+                    <span class="fv-consume-qty">86/120 kg</span>
+                    <span class="fv-consume-bar"><span class="fv-consume-fill" style="width:72%"></span></span>
+                  </div>
+                  <div class="fv-consume-item">
+                    <span class="fv-consume-name">LED chip SMD</span>
+                    <span class="fv-consume-qty">1.440/2.000</span>
+                    <span class="fv-consume-bar"><span class="fv-consume-fill" style="width:72%"></span></span>
+                  </div>
+                  <div class="fv-consume-item">
+                    <span class="fv-consume-name">Driver 40W</span>
+                    <span class="fv-consume-qty">360/500</span>
+                    <span class="fv-consume-bar"><span class="fv-consume-fill" style="width:72%"></span></span>
+                  </div>
+                  <div class="fv-alert">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <span class="fv-alert-text">Driver 40W com estoque para mais 140 un. Considere nova compra.</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="fv-card" style="margin-top: 8px; opacity: 0.45; transform: scale(0.96);">
-            <div class="fv-header">
-              <span class="fv-badge done">Concluída</span>
-              <span class="fv-id">#OS-1246</span>
-            </div>
-            <div class="fv-title">Inspeção — Compressor C-12</div>
-          </div>
+        </div>
+        <div class="carousel-dots">
+          <button class="carousel-dot active" onclick="goToSlide1(0)"></button>
+          <button class="carousel-dot" onclick="goToSlide1(1)"></button>
         </div>
       </div>
     </div>
@@ -678,5 +855,16 @@
   </div>
 </footer>
 
+<script>
+  let c1 = 0;
+  const track1 = document.getElementById('track1');
+  const dots1 = document.querySelectorAll('#carousel1 ~ .carousel-dots .carousel-dot');
+  function updateC1() {
+    track1.style.transform = `translateX(-${c1 * 100}%)`;
+    dots1.forEach((d, i) => d.classList.toggle('active', i === c1));
+  }
+  function moveSlide1(dir) { c1 = (c1 + dir + 2) % 2; updateC1(); }
+  function goToSlide1(i) { c1 = i; updateC1(); }
+</script>
 </body>
 </html>
